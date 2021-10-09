@@ -4,7 +4,10 @@ import { Redirect } from "react-router";
 
 import { loadingStatusSelector } from "@/services/map-config/selectors/loading-status";
 
-import { MapDisplay } from "./components/MapDisplay";
+import EntitiesWindow from "./components/EntitiesWindow";
+import MapWindow from "./components/MapWindow";
+
+import styles from "./EditorPage.module.css";
 
 const EditorPage = () => {
   const status = useSelector(loadingStatusSelector);
@@ -12,7 +15,12 @@ const EditorPage = () => {
     return <Redirect to="/" />;
   }
 
-  return <MapDisplay />;
+  return (
+    <div className={styles["editor-page"]}>
+      <MapWindow />
+      <EntitiesWindow />
+    </div>
+  );
 };
 
 export default EditorPage;

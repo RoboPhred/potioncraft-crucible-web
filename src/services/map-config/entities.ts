@@ -19,7 +19,13 @@ export interface DangerZonePartMapEntity extends MapEntityBase {
   type: string;
 }
 
+export interface ExperienceBonusMapEntity extends MapEntityBase {
+  entityType: "ExperienceBonus";
+  size: string;
+}
+
 export type MapEntity =
   | PotionEffectMapEntity
   | VortexMapEntity
-  | DangerZonePartMapEntity;
+  | DangerZonePartMapEntity
+  | ExperienceBonusMapEntity;

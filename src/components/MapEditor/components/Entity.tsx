@@ -5,9 +5,10 @@ import { MapEntity } from "@/services/map-config/entities";
 
 import { useSelector } from "@/hooks/use-selector";
 
-import PotionEffect from "./PotionEffect";
-import Vortex from "./Vortex";
-import DangerZonePart from "./DangerZonePart";
+import PotionEffect from "./EntityTypes/PotionEffect";
+import Vortex from "./EntityTypes/Vortex";
+import DangerZonePart from "./EntityTypes/DangerZonePart";
+import ExperienceBonus from "./EntityTypes/ExperienceBonus";
 
 export interface EntityProps {
   entityKey: string;
@@ -31,6 +32,8 @@ function entityToComponent(entity: MapEntity) {
       return <Vortex {...entity} />;
     case "DangerZonePart":
       return <DangerZonePart {...entity} />;
+    case "ExperienceBonus":
+      return <ExperienceBonus {...entity} />;
   }
 
   return null;

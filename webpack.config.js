@@ -2,6 +2,7 @@
 const path = require("path");
 
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const isDev = process.env["NODE_ENV"] === "development";
 
@@ -70,9 +71,38 @@ module.exports = {
         ],
       },
 
+      // css files with the modular option.
       {
-        test: /\.css$/,
-        use: ["style-loader", "css-loader"],
+        test: /\.module\.css$/,
+        exclude: /node_modules/,
+        use: [
+          { loader: MiniCssExtractPlugin.loader },
+          {
+            loader: "css-loader",
+            options: {
+              modules: {
+                localIdentName: "[local]--[hash:base64:5]",
+              },
+            },
+          },
+          {
+            loader: "postcss-loader",
+          },
+        ],
+      },
+
+      // Any css that is not .module.css
+      {
+        test: /^(?!.*[.]module\.css$).*(\.css)$/,
+        use: [
+          { loader: MiniCssExtractPlugin.loader },
+          {
+            loader: "css-loader",
+          },
+          {
+            loader: "postcss-loader",
+          },
+        ],
       },
 
       {
@@ -116,6 +146,7 @@ module.exports = {
       inject: true,
       template: path.resolve(PATHS.appSrc, "index.ejs"),
     }),
+    new MiniCssExtractPlugin(),
   ],
 
   optimization: {

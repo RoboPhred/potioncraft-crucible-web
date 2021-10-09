@@ -1,5 +1,4 @@
 import { MapEntity } from "./entities";
-import { MapConfig } from "./types";
 
 export interface MapConfigState {
   loadingStatus: "idle" | "loading" | "loaded" | "error";
