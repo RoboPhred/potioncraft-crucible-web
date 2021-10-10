@@ -1,10 +1,20 @@
+import { createSelector } from "reselect";
+
 import { normalizeRectangle } from "@/geometry";
 import { AppState } from "@/state";
 
-export const dragSelectionRectSelector = (state: AppState) => {
-  const dragState = state.services.editorDrag;
-  if (dragState.dragMode !== "select" || dragState.dragEnd === null) {
-    return null;
+export const dragSelectionRectSelector = createSelector(
+  (state: AppState) =>
+    state.services.editorDrag.dragMode == "select" &&
+    state.services.editorDrag.dragStart,
+  (state: AppState) =>
+    state.services.editorDrag.dragMode == "select" &&
+    state.services.editorDrag.dragEnd,
+  (dragStart, dragEnd) => {
+    if (dragStart && dragEnd) {
+      return normalizeRectangle(dragStart, dragEnd);
+    } else {
+      return null;
+    }
   }
-  return normalizeRectangle(dragState.dragStart, dragState.dragEnd);
-};
+);
