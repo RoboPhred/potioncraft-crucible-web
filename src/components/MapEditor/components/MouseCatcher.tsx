@@ -1,9 +1,7 @@
 import * as React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { Point } from "@/geometry";
-
-import { useSelector } from "@/hooks/use-selector";
 
 import { getModifiers } from "@/modifier-keys";
 
@@ -13,23 +11,19 @@ import { editorDragAbort } from "@/actions/editor-drag-abort";
 import { editorDragContinue } from "@/actions/editor-drag-continue";
 import { editorDragEnd } from "@/actions/editor-drag-end";
 
+import { isDraggingSelector } from "@/services/editor-drag/selectors/drag";
+
 import { useMouseDragDetector } from "@/hooks/use-mouse-drag-detector";
 
-import { dragSelectionRectSelector } from "@/services/editor-drag/selectors/drag-select";
-
-import { useMouseCoords } from "../hooks/use-mouse-coords";
 import { useViewportContext } from "../contexts/viewport-context";
 
-const MouseLayer: React.FC = React.memo(function DragSelectLayer() {
+export interface MouseLayerProps {
+  className?: string;
+}
+function MouseCatcher({ className }: MouseLayerProps) {
   const dispatch = useDispatch();
-  const { zoomFactor } = useViewportContext();
-  function counterScale(value: number) {
-    return value * (1 / zoomFactor);
-  }
-
-  const selectionRect = useSelector(dragSelectionRectSelector);
-
-  const getCoords = useMouseCoords();
+  const isDragging = useSelector(isDraggingSelector);
+  const { clientToWorld } = useViewportContext();
 
   const onClick = React.useCallback(
     (e: MouseEvent) => {
@@ -46,11 +40,11 @@ const MouseLayer: React.FC = React.memo(function DragSelectLayer() {
 
   const onDragStart = React.useCallback(
     (e: MouseEvent, originalPoint: Point) => {
-      const p = getCoords(originalPoint);
+      const p = clientToWorld(originalPoint);
       const modifierKeys = getModifiers(e);
       dispatch(editorDragStartSelect(p, modifierKeys));
     },
-    [getCoords]
+    [clientToWorld]
   );
 
   const { startTracking: onMouseDown } = useMouseDragDetector({
@@ -60,7 +54,7 @@ const MouseLayer: React.FC = React.memo(function DragSelectLayer() {
 
   const onMouseMove = React.useCallback(
     (e: React.MouseEvent) => {
-      if (e.buttons === 0) {
+      if (isDragging && e.buttons === 0) {
         // It would be nice if we could take a mouse capture and get notified
         // of the mouse up elsewhere, but we need to allow other circuit editors
         // to receive the mouse events so the drag can transfer.
@@ -69,55 +63,34 @@ const MouseLayer: React.FC = React.memo(function DragSelectLayer() {
         return;
       }
 
-      const coords = getCoords({ x: e.pageX, y: e.pageY });
+      const coords = clientToWorld({ x: e.pageX, y: e.pageY });
       const modifierKeys = getModifiers(e);
       dispatch(editorDragContinue(coords, modifierKeys));
     },
-    [getCoords]
+    [clientToWorld]
   );
 
   const onMouseUp = React.useCallback(
     (e: React.MouseEvent) => {
-      const coords = getCoords({ x: e.pageX, y: e.pageY });
+      const coords = clientToWorld({ x: e.pageX, y: e.pageY });
       const modifierKeys = getModifiers(e);
       dispatch(editorDragEnd(coords, modifierKeys));
     },
-    [dispatch, getCoords]
+    [dispatch, clientToWorld]
   );
 
   return (
-    <g className="map-editor-mouselayer">
-      <rect
-        /*
-         Our width and height get scaled by the parent scaler.
-         We have to be inside the parent scaler to make our mouse coordinate values match up.
-         Scale us back out so we continue to cover the whole screen.
-         */
-        x={-60}
-        y={-60}
-        width={120}
-        height={120}
-        fill="transparent"
-        onMouseDown={onMouseDown}
-        onMouseMove={onMouseMove}
-        onMouseUp={onMouseUp}
-      />
-      {selectionRect && (
-        <g
-          transform={`translate(${selectionRect.p1.x}, ${selectionRect.p1.y})`}
-        >
-          <rect
-            width={selectionRect.p2.x - selectionRect.p1.x}
-            height={selectionRect.p2.y - selectionRect.p1.y}
-            strokeWidth={counterScale(2)}
-            strokeDasharray={`${counterScale(5)} ${counterScale(3)}`}
-            stroke="skyblue"
-            fill="transparent"
-          />
-        </g>
-      )}
-    </g>
+    <rect
+      x={0}
+      y={0}
+      width="100%"
+      height="100%"
+      fill="transparent"
+      onMouseDown={onMouseDown}
+      onMouseMove={onMouseMove}
+      onMouseUp={onMouseUp}
+    />
   );
-});
+}
 
-export default MouseLayer;
+export default MouseCatcher;

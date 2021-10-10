@@ -2,7 +2,9 @@ import { AnyAction } from "redux";
 
 import { AppState } from "@/state";
 
-export const actionsBlacklist: string[] = [];
+import { ACTION_EDITOR_DRAG_CONTINUE } from "@/actions/editor-drag-continue";
+
+export const actionsBlacklist: string[] = [ACTION_EDITOR_DRAG_CONTINUE];
 
 export function actionSanitizer(action: AnyAction): AnyAction {
   return action;
