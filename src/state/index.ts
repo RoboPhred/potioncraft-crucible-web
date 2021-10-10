@@ -8,27 +8,27 @@ import {
   defaultMapConfigState,
 } from "@/services/map-config/state";
 import {
-  SelectionState,
-  defaultSelectionState,
-} from "@/services/selection/state";
+  EditorSelectionState,
+  defaultEditorSelectionState,
+} from "@/services/editor-selection/state";
 
 export * from "./utils";
 
 export interface AppState {
   services: {
     editorDrag: EditorDragServiceState;
+    editorSelection: EditorSelectionState;
     i18n: I18NState;
     mapConfig: MapConfigState;
-    selection: SelectionState;
   };
 }
 
 export const defaultAppState: Readonly<AppState> = {
   services: {
     editorDrag: defaultEditorDragServiceState,
+    editorSelection: defaultEditorSelectionState,
     i18n: defaultI18NState,
     mapConfig: defaultMapConfigState,
-    selection: defaultSelectionState,
   },
 };
 Object.freeze(defaultAppState);

@@ -2,7 +2,7 @@ import React from "react";
 
 import { entityByKeySelector } from "@/services/map-config/selectors/entities";
 import { MapEntity } from "@/services/map-config/entities";
-import { isEntitySelectedSelector } from "@/services/selection/selectors/selection";
+import { isEntitySelectedSelector } from "@/services/editor-selection/selectors/selection";
 
 import { useSelector } from "@/hooks/use-selector";
 

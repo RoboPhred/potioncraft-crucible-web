@@ -2,12 +2,12 @@ import { AnyAction } from "redux";
 
 import { isClearSelectionAction } from "@/actions/select-clear";
 
-import { defaultSelectionState, SelectionState } from "../state";
+import { defaultEditorSelectionState, EditorSelectionState } from "../state";
 
 export default function selectClearReducer(
-  state: SelectionState = defaultSelectionState,
+  state: EditorSelectionState = defaultEditorSelectionState,
   action: AnyAction
-): SelectionState {
+): EditorSelectionState {
   if (!isClearSelectionAction(action)) {
     return state;
   }

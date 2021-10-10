@@ -3,12 +3,12 @@ import { AnyAction } from "redux";
 import { isSelectEntityAction } from "@/actions/select-entity";
 import { combineSelection } from "@/selection-mode";
 
-import { defaultSelectionState, SelectionState } from "../state";
+import { defaultEditorSelectionState, EditorSelectionState } from "../state";
 
 export default function selectEntityReducer(
-  state: SelectionState = defaultSelectionState,
+  state: EditorSelectionState = defaultEditorSelectionState,
   action: AnyAction
-): SelectionState {
+): EditorSelectionState {
   if (!isSelectEntityAction(action)) {
     return state;
   }
