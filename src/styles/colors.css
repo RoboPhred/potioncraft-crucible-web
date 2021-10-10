@@ -15,4 +15,6 @@
   --color-ui-surface-text-disabled: rgb(175, 175, 175);
 
   --color-ui-dark-bg: rgb(117, 117, 117);
+
+  --color-entity-selected: goldenrod;
 }

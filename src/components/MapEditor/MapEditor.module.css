@@ -3,3 +3,8 @@
   height: 100%;
   overflow: scroll;
 }
+
+:global(.map-editor .map-entity.is-selected) {
+  /* TODO: Color filter to turn entire thing blueish*/
+  stroke: var(--color-entity-selected);
+}

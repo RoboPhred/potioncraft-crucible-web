@@ -11,14 +11,19 @@ import DangerZonePart from "./EntityTypes/DangerZonePart";
 import ExperienceBonus from "./EntityTypes/ExperienceBonus";
 import { useDispatch } from "react-redux";
 import { selectEntity } from "@/actions/select-entity";
+import classNames from "classnames";
+import { isEntitySelectedSelector } from "@/services/selection/selectors/selection";
 
 export interface EntityProps {
   entityId: string;
 }
 
 const Entity = ({ entityId }: EntityProps) => {
-  const entity = useSelector((state) => entityByKeySelector(state, entityId));
   const dispatch = useDispatch();
+  const entity = useSelector((state) => entityByKeySelector(state, entityId));
+  const isSelected = useSelector((state) =>
+    isEntitySelectedSelector(state, entityId)
+  );
   const onClick = React.useCallback(
     (e: React.MouseEvent) => {
       e.preventDefault();
@@ -34,7 +39,10 @@ const Entity = ({ entityId }: EntityProps) => {
 
   const component = entityToComponent(entity);
   return (
-    <g className="map-entity" onClick={onClick}>
+    <g
+      className={classNames("map-entity", isSelected && "is-selected")}
+      onClick={onClick}
+    >
       {component}
     </g>
   );
