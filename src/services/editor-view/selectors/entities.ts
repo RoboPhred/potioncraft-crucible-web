@@ -2,14 +2,17 @@ import { createSelector } from "reselect";
 
 import { entitiesByKeySelector } from "@/services/map-config/selectors/entities";
 
+import { worldToClient } from "../utils";
+
 import {
   editorOffsetXSelector,
   editorOffsetYSelector,
-  editorViewportHeightSelector,
-  editorViewportWidthSelector,
   editorZoomFactorSelector,
 } from "./view";
-import { worldToClient } from "../utils";
+import {
+  editorViewportHeightSelector,
+  editorViewportWidthSelector,
+} from "./viewport";
 
 export const entityKeysInViewSelector = createSelector(
   entitiesByKeySelector,

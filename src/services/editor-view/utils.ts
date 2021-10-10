@@ -19,11 +19,3 @@ export const clientToWorld = (
   x: p.x / zoomFactor - 60 + offsetX,
   y: (p.y / zoomFactor - 60 + offsetY) * -1,
 });
-
-let test: Point = { x: 5, y: 10 };
-const offsetX = 25;
-const offsetY = 35;
-const zoomFactor = 2;
-const first = worldToClient(test, offsetX, offsetY, zoomFactor);
-const second = clientToWorld(first, offsetX, offsetY, zoomFactor);
-console.log(test, first, second);
