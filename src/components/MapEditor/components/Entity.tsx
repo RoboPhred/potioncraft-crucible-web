@@ -33,7 +33,11 @@ const Entity = ({ entityId }: EntityProps) => {
   }
 
   const component = entityToComponent(entity);
-  return <g onClick={onClick}>{component}</g>;
+  return (
+    <g className="map-entity" onClick={onClick}>
+      {component}
+    </g>
+  );
 };
 
 function entityToComponent(entity: MapEntity) {

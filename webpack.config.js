@@ -35,7 +35,7 @@ module.exports = {
   },
 
   output: {
-    filename: "[name].[hash].bundle.js",
+    filename: "[name].[fullhash].bundle.js",
     path: PATHS.appBuild,
     publicPath: isDev ? "/" : PUBLIC_URL_PATH,
 
@@ -81,7 +81,7 @@ module.exports = {
             loader: "css-loader",
             options: {
               modules: {
-                localIdentName: "[local]--[hash:base64:5]",
+                localIdentName: "[local]--[fullhash:base64:5]",
               },
             },
           },
@@ -110,7 +110,7 @@ module.exports = {
         use: {
           loader: "url-loader",
           options: {
-            name: "fonts/[hash].[ext]",
+            name: "fonts/[fullhash].[ext]",
             limit: 5000,
             mimetype: "application/font-woff",
           },
@@ -121,7 +121,7 @@ module.exports = {
         use: {
           loader: "file-loader",
           options: {
-            name: "fonts/[hash].[ext]",
+            name: "fonts/[fullhash].[ext]",
           },
         },
       },
@@ -130,7 +130,7 @@ module.exports = {
         test: /\.png/,
         loader: "file-loader",
         options: {
-          name: "images/[hash].[ext]",
+          name: "images/[fullhash].[ext]",
         },
       },
 

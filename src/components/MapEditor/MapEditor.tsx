@@ -1,5 +1,6 @@
 import * as React from "react";
 import { useSelector } from "react-redux";
+import classNames from "classnames";
 
 import { entitityKeysSelector } from "@/services/map-config/selectors/entities";
 
@@ -85,7 +86,10 @@ const MapEditor = () => {
   );
 
   return (
-    <div ref={containerRef} className={styles["map-editor"]}>
+    <div
+      ref={containerRef}
+      className={classNames("map-editor", styles["map-editor"])}
+    >
       <ViewportContextProvider
         zoomFactor={zoomFactor}
         setZoomFactor={setZoomFactor}
