@@ -6,5 +6,8 @@ export const entitityKeysSelector = createSelector(
   (entitiesByKey) => Object.keys(entitiesByKey)
 );
 
-export const entityByKeySelector = (state: AppState, entityKey: string) =>
+export const entitiesByKeySelector = (state: AppState) =>
+  state.services.mapConfig.entitiesByKey;
+
+export const entityFromKeySelector = (state: AppState, entityKey: string) =>
   state.services.mapConfig.entitiesByKey?.[entityKey];

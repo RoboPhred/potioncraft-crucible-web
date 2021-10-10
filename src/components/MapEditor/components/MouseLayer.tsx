@@ -11,19 +11,15 @@ import { editorDragAbort } from "@/actions/editor-drag-abort";
 import { editorDragContinue } from "@/actions/editor-drag-continue";
 import { editorDragEnd } from "@/actions/editor-drag-end";
 
-import { isDraggingSelector } from "@/services/editor-drag/selectors/drag";
-
 import { useMouseDragDetector } from "@/hooks/use-mouse-drag-detector";
 
-import { useViewportContext } from "../contexts/viewport-context";
+import { isDraggingSelector } from "@/services/editor-drag/selectors/drag";
+import { useClientToWorld } from "@/services/editor-view/hooks/use-client-to-world";
 
-export interface MouseLayerProps {
-  className?: string;
-}
-function MouseCatcher({ className }: MouseLayerProps) {
+const MouseLayer = () => {
   const dispatch = useDispatch();
   const isDragging = useSelector(isDraggingSelector);
-  const { clientToWorld } = useViewportContext();
+  const clientToWorld = useClientToWorld();
 
   const onClick = React.useCallback(
     (e: MouseEvent) => {
@@ -91,6 +87,6 @@ function MouseCatcher({ className }: MouseLayerProps) {
       onMouseUp={onMouseUp}
     />
   );
-}
+};
 
-export default MouseCatcher;
+export default MouseLayer;

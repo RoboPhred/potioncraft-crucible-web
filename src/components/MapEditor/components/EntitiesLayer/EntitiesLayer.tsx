@@ -3,33 +3,32 @@ import * as React from "react";
 import { useSelector } from "@/hooks/use-selector";
 
 import { entitityKeysSelector } from "@/services/map-config/selectors/entities";
+import { isDraggingSelector } from "@/services/editor-drag/selectors/drag";
 
 import MapCoordinateSpace from "../MapCoordinateSpace";
 
 import Entity from "./components/Entity";
 import PotionOrigin from "./components/PotionOrigin";
-import MouseCatcher from "../MouseCatcher";
+import { entityKeysInViewSelector } from "@/services/editor-view/selectors/entities";
 
-export interface EntitiesLayerProps {
-  className: string;
-}
-
-const EntitiesLayer = ({ className }: EntitiesLayerProps) => {
-  const entitiyKeys = useSelector(entitityKeysSelector);
+const EntitiesLayer = () => {
+  const entityKeys = useSelector(entityKeysInViewSelector);
+  const isDragging = useSelector(isDraggingSelector);
 
   const entityComponents = React.useMemo(
-    () => entitiyKeys.map((key) => <Entity key={key} entityId={key} />),
-    [entitiyKeys]
+    () => entityKeys.map((key) => <Entity key={key} entityId={key} />),
+    [entityKeys]
   );
 
+  console.log("EntitiesLayer render", entityKeys.length);
+
   return (
-    <svg className={className}>
-      <MouseCatcher />
-      <MapCoordinateSpace>
+    <MapCoordinateSpace>
+      <g style={{ pointerEvents: isDragging ? "none" : undefined }}>
         <PotionOrigin />
         {entityComponents}
-      </MapCoordinateSpace>
-    </svg>
+      </g>
+    </MapCoordinateSpace>
   );
 };
 

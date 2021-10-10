@@ -1,15 +1,11 @@
 import * as React from "react";
 
-import { useViewportContext } from "../contexts/viewport-context";
-
 const MapBorder = () => {
-  const { zoomFactor } = useViewportContext();
-  const counterZoom = 1 / zoomFactor;
   return (
     <rect
       stroke="black"
-      strokeWidth={1 * counterZoom}
-      strokeDasharray={`${5 * counterZoom},${5 * counterZoom}`}
+      strokeWidth={1}
+      strokeDasharray="5,5"
       fill="none"
       x="-60"
       y="-60"

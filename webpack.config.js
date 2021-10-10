@@ -16,7 +16,7 @@ const PATHS = {
   changelog: path.resolve(root, "./CHANGELOG.md"),
 };
 
-const PUBLIC_URL_PATH = "/potioncraft-recipebook-web/";
+const PUBLIC_URL_PATH = "/potioncraft-mapmixer-web/";
 
 console.log("Webpack build", isDev ? "[development]" : "[production]");
 
