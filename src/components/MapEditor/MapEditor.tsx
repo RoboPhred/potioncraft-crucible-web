@@ -14,6 +14,7 @@ import Entity from "./components/Entity";
 
 import styles from "./MapEditor.module.css";
 import PotionOrigin from "./components/PotionOrigin";
+import MouseLayer from "./components/MouseLayer";
 
 const SCALE_FACTOR = 1.07;
 
@@ -101,6 +102,8 @@ const MapEditor = () => {
         >
           <g transform={`scale(${zoomFactor}) translate(60,60)`}>
             <MapBorder />
+            {/* MouseLayer needs to be inside the scale so it can deal with map coordinates. */}
+            <MouseLayer />
             <PotionOrigin />
             {entityComponents}
           </g>
