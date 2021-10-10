@@ -9,19 +9,31 @@ import PotionEffect from "./EntityTypes/PotionEffect";
 import Vortex from "./EntityTypes/Vortex";
 import DangerZonePart from "./EntityTypes/DangerZonePart";
 import ExperienceBonus from "./EntityTypes/ExperienceBonus";
+import { useDispatch } from "react-redux";
+import { selectEntity } from "@/actions/select-entity";
 
 export interface EntityProps {
-  entityKey: string;
+  entityId: string;
 }
 
-const Entity = ({ entityKey }: EntityProps) => {
-  const entity = useSelector((state) => entityByKeySelector(state, entityKey));
+const Entity = ({ entityId }: EntityProps) => {
+  const entity = useSelector((state) => entityByKeySelector(state, entityId));
+  const dispatch = useDispatch();
+  const onClick = React.useCallback(
+    (e: React.MouseEvent) => {
+      e.preventDefault();
+      e.stopPropagation();
+      dispatch(selectEntity(entityId));
+    },
+    [entityId]
+  );
 
   if (!entity) {
     return null;
   }
 
-  return entityToComponent(entity);
+  const component = entityToComponent(entity);
+  return <g onClick={onClick}>{component}</g>;
 };
 
 function entityToComponent(entity: MapEntity) {

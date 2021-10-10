@@ -80,7 +80,7 @@ const MapEditor = () => {
   useNativeEvent(containerRef, "wheel", onWheel, { passive: false });
 
   const entityComponents = React.useMemo(
-    () => entitiyKeys.map((key) => <Entity key={key} entityKey={key} />),
+    () => entitiyKeys.map((key) => <Entity key={key} entityId={key} />),
     [entitiyKeys]
   );
 
