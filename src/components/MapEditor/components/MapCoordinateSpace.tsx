@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Group } from "react-konva";
 
 import { useSelector } from "@/hooks/use-selector";
 
@@ -16,11 +17,13 @@ const MapCoordinateSpace = ({ children }: MapCoordinateSpaceProps) => {
   const offsetX = useSelector(editorOffsetXSelector);
   const offsetY = useSelector(editorOffsetYSelector);
   return (
-    <g
-      transform={`scale(${zoomFactor}) translate(60,60) translate(${-offsetX},${-offsetY}) scale(1,-1)`}
-    >
-      {children}
-    </g>
+    <Group scaleY={-1}>
+      <Group offsetX={-offsetX + 60} offsetY={-offsetY + 60}>
+        <Group scaleX={zoomFactor} scaleY={zoomFactor}>
+          {children}
+        </Group>
+      </Group>
+    </Group>
   );
 };
 

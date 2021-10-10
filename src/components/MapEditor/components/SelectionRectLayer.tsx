@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Layer, Rect } from "react-konva";
 
 import { normalizeRectangle, ZeroPoint } from "@/geometry";
 
@@ -22,17 +23,18 @@ const SelectRectLayer = () => {
   selectionRect = normalizeRectangle(selectionRect);
 
   return (
-    <rect
-      x={selectionRect.p1.x}
-      y={selectionRect.p1.y}
-      width={selectionRect.p2.x - selectionRect.p1.x}
-      height={selectionRect.p2.y - selectionRect.p1.y}
-      strokeWidth={2}
-      strokeDasharray="5,3"
-      stroke="skyblue"
-      fill="none"
-      style={{ pointerEvents: "none" }}
-    />
+    <Layer listening={false}>
+      <Rect
+        x={selectionRect.p1.x}
+        y={selectionRect.p1.y}
+        width={selectionRect.p2.x - selectionRect.p1.x}
+        height={selectionRect.p2.y - selectionRect.p1.y}
+        strokeWidth={2}
+        strokeDasharray="5,3"
+        stroke="skyblue"
+        fill="transparent"
+      />
+    </Layer>
   );
 };
 

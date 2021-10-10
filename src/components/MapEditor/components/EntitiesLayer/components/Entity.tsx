@@ -1,5 +1,5 @@
 import React from "react";
-import classNames from "classnames";
+import { Group } from "react-konva";
 
 import { entityFromKeySelector } from "@/services/map-config/selectors/entities";
 import { MapEntity } from "@/services/map-config/entities";
@@ -25,28 +25,16 @@ const Entity = React.memo(({ entityId }: EntityProps) => {
   const isSelected = useSelector((state) =>
     isEntitySelectedSelector(state, entityId)
   );
-  const onClick = React.useCallback(
-    (e: React.MouseEvent) => {
-      e.preventDefault();
-      e.stopPropagation();
-      dispatch(selectEntity(entityId));
-    },
-    [entityId]
-  );
+  const onClick = React.useCallback(() => {
+    dispatch(selectEntity(entityId));
+  }, [entityId]);
 
   if (!entity) {
     return null;
   }
 
   const component = entityToComponent(entity);
-  return (
-    <g
-      className={classNames("map-entity", isSelected && "is-selected")}
-      onClick={onClick}
-    >
-      {component}
-    </g>
-  );
+  return <Group onClick={onClick}>{component}</Group>;
 });
 
 function entityToComponent(entity: MapEntity) {

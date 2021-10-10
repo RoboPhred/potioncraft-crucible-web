@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Layer } from "react-konva";
 
 import { useSelector } from "@/hooks/use-selector";
 
@@ -12,23 +13,23 @@ import PotionOrigin from "./components/PotionOrigin";
 import { entityKeysInViewSelector } from "@/services/editor-view/selectors/entities";
 
 const EntitiesLayer = () => {
-  const entityKeys = useSelector(entityKeysInViewSelector);
+  const entityKeys = useSelector(entitityKeysSelector);
   const isDragging = useSelector(isDraggingSelector);
 
   const entityComponents = React.useMemo(
     () => entityKeys.map((key) => <Entity key={key} entityId={key} />),
-    [entityKeys]
+    []
   );
 
   console.log("EntitiesLayer render", entityKeys.length);
 
   return (
-    <MapCoordinateSpace>
-      <g style={{ pointerEvents: isDragging ? "none" : undefined }}>
+    <Layer listening={!isDragging}>
+      <MapCoordinateSpace>
         <PotionOrigin />
         {entityComponents}
-      </g>
-    </MapCoordinateSpace>
+      </MapCoordinateSpace>
+    </Layer>
   );
 };
 

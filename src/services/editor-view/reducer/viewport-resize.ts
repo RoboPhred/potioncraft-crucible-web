@@ -1,5 +1,7 @@
-import { isEditorViewportResizeAction } from "@/actions/editor-viewport-resize";
 import { AnyAction } from "redux";
+
+import { isEditorViewportResizeAction } from "@/actions/editor-viewport-resize";
+
 import { defaultEditorViewState, EditorViewState } from "../state";
 
 export function viewportResizeReducer(

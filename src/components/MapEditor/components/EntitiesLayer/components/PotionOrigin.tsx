@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Circle } from "react-konva";
 
-const PotionOrigin = () => <circle cx={0} cy={0} r={0.5} fill="blue" />;
+const PotionOrigin = () => <Circle x={0} y={0} radius={0.5} fill="blue" />;
 export default PotionOrigin;
