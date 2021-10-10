@@ -17,11 +17,9 @@ const MapCoordinateSpace = ({ children }: MapCoordinateSpaceProps) => {
   const offsetX = useSelector(editorOffsetXSelector);
   const offsetY = useSelector(editorOffsetYSelector);
   return (
-    <Group scaleY={-1}>
-      <Group offsetX={-offsetX + 60} offsetY={-offsetY + 60}>
-        <Group scaleX={zoomFactor} scaleY={zoomFactor}>
-          {children}
-        </Group>
+    <Group scaleX={zoomFactor} scaleY={zoomFactor}>
+      <Group offsetX={offsetX - 60} offsetY={offsetY - 60}>
+        <Group scaleY={-1}>{children}</Group>
       </Group>
     </Group>
   );

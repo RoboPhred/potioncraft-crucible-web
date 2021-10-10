@@ -1,13 +1,13 @@
 import { createSelector } from "reselect";
 import { AppState } from "@/state";
 
-export const entitityKeysSelector = createSelector(
+export const entityIdsSelector = createSelector(
   (state: AppState) => state.services.mapConfig.entitiesByKey,
   (entitiesByKey) => Object.keys(entitiesByKey)
 );
 
-export const entitiesByKeySelector = (state: AppState) =>
+export const entitiesByIdSelector = (state: AppState) =>
   state.services.mapConfig.entitiesByKey;
 
-export const entityFromKeySelector = (state: AppState, entityKey: string) =>
+export const entityFromIdSelector = (state: AppState, entityKey: string) =>
   state.services.mapConfig.entitiesByKey?.[entityKey];

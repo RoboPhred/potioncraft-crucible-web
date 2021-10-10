@@ -1,7 +1,8 @@
 import React from "react";
+import Konva from "konva";
 import { Group } from "react-konva";
 
-import { entityFromKeySelector } from "@/services/map-config/selectors/entities";
+import { entityFromIdSelector } from "@/services/map-config/selectors/entities";
 import { MapEntity } from "@/services/map-config/entities";
 import { isEntitySelectedSelector } from "@/services/editor-selection/selectors/selection";
 
@@ -21,13 +22,17 @@ export interface EntityProps {
 
 const Entity = React.memo(({ entityId }: EntityProps) => {
   const dispatch = useDispatch();
-  const entity = useSelector((state) => entityFromKeySelector(state, entityId));
+  const entity = useSelector((state) => entityFromIdSelector(state, entityId));
   const isSelected = useSelector((state) =>
     isEntitySelectedSelector(state, entityId)
   );
-  const onClick = React.useCallback(() => {
-    dispatch(selectEntity(entityId));
-  }, [entityId]);
+  const onClick = React.useCallback(
+    (e: Konva.KonvaEventObject<MouseEvent>) => {
+      dispatch(selectEntity(entityId));
+      e.cancelBubble = true;
+    },
+    [entityId]
+  );
 
   if (!entity) {
     return null;

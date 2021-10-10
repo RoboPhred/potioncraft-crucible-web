@@ -1,6 +1,6 @@
 import { createSelector } from "reselect";
 
-import { entitiesByKeySelector } from "@/services/map-config/selectors/entities";
+import { entitiesByIdSelector } from "@/services/map-config/selectors/entities";
 
 import { worldToClient } from "../utils";
 
@@ -15,8 +15,8 @@ import {
   editorViewportWidthSelector,
 } from "./viewport";
 
-export const entityKeysInViewSelector = createSelector(
-  entitiesByKeySelector,
+export const entityIdsInViewSelector = createSelector(
+  entitiesByIdSelector,
   editorOffsetXSelector,
   editorOffsetYSelector,
   editorViewportWidthSelector,
