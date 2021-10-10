@@ -8,29 +8,31 @@ import { useSelector } from "@/hooks/use-selector";
 import { getModifiers } from "@/modifier-keys";
 
 import { clearSelection } from "@/actions/select-clear";
+import { editorDragStartSelect } from "@/actions/editor-drag-start-select";
+import { editorDragAbort } from "@/actions/editor-drag-abort";
+import { editorDragContinue } from "@/actions/editor-drag-continue";
+import { editorDragEnd } from "@/actions/editor-drag-end";
 
+import { useMouseDragDetector } from "@/hooks/use-mouse-drag-detector";
+
+import { dragSelectionRectSelector } from "@/services/editor-drag/selectors/drag-select";
+
+import { useMouseCoords } from "../hooks/use-mouse-coords";
 import { useViewportContext } from "../contexts/viewport-context";
-
-// import { useMouseCoords } from "../hooks/useMouseCoords";
 
 const MouseLayer: React.FC = React.memo(function DragSelectLayer() {
   const dispatch = useDispatch();
-  // const { zoomFactor } = useViewportContext();
+  const { zoomFactor } = useViewportContext();
+  function counterScale(value: number) {
+    return value * (1 / zoomFactor);
+  }
 
-  // const isDragging = useSelector((state) =>
-  //   isEditorDraggingSelector(state, editorId)
-  // );
+  const selectionRect = useSelector(dragSelectionRectSelector);
 
-  // const selectionRect = useSelector(selectionRectSelector);
-
-  // function counterScale(value: number) {
-  //   return value * (1 / zoomFactor);
-  // }
-
-  // const getCoords = useMouseCoords();
+  const getCoords = useMouseCoords();
 
   const onClick = React.useCallback(
-    (e: React.MouseEvent) => {
+    (e: MouseEvent) => {
       if (e.button !== 0) {
         return;
       }
@@ -42,19 +44,46 @@ const MouseLayer: React.FC = React.memo(function DragSelectLayer() {
     [dispatch]
   );
 
-  // const onDragStart = React.useCallback(
-  //   (e: MouseEvent, originalPoint: Point) => {
-  //     const p = getCoords(originalPoint);
-  //     const modifierKeys = getModifiers(e);
-  //     dispatch(circuitEditorDragStartSelect(p, modifierKeys, editorId));
-  //   },
-  //   [dispatch, editorId, getCoords]
-  // );
+  const onDragStart = React.useCallback(
+    (e: MouseEvent, originalPoint: Point) => {
+      const p = getCoords(originalPoint);
+      const modifierKeys = getModifiers(e);
+      dispatch(editorDragStartSelect(p, modifierKeys));
+    },
+    [getCoords]
+  );
 
-  // const { startTracking: onMouseDown } = useMouseDragDetector({
-  //   onClick,
-  //   onDragStart,
-  // });
+  const { startTracking: onMouseDown } = useMouseDragDetector({
+    onClick,
+    onDragStart,
+  });
+
+  const onMouseMove = React.useCallback(
+    (e: React.MouseEvent) => {
+      if (e.buttons === 0) {
+        // It would be nice if we could take a mouse capture and get notified
+        // of the mouse up elsewhere, but we need to allow other circuit editors
+        // to receive the mouse events so the drag can transfer.
+        // As a second best, detect mouse up when it comes back into us and cancel.
+        dispatch(editorDragAbort());
+        return;
+      }
+
+      const coords = getCoords({ x: e.pageX, y: e.pageY });
+      const modifierKeys = getModifiers(e);
+      dispatch(editorDragContinue(coords, modifierKeys));
+    },
+    [getCoords]
+  );
+
+  const onMouseUp = React.useCallback(
+    (e: React.MouseEvent) => {
+      const coords = getCoords({ x: e.pageX, y: e.pageY });
+      const modifierKeys = getModifiers(e);
+      dispatch(editorDragEnd(coords, modifierKeys));
+    },
+    [dispatch, getCoords]
+  );
 
   return (
     <g className="map-editor-mouselayer">
@@ -69,10 +98,11 @@ const MouseLayer: React.FC = React.memo(function DragSelectLayer() {
         width={120}
         height={120}
         fill="transparent"
-        // onMouseDown={onMouseDown}
-        onClick={onClick}
+        onMouseDown={onMouseDown}
+        onMouseMove={onMouseMove}
+        onMouseUp={onMouseUp}
       />
-      {/* {isDragging && selectionRect && (
+      {selectionRect && (
         <g
           transform={`translate(${selectionRect.p1.x}, ${selectionRect.p1.y})`}
         >
@@ -85,7 +115,7 @@ const MouseLayer: React.FC = React.memo(function DragSelectLayer() {
             fill="transparent"
           />
         </g>
-      )} */}
+      )}
     </g>
   );
 });

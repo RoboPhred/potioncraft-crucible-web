@@ -1,3 +1,7 @@
+import {
+  EditorDragServiceState,
+  defaultEditorDragServiceState,
+} from "@/services/editor-drag/state";
 import { I18NState, defaultI18NState } from "@/services/i18n/state";
 import {
   MapConfigState,
@@ -12,6 +16,7 @@ export * from "./utils";
 
 export interface AppState {
   services: {
+    editorDrag: EditorDragServiceState;
     i18n: I18NState;
     mapConfig: MapConfigState;
     selection: SelectionState;
@@ -20,6 +25,7 @@ export interface AppState {
 
 export const defaultAppState: Readonly<AppState> = {
   services: {
+    editorDrag: defaultEditorDragServiceState,
     i18n: defaultI18NState,
     mapConfig: defaultMapConfigState,
     selection: defaultSelectionState,

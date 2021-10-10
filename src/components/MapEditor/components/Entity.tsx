@@ -2,6 +2,7 @@ import React from "react";
 
 import { entityByKeySelector } from "@/services/map-config/selectors/entities";
 import { MapEntity } from "@/services/map-config/entities";
+import { isEntitySelectedSelector } from "@/services/selection/selectors/selection";
 
 import { useSelector } from "@/hooks/use-selector";
 
@@ -12,7 +13,6 @@ import ExperienceBonus from "./EntityTypes/ExperienceBonus";
 import { useDispatch } from "react-redux";
 import { selectEntity } from "@/actions/select-entity";
 import classNames from "classnames";
-import { isEntitySelectedSelector } from "@/services/selection/selectors/selection";
 
 export interface EntityProps {
   entityId: string;

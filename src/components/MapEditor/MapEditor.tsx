@@ -15,6 +15,7 @@ import Entity from "./components/Entity";
 import styles from "./MapEditor.module.css";
 import PotionOrigin from "./components/PotionOrigin";
 import MouseLayer from "./components/MouseLayer";
+import { MapEditorSvgProvider } from "./contexts/field-svg-context";
 
 const SCALE_FACTOR = 1.07;
 
@@ -25,6 +26,10 @@ const MapEditor = () => {
   const entitiyKeys = useSelector(entitityKeysSelector);
   const containerRef = React.useRef<HTMLDivElement | null>(null);
   const containerBounds = useComponentBounds(containerRef);
+
+  const svgRef = React.useRef<SVGSVGElement | null>(null);
+  const scalerRef = React.useRef<SVGGElement | null>(null);
+
   const [zoomFactor, setZoomFactor] = React.useState(0);
 
   // Wait for the initial render and default the zoom to fill the screen.
@@ -95,17 +100,18 @@ const MapEditor = () => {
         zoomFactor={zoomFactor}
         setZoomFactor={setZoomFactor}
       >
-        <svg
-          width={`${width}px`}
-          height={`${height}px`}
-          transform={`scale(1,-1)`}
-        >
-          <g transform={`scale(${zoomFactor}) translate(60,60)`}>
-            <MapBorder />
-            {/* MouseLayer needs to be inside the scale so it can deal with map coordinates. */}
-            <MouseLayer />
-            <PotionOrigin />
-            {entityComponents}
+        <svg ref={svgRef} width={`${width}px`} height={`${height}px`}>
+          <g
+            ref={scalerRef}
+            transform={`scale(${zoomFactor}) translate(60,60) scale(1,-1)`}
+          >
+            <MapEditorSvgProvider svgRef={svgRef} scalerRef={scalerRef}>
+              <MapBorder />
+              {/* MouseLayer needs to be inside the scale so it can deal with map coordinates. */}
+              <MouseLayer />
+              <PotionOrigin />
+              {entityComponents}
+            </MapEditorSvgProvider>
           </g>
         </svg>
       </ViewportContextProvider>
