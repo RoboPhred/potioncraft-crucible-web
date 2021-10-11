@@ -34,16 +34,13 @@ export function normalizeRectangle(...args: any[]): Rectangle {
   };
 }
 
-export function pointIntersectsRect(p: Point, r: Rectangle): boolean {
-  r = normalizeRectangle(r);
+export function pointSubtract(p1: Point, p2: Point): Point {
+  return {
+    x: p1.x - p2.x,
+    y: p1.y - p2.y,
+  };
+}
 
-  if (r.p1.x > p.x || r.p2.x < p.x) {
-    return false;
-  }
-
-  if (r.p1.y > p.y || r.p2.y < p.y) {
-    return false;
-  }
-
-  return true;
+export function magnitude(v: Point): number {
+  return Math.sqrt(v.x * v.x + v.y * v.y);
 }

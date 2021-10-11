@@ -1,10 +1,10 @@
 import { AnyAction } from "redux";
 
 export const ACTION_SELECT_CLEAR = "select-clear" as const;
-export const clearSelection = () => ({
+export const selectClear = () => ({
   type: ACTION_SELECT_CLEAR,
 });
-export type ClearSelectionAction = ReturnType<typeof clearSelection>;
+export type ClearSelectionAction = ReturnType<typeof selectClear>;
 export function isClearSelectionAction(
   action: AnyAction
 ): action is ClearSelectionAction {

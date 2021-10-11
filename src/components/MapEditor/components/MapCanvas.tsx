@@ -2,26 +2,21 @@ import * as React from "react";
 import { useDispatch } from "react-redux";
 
 import { getModifiers } from "@/modifier-keys";
-import { normalizeRectangle, Point, Rectangle } from "@/geometry";
+import { normalizeRectangle, Rectangle } from "@/geometry";
 
 import { EntityDefsByType } from "@/entities";
 
 import { useSelector } from "@/hooks/use-selector";
-import { useMouseDragDetector } from "@/hooks/use-mouse-drag-detector";
 import { useComponentBounds } from "@/hooks/use-component-bounds";
-
-import { editorDragEnd } from "@/actions/editor-drag-end";
-import { editorDragContinue } from "@/actions/editor-drag-continue";
-import { editorDragAbort } from "@/actions/editor-drag-abort";
-import { editorDragStartSelect } from "@/actions/editor-drag-start-select";
-import { clearSelection } from "@/actions/select-clear";
+import { editorMouseDown } from "@/actions/editor-mouse-down";
+import { editorMouseMove } from "@/actions/editor-mouse-move";
+import { editorMouseUp } from "@/actions/editor-mouse-up";
 
 import {
   editorViewportHeightSelector,
   editorViewportWidthSelector,
 } from "@/services/editor-view/selectors/viewport";
 import { useClientToWorld } from "@/services/editor-view/hooks/use-client-to-world";
-import { isDraggingSelector } from "@/services/editor-drag/selectors/drag";
 import { entityKeysInViewSelector } from "@/services/editor-view/selectors/entities";
 import { entitiesByKeySelector } from "@/services/map-config/selectors/entities";
 import {
@@ -29,12 +24,15 @@ import {
   editorOffsetYSelector,
   editorZoomFactorSelector,
 } from "@/services/editor-view/selectors/view";
-import { dragSelectionRectSelector } from "@/services/editor-drag/selectors/drag-select";
+import { dragSelectionRectSelector } from "@/services/editor-mouse/selectors/drag-select";
 import { useWorldToClient } from "@/services/editor-view/hooks/use-world-to-client";
 import { MapEntity } from "@/services/map-config/entities";
 import { selectedEntityIdsSelector } from "@/services/editor-selection/selectors/selection";
 
 const MapCanvas = () => {
+  const dispatch = useDispatch();
+
+  const pointerRef = React.useRef<number | null>(null);
   const canvasRef = React.useRef<HTMLCanvasElement | null>(null);
   const canvasBounds = useComponentBounds(canvasRef);
   const viewportWidth = useSelector(editorViewportWidthSelector);
@@ -46,11 +44,6 @@ const MapCanvas = () => {
   const offsetY = useSelector(editorOffsetYSelector);
   const zoomFactor = useSelector(editorZoomFactorSelector);
   const selectionRect = useSelector(dragSelectionRectSelector);
-  const isDragging = useSelector(isDraggingSelector);
-
-  const dispatch = useDispatch();
-  const clientToWorld = useClientToWorld();
-  const worldToClient = useWorldToClient();
 
   const eventCanvasPoint = React.useCallback(
     (e: React.MouseEvent | MouseEvent) => {
@@ -62,64 +55,48 @@ const MapCanvas = () => {
     [canvasBounds]
   );
 
-  const onClick = React.useCallback(
-    (e: MouseEvent) => {
-      if (e.button !== 0) {
+  const onPointerDown = React.useCallback(
+    (e: React.PointerEvent) => {
+      if (pointerRef.current !== null && pointerRef.current !== e.pointerId) {
         return;
       }
+      pointerRef.current = e.pointerId;
+      e.currentTarget.setPointerCapture(e.pointerId);
+
       const modifiers = getModifiers(e);
-      if (!modifiers.ctrlMetaKey && !modifiers.shiftKey) {
-        dispatch(clearSelection());
-      }
+      const p = eventCanvasPoint(e);
+      dispatch(editorMouseDown(p, modifiers));
     },
-    [dispatch]
+    [eventCanvasPoint]
   );
 
-  const onDragStart = React.useCallback(
-    (e: MouseEvent, originalPoint: Point) => {
-      const p = clientToWorld({
-        x: originalPoint.x - canvasBounds.left,
-        y: originalPoint.y - canvasBounds.top,
-      });
-      const modifierKeys = getModifiers(e);
-      dispatch(editorDragStartSelect(p, modifierKeys));
-    },
-    [clientToWorld, canvasBounds]
-  );
-
-  const { startTracking: onMouseDown } = useMouseDragDetector({
-    onClick,
-    onDragStart,
-  });
-
-  const onMouseMove = React.useCallback(
-    (e: React.MouseEvent) => {
-      if (isDragging && e.buttons === 0) {
-        // It would be nice if we could take a mouse capture and get notified
-        // of the mouse up elsewhere, but we need to allow other circuit editors
-        // to receive the mouse events so the drag can transfer.
-        // As a second best, detect mouse up when it comes back into us and cancel.
-        dispatch(editorDragAbort());
+  const onPointerMove = React.useCallback(
+    (e: React.PointerEvent) => {
+      if (pointerRef.current !== null && pointerRef.current !== e.pointerId) {
         return;
       }
 
-      const coords = clientToWorld(eventCanvasPoint(e));
-      const modifierKeys = getModifiers(e);
-      dispatch(editorDragContinue(coords, modifierKeys));
+      const modifiers = getModifiers(e);
+      const p = eventCanvasPoint(e);
+      dispatch(editorMouseMove(p, modifiers));
     },
-    [clientToWorld, eventCanvasPoint]
+    [eventCanvasPoint]
   );
 
-  const onMouseUp = React.useCallback(
-    (e: React.MouseEvent) => {
-      if (!isDragging) {
+  const onPointerUp = React.useCallback(
+    (e: React.PointerEvent) => {
+      if (pointerRef.current !== null && pointerRef.current !== e.pointerId) {
         return;
       }
-      const coords = clientToWorld(eventCanvasPoint(e));
-      const modifierKeys = getModifiers(e);
-      dispatch(editorDragEnd(coords, modifierKeys));
+
+      e.currentTarget.releasePointerCapture(e.pointerId);
+      pointerRef.current = null;
+
+      const modifiers = getModifiers(e);
+      const p = eventCanvasPoint(e);
+      dispatch(editorMouseUp(p, modifiers));
     },
-    [clientToWorld, eventCanvasPoint, isDragging]
+    [eventCanvasPoint]
   );
 
   React.useLayoutEffect(() => {
@@ -141,13 +118,7 @@ const MapCanvas = () => {
     });
 
     if (selectionRect) {
-      let r = {
-        p1: worldToClient(selectionRect.p1),
-        p2: worldToClient(selectionRect.p2),
-      };
-      r = normalizeRectangle(r);
-
-      renderSelectionRect(ctx, r);
+      renderSelectionRect(ctx, selectionRect);
     }
   }, [entitiesInView, entitiesByKey, selectionRect, selectedEntityIds]);
 
@@ -156,9 +127,9 @@ const MapCanvas = () => {
       ref={canvasRef}
       width={viewportWidth}
       height={viewportHeight}
-      onMouseDown={onMouseDown}
-      onMouseMove={onMouseMove}
-      onMouseUp={onMouseUp}
+      onPointerDown={onPointerDown}
+      onPointerMove={onPointerMove}
+      onPointerUp={onPointerUp}
     />
   );
 };

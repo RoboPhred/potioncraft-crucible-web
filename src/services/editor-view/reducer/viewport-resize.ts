@@ -17,7 +17,7 @@ export default createEditorViewReducer(function viewportResizeReducer(
 
   let zoomFactor = state.zoomFactor;
   if (state.viewportWidth === 0) {
-    zoomFactor = width / 120;
+    zoomFactor = Math.min(width, height) / 120;
   }
 
   return {
