@@ -7,13 +7,3 @@
   width: 100%;
   height: 100%;
 }
-
-:global(.map-editor .map-entity.is-selected) {
-  /*
-  Dark magic courtesy of https://codepen.io/sosuke/pen/Pjoqqp
-  Note: The first brightness and saturate is to blank the icon to a uniform black so the rest can do its job.
-  We might actually want to get rid of this if we want details in the image to show, like potion effect icons
-  */
-  filter: brightness(0) saturate(100%) invert(58%) sepia(97%) saturate(2398%)
-    hue-rotate(155deg) brightness(86%) contrast(101%);
-}

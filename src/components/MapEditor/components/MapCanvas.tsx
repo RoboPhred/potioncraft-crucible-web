@@ -31,6 +31,7 @@ import { useWorldToClient } from "@/services/editor-view/hooks/use-world-to-clie
 import { MapEntity } from "@/services/map-config/entities";
 import { selectedEntityIdsSelector } from "@/services/editor-selection/selectors/selection";
 import { useComponentBounds } from "@/hooks/use-component-bounds";
+import { EntityDefsByType } from "@/entities";
 
 const MapCanvas = () => {
   const canvasRef = React.useRef<HTMLCanvasElement | null>(null);
@@ -193,31 +194,21 @@ function renderEntity(
   entity: MapEntity,
   isSelected: boolean
 ) {
-  switch (entity.entityType) {
-    case "DangerZonePart":
-      ctx.beginPath();
-      ctx.fillStyle = isSelected ? "lightblue" : "black";
-      ctx.arc(entity.x, entity.y, 0.2, 0, 2 * Math.PI);
-      ctx.fill();
-      break;
-    case "ExperienceBonus":
-      ctx.beginPath();
-      ctx.fillStyle = isSelected ? "lightblue" : "green";
-      ctx.arc(entity.x, entity.y, 0.3, 0, 2 * Math.PI);
-      ctx.fill();
-      break;
-    case "PotionEffect":
-      ctx.beginPath();
-      ctx.fillStyle = isSelected ? "lightblue" : "red";
-      ctx.arc(entity.x, entity.y, 0.4, 0, 2 * Math.PI);
-      ctx.fill();
-    case "Vortex":
-      ctx.beginPath();
-      ctx.fillStyle = isSelected ? "lightblue" : "red";
-      ctx.arc(entity.x, entity.y, 0.6, 0, 2 * Math.PI);
-      ctx.fill();
-      break;
+  const type = EntityDefsByType[entity.entityType];
+  if (!type) {
+    return;
   }
+
+  ctx.save();
+
+  ctx.translate(entity.x, entity.y);
+  type.render(ctx, entity, (ctx) => {
+    if (isSelected) {
+      ctx.fillStyle = "lightblue";
+    }
+  });
+
+  ctx.restore();
 }
 
 function renderSelectionRect(ctx: CanvasRenderingContext2D, r: Rectangle) {

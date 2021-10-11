@@ -32,7 +32,6 @@ const PanZoomHandler = ({ className, children }: PanZoomHandlerProps) => {
   const containerBounds = useComponentBounds(containerRef);
 
   React.useLayoutEffect(() => {
-    console.log(containerBounds);
     dispatch(
       editorViewportResize(containerBounds.width, containerBounds.height)
     );
