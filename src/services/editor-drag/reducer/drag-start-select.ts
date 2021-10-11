@@ -6,8 +6,9 @@ import {
   defaultEditorDragServiceState,
   EditorDragServiceState,
 } from "../state";
+import { createEditorDragReducer } from "../state-utils";
 
-export default function dragStartSelectReducer(
+export default createEditorDragReducer(function dragStartSelectReducer(
   state: EditorDragServiceState = defaultEditorDragServiceState,
   action: AnyAction
 ): EditorDragServiceState {
@@ -23,4 +24,4 @@ export default function dragStartSelectReducer(
     dragEnd: null,
     dragModifierKeys: modifierKeys,
   };
-}
+});

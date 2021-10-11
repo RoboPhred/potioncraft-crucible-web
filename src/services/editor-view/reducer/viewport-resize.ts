@@ -1,8 +1,11 @@
-import { isEditorViewportResizeAction } from "@/actions/editor-viewport-resize";
 import { AnyAction } from "redux";
-import { defaultEditorViewState, EditorViewState } from "../state";
 
-export function viewportResizeReducer(
+import { isEditorViewportResizeAction } from "@/actions/editor-viewport-resize";
+
+import { defaultEditorViewState, EditorViewState } from "../state";
+import { createEditorViewReducer } from "../state-utils";
+
+export default createEditorViewReducer(function viewportResizeReducer(
   state: EditorViewState = defaultEditorViewState,
   action: AnyAction
 ): EditorViewState {
@@ -23,4 +26,4 @@ export function viewportResizeReducer(
     viewportHeight: height,
     zoomFactor,
   };
-}
+});

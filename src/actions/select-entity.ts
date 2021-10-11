@@ -1,6 +1,6 @@
 import { AnyAction } from "redux";
 
-import { asArray, MaybeArray } from "@/array";
+import { asArray, MaybeArray } from "@/arrays";
 import { SelectionMode } from "@/selection-mode";
 
 export const ACTION_SELECT_ENTITY = "select-entity" as const;

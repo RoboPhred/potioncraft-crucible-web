@@ -1,12 +1,13 @@
 import { Action } from "redux";
 
-import { I18NState, defaultI18NState } from "../state";
-
 import { ACTION_SET_LANGUAGE, SetLanguageAction } from "@/actions/set-language";
+
+import { I18NState, defaultI18NState } from "../state";
+import { createI18nReducer } from "../state-utils";
 
 import i18n from "../i18n";
 
-export default function setLanguageReducer(
+export default createI18nReducer(function setLanguageReducer(
   state: I18NState = defaultI18NState,
   action: Action
 ): I18NState {
@@ -16,10 +17,11 @@ export default function setLanguageReducer(
 
   const lang = (action as SetLanguageAction).payload;
 
+  // TODO: Side effect should be in saga.
   i18n.changeLanguage(lang);
 
   return {
     ...state,
     language: lang,
   };
-}
+});

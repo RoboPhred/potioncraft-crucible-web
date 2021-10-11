@@ -5,8 +5,9 @@ import { isReceiveMapConfigAction } from "@/actions/receive-map-config";
 
 import { defaultMapConfigState, MapConfigState } from "../state";
 import { MapEntity } from "../entities";
+import { createMapConfigReducer } from "../state-utils";
 
-export default function loadPCSave(
+export default createMapConfigReducer(function receiveMapConfig(
   state: MapConfigState = defaultMapConfigState,
   action: AnyAction
 ): MapConfigState {
@@ -27,4 +28,4 @@ export default function loadPCSave(
     entitiesByKey,
     errorMessage: null,
   };
-}
+});

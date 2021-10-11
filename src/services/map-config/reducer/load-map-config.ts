@@ -3,8 +3,9 @@ import { AnyAction } from "redux";
 import { isLoadMapConfigAction } from "@/actions/load-map-config";
 
 import { defaultMapConfigState, MapConfigState } from "../state";
+import { createMapConfigReducer } from "../state-utils";
 
-export default function loadPCSave(
+export default createMapConfigReducer(function loadMapConfig(
   state: MapConfigState = defaultMapConfigState,
   action: AnyAction
 ): MapConfigState {
@@ -16,4 +17,4 @@ export default function loadPCSave(
     ...state,
     loadingStatus: "loading",
   };
-}
+});

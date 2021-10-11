@@ -1,7 +1,7 @@
-import { reduceReducers } from "@/store/utils";
+import { concatReducers } from "@/reducer/utils";
 
 import panReducer from "./pan";
-import { viewportResizeReducer } from "./viewport-resize";
-import { zoomReducer } from "./zoom";
+import viewportResizeReducer from "./viewport-resize";
+import zoomReducer from "./zoom";
 
-export default reduceReducers(panReducer, viewportResizeReducer, zoomReducer);
+export default concatReducers(panReducer, viewportResizeReducer, zoomReducer);

@@ -6,10 +6,10 @@ export interface MapConfigState {
   errorMessage: string | null;
 }
 
-const _defaultPCSaveState: MapConfigState = {
+const _defaultMapConfigState: MapConfigState = {
   loadingStatus: "idle",
   entitiesByKey: {},
   errorMessage: null,
 };
 
-export const defaultMapConfigState = Object.freeze(_defaultPCSaveState);
+export const defaultMapConfigState = Object.freeze(_defaultMapConfigState);

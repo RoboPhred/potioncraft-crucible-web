@@ -6,7 +6,9 @@ import {
   EditorDragServiceState,
 } from "../state";
 
-export default function dragAbortReducer(
+import { createEditorDragReducer } from "../state-utils";
+
+export default createEditorDragReducer(function dragAbortReducer(
   state: EditorDragServiceState = defaultEditorDragServiceState,
   action: AnyAction
 ): EditorDragServiceState {
@@ -15,4 +17,4 @@ export default function dragAbortReducer(
   }
 
   return defaultEditorDragServiceState;
-}
+});

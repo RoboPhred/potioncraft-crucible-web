@@ -4,8 +4,9 @@ import { isSelectEntityAction } from "@/actions/select-entity";
 import { combineSelection } from "@/selection-mode";
 
 import { defaultEditorSelectionState, EditorSelectionState } from "../state";
+import { createEditorSelectionReducer } from "../state-utils";
 
-export default function selectEntityReducer(
+export default createEditorSelectionReducer(function selectEntityReducer(
   state: EditorSelectionState = defaultEditorSelectionState,
   action: AnyAction
 ): EditorSelectionState {
@@ -22,4 +23,4 @@ export default function selectEntityReducer(
       mode
     ),
   };
-}
+});
