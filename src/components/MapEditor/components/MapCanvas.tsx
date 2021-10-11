@@ -4,8 +4,11 @@ import { useDispatch } from "react-redux";
 import { getModifiers } from "@/modifier-keys";
 import { normalizeRectangle, Point, Rectangle } from "@/geometry";
 
+import { EntityDefsByType } from "@/entities";
+
 import { useSelector } from "@/hooks/use-selector";
 import { useMouseDragDetector } from "@/hooks/use-mouse-drag-detector";
+import { useComponentBounds } from "@/hooks/use-component-bounds";
 
 import { editorDragEnd } from "@/actions/editor-drag-end";
 import { editorDragContinue } from "@/actions/editor-drag-continue";
@@ -30,8 +33,6 @@ import { dragSelectionRectSelector } from "@/services/editor-drag/selectors/drag
 import { useWorldToClient } from "@/services/editor-view/hooks/use-world-to-client";
 import { MapEntity } from "@/services/map-config/entities";
 import { selectedEntityIdsSelector } from "@/services/editor-selection/selectors/selection";
-import { useComponentBounds } from "@/hooks/use-component-bounds";
-import { EntityDefsByType } from "@/entities";
 
 const MapCanvas = () => {
   const canvasRef = React.useRef<HTMLCanvasElement | null>(null);
