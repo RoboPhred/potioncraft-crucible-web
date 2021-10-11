@@ -28,6 +28,7 @@ import {
 } from "@/services/editor-view/selectors/view";
 import { dragSelectionRectSelector } from "@/services/editor-drag/selectors/drag-select";
 import { useWorldToClient } from "@/services/editor-view/hooks/use-world-to-client";
+import { MapEntity } from "@/services/map-config/entities";
 
 const MapStage = () => {
   const canvasRef = React.useRef<HTMLCanvasElement | null>(null);
@@ -105,23 +106,20 @@ const MapStage = () => {
         return;
       }
       const ctx = canvasRef.current.getContext("2d")!;
-      ctx.clearRect(0, 0, viewportWidth, viewportHeight);
 
-      ctx.save();
+      clear(ctx);
 
-      ctx.scale(zoomFactor, zoomFactor);
-      ctx.translate(-offsetX + 60, -offsetY + 60);
-      ctx.scale(1, -1);
-
-      for (const key of entitiesInView) {
-        const entity = entitiesByKey[key];
-
+      transformToMap(ctx, zoomFactor, offsetX, offsetY, () => {
         ctx.beginPath();
-        ctx.arc(entity.x, entity.y, 0.2, 0, 2 * Math.PI);
+        ctx.fillStyle = "blue";
+        ctx.arc(0, 0, 0.5, 0, 2 * Math.PI);
         ctx.fill();
-      }
 
-      ctx.restore();
+        for (const key of entitiesInView) {
+          const entity = entitiesByKey[key];
+          renderEntity(ctx, entity);
+        }
+      });
 
       if (selectionRect) {
         let r = {
@@ -151,5 +149,53 @@ const MapStage = () => {
     />
   );
 };
+
+function clear(ctx: CanvasRenderingContext2D) {
+  ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+}
+
+function transformToMap(
+  ctx: CanvasRenderingContext2D,
+  zoomFactor: number,
+  offsetX: number,
+  offsetY: number,
+  handler: () => void
+) {
+  ctx.save();
+  ctx.scale(zoomFactor, zoomFactor);
+  ctx.translate(-offsetX + 60, -offsetY + 60);
+  ctx.scale(1, -1);
+
+  handler();
+  ctx.restore();
+}
+
+function renderEntity(ctx: CanvasRenderingContext2D, entity: MapEntity) {
+  switch (entity.entityType) {
+    case "DangerZonePart":
+      ctx.beginPath();
+      ctx.fillStyle = "black";
+      ctx.arc(entity.x, entity.y, 0.2, 0, 2 * Math.PI);
+      ctx.fill();
+      break;
+    case "ExperienceBonus":
+      ctx.beginPath();
+      ctx.fillStyle = "green";
+      ctx.arc(entity.x, entity.y, 0.3, 0, 2 * Math.PI);
+      ctx.fill();
+      break;
+    case "PotionEffect":
+      ctx.beginPath();
+      ctx.fillStyle = "red";
+      ctx.arc(entity.x, entity.y, 0.4, 0, 2 * Math.PI);
+      ctx.fill();
+    case "Vortex":
+      ctx.beginPath();
+      ctx.fillStyle = "red";
+      ctx.arc(entity.x, entity.y, 0.6, 0, 2 * Math.PI);
+      ctx.fill();
+      break;
+  }
+}
 
 export default MapStage;
