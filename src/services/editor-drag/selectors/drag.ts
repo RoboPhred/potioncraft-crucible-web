@@ -1,4 +1,6 @@
-import { AppState } from "@/state";
+import { EditorDragServiceState } from "../state";
+import { createEditorDragSelector } from "../state-utils";
 
-export const isDraggingSelector = (state: AppState) =>
-  state.services.editorDrag.dragMode != null;
+export const isDraggingSelector = createEditorDragSelector(
+  (state: EditorDragServiceState) => state.dragMode != null
+);

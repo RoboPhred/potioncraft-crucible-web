@@ -1,8 +1,11 @@
-import { isEditorZoomAction } from "@/actions/editor-zoom";
 import { AnyAction } from "redux";
-import { defaultEditorViewState, EditorViewState } from "../state";
 
-export function zoomReducer(
+import { isEditorZoomAction } from "@/actions/editor-zoom";
+
+import { defaultEditorViewState, EditorViewState } from "../state";
+import { createEditorViewReducer } from "../state-utils";
+
+export default createEditorViewReducer(function zoomReducer(
   state: EditorViewState = defaultEditorViewState,
   action: AnyAction
 ): EditorViewState {
@@ -16,4 +19,4 @@ export function zoomReducer(
     ...state,
     zoomFactor,
   };
-}
+});

@@ -3,8 +3,9 @@ import { AnyAction } from "redux";
 import { isEditorPanAction } from "@/actions/editor-pan";
 
 import { defaultEditorViewState, EditorViewState } from "../state";
+import { createEditorViewReducer } from "../state-utils";
 
-export default function panReducer(
+export default createEditorViewReducer(function panReducer(
   state: EditorViewState = defaultEditorViewState,
   action: AnyAction
 ): EditorViewState {
@@ -19,4 +20,4 @@ export default function panReducer(
     offsetX: state.offsetX + x,
     offsetY: state.offsetY + y,
   };
-}
+});

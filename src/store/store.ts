@@ -9,7 +9,7 @@ import createSagaMiddleware from "redux-saga";
 import { defaultAppState } from "@/state";
 import { initialize } from "@/actions/initialize";
 
-import reducer from "./reducer";
+import reducer from "@/reducer";
 
 import { loadPersistedState, savePersistedState } from "./persist";
 

@@ -3,7 +3,7 @@ import classNames from "classnames";
 
 import PanZoomHandler from "./components/PanZoomHandler";
 
-import MapStage from "./components/MapStage";
+import MapCanvas from "./components/MapCanvas";
 
 import styles from "./MapEditor.module.css";
 
@@ -11,7 +11,7 @@ const MapEditor = () => {
   return (
     <div className={classNames("map-editor", styles["map-editor"])}>
       <PanZoomHandler>
-        <MapStage />
+        <MapCanvas />
       </PanZoomHandler>
     </div>
   );

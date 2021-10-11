@@ -1,6 +1,6 @@
-import { reduceReducers } from "@/store/utils";
+import { concatReducers } from "@/reducer/utils";
 
 import selectClearReducer from "./select-clear";
 import selectEntityReducer from "./select-entity";
 
-export default reduceReducers(selectClearReducer, selectEntityReducer);
+export default concatReducers(selectClearReducer, selectEntityReducer);

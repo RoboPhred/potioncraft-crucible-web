@@ -1,7 +1,7 @@
 import { fork } from "redux-saga/effects";
 
-import pcSaveSaga from "@/services/map-config/saga";
+import { servicesSaga } from "@/services/saga";
 
 export default function* rootSaga() {
-  yield fork(pcSaveSaga);
+  yield fork(servicesSaga);
 }

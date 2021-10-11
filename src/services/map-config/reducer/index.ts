@@ -1,6 +1,6 @@
-import { reduceReducers } from "@/store/utils";
+import { concatReducers } from "@/reducer/utils";
 
-import loadPCSaveReducer from "./load-map-config";
-import receivePCSaveReducer from "./receive-map-config";
+import loadMapConfig from "./load-map-config";
+import receiveMapConfig from "./receive-map-config";
 
-export default reduceReducers(loadPCSaveReducer, receivePCSaveReducer);
+export default concatReducers(loadMapConfig, receiveMapConfig);

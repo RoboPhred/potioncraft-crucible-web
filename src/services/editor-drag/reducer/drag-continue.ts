@@ -6,8 +6,9 @@ import {
   defaultEditorDragServiceState,
   EditorDragServiceState,
 } from "../state";
+import { createEditorDragReducer } from "../state-utils";
 
-export default function dragContinueReducer(
+export default createEditorDragReducer(function dragContinueReducer(
   state: EditorDragServiceState = defaultEditorDragServiceState,
   action: AnyAction
 ): EditorDragServiceState {
@@ -26,4 +27,4 @@ export default function dragContinueReducer(
     dragEnd: { x, y },
     dragModifierKeys: modifierKeys,
   };
-}
+});

@@ -29,13 +29,15 @@ import {
 import { dragSelectionRectSelector } from "@/services/editor-drag/selectors/drag-select";
 import { useWorldToClient } from "@/services/editor-view/hooks/use-world-to-client";
 import { MapEntity } from "@/services/map-config/entities";
+import { selectedEntityIdsSelector } from "@/services/editor-selection/selectors/selection";
 
-const MapStage = () => {
+const MapCanvas = () => {
   const canvasRef = React.useRef<HTMLCanvasElement | null>(null);
   const viewportWidth = useSelector(editorViewportWidthSelector);
   const viewportHeight = useSelector(editorViewportHeightSelector);
   const entitiesInView = useSelector(entityKeysInViewSelector);
   const entitiesByKey = useSelector(entitiesByKeySelector);
+  const selectedEntityIds = useSelector(selectedEntityIdsSelector);
   const offsetX = useSelector(editorOffsetXSelector);
   const offsetY = useSelector(editorOffsetYSelector);
   const zoomFactor = useSelector(editorZoomFactorSelector);
@@ -101,35 +103,32 @@ const MapStage = () => {
   );
 
   React.useLayoutEffect(() => {
-    const frame = requestAnimationFrame(() => {
-      if (!canvasRef.current) {
-        return;
-      }
-      const ctx = canvasRef.current.getContext("2d")!;
+    if (!canvasRef.current) {
+      return;
+    }
+    const ctx = canvasRef.current.getContext("2d")!;
 
-      clear(ctx);
+    clear(ctx);
 
-      transformToMap(ctx, zoomFactor, offsetX, offsetY, () => {
-        renderPotionStart(ctx);
+    transformToMap(ctx, zoomFactor, offsetX, offsetY, () => {
+      renderPotionStart(ctx);
 
-        for (const key of entitiesInView) {
-          const entity = entitiesByKey[key];
-          renderEntity(ctx, entity);
-        }
-      });
-
-      if (selectionRect) {
-        let r = {
-          p1: worldToClient(selectionRect.p1),
-          p2: worldToClient(selectionRect.p2),
-        };
-        r = normalizeRectangle(r);
-
-        renderSelectionRect(ctx, r);
+      for (const key of entitiesInView) {
+        const entity = entitiesByKey[key];
+        const isSelected = selectedEntityIds.includes(key);
+        renderEntity(ctx, entity, isSelected);
       }
     });
 
-    return () => cancelAnimationFrame(frame);
+    if (selectionRect) {
+      let r = {
+        p1: worldToClient(selectionRect.p1),
+        p2: worldToClient(selectionRect.p2),
+      };
+      r = normalizeRectangle(r);
+
+      renderSelectionRect(ctx, r);
+    }
   }, [entitiesInView, entitiesByKey, selectionRect]);
 
   return (
@@ -171,28 +170,32 @@ function renderPotionStart(ctx: CanvasRenderingContext2D) {
   ctx.fill();
 }
 
-function renderEntity(ctx: CanvasRenderingContext2D, entity: MapEntity) {
+function renderEntity(
+  ctx: CanvasRenderingContext2D,
+  entity: MapEntity,
+  isSelected: boolean
+) {
   switch (entity.entityType) {
     case "DangerZonePart":
       ctx.beginPath();
-      ctx.fillStyle = "black";
+      ctx.fillStyle = isSelected ? "lightblue" : "black";
       ctx.arc(entity.x, entity.y, 0.2, 0, 2 * Math.PI);
       ctx.fill();
       break;
     case "ExperienceBonus":
       ctx.beginPath();
-      ctx.fillStyle = "green";
+      ctx.fillStyle = isSelected ? "lightblue" : "green";
       ctx.arc(entity.x, entity.y, 0.3, 0, 2 * Math.PI);
       ctx.fill();
       break;
     case "PotionEffect":
       ctx.beginPath();
-      ctx.fillStyle = "red";
+      ctx.fillStyle = isSelected ? "lightblue" : "red";
       ctx.arc(entity.x, entity.y, 0.4, 0, 2 * Math.PI);
       ctx.fill();
     case "Vortex":
       ctx.beginPath();
-      ctx.fillStyle = "red";
+      ctx.fillStyle = isSelected ? "lightblue" : "red";
       ctx.arc(entity.x, entity.y, 0.6, 0, 2 * Math.PI);
       ctx.fill();
       break;
@@ -203,7 +206,7 @@ function renderSelectionRect(ctx: CanvasRenderingContext2D, r: Rectangle) {
   ctx.beginPath();
   ctx.strokeStyle = "blue";
   ctx.rect(r.p1.x, r.p1.y, r.p2.x - r.p1.x, r.p2.y - r.p1.y);
-  ctx.fill();
+  ctx.stroke();
 }
 
-export default MapStage;
+export default MapCanvas;
