@@ -30,9 +30,11 @@ import { dragSelectionRectSelector } from "@/services/editor-drag/selectors/drag
 import { useWorldToClient } from "@/services/editor-view/hooks/use-world-to-client";
 import { MapEntity } from "@/services/map-config/entities";
 import { selectedEntityIdsSelector } from "@/services/editor-selection/selectors/selection";
+import { useComponentBounds } from "@/hooks/use-component-bounds";
 
 const MapCanvas = () => {
   const canvasRef = React.useRef<HTMLCanvasElement | null>(null);
+  const canvasBounds = useComponentBounds(canvasRef);
   const viewportWidth = useSelector(editorViewportWidthSelector);
   const viewportHeight = useSelector(editorViewportHeightSelector);
   const entitiesInView = useSelector(entityKeysInViewSelector);
@@ -47,6 +49,16 @@ const MapCanvas = () => {
   const dispatch = useDispatch();
   const clientToWorld = useClientToWorld();
   const worldToClient = useWorldToClient();
+
+  const eventCanvasPoint = React.useCallback(
+    (e: React.MouseEvent | MouseEvent) => {
+      return {
+        x: e.clientX - canvasBounds.left,
+        y: e.clientY - canvasBounds.top,
+      };
+    },
+    [canvasBounds]
+  );
 
   const onClick = React.useCallback(
     (e: MouseEvent) => {
@@ -63,11 +75,14 @@ const MapCanvas = () => {
 
   const onDragStart = React.useCallback(
     (e: MouseEvent, originalPoint: Point) => {
-      const p = clientToWorld(originalPoint);
+      const p = clientToWorld({
+        x: originalPoint.x - canvasBounds.left,
+        y: originalPoint.y - canvasBounds.top,
+      });
       const modifierKeys = getModifiers(e);
       dispatch(editorDragStartSelect(p, modifierKeys));
     },
-    [clientToWorld]
+    [clientToWorld, canvasBounds]
   );
 
   const { startTracking: onMouseDown } = useMouseDragDetector({
@@ -86,20 +101,23 @@ const MapCanvas = () => {
         return;
       }
 
-      const coords = clientToWorld({ x: e.clientX, y: e.clientY });
+      const coords = clientToWorld(eventCanvasPoint(e));
       const modifierKeys = getModifiers(e);
       dispatch(editorDragContinue(coords, modifierKeys));
     },
-    [clientToWorld]
+    [clientToWorld, eventCanvasPoint]
   );
 
   const onMouseUp = React.useCallback(
     (e: React.MouseEvent) => {
-      const coords = clientToWorld({ x: e.clientX, y: e.clientY });
+      if (!isDragging) {
+        return;
+      }
+      const coords = clientToWorld(eventCanvasPoint(e));
       const modifierKeys = getModifiers(e);
       dispatch(editorDragEnd(coords, modifierKeys));
     },
-    [dispatch, clientToWorld]
+    [clientToWorld, eventCanvasPoint, isDragging]
   );
 
   React.useLayoutEffect(() => {
@@ -129,7 +147,7 @@ const MapCanvas = () => {
 
       renderSelectionRect(ctx, r);
     }
-  }, [entitiesInView, entitiesByKey, selectionRect]);
+  }, [entitiesInView, entitiesByKey, selectionRect, selectedEntityIds]);
 
   return (
     <canvas

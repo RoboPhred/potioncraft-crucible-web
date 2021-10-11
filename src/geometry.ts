@@ -33,3 +33,17 @@ export function normalizeRectangle(...args: any[]): Rectangle {
     },
   };
 }
+
+export function pointIntersectsRect(p: Point, r: Rectangle): boolean {
+  r = normalizeRectangle(r);
+
+  if (r.p1.x > p.x || r.p2.x < p.x) {
+    return false;
+  }
+
+  if (r.p1.y > p.y || r.p2.y < p.y) {
+    return false;
+  }
+
+  return true;
+}
