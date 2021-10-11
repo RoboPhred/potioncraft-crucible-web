@@ -1,6 +1,7 @@
 import React from "react";
 import Konva from "konva";
 import { Group } from "react-konva";
+import { useDispatch } from "react-redux";
 
 import { entityFromIdSelector } from "@/services/map-config/selectors/entities";
 import { MapEntity } from "@/services/map-config/entities";
@@ -14,7 +15,6 @@ import PotionEffect from "./EntityTypes/PotionEffect";
 import Vortex from "./EntityTypes/Vortex";
 import DangerZonePart from "./EntityTypes/DangerZonePart";
 import ExperienceBonus from "./EntityTypes/ExperienceBonus";
-import { useDispatch } from "react-redux";
 
 export interface EntityProps {
   entityId: string;
