@@ -1,5 +1,4 @@
 import mapValues from "lodash/mapValues";
-import pick from "lodash/pick";
 
 import { isEntityOffsetAction } from "@/actions/entity-offset";
 
@@ -14,13 +13,15 @@ export default createMapConfigReducer((state, action) => {
 
   return {
     ...state,
-    entitiesByKey: {
-      ...state.entitiesByKey,
-      ...mapValues(pick(state.entitiesByKey, entityKeys), (entity) => ({
+    entitiesByKey: mapValues(state.entitiesByKey, (entity, key) => {
+      if (!entityKeys.includes(key)) {
+        return entity;
+      }
+      return {
         ...entity,
         x: entity.x + offsetX,
         y: entity.y + offsetY,
-      })),
-    },
+      };
+    }),
   };
 });
