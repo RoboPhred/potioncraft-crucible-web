@@ -16,7 +16,6 @@ import {
   editorViewportHeightSelector,
   editorViewportWidthSelector,
 } from "@/services/editor-view/selectors/viewport";
-import { useClientToWorld } from "@/services/editor-view/hooks/use-client-to-world";
 import { entityKeysInViewSelector } from "@/services/editor-view/selectors/entities";
 import { entitiesByKeySelector } from "@/services/map-config/selectors/entities";
 import {
@@ -25,9 +24,9 @@ import {
   editorZoomFactorSelector,
 } from "@/services/editor-view/selectors/view";
 import { dragSelectionRectSelector } from "@/services/editor-mouse/selectors/drag-select";
-import { useWorldToClient } from "@/services/editor-view/hooks/use-world-to-client";
 import { MapEntity } from "@/services/map-config/entities";
-import { selectedEntityIdsSelector } from "@/services/editor-selection/selectors/selection";
+import { selectedEntityKeysSelector } from "@/services/editor-selection/selectors/selection";
+import { dragMoveOffsetSelector } from "@/services/editor-mouse/selectors/drag-move";
 
 const MapCanvas = () => {
   const dispatch = useDispatch();
@@ -39,11 +38,12 @@ const MapCanvas = () => {
   const viewportHeight = useSelector(editorViewportHeightSelector);
   const entitiesInView = useSelector(entityKeysInViewSelector);
   const entitiesByKey = useSelector(entitiesByKeySelector);
-  const selectedEntityIds = useSelector(selectedEntityIdsSelector);
+  const selectedEntityKeys = useSelector(selectedEntityKeysSelector);
   const offsetX = useSelector(editorOffsetXSelector);
   const offsetY = useSelector(editorOffsetYSelector);
   const zoomFactor = useSelector(editorZoomFactorSelector);
   const selectionRect = useSelector(dragSelectionRectSelector);
+  const dragMoveOffset = useSelector(dragMoveOffsetSelector);
 
   const eventCanvasPoint = React.useCallback(
     (e: React.MouseEvent | MouseEvent) => {
@@ -112,15 +112,34 @@ const MapCanvas = () => {
 
       for (const key of entitiesInView) {
         const entity = entitiesByKey[key];
-        const isSelected = selectedEntityIds.includes(key);
+        const isSelected = selectedEntityKeys.includes(key);
+        if (dragMoveOffset != null && isSelected) {
+          continue;
+        }
         renderEntity(ctx, entity, isSelected);
+      }
+
+      if (dragMoveOffset != null) {
+        ctx.save();
+        ctx.translate(dragMoveOffset.x, dragMoveOffset.y);
+        for (const key of selectedEntityKeys) {
+          const entity = entitiesByKey[key];
+          renderEntity(ctx, entity, true);
+        }
+        ctx.restore();
       }
     });
 
     if (selectionRect) {
       renderSelectionRect(ctx, selectionRect);
     }
-  }, [entitiesInView, entitiesByKey, selectionRect, selectedEntityIds]);
+  }, [
+    entitiesInView,
+    entitiesByKey,
+    selectionRect,
+    selectedEntityKeys,
+    dragMoveOffset,
+  ]);
 
   return (
     <canvas

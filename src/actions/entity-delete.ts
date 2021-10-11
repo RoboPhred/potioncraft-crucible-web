@@ -3,10 +3,10 @@ import { AnyAction } from "redux";
 import { asArray, MaybeArray } from "@/arrays";
 
 export const ACTION_ENTITY_DELETE = "entity-delete" as const;
-export const entityDelete = (entityIds: MaybeArray<string>) => ({
+export const entityDelete = (entityKeys: MaybeArray<string>) => ({
   type: ACTION_ENTITY_DELETE,
   payload: {
-    entityIds: asArray(entityIds),
+    entityKeys: asArray(entityKeys),
   },
 });
 export type EntityDeleteAction = ReturnType<typeof entityDelete>;

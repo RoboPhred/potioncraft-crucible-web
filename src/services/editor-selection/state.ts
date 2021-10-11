@@ -1,9 +1,9 @@
 export interface EditorSelectionState {
-  selectedEntityIds: string[];
+  selectedEntityKeys: string[];
 }
 
 const _defaultState: EditorSelectionState = {
-  selectedEntityIds: [],
+  selectedEntityKeys: [],
 };
 
 export const defaultEditorSelectionState = Object.freeze(_defaultState);

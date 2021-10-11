@@ -3,7 +3,7 @@ import { AnyAction } from "redux";
 import { fpSet } from "@/fp-set";
 import { AppState, defaultAppState } from "@/state";
 import { getSelectMode } from "@/selection-mode";
-import { normalizeRectangle } from "@/geometry";
+import { normalizeRectangle, pointSubtract } from "@/geometry";
 
 import rootReducer from "@/reducer";
 
@@ -16,6 +16,7 @@ import { selectEntity } from "@/actions/select-entity";
 import { entitiesByKeySelector } from "@/services/map-config/selectors/entities";
 import { clientToWorldSelector } from "@/services/editor-view/selectors/coordinate-mapping";
 import { selectClear } from "@/actions/select-clear";
+import { entityOffset } from "@/actions/entity-offset";
 
 export default function mouseUpReducer(
   state: AppState = defaultAppState,
@@ -32,6 +33,9 @@ export default function mouseUpReducer(
   switch (mouseState.currentGesture) {
     case "drag-select":
       state = completeDragSelect(state, action);
+      break;
+    case "drag-move":
+      state = completeDragMove(state, action);
       break;
     default:
       state = completeClick(state, action);
@@ -80,6 +84,33 @@ function completeDragSelect(
 
   const mode = getSelectMode(modifierKeys);
   return rootReducer(state, selectEntity(idsToSelect, mode));
+}
+
+function completeDragMove(
+  state: AppState,
+  action: EditorMouseUpAction
+): AppState {
+  const selectedEntityKeys = state.services.editorSelection.selectedEntityKeys;
+  if (selectedEntityKeys.length === 0) {
+    return state;
+  }
+
+  const { viewportPos } = action.payload;
+
+  const { mouseDownViewportPos } = state.services.editorMouse;
+  if (!mouseDownViewportPos) {
+    return state;
+  }
+
+  const worldMouseDownPos = clientToWorldSelector(state, mouseDownViewportPos);
+  const worldMouseUpPos = clientToWorldSelector(state, viewportPos);
+
+  const offset = pointSubtract(worldMouseUpPos, worldMouseDownPos);
+
+  return rootReducer(
+    state,
+    entityOffset(selectedEntityKeys, offset.x, offset.y)
+  );
 }
 
 function completeClick(state: AppState, action: EditorMouseUpAction): AppState {

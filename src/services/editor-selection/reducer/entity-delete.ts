@@ -6,12 +6,12 @@ export default createEditorSelectionReducer((state, action) => {
     return state;
   }
 
-  const { entityIds } = action.payload;
+  const { entityKeys } = action.payload;
 
   return {
     ...state,
-    selectedEntityIds: state.selectedEntityIds.filter(
-      (x) => !entityIds.includes(x)
+    selectedEntityKeys: state.selectedEntityKeys.filter(
+      (x) => !entityKeys.includes(x)
     ),
   };
 });

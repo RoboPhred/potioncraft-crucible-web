@@ -15,11 +15,11 @@ export default function selectionDeleteReducer(
     return state;
   }
 
-  const selectedEntityIds = state.services.editorSelection.selectedEntityIds;
+  const selectedEntityKeys = state.services.editorSelection.selectedEntityKeys;
 
-  if (selectedEntityIds.length === 0) {
+  if (selectedEntityKeys.length === 0) {
     return state;
   }
 
-  return rootReducer(state, entityDelete(selectedEntityIds));
+  return rootReducer(state, entityDelete(selectedEntityKeys));
 }

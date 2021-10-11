@@ -9,10 +9,10 @@ export default createMapConfigReducer((state, action) => {
     return state;
   }
 
-  const { entityIds } = action.payload;
+  const { entityKeys } = action.payload;
 
   return {
     ...state,
-    entitiesByKey: omit(state.entitiesByKey, entityIds),
+    entitiesByKey: omit(state.entitiesByKey, entityKeys),
   };
 });

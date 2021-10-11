@@ -5,11 +5,11 @@ import { SelectionMode } from "@/selection-mode";
 
 export const ACTION_SELECT_ENTITY = "select-entity" as const;
 export const selectEntity = (
-  entityIds: MaybeArray<string>,
+  entityKeys: MaybeArray<string>,
   mode: SelectionMode = "set"
 ) => ({
   type: ACTION_SELECT_ENTITY,
-  payload: { entityIds: asArray(entityIds), mode },
+  payload: { entityKeys: asArray(entityKeys), mode },
 });
 export type SelectEntityAction = ReturnType<typeof selectEntity>;
 export function isSelectEntityAction(

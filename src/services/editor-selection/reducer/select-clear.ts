@@ -15,6 +15,6 @@ export default createEditorSelectionReducer(function selectClearReducer(
 
   return {
     ...state,
-    selectedEntityIds: [],
+    selectedEntityKeys: [],
   };
 });

@@ -14,12 +14,12 @@ export default createEditorSelectionReducer(function selectEntityReducer(
     return state;
   }
 
-  const { entityIds, mode } = action.payload;
+  const { entityKeys, mode } = action.payload;
   return {
     ...state,
-    selectedEntityIds: combineSelection(
-      state.selectedEntityIds,
-      entityIds,
+    selectedEntityKeys: combineSelection(
+      state.selectedEntityKeys,
+      entityKeys,
       mode
     ),
   };

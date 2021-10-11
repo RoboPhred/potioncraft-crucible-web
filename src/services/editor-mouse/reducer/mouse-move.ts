@@ -1,33 +1,60 @@
-import { isEditorMouseMoveAction } from "@/actions/editor-mouse-move";
-import { magnitude, pointSubtract } from "@/geometry";
+import { AnyAction } from "redux";
 
-import { createEditorMouseReducer } from "../state-utils";
+import { magnitude, pointSubtract } from "@/geometry";
+import { getSelectMode } from "@/selection-mode";
+import { fpSet } from "@/fp-set";
+
+import { AppState, defaultAppState } from "@/state";
+
+import { isEditorMouseMoveAction } from "@/actions/editor-mouse-move";
+import { selectEntity } from "@/actions/select-entity";
+
+import { clientToWorldSelector } from "@/services/editor-view/selectors/coordinate-mapping";
+import { entityKeyAtPointSelector } from "@/services/map-config/selectors/entities";
+
+import rootReducer from "@/reducer";
 
 const GESTURE_START_DISTANCE = 5;
 
-export default createEditorMouseReducer((state, action) => {
+export default function mouseMoveReducer(
+  state: AppState = defaultAppState,
+  action: AnyAction
+): AppState {
   if (!isEditorMouseMoveAction(action)) {
     return state;
   }
 
   const { viewportPos, modifierKeys } = action.payload;
 
-  let nextGesture = state.currentGesture;
+  const { mouseDownViewportPos } = state.services.editorMouse;
+  let nextGesture = state.services.editorMouse.currentGesture;
   if (
-    state.mouseDownViewportPos &&
+    mouseDownViewportPos &&
     nextGesture == null &&
-    magnitude(pointSubtract(state.mouseDownViewportPos, viewportPos)) >
+    magnitude(pointSubtract(mouseDownViewportPos, viewportPos)) >
       GESTURE_START_DISTANCE
   ) {
-    // TODO: If mouse is over an entity, drag-move.
-    // If alt is held, drag-pan?
-    nextGesture = "drag-select";
+    const mouseDownWorldPos = clientToWorldSelector(
+      state,
+      mouseDownViewportPos
+    );
+    const entityKeyAtMouse = entityKeyAtPointSelector(state, mouseDownWorldPos);
+
+    if (entityKeyAtMouse) {
+      const selectionMode = getSelectMode(modifierKeys, "append");
+      state = rootReducer(state, selectEntity(entityKeyAtMouse, selectionMode));
+      nextGesture = "drag-move";
+    } else {
+      nextGesture = "drag-select";
+    }
   }
 
-  return {
-    ...state,
+  state = fpSet(state, "services", "editorMouse", (mouseState) => ({
+    ...mouseState,
     currentGesture: nextGesture,
     mouseViewportPos: viewportPos,
     modifierKeys,
-  };
-});
+  }));
+
+  return state;
+}
