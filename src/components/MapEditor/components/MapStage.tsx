@@ -2,7 +2,7 @@ import * as React from "react";
 import { useDispatch } from "react-redux";
 
 import { getModifiers } from "@/modifier-keys";
-import { normalizeRectangle, Point } from "@/geometry";
+import { normalizeRectangle, Point, Rectangle } from "@/geometry";
 
 import { useSelector } from "@/hooks/use-selector";
 import { useMouseDragDetector } from "@/hooks/use-mouse-drag-detector";
@@ -110,10 +110,7 @@ const MapStage = () => {
       clear(ctx);
 
       transformToMap(ctx, zoomFactor, offsetX, offsetY, () => {
-        ctx.beginPath();
-        ctx.fillStyle = "blue";
-        ctx.arc(0, 0, 0.5, 0, 2 * Math.PI);
-        ctx.fill();
+        renderPotionStart(ctx);
 
         for (const key of entitiesInView) {
           const entity = entitiesByKey[key];
@@ -128,10 +125,7 @@ const MapStage = () => {
         };
         r = normalizeRectangle(r);
 
-        ctx.beginPath();
-        ctx.strokeStyle = "blue";
-        ctx.rect(r.p1.x, r.p1.y, r.p2.x - r.p1.x, r.p2.y - r.p1.y);
-        ctx.fill();
+        renderSelectionRect(ctx, r);
       }
     });
 
@@ -170,6 +164,13 @@ function transformToMap(
   ctx.restore();
 }
 
+function renderPotionStart(ctx: CanvasRenderingContext2D) {
+  ctx.beginPath();
+  ctx.fillStyle = "blue";
+  ctx.arc(0, 0, 0.5, 0, 2 * Math.PI);
+  ctx.fill();
+}
+
 function renderEntity(ctx: CanvasRenderingContext2D, entity: MapEntity) {
   switch (entity.entityType) {
     case "DangerZonePart":
@@ -196,6 +197,13 @@ function renderEntity(ctx: CanvasRenderingContext2D, entity: MapEntity) {
       ctx.fill();
       break;
   }
+}
+
+function renderSelectionRect(ctx: CanvasRenderingContext2D, r: Rectangle) {
+  ctx.beginPath();
+  ctx.strokeStyle = "blue";
+  ctx.rect(r.p1.x, r.p1.y, r.p2.x - r.p1.x, r.p2.y - r.p1.y);
+  ctx.fill();
 }
 
 export default MapStage;
