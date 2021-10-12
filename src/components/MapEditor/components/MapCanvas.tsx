@@ -2,7 +2,8 @@ import * as React from "react";
 import { useDispatch } from "react-redux";
 
 import { getModifiers } from "@/modifier-keys";
-import { normalizeRectangle, Rectangle } from "@/geometry";
+import { Rectangle } from "@/geometry";
+import { MapEntity } from "@/map-config";
 
 import { EntityDefsByType } from "@/entities";
 
@@ -24,7 +25,6 @@ import {
   editorZoomFactorSelector,
 } from "@/services/editor-view/selectors/view";
 import { dragSelectionRectSelector } from "@/services/editor-mouse/selectors/drag-select";
-import { MapEntity } from "@/services/map-config/entities";
 import { selectedEntityKeysSelector } from "@/services/editor-selection/selectors/selection";
 import { dragMoveOffsetSelector } from "@/services/editor-mouse/selectors/drag-move";
 

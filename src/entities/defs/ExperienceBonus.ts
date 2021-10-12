@@ -1,4 +1,4 @@
-import { ExperienceBonusMapEntity } from "@/services/map-config/entities";
+import { ExperienceBonusMapEntity } from "@/map-config";
 
 import { EntityDef } from "../types";
 

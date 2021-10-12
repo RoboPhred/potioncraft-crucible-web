@@ -1,13 +1,13 @@
 import { put, call, takeEvery } from "redux-saga/effects";
 import { SagaIterator } from "@redux-saga/types";
 
+import { MapConfig } from "@/map-config";
+
 import {
   ACTION_MAPCONFIG_LOAD_FILE,
   MapConfigLoadFileAction,
 } from "@/actions/map-config-load-file";
 import { mapConfigReceive } from "@/actions/map-config-receive";
-
-import { MapConfig } from "../types";
 
 export default function* mapConfigLoadFileSaga(): SagaIterator {
   yield takeEvery(ACTION_MAPCONFIG_LOAD_FILE, handleMapConfigLoadFile);

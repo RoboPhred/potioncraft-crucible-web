@@ -1,4 +1,4 @@
-import { PotionEffectMapEntity } from "@/services/map-config/entities";
+import { PotionEffectMapEntity } from "@/map-config";
 
 import { EntityDef } from "../types";
 

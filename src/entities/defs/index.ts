@@ -1,4 +1,5 @@
-import { MapEntity } from "@/services/map-config/entities";
+import { MapEntity } from "@/map-config";
+
 import { EntityDef } from "../types";
 
 import DangerZonePartDef from "./DangerZonePart";

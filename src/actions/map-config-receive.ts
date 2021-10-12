@@ -1,6 +1,6 @@
 import { AnyAction } from "redux";
 
-import { MapConfig } from "@/services/map-config/types";
+import { MapConfig } from "@/map-config";
 
 export const ACTION_MAPFILE_RECEIVE = "receive-mapfile" as const;
 export const mapConfigReceive = (mapConfig: MapConfig) => ({

@@ -1,6 +1,8 @@
-import { MapEntity } from "@/services/map-config/entities";
+import { UnpositionedMapEntity } from "@/map-config";
 
-export interface EntityDef<T extends MapEntity = MapEntity> {
+export interface EntityDef<
+  T extends UnpositionedMapEntity = UnpositionedMapEntity
+> {
   hitRadius: number;
   render(
     ctx: CanvasRenderingContext2D,

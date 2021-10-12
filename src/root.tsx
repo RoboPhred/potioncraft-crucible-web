@@ -2,6 +2,9 @@ import * as React from "react";
 
 import { Router } from "react-router-dom";
 
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
+
 import I18NProvider from "@/services/i18n/components/I18NProvider";
 
 import StoreProvider from "@/store/components/StoreProvider";
@@ -13,7 +16,9 @@ const Root: React.FC = () => (
   <I18NProvider>
     <StoreProvider>
       <Router history={history}>
-        <Routes />
+        <DndProvider backend={HTML5Backend}>
+          <Routes />
+        </DndProvider>
       </Router>
     </StoreProvider>
   </I18NProvider>

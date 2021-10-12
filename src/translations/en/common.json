@@ -1,3 +1,12 @@
 {
-  "load_potioncraft_map": "Load a Potion Craft Map"
+  "load_potioncraft_map": "Load a Potion Craft Map",
+  "menus": {
+    "file": {
+      "name": "File",
+      "new_map": {
+        "blank": "New Blank Map",
+        "template": "New Map from Template"
+      }
+    }
+  }
 }

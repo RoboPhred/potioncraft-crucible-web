@@ -6,12 +6,13 @@ import { isProd } from "@/runtime-env";
 i18n.use(initReactI18next).init({
   fallbackLng: "en",
 
-  ns: ["common", "oni"],
+  ns: ["common", "potioncraft"],
   defaultNS: "common",
 
   resources: {
     en: {
       common: require("@/translations/en/common.json"),
+      potioncraft: require("@/translations/en/potioncraft.json"),
     },
   },
 

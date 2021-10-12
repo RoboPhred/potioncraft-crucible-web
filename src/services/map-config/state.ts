@@ -1,4 +1,4 @@
-import { MapEntity } from "./entities";
+import { MapEntity } from "@/map-config";
 
 export interface MapConfigState {
   loadingStatus: "idle" | "loading" | "loaded" | "error";

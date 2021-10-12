@@ -1,10 +1,11 @@
 import { AnyAction } from "redux";
 import { v4 as uuidV4 } from "uuid";
 
+import { MapEntity } from "@/map-config";
+
 import { isMapConfigReceiveAction } from "@/actions/map-config-receive";
 
 import { defaultMapConfigState, MapConfigState } from "../state";
-import { MapEntity } from "../entities";
 import { createMapConfigReducer } from "../state-utils";
 
 export default createMapConfigReducer(function receiveMapConfig(
