@@ -8,6 +8,7 @@ import { selectionDelete } from "@/actions/selection-delete";
 
 import PanZoomHandler from "./components/PanZoomHandler";
 import MapCanvas from "./components/MapCanvas";
+import MapWidgets from "./components/MapWidgets";
 
 import keymap, { HotkeyHandler, KeymapHandler, KEYMAP_DELETE } from "./keymap";
 
@@ -40,8 +41,9 @@ const MapEditor = () => {
         handlers={keyHandlers}
         component={HotkeysContainer}
       >
-        <PanZoomHandler>
-          <MapCanvas />
+        <PanZoomHandler className={styles["map-editor-container"]}>
+          <MapCanvas className={styles["map-editor-item"]} />
+          <MapWidgets className={styles["map-editor-item"]} />
         </PanZoomHandler>
       </HotKeys>
     </div>

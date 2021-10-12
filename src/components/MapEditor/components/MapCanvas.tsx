@@ -1,6 +1,7 @@
 import * as React from "react";
 import { useDispatch } from "react-redux";
 import { useDrop } from "react-dnd";
+import classNames from "classnames";
 
 import { getModifiers } from "@/modifier-keys";
 import { Rectangle } from "@/geometry";
@@ -39,7 +40,11 @@ import { dragMoveOffsetSelector } from "@/services/editor-mouse/selectors/drag-m
 
 import styles from "./MapCanvas.module.css";
 
-const MapCanvas = () => {
+export interface MapCanvasProps {
+  className?: string;
+}
+
+const MapCanvas = ({ className }: MapCanvasProps) => {
   const dispatch = useDispatch();
 
   const pointerRef = React.useRef<number | null>(null);
@@ -188,7 +193,7 @@ const MapCanvas = () => {
 
   return (
     <canvas
-      className={styles["map-canvas"]}
+      className={classNames(className, styles["map-canvas"])}
       ref={(ref) => {
         canvasRef.current = ref;
         dropRef(ref);
