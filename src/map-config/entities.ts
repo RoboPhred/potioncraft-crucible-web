@@ -7,6 +7,7 @@ export interface MapEntityBase {
 export interface PotionEffectMapEntity extends MapEntityBase {
   entityType: "PotionEffect";
   effect: string;
+  angle: number;
 }
 
 export interface VortexMapEntity extends MapEntityBase {
@@ -17,6 +18,7 @@ export interface VortexMapEntity extends MapEntityBase {
 export interface DangerZonePartMapEntity extends MapEntityBase {
   entityType: "DangerZonePart";
   type: string;
+  angle: number;
 }
 
 export interface ExperienceBonusMapEntity extends MapEntityBase {

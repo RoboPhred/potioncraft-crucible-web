@@ -110,18 +110,18 @@ module.exports = {
         use: {
           loader: "url-loader",
           options: {
-            name: "fonts/[fullhash].[ext]",
+            name: "fonts/[hash].[ext]",
             limit: 5000,
             mimetype: "application/font-woff",
           },
         },
       },
       {
-        test: /\.(ttf|eot|svg)$/,
+        test: /\.(ttf|eot)$/,
         use: {
           loader: "file-loader",
           options: {
-            name: "fonts/[fullhash].[ext]",
+            name: "fonts/[hash].[ext]",
           },
         },
       },
@@ -130,7 +130,7 @@ module.exports = {
         test: /\.png/,
         loader: "file-loader",
         options: {
-          name: "images/[fullhash].[ext]",
+          name: "images/[hash].[ext]",
         },
       },
 

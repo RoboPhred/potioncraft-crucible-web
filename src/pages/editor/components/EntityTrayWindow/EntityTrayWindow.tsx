@@ -16,6 +16,7 @@ function potionEffectPrototype(
     i18nKey: `potioncraft:effects.${effect}`,
     entityType: "PotionEffect",
     effect,
+    angle: 0,
   };
 }
 
