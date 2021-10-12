@@ -244,6 +244,11 @@ function renderEntity(
   ctx.translate(entity.x, entity.y);
   type.render(ctx, entity, (ctx) => {
     if (isSelected) {
+      // This should apply a blue effect on the entity, but it doesn't seem to be taking.
+      /*
+      ctx.filter =
+        "brightness(0) saturate(100%) invert(58%) sepia(97%) saturate(2398%) hue-rotate(155deg) brightness(86%) contrast(101%);";
+      */
       ctx.fillStyle = "lightblue";
     }
   });
