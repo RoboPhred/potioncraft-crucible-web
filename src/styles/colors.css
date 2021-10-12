@@ -1,4 +1,6 @@
 :root {
+  --color-canvas: #ecd1aa;
+
   --color-ui-light-bg: white;
   --color-ui-light-border: rgb(117, 117, 117);
   --color-ui-light-hover: rgb(218, 218, 218);

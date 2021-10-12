@@ -37,6 +37,8 @@ import { dragSelectionRectSelector } from "@/services/editor-mouse/selectors/dra
 import { selectedEntityKeysSelector } from "@/services/editor-selection/selectors/selection";
 import { dragMoveOffsetSelector } from "@/services/editor-mouse/selectors/drag-move";
 
+import styles from "./MapCanvas.module.css";
+
 const MapCanvas = () => {
   const dispatch = useDispatch();
 
@@ -186,6 +188,7 @@ const MapCanvas = () => {
 
   return (
     <canvas
+      className={styles["map-canvas"]}
       ref={(ref) => {
         canvasRef.current = ref;
         dropRef(ref);
