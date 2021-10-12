@@ -4,7 +4,7 @@ export interface MapConfig {
   entities: MapEntity[];
 }
 
-export type UnpositionedMapEntity<T extends MapEntity = MapEntity> = Omit<
+export type MapEntityPrototype<T extends MapEntity = MapEntity> = Omit<
   T,
   "x" | "y"
 >;

@@ -1,22 +1,31 @@
 import * as React from "react";
 import { useDispatch } from "react-redux";
+import { useDrop } from "react-dnd";
 
 import { getModifiers } from "@/modifier-keys";
 import { Rectangle } from "@/geometry";
 import { MapEntity } from "@/map-config";
 
+import {
+  DRAGOBJECT_NEW_ENTITY,
+  isNewEntityDragObject,
+} from "@/drag-items/new-entity";
+
 import { EntityDefsByType } from "@/entities";
+import { POTION_RADIUS } from "@/entities/consts";
 
 import { useSelector } from "@/hooks/use-selector";
 import { useComponentBounds } from "@/hooks/use-component-bounds";
 import { editorMouseDown } from "@/actions/editor-mouse-down";
 import { editorMouseMove } from "@/actions/editor-mouse-move";
 import { editorMouseUp } from "@/actions/editor-mouse-up";
+import { entityPrototypeInstantiate } from "@/actions/entity-prototype-instantiate";
 
 import {
   editorViewportHeightSelector,
   editorViewportWidthSelector,
 } from "@/services/editor-view/selectors/viewport";
+import { useClientToWorld } from "@/services/editor-view/hooks/use-client-to-world";
 import { entityKeysInViewSelector } from "@/services/editor-view/selectors/entities";
 import { entitiesByKeySelector } from "@/services/map-config/selectors/entities";
 import {
@@ -44,6 +53,7 @@ const MapCanvas = () => {
   const zoomFactor = useSelector(editorZoomFactorSelector);
   const selectionRect = useSelector(dragSelectionRectSelector);
   const dragMoveOffset = useSelector(dragMoveOffsetSelector);
+  const clientToWorld = useClientToWorld();
 
   const eventCanvasPoint = React.useCallback(
     (e: React.MouseEvent | MouseEvent) => {
@@ -99,6 +109,29 @@ const MapCanvas = () => {
     [eventCanvasPoint]
   );
 
+  const [_, dropRef] = useDrop(
+    {
+      accept: DRAGOBJECT_NEW_ENTITY,
+      drop: (item, monitor) => {
+        if (!isNewEntityDragObject(item)) {
+          return;
+        }
+
+        const { prototype } = item.payload;
+
+        const p = monitor.getClientOffset();
+        if (!p) {
+          return;
+        }
+        p.x -= canvasBounds.left;
+        p.y -= canvasBounds.top;
+        const worldP = clientToWorld(p);
+        dispatch(entityPrototypeInstantiate(prototype, worldP));
+      },
+    },
+    [clientToWorld, canvasBounds]
+  );
+
   React.useLayoutEffect(() => {
     if (!canvasRef.current) {
       return;
@@ -108,6 +141,16 @@ const MapCanvas = () => {
     clear(ctx);
 
     transformToMap(ctx, zoomFactor, offsetX, offsetY, () => {
+      ctx.beginPath();
+      ctx.lineWidth = 0.2;
+      ctx.setLineDash([2, 2]);
+      ctx.moveTo(-60, -60);
+      ctx.lineTo(-60, 60);
+      ctx.lineTo(60, 60);
+      ctx.lineTo(60, -60);
+      ctx.lineTo(-60, -60);
+      ctx.stroke();
+
       renderPotionStart(ctx);
 
       for (const key of entitiesInView) {
@@ -143,7 +186,10 @@ const MapCanvas = () => {
 
   return (
     <canvas
-      ref={canvasRef}
+      ref={(ref) => {
+        canvasRef.current = ref;
+        dropRef(ref);
+      }}
       width={viewportWidth}
       height={viewportHeight}
       onPointerDown={onPointerDown}
@@ -176,7 +222,7 @@ function transformToMap(
 function renderPotionStart(ctx: CanvasRenderingContext2D) {
   ctx.beginPath();
   ctx.fillStyle = "blue";
-  ctx.arc(0, 0, 0.5, 0, 2 * Math.PI);
+  ctx.arc(0, 0, POTION_RADIUS, 0, 2 * Math.PI);
   ctx.fill();
 }
 

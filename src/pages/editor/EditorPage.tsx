@@ -6,7 +6,7 @@ import { loadingStatusSelector } from "@/services/map-config/selectors/loading-s
 import TitleBar from "@/components/TitleBar";
 import FileMenuButton from "@/components/FileMenuButton";
 
-import EntitiesWindow from "./components/EntitiesWindow";
+import EntitiesWindow from "./components/EntityTrayWindow";
 import MapWindow from "./components/MapWindow";
 
 import styles from "./EditorPage.module.css";

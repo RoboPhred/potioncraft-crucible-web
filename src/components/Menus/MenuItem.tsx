@@ -19,7 +19,7 @@ const MenuItem: React.FC<MenuItemProps> = ({
 }) => {
   const requestMenuClose = useMenuCloseContext();
   const onItemClick = React.useCallback(
-    (e: React.MouseEvent<HTMLAnchorElement>) => {
+    (e: React.MouseEvent<HTMLElement>) => {
       if (onClick) {
         onClick(e);
       }
@@ -33,8 +33,9 @@ const MenuItem: React.FC<MenuItemProps> = ({
         styles["menu-item"],
         disabled && styles["menu-item--disabled"]
       )}
+      onClick={onItemClick}
     >
-      <a className={styles["menu-item-content"]} onClick={onItemClick}>
+      <a className={styles["menu-item-content"]}>
         <span className={styles["menu-item-text"]}>{children}</span>
         {secondary && (
           <span className={styles["menu-item-secondary"]}>{secondary}</span>

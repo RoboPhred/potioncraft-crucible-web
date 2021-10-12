@@ -1,5 +1,6 @@
 import { PotionEffectMapEntity } from "@/map-config";
 
+import { POTION_RADIUS } from "../consts";
 import { EntityDef } from "../types";
 
 const PotionEffectDef: EntityDef<PotionEffectMapEntity> = {
@@ -12,7 +13,7 @@ const PotionEffectDef: EntityDef<PotionEffectMapEntity> = {
     ctx.beginPath();
     ctx.fillStyle = "red";
     tweakStyles(ctx);
-    ctx.arc(0, 0, 0.4, 0, 2 * Math.PI);
+    ctx.arc(0, 0, POTION_RADIUS, 0, 2 * Math.PI);
     ctx.fill();
   },
 };

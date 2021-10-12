@@ -2,5 +2,30 @@
   "bases": {
     "water_titlecase": "Water",
     "oil_titlecase": "Oil"
+  },
+  "effects": {
+    "Crop": "Rich Harvest",
+    "Invisibility": "Invisibility",
+    "StoneSkin": "Stone Skin",
+    "Growth": "Fast Growth",
+    "SlowDown": "Slow Down",
+    "Sleep": "Sleep",
+    "SharpVision": "Sharp Vision",
+    "Mana": "Mana",
+    "Lightning": "Lightning",
+    "Hallucinations": "Hallucinations",
+    "Fly": "Fly",
+    "Explosion": "Explosion",
+    "Charm": "Charm",
+    "Berserker": "Berserker",
+    "Light": "Light",
+    "Libido": "Libido",
+    "Bounce": "Bounce",
+    "Acid": "Acid",
+    "Fire": "Fire",
+    "Necromancy": "Necromancy",
+    "Frost": "Frost",
+    "Poison": "Poison",
+    "Healing": "Healing"
   }
 }
