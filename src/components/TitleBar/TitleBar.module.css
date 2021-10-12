@@ -1,0 +1,26 @@
+.titlebar {
+  height: 50px;
+  padding: 0 15px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 40%);
+  position: relative;
+}
+
+.titlebar-heading {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.titlebar-divider {
+  display: inline;
+  border-right: 1px solid rgba(0, 0, 0, 20%);
+  height: 20px;
+  margin: 0 10px;
+}
+
+.titlebar-title {
+  position: absolute;
+  left: 50%;
+  text-align: center;
+}

@@ -3,6 +3,7 @@ import * as React from "react";
 import useLoadMapConfig from "@/services/map-config/hooks/use-load-map-file";
 
 export interface AbstractLoadButtonProps {
+  onInteractionComplete?(): void;
   children(props: AbstractLoadButtonRenderProps): React.ReactChild;
 }
 export interface AbstractLoadButtonRenderProps {
@@ -11,7 +12,10 @@ export interface AbstractLoadButtonRenderProps {
 }
 
 type Props = AbstractLoadButtonProps;
-const AbstractLoadButton: React.FC<Props> = ({ children }) => {
+const AbstractLoadButton: React.FC<Props> = ({
+  onInteractionComplete = () => {},
+  children,
+}) => {
   const { disabled, onLoadSave } = useLoadMapConfig();
   const inputRef = React.useRef<HTMLInputElement | null>(null);
 
@@ -25,11 +29,13 @@ const AbstractLoadButton: React.FC<Props> = ({ children }) => {
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const files = e.target.files;
       if (!files || files.length === 0) {
+        onInteractionComplete();
         return;
       }
       const file = files[0];
 
       onLoadSave(file);
+      onInteractionComplete;
     },
     [onLoadSave]
   );

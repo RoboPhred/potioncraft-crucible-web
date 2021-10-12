@@ -4,6 +4,11 @@ import { Redirect } from "react-router";
 
 import { loadingStatusSelector } from "@/services/map-config/selectors/loading-status";
 
+import TitleBar from "@/components/TitleBar";
+import AutoPopover from "@/components/AutoPopover";
+import Button from "@/components/Button";
+import FileMenu from "@/components/FileMenu";
+
 import EntitiesWindow from "./components/EntitiesWindow";
 import MapWindow from "./components/MapWindow";
 
@@ -11,14 +16,22 @@ import styles from "./EditorPage.module.css";
 
 const EditorPage = () => {
   const status = useSelector(loadingStatusSelector);
-  if (status !== "loaded") {
-    return <Redirect to="/" />;
-  }
 
   return (
     <div className={styles["editor-page"]}>
-      <MapWindow />
-      <EntitiesWindow />
+      <TitleBar>
+        <AutoPopover content={<FileMenu />} placement="bottom-start">
+          <Button variant="menu">File</Button>
+        </AutoPopover>
+      </TitleBar>
+      <div className={styles["editor-page-content"]}>
+        {status === "loaded" && (
+          <>
+            <MapWindow />
+            <EntitiesWindow />
+          </>
+        )}
+      </div>
     </div>
   );
 };

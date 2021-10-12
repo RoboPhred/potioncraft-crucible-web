@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { loadMapConfig } from "@/actions/load-map-config";
+import { mapConfigLoadFile } from "@/actions/map-config-load-file";
 import { useDispatch, useSelector } from "react-redux";
 
 import { loadingStatusSelector } from "../selectors/loading-status";
@@ -15,7 +15,7 @@ export default function useLoadMapConfig(): UseLoadMapConfig {
   const loadingStatus = useSelector(loadingStatusSelector);
   const onLoadSave = React.useCallback(
     (file: File) => {
-      dispatch(loadMapConfig(file));
+      dispatch(mapConfigLoadFile(file));
     },
     [dispatch]
   );

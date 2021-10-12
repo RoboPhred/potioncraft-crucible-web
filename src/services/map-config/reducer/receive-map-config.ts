@@ -1,7 +1,7 @@
 import { AnyAction } from "redux";
 import { v4 as uuidV4 } from "uuid";
 
-import { isReceiveMapConfigAction } from "@/actions/receive-map-config";
+import { isMapConfigReceiveAction } from "@/actions/map-config-receive";
 
 import { defaultMapConfigState, MapConfigState } from "../state";
 import { MapEntity } from "../entities";
@@ -11,7 +11,7 @@ export default createMapConfigReducer(function receiveMapConfig(
   state: MapConfigState = defaultMapConfigState,
   action: AnyAction
 ): MapConfigState {
-  if (!isReceiveMapConfigAction(action)) {
+  if (!isMapConfigReceiveAction(action)) {
     return state;
   }
 
