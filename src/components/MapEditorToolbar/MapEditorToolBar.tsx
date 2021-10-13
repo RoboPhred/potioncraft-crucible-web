@@ -27,6 +27,7 @@ const MapEditorToolBar = () => {
   );
   const onPointerClick = useClickAction(editorToolSet, "pointer");
   const onEraserClick = useClickAction(editorToolSet, "eraser");
+  const onBonesClick = useClickAction(editorToolSet, "paint-danger-zone");
   return (
     <ToolBar>
       <ToggleButton
@@ -40,6 +41,12 @@ const MapEditorToolBar = () => {
         onClick={onEraserClick}
       >
         Eraser
+      </ToggleButton>
+      <ToggleButton
+        isPressed={currentTool === "paint-danger-zone"}
+        onClick={onBonesClick}
+      >
+        Bones
       </ToggleButton>
       Brush Size:
       <button onClick={onDecreaseToolSize}>-</button>

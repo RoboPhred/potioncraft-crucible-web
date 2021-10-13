@@ -1,12 +1,14 @@
 import { AnyAction } from "redux";
 
-import { magnitude, pointSubtract } from "@/geometry";
+import { magnitude, pointAdd, pointSubtract } from "@/geometry";
 import { getSelectMode } from "@/selection-mode";
 import { fpSet } from "@/fp-set";
 
 import { AppState, defaultAppState } from "@/state";
 
 import rootReducer from "@/reducer";
+
+import { generateTileEntities } from "@/entities/tiles";
 
 import {
   EditorMouseMoveAction,
@@ -15,6 +17,7 @@ import {
 import { selectEntity } from "@/actions/select-entity";
 import { editorPan } from "@/actions/editor-pan";
 import { entityDelete } from "@/actions/entity-delete";
+import { entityInsert } from "@/actions/entity-insert";
 
 import { clientToWorldSelector } from "@/services/editor-view/selectors/coordinate-mapping";
 import {
@@ -141,6 +144,8 @@ function toolReducer(
   switch (currentTool) {
     case "eraser":
       return eraserReducer(state, action);
+    case "paint-danger-zone":
+      return paintDangerZoneReducer(state, action);
   }
 
   return state;
@@ -155,4 +160,31 @@ function eraserReducer(
   const worldPoint = clientToWorldSelector(state, viewportPos);
   const keys = entityKeysAtPointSelector(state, worldPoint, toolRadius);
   return rootReducer(state, entityDelete(keys));
+}
+
+function paintDangerZoneReducer(
+  state: AppState,
+  action: EditorMouseMoveAction
+) {
+  const { viewportPos } = action.payload;
+  const { toolRadius } = state.services.editorMouse;
+  const worldPoint = clientToWorldSelector(state, viewportPos);
+  const keys = entityKeysAtPointSelector(state, worldPoint, toolRadius, true);
+
+  state = rootReducer(state, entityDelete(keys));
+
+  const p1 = pointSubtract(worldPoint, { x: toolRadius, y: toolRadius });
+  const p2 = pointAdd(worldPoint, { x: toolRadius, y: toolRadius });
+  const entities = generateTileEntities("danger-zone", { p1, p2 }).filter(
+    (entity) => {
+      const vec = pointSubtract(entity, worldPoint);
+      if (magnitude(vec) >= toolRadius) {
+        return false;
+      }
+      return true;
+    }
+  );
+
+  state = rootReducer(state, entityInsert(entities));
+  return state;
 }

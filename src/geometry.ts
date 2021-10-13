@@ -4,9 +4,32 @@ export interface Point {
 }
 export const ZeroPoint = Object.freeze({ x: 0, y: 0 });
 
+export interface Size {
+  width: number;
+  height: number;
+}
+
 export interface Rectangle {
   p1: Point;
   p2: Point;
+}
+
+export function pointAdd(p1: Point, p2: Point): Point {
+  return {
+    x: p1.x + p2.x,
+    y: p1.y + p2.y,
+  };
+}
+
+export function pointSubtract(p1: Point, p2: Point): Point {
+  return {
+    x: p1.x - p2.x,
+    y: p1.y - p2.y,
+  };
+}
+
+export function magnitude(v: Point): number {
+  return Math.sqrt(v.x * v.x + v.y * v.y);
 }
 
 export function normalizeRectangle(p1: Point, p2: Point): Rectangle;
@@ -34,13 +57,24 @@ export function normalizeRectangle(...args: any[]): Rectangle {
   };
 }
 
-export function pointSubtract(p1: Point, p2: Point): Point {
-  return {
-    x: p1.x - p2.x,
-    y: p1.y - p2.y,
-  };
+export function pointIntersectsRect(p: Point, r: Rectangle): boolean {
+  r = normalizeRectangle(r);
+
+  if (r.p1.x > p.x || r.p2.x < p.x) {
+    return false;
+  }
+
+  if (r.p1.y > p.y || r.p2.y < p.y) {
+    return false;
+  }
+
+  return true;
 }
 
-export function magnitude(v: Point): number {
-  return Math.sqrt(v.x * v.x + v.y * v.y);
+export function calcSize(r: Rectangle): Size {
+  r = normalizeRectangle(r);
+  return {
+    width: r.p2.x - r.p1.x,
+    height: r.p2.y - r.p1.y,
+  };
 }

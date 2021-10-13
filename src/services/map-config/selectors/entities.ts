@@ -38,7 +38,8 @@ export const entityKeyAtPointSelector = (
 export const entityKeysAtPointSelector = (
   state: AppState,
   worldPoint: Point,
-  radius: number = 0
+  radius: number = 0,
+  ignoreHitRadius = false
 ) => {
   const entitiesByKey = entitiesByKeySelector(state);
   const keys = Object.keys(entitiesByKey);
@@ -51,7 +52,7 @@ export const entityKeysAtPointSelector = (
     }
 
     const vec = pointSubtract(worldPoint, entity);
-    if (magnitude(vec) <= type.hitRadius + radius) {
+    if (magnitude(vec) <= (ignoreHitRadius ? 0 : type.hitRadius) + radius) {
       result.push(key);
     }
   }

@@ -26,7 +26,7 @@ const MapWidgets = ({ className }: MapWidgetsProps) => {
       width="100%"
       height="100%"
     >
-      {mousePos && tool === "eraser" && (
+      {mousePos && (tool === "eraser" || tool === "paint-danger-zone") && (
         <circle
           cx={mousePos.x}
           cy={mousePos.y}

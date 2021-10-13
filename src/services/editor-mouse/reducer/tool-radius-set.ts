@@ -1,4 +1,5 @@
 import { isEditorToolRadiusSetAction } from "@/actions/editor-tool-radius-set";
+
 import { createEditorMouseReducer } from "../state-utils";
 
 export default createEditorMouseReducer((state, action) => {
@@ -8,8 +9,12 @@ export default createEditorMouseReducer((state, action) => {
 
   const { radius } = action.payload;
 
+  if (radius <= 0) {
+    return state;
+  }
+
   return {
     ...state,
-    toolRadius: Math.max(0.01, radius),
+    toolRadius: radius,
   };
 });

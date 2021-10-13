@@ -1,7 +1,7 @@
 import { Point } from "@/geometry";
 import { ModifierKeys, MODIFIER_KEYS_NONE } from "@/modifier-keys";
 
-export type EditorMouseTool = "pointer" | "eraser";
+export type EditorMouseTool = "pointer" | "eraser" | "paint-danger-zone";
 export type EditorMousePointerGesture = "pan" | "drag-select" | "drag-move";
 
 export interface EditorMouseServiceState {
