@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { PotionEffectMapEntity } from "@/map-config";
+import { DangerZonePartMapEntity, PotionEffectMapEntity } from "@/map-config";
 
 import Window from "../Window";
 
@@ -20,10 +20,31 @@ function potionEffectPrototype(
   };
 }
 
+function bonePrototype(
+  type: string
+): EntityTrayItemData<DangerZonePartMapEntity> {
+  return {
+    i18nKey: `danger_zone_parts.type_names.${type}`,
+    entityType: "DangerZonePart",
+    type,
+    angle: 0,
+  };
+}
+
 const EntityCategories: {
   i18nKey: string;
   entities: EntityTrayItemData[];
 }[] = [
+  {
+    i18nKey: "danger_zone_parts.title",
+    entities: [
+      bonePrototype("Skull1"),
+      bonePrototype("Bone1"),
+      bonePrototype("Bone2"),
+      bonePrototype("Fang1"),
+      bonePrototype("Fang2"),
+    ],
+  },
   {
     i18nKey: "potion_effects",
     entities: [

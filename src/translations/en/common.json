@@ -9,5 +9,15 @@
       }
     }
   },
-  "potion_effects": "Potion Effects"
+  "potion_effects": "Potion Effects",
+  "danger_zone_parts": {
+    "title": "Danger Zone Parts",
+    "type_names": {
+      "Bone1": "Bone 1",
+      "Bone2": "Bone 2",
+      "Fang1": "Fang 1",
+      "Fang2": "Fang 2",
+      "Skull1": "Skull"
+    }
+  }
 }

@@ -123,17 +123,18 @@ const MapCanvas = ({ className }: MapCanvasProps) => {
 
   const onKeyDown = React.useCallback((e: React.KeyboardEvent) => {
     const modifiers = getModifiers(e);
-    console.log("key down");
     dispatch(editorModifierKeysChanged(modifiers));
-    e.preventDefault();
-    e.stopPropagation();
+    if (e.key === "Alt") {
+      e.preventDefault();
+    }
   }, []);
 
   const onKeyUp = React.useCallback((e: React.KeyboardEvent) => {
     const modifiers = getModifiers(e);
     dispatch(editorModifierKeysChanged(modifiers));
-    e.preventDefault();
-    e.stopPropagation();
+    if (e.key === "Alt") {
+      e.preventDefault();
+    }
   }, []);
 
   const [_, dropRef] = useDrop(
