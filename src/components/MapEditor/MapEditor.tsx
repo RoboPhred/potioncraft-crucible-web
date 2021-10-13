@@ -14,7 +14,10 @@ import keymap, { HotkeyHandler, KeymapHandler, KEYMAP_DELETE } from "./keymap";
 
 import styles from "./MapEditor.module.css";
 
-const MapEditor = () => {
+export interface MapEditorProps {
+  className?: string;
+}
+const MapEditor = ({ className }: MapEditorProps) => {
   const dispatch = useDispatch();
   const keyHandlers = React.useMemo(() => {
     function createEventDispatcher(action: AnyAction): HotkeyHandler {
@@ -35,7 +38,7 @@ const MapEditor = () => {
   }, []);
 
   return (
-    <div className={classNames("map-editor", styles["map-editor"])}>
+    <div className={classNames(className, "map-editor", styles["map-editor"])}>
       <HotKeys
         keyMap={keymap}
         handlers={keyHandlers}

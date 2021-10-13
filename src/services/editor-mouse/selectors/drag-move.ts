@@ -7,7 +7,7 @@ import {
 } from "./world-coords";
 
 export const dragMoveOffsetSelector = createSelector(
-  (state: AppState) => state.services.editorMouse.currentGesture,
+  (state: AppState) => state.services.editorMouse.currentPointerGesture,
   worldMousePosSelector,
   worldMouseDownPosSelector,
   (currentGesture, worldMousePos, worldMouseDownPos) => {

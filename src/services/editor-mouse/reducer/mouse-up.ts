@@ -30,7 +30,7 @@ export default function mouseUpReducer(
 
   const mouseState = state.services.editorMouse;
 
-  switch (mouseState.currentGesture) {
+  switch (mouseState.currentPointerGesture) {
     case "drag-select":
       state = completeDragSelect(state, action);
       break;
@@ -44,7 +44,7 @@ export default function mouseUpReducer(
 
   return fpSet(state, "services", "editorMouse", (mouseState) => ({
     ...mouseState,
-    currentGesture: null,
+    currentPointerGesture: null,
     mouseDownViewportPos: null,
     mouseViewportPos: viewportPos,
     modifierKeys,

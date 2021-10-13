@@ -4,6 +4,10 @@ import classNames from "classnames";
 import { useSelector } from "@/hooks/use-selector";
 
 import { viewportMousePosSelector } from "@/services/editor-mouse/selectors/viewport";
+import {
+  currentToolSelector,
+  toolViewportRadiusSelector,
+} from "@/services/editor-mouse/selectors/tools";
 
 import styles from "./MapWidgets.module.css";
 
@@ -13,10 +17,8 @@ export interface MapWidgetsProps {
 
 const MapWidgets = ({ className }: MapWidgetsProps) => {
   const mousePos = useSelector(viewportMousePosSelector);
-
-  if (!mousePos) {
-    return null;
-  }
+  const toolRadius = useSelector(toolViewportRadiusSelector);
+  const tool = useSelector(currentToolSelector);
 
   return (
     <svg
@@ -24,7 +26,16 @@ const MapWidgets = ({ className }: MapWidgetsProps) => {
       width="100%"
       height="100%"
     >
-      {/* <circle cx={mousePos.x} cy={mousePos.y} r="5" fill="red" /> */}
+      {mousePos && tool === "eraser" && (
+        <circle
+          cx={mousePos.x}
+          cy={mousePos.y}
+          r={toolRadius - 1.5}
+          stroke="lightblue"
+          opacity={0.5}
+          strokeWidth={3}
+        />
+      )}
     </svg>
   );
 };

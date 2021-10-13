@@ -11,7 +11,7 @@ export default createEditorMouseReducer((state, action) => {
 
   return {
     ...state,
-    currentGesture: modifierKeys.altKey ? "pan" : null,
+    currentPointerGesture: modifierKeys.altKey ? "pan" : null,
     mouseDownViewportPos: viewportPos,
     mouseViewportPos: viewportPos,
     modifierKeys,

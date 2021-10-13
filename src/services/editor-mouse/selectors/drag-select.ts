@@ -8,9 +8,10 @@ import { EditorMouseServiceState } from "../state";
 export const dragSelectionRectSelector = createEditorMouseSelector(
   createSelector(
     (state: EditorMouseServiceState) =>
-      state.currentGesture == "drag-select" && state.mouseDownViewportPos,
+      state.currentPointerGesture == "drag-select" &&
+      state.mouseDownViewportPos,
     (state: EditorMouseServiceState) =>
-      state.currentGesture == "drag-select" && state.mouseViewportPos,
+      state.currentPointerGesture == "drag-select" && state.mouseViewportPos,
     (dragStart, dragEnd) => {
       if (dragStart && dragEnd) {
         return normalizeRectangle(dragStart, dragEnd);

@@ -6,17 +6,23 @@ import { fpSet } from "@/fp-set";
 
 import { AppState, defaultAppState } from "@/state";
 
+import rootReducer from "@/reducer";
+
 import {
   EditorMouseMoveAction,
   isEditorMouseMoveAction,
 } from "@/actions/editor-mouse-move";
 import { selectEntity } from "@/actions/select-entity";
+import { editorPan } from "@/actions/editor-pan";
+import { entityDelete } from "@/actions/entity-delete";
 
 import { clientToWorldSelector } from "@/services/editor-view/selectors/coordinate-mapping";
-import { entityKeyAtPointSelector } from "@/services/map-config/selectors/entities";
+import {
+  entityKeyAtPointSelector,
+  entityKeysAtPointSelector,
+} from "@/services/map-config/selectors/entities";
 
-import rootReducer from "@/reducer";
-import { editorPan } from "@/actions/editor-pan";
+import { EditorMousePointerGesture, EditorMouseTool } from "../state";
 
 const GESTURE_START_DISTANCE = 5;
 
@@ -30,11 +36,40 @@ export default function mouseMoveReducer(
 
   const { viewportPos, modifierKeys } = action.payload;
 
-  const { mouseDownViewportPos } = state.services.editorMouse;
-  let currentGesture = state.services.editorMouse.currentGesture;
+  state = detectGestureReducer(state, action);
+
+  let { currentTool, currentPointerGesture } = state.services.editorMouse;
+
+  // Gestures take priority over tools, so holding alt can pan during tool usage.
+  if (currentPointerGesture) {
+    state = gestureReducer(state, action, currentPointerGesture);
+  } else {
+    state = toolReducer(state, action, currentTool);
+  }
+
+  state = fpSet(state, "services", "editorMouse", (mouseState) => ({
+    ...mouseState,
+    mouseViewportPos: viewportPos,
+    modifierKeys,
+  }));
+
+  return state;
+}
+
+function detectGestureReducer(
+  state: AppState,
+  action: EditorMouseMoveAction
+): AppState {
+  const { viewportPos, modifierKeys } = action.payload;
+
+  const { mouseDownViewportPos, currentTool } = state.services.editorMouse;
+  let { currentPointerGesture } = state.services.editorMouse;
+
+  // If we are holding the mouse button with the pointer, determine the gesture.
   if (
     mouseDownViewportPos &&
-    currentGesture == null &&
+    currentTool == "pointer" &&
+    currentPointerGesture == null &&
     magnitude(pointSubtract(mouseDownViewportPos, viewportPos)) >
       GESTURE_START_DISTANCE
   ) {
@@ -47,24 +82,32 @@ export default function mouseMoveReducer(
     if (entityKeyAtMouse) {
       const selectionMode = getSelectMode(modifierKeys, "append");
       state = rootReducer(state, selectEntity(entityKeyAtMouse, selectionMode));
-      currentGesture = "drag-move";
+      currentPointerGesture = "drag-move";
     } else {
-      currentGesture = "drag-select";
+      currentPointerGesture = "drag-select";
     }
   }
 
+  state = fpSet(
+    state,
+    "services",
+    "editorMouse",
+    "currentPointerGesture",
+    currentPointerGesture
+  );
+
+  return state;
+}
+
+function gestureReducer(
+  state: AppState,
+  action: EditorMouseMoveAction,
+  currentGesture: EditorMousePointerGesture
+): AppState {
   switch (currentGesture) {
     case "pan":
-      state = panGestureReducer(state, action);
-      break;
+      return panGestureReducer(state, action);
   }
-
-  state = fpSet(state, "services", "editorMouse", (mouseState) => ({
-    ...mouseState,
-    currentGesture: currentGesture,
-    mouseViewportPos: viewportPos,
-    modifierKeys,
-  }));
 
   return state;
 }
@@ -82,4 +125,34 @@ function panGestureReducer(
   const currentPos = clientToWorldSelector(state, action.payload.viewportPos);
   const offset = pointSubtract(previousPos, currentPos);
   return rootReducer(state, editorPan(offset.x, -offset.y));
+}
+
+function toolReducer(
+  state: AppState,
+  action: EditorMouseMoveAction,
+  currentTool: EditorMouseTool
+): AppState {
+  const { mouseDownViewportPos } = state.services.editorMouse;
+  if (mouseDownViewportPos == null) {
+    // Mouse is not held
+    return state;
+  }
+
+  switch (currentTool) {
+    case "eraser":
+      return eraserReducer(state, action);
+  }
+
+  return state;
+}
+
+function eraserReducer(
+  state: AppState,
+  action: EditorMouseMoveAction
+): AppState {
+  const { viewportPos } = action.payload;
+  const { toolRadius } = state.services.editorMouse;
+  const worldPoint = clientToWorldSelector(state, viewportPos);
+  const keys = entityKeysAtPointSelector(state, worldPoint, toolRadius);
+  return rootReducer(state, entityDelete(keys));
 }

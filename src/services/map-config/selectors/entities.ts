@@ -34,3 +34,27 @@ export const entityKeyAtPointSelector = (
 
   return null;
 };
+
+export const entityKeysAtPointSelector = (
+  state: AppState,
+  worldPoint: Point,
+  radius: number = 0
+) => {
+  const entitiesByKey = entitiesByKeySelector(state);
+  const keys = Object.keys(entitiesByKey);
+  const result = [];
+  for (const key of keys) {
+    const entity = entitiesByKey[key];
+    const type = EntityDefsByType[entity.entityType];
+    if (!type) {
+      continue;
+    }
+
+    const vec = pointSubtract(worldPoint, entity);
+    if (magnitude(vec) <= type.hitRadius + radius) {
+      result.push(key);
+    }
+  }
+
+  return result;
+};

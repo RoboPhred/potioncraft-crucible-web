@@ -3,3 +3,18 @@
   flex-grow: 1;
   min-width: 0;
 }
+
+.map-window-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+.map-window-editor {
+  flex-grow: 1;
+  flex-shrink: 1;
+  min-height: 0;
+  width: 100%;
+  height: 100%;
+}
