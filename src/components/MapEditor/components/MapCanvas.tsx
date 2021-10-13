@@ -21,6 +21,7 @@ import { editorMouseDown } from "@/actions/editor-mouse-down";
 import { editorMouseMove } from "@/actions/editor-mouse-move";
 import { editorMouseUp } from "@/actions/editor-mouse-up";
 import { entityPrototypeInstantiate } from "@/actions/entity-prototype-instantiate";
+import { editorModifierKeysChanged } from "@/actions/editor-modifierkeys-changed";
 
 import {
   editorViewportHeightSelector,
@@ -72,6 +73,10 @@ const MapCanvas = ({ className }: MapCanvasProps) => {
     [canvasBounds]
   );
 
+  const onMouseEnter = React.useCallback(() => {
+    canvasRef.current?.focus();
+  }, []);
+
   const onPointerDown = React.useCallback(
     (e: React.PointerEvent) => {
       if (pointerRef.current !== null && pointerRef.current !== e.pointerId) {
@@ -115,6 +120,21 @@ const MapCanvas = ({ className }: MapCanvasProps) => {
     },
     [eventCanvasPoint]
   );
+
+  const onKeyDown = React.useCallback((e: React.KeyboardEvent) => {
+    const modifiers = getModifiers(e);
+    console.log("key down");
+    dispatch(editorModifierKeysChanged(modifiers));
+    e.preventDefault();
+    e.stopPropagation();
+  }, []);
+
+  const onKeyUp = React.useCallback((e: React.KeyboardEvent) => {
+    const modifiers = getModifiers(e);
+    dispatch(editorModifierKeysChanged(modifiers));
+    e.preventDefault();
+    e.stopPropagation();
+  }, []);
 
   const [_, dropRef] = useDrop(
     {
@@ -193,6 +213,7 @@ const MapCanvas = ({ className }: MapCanvasProps) => {
 
   return (
     <canvas
+      tabIndex={-1}
       className={classNames(className, styles["map-canvas"])}
       ref={(ref) => {
         canvasRef.current = ref;
@@ -200,9 +221,12 @@ const MapCanvas = ({ className }: MapCanvasProps) => {
       }}
       width={viewportWidth}
       height={viewportHeight}
+      onMouseEnter={onMouseEnter}
       onPointerDown={onPointerDown}
       onPointerMove={onPointerMove}
       onPointerUp={onPointerUp}
+      onKeyDown={onKeyDown}
+      onKeyUp={onKeyUp}
     />
   );
 };
