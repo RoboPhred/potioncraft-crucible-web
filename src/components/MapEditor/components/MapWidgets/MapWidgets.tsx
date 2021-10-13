@@ -30,7 +30,7 @@ const MapWidgets = ({ className }: MapWidgetsProps) => {
         <circle
           cx={mousePos.x}
           cy={mousePos.y}
-          r={toolRadius - 1.5}
+          r={toolRadius}
           stroke="lightblue"
           opacity={0.5}
           strokeWidth={3}

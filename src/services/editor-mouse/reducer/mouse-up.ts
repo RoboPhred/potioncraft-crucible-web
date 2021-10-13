@@ -13,7 +13,10 @@ import {
 } from "@/actions/editor-mouse-up";
 import { selectEntity } from "@/actions/select-entity";
 
-import { entitiesByKeySelector } from "@/services/map-config/selectors/entities";
+import {
+  entitiesByKeySelector,
+  entityKeyAtPointSelector,
+} from "@/services/map-config/selectors/entities";
 import { clientToWorldSelector } from "@/services/editor-view/selectors/coordinate-mapping";
 import { selectClear } from "@/actions/select-clear";
 import { entityOffset } from "@/actions/entity-offset";
@@ -114,5 +117,18 @@ function completeDragMove(
 }
 
 function completeClick(state: AppState, action: EditorMouseUpAction): AppState {
-  return rootReducer(state, selectClear());
+  const { viewportPos, modifierKeys } = action.payload;
+
+  const worldPos = clientToWorldSelector(state, viewportPos);
+  const selectedKey = entityKeyAtPointSelector(state, worldPos);
+
+  const mode = getSelectMode(modifierKeys);
+
+  if (selectedKey != null) {
+    return rootReducer(state, selectEntity(selectedKey, mode));
+  } else if (mode === "set") {
+    return rootReducer(state, selectClear());
+  }
+
+  return state;
 }
