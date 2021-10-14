@@ -14,14 +14,16 @@ import Menu from "@/components/Menus/Menu";
 import MenuItem from "@/components/Menus/MenuItem";
 import DividerMenuItem from "@/components/Menus/DividerMenuItem";
 import SubMenuItem from "@/components/Menus/SubMenuItem";
-
-import AbstractLoadButton from "./AbstractLoadButton";
+import { useMenuCloseContext } from "@/components/Menus/MenuCloseContext";
+import AbstractLoadButton from "@/components/AbstractLoadButton";
 
 const FileMenu = () => {
   const { t } = useTranslation();
   const loadingStatus = useSelector(loadingStatusSelector);
   const onNewBlankMap = useClickAction(mapConfigLoadBlank);
   const onSaveMap = useClickAction(mapConfigSave);
+  const requestMenuClose = useMenuCloseContext();
+
   return (
     <Menu>
       <MenuItem onClick={onNewBlankMap}>{t("map.new.blank")}</MenuItem>
@@ -29,7 +31,7 @@ const FileMenu = () => {
         {t("map.new.template")}
       </SubMenuItem>
       <DividerMenuItem />
-      <AbstractLoadButton>
+      <AbstractLoadButton onInteractionComplete={requestMenuClose}>
         {({ disabled, onClick }) => (
           <MenuItem
             autoDismissMenu={false}

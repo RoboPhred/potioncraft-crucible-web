@@ -1,4 +1,8 @@
 {
+  "padding": {
+    "x": 0,
+    "y": 0.2
+  },
   "entities": [
     {
       "type": "Bone2",

@@ -8,6 +8,7 @@ import {
 import { MapEntity } from "@/map-config";
 
 interface TileData {
+  padding: { x: number; y: number };
   entities: MapEntity[];
 }
 
@@ -28,16 +29,15 @@ export function generateTileEntities(
 
 function tileEntities(tileData: TileData, rect: Rectangle): MapEntity[] {
   rect = normalizeRectangle(rect);
-  console.log("spawning tile at", rect);
-  const { entities: tileEntities } = tileData;
+  const { entities: tileEntities, padding: tilePadding } = tileData;
   const tileBounds: Rectangle = {
     p1: {
-      x: tileEntities.reduce((x, e) => Math.min(x, e.x), 0),
-      y: tileEntities.reduce((y, e) => Math.min(y, e.y), 0),
+      x: tileEntities.reduce((x, e) => Math.min(x, e.x), 0) - tilePadding.x / 2,
+      y: tileEntities.reduce((y, e) => Math.min(y, e.y), 0) - tilePadding.y / 2,
     },
     p2: {
-      x: tileEntities.reduce((x, e) => Math.max(x, e.x), 0),
-      y: tileEntities.reduce((y, e) => Math.max(y, e.y), 0),
+      x: tileEntities.reduce((x, e) => Math.max(x, e.x), 0) + tilePadding.x / 2,
+      y: tileEntities.reduce((y, e) => Math.max(y, e.y), 0) + tilePadding.y / 2,
     },
   };
 
@@ -55,7 +55,6 @@ function tileEntities(tileData: TileData, rect: Rectangle): MapEntity[] {
       tileYOrdinal <= Math.ceil(rect.p2.y / tileSize.height);
       tileYOrdinal++
     ) {
-      console.log("processing tile at", tileXOrdinal, tileYOrdinal);
       for (let i = 0; i < tileEntities.length; i++) {
         const tileEntity = tileEntities[i];
         const p: Point = {
