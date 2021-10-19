@@ -17,6 +17,39 @@ const DangerZoneImages: Record<string, HTMLImageElement> = {
   Skull1: makeImg(require("./Skull1.png").default),
 };
 
+// TODO: Use bones as mask
+/*
+    // ctx.save();
+    // ctx.scale(1, -1);
+    // const maskW = mask.width / 95;
+    // const maskH = mask.height / 95;
+    // ctx.translate(-maskW / 2, -maskH / 2);
+    // ctx.drawImage(mask, 0, 0, maskW, maskH);
+    // ctx.restore();
+
+    ctx.fillStyle = "red";
+    tweakStyles(ctx);
+
+    // ctx.save();
+    // ctx.beginPath();
+    // // Clip a bit outside the potion radius to get the bottle opening
+    // ctx.arc(0, 0, POTION_RADIUS + 0.01, 0, 2 * Math.PI);
+    // ctx.rect(-0.28, POTION_RADIUS - 0.01, 0.56, 0.28);
+    // ctx.clip();
+
+    // const oldComposite = ctx.globalCompositeOperation;
+    // ctx.globalCompositeOperation = "source-in";
+    // // Flood a section bigger than our expected draw to paint the whole mask
+    // ctx.fillRect(
+    //   -POTION_RADIUS * 3,
+    //   -POTION_RADIUS * 3,
+    //   POTION_RADIUS * 6,
+    //   POTION_RADIUS * 6
+    // );
+    // ctx.globalCompositeOperation = oldComposite;
+    // ctx.restore();
+*/
+
 const DangerZonePartDef: EntityDef<DangerZonePartMapEntity> = {
   hitRadius: 0.2,
   render(

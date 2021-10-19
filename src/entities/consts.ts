@@ -1,1 +1,1 @@
-export const POTION_RADIUS = 0.4;
+export const POTION_RADIUS = 0.79;
