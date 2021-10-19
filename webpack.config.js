@@ -127,7 +127,7 @@ module.exports = {
       },
 
       {
-        test: /\.png/,
+        test: /\.png|\.webp/,
         loader: "file-loader",
         options: {
           name: "images/[hash].[ext]",

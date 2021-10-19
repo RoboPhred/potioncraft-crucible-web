@@ -34,8 +34,8 @@ const EntityTrayItem = ({ entity }: DraggableEntityProps) => {
     }
 
     const ctx = canvas.getContext("2d")!;
-    ctx.scale(15, 15);
-    ctx.translate(0.7, 0.7);
+    ctx.scale(30, 30);
+    ctx.translate(0.5, 0.5);
     ctx.scale(1, -1);
     type.render(ctx, entity, () => {});
   }, [entityType]);

@@ -1,5 +1,4 @@
 import { DangerZonePartMapEntity } from "@/map-config";
-import { combineExtraniousSelection } from "@/selection-mode";
 
 import { EntityDef } from "../../types";
 
