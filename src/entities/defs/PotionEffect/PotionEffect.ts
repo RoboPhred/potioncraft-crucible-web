@@ -10,6 +10,8 @@ function makeImg(src: string): HTMLImageElement {
   return img;
 }
 
+const mask = makeImg(require("./MapBottle_Shape_Mask.png").default);
+
 const PotionEffectImages: Record<string, HTMLImageElement> = {
   Acid: makeImg(require("./Acid.webp").default),
   Berserker: makeImg(require("./Berserker.webp").default),
@@ -44,12 +46,32 @@ const PotionEffectDef: EntityDef<PotionEffectMapEntity> = {
     tweakStyles: (ctx: CanvasRenderingContext2D) => void
   ) {
     ctx.save();
+    ctx.scale(1, -1);
+    const maskW = mask.width / 185;
+    const maskH = mask.height / 185;
+    ctx.translate(-maskW / 2, -maskH / 2);
+    ctx.drawImage(mask, 0, 0, maskW, maskH);
+    ctx.restore();
 
-    ctx.beginPath();
     ctx.fillStyle = "red";
     tweakStyles(ctx);
-    ctx.arc(0, 0, POTION_RADIUS, 0, 2 * Math.PI);
-    ctx.fill();
+
+    ctx.save();
+    ctx.beginPath();
+    ctx.arc(0, 0, POTION_RADIUS * 1.4, 0, 2 * Math.PI);
+    ctx.clip();
+
+    const oldComposite = ctx.globalCompositeOperation;
+    ctx.globalCompositeOperation = "source-in";
+    // Flood a section bigger than our expected draw to paint the whole mask
+    ctx.fillRect(
+      -POTION_RADIUS * 3,
+      -POTION_RADIUS * 3,
+      POTION_RADIUS * 6,
+      POTION_RADIUS * 6
+    );
+    ctx.globalCompositeOperation = oldComposite;
+    ctx.restore();
 
     const img = PotionEffectImages[entity.effect];
     if (img) {
@@ -59,8 +81,6 @@ const PotionEffectDef: EntityDef<PotionEffectMapEntity> = {
       ctx.translate(-w / 2, -h / 2);
       ctx.drawImage(img, 0, 0, w, h);
     }
-
-    ctx.restore();
   },
 };
 export default PotionEffectDef;
