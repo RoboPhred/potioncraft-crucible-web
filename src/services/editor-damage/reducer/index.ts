@@ -7,6 +7,8 @@ import entityInsertReducer from "./entity-insert";
 import entityOffsetReducer from "./entity-offset";
 import entityPrototypeInstantiateReducer from "./entity-prototype-instantiate";
 import mapConfigReceiveReducer from "./map-config-receive";
+import selectClearReducer from "./select-clear";
+import selectEntityReducer from "./select-entity";
 
 export default concatReducers(
   editorRenderedReducer,
@@ -15,5 +17,7 @@ export default concatReducers(
   entityInsertReducer,
   entityOffsetReducer,
   entityPrototypeInstantiateReducer,
-  mapConfigReceiveReducer
+  mapConfigReceiveReducer,
+  selectClearReducer,
+  selectEntityReducer
 );

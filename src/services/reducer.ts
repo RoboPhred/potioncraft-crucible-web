@@ -6,6 +6,7 @@ import editorSelectionReducer from "@/services/editor-selection/reducer";
 import editorViewReducer from "@/services/editor-view/reducer";
 import i18nReducer from "@/services/i18n/reducer";
 import mapConfigReducer from "@/services/map-config/reducer";
+import mapEntitiesReducer from "@/services/map-entities/reducer";
 
 export default concatReducers(
   editorDamageReducer,
@@ -13,5 +14,6 @@ export default concatReducers(
   editorSelectionReducer,
   editorViewReducer,
   i18nReducer,
-  mapConfigReducer
+  mapConfigReducer,
+  mapEntitiesReducer
 );

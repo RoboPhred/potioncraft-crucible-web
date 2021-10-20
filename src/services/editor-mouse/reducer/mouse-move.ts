@@ -23,7 +23,7 @@ import { clientToWorldSelector } from "@/services/editor-view/selectors/coordina
 import {
   entityKeyAtPointSelector,
   entityKeysAtPointSelector,
-} from "@/services/map-config/selectors/entities";
+} from "@/services/map-entities/selectors/entities";
 
 import { EditorMousePointerGesture, EditorMouseTool } from "../state";
 

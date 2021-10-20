@@ -5,7 +5,7 @@ export const selectClear = () => ({
   type: ACTION_SELECT_CLEAR,
 });
 export type ClearSelectionAction = ReturnType<typeof selectClear>;
-export function isClearSelectionAction(
+export function isSelectClearAction(
   action: AnyAction
 ): action is ClearSelectionAction {
   return action.type === ACTION_SELECT_CLEAR;

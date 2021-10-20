@@ -1,6 +1,10 @@
-import { isEntityOffsetAction } from "@/actions/entity-offset";
 import { addPointToRect } from "@/geometry";
+
 import { PRIORITY_PRE, reducerPriority } from "@/reducer/priorities";
+
+import { isEntityOffsetAction } from "@/actions/entity-offset";
+
+import { entityFromKeySelector } from "@/services/map-entities/selectors/entities";
 
 import { createEditorDamageReducer } from "../state-utils";
 
@@ -14,7 +18,7 @@ export default reducerPriority(
     const { entityKeys, offsetX, offsetY } = action.payload;
 
     const damageRect = entityKeys.reduce((damageRect, entityKey) => {
-      const entity = appState.services.mapConfig.entitiesByKey[entityKey];
+      const entity = entityFromKeySelector(appState, entityKey);
       if (damageRect == null) {
         damageRect = {
           p1: { x: entity.x, y: entity.y },

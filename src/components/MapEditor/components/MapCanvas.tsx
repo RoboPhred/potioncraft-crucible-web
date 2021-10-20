@@ -12,7 +12,7 @@ import {
   isNewEntityDragObject,
 } from "@/drag-items/new-entity";
 
-import { EntityDefsByType } from "@/entities";
+import { EntityDefsByType, LargestEntityRadius } from "@/entities";
 import { POTION_RADIUS } from "@/entities/consts";
 
 import { useSelector } from "@/hooks/use-selector";
@@ -29,19 +29,18 @@ import {
   editorViewportWidthSelector,
 } from "@/services/editor-view/selectors/viewport";
 import { useClientToWorld } from "@/services/editor-view/hooks/use-client-to-world";
-import { entitiesByKeySelector } from "@/services/map-config/selectors/entities";
+import { entitiesByKeySelector } from "@/services/map-entities/selectors/entities";
 import {
   editorOffsetXSelector,
   editorOffsetYSelector,
   editorZoomFactorSelector,
 } from "@/services/editor-view/selectors/view";
-import { dragSelectionRectSelector } from "@/services/editor-mouse/selectors/drag-select";
 import { selectedEntityKeysSelector } from "@/services/editor-selection/selectors/selection";
 import { dragMoveOffsetSelector } from "@/services/editor-mouse/selectors/drag-move";
-
-import styles from "./MapCanvas.module.css";
 import { editorDamageRectSelector } from "@/services/editor-damage/selector/damage";
 import { worldToClientSelector } from "@/services/editor-view/selectors/coordinate-mapping";
+
+import styles from "./MapCanvas.module.css";
 
 export interface MapCanvasProps {
   className?: string;
@@ -172,7 +171,6 @@ const MapCanvas = ({ className }: MapCanvasProps) => {
       const offsetX = editorOffsetXSelector(state);
       const offsetY = editorOffsetYSelector(state);
       const zoomFactor = editorZoomFactorSelector(state);
-      const selectionRect = dragSelectionRectSelector(state);
       const dragMoveOffset = dragMoveOffsetSelector(state);
       const damageRect = editorDamageRectSelector(state);
 
@@ -184,12 +182,12 @@ const MapCanvas = ({ className }: MapCanvasProps) => {
       // Redraw a little outside the damage in case we cleared an entity partially in the rect
       const redrawRect: Rectangle = {
         p1: {
-          x: damageRect.p1.x - 1,
-          y: damageRect.p1.y - 1,
+          x: damageRect.p1.x - LargestEntityRadius,
+          y: damageRect.p1.y - LargestEntityRadius,
         },
         p2: {
-          x: damageRect.p2.x + 1,
-          y: damageRect.p2.y + 1,
+          x: damageRect.p2.x + LargestEntityRadius,
+          y: damageRect.p2.y + LargestEntityRadius,
         },
       };
 
@@ -242,10 +240,6 @@ const MapCanvas = ({ className }: MapCanvasProps) => {
           ctx.restore();
         }
       });
-
-      if (selectionRect) {
-        renderSelectionRect(ctx, selectionRect);
-      }
 
       dispatch(editorRendered());
     }

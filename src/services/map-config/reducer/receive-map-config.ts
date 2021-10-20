@@ -1,7 +1,4 @@
 import { AnyAction } from "redux";
-import { v4 as uuidV4 } from "uuid";
-
-import { MapEntity } from "@/map-config";
 
 import { isMapConfigReceiveAction } from "@/actions/map-config-receive";
 
@@ -16,17 +13,9 @@ export default createMapConfigReducer(function receiveMapConfig(
     return state;
   }
 
-  const { mapConfig } = action.payload;
-
-  const entitiesByKey: Record<string, MapEntity> = {};
-  for (let entity of mapConfig.entities) {
-    entitiesByKey[uuidV4()] = entity;
-  }
-
   return {
     ...state,
     loadingStatus: "loaded",
-    entitiesByKey,
     errorMessage: null,
   };
 });

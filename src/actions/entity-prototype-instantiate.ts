@@ -11,7 +11,7 @@ export const entityPrototypeInstantiate = (
   worldPos: Point
 ) => ({
   type: ACTION_ENTITY_PROTOTYPE_INSTANTIATE,
-  payload: { prototype, worldPos, key: uuidV4() },
+  payload: { prototype, worldPos, entityKey: uuidV4() },
 });
 export type EntityPrototypeInstantiateAction = ReturnType<
   typeof entityPrototypeInstantiate

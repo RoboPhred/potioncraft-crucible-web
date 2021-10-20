@@ -1,9 +1,9 @@
 import values from "lodash/values";
 
-import { createMapConfigSelector } from "../state-utils";
+import { AppState } from "@/state";
 
-export const mapFileSelector = createMapConfigSelector((state) => {
+export const mapFileSelector = (state: AppState) => {
   return {
-    entities: values(state.entitiesByKey),
+    entities: values(state.services.mapEntities.entitiesByKey),
   };
-});
+};

@@ -16,7 +16,7 @@ import { selectEntity } from "@/actions/select-entity";
 import {
   entitiesByKeySelector,
   entityKeyAtPointSelector,
-} from "@/services/map-config/selectors/entities";
+} from "@/services/map-entities/selectors/entities";
 import { clientToWorldSelector } from "@/services/editor-view/selectors/coordinate-mapping";
 import { selectClear } from "@/actions/select-clear";
 import { entityOffset } from "@/actions/entity-offset";
