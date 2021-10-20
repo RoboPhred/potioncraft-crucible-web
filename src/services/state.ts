@@ -1,4 +1,8 @@
 import {
+  EditorDamageState,
+  defaultEditorDamageState,
+} from "./editor-damage/state";
+import {
   EditorMouseServiceState,
   defaultEditorMouseServiceState,
 } from "./editor-mouse/state";
@@ -11,6 +15,7 @@ import { I18NState, defaultI18NState } from "./i18n/state";
 import { MapConfigState, defaultMapConfigState } from "./map-config/state";
 
 export interface ServicesState {
+  editorDamage: EditorDamageState;
   editorMouse: EditorMouseServiceState;
   editorSelection: EditorSelectionState;
   editorView: EditorViewState;
@@ -19,6 +24,7 @@ export interface ServicesState {
 }
 
 export const defaultServicesState: Readonly<ServicesState> = Object.freeze({
+  editorDamage: defaultEditorDamageState,
   editorMouse: defaultEditorMouseServiceState,
   editorSelection: defaultEditorSelectionState,
   editorView: defaultEditorViewState,

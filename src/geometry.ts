@@ -14,6 +14,8 @@ export interface Rectangle {
   p2: Point;
 }
 
+export const ZeroRect = Object.freeze({ p1: ZeroPoint, p2: ZeroPoint });
+
 export function pointAdd(p1: Point, p2: Point): Point {
   return {
     x: p1.x + p2.x,
@@ -53,6 +55,19 @@ export function normalizeRectangle(...args: any[]): Rectangle {
     p2: {
       x: Math.max(p1.x, p2.x),
       y: Math.max(p1.y, p2.y),
+    },
+  };
+}
+
+export function addPointToRect(r: Rectangle, p: Point): Rectangle {
+  return {
+    p1: {
+      x: Math.min(r.p1.x, p.x),
+      y: Math.min(r.p1.y, p.y),
+    },
+    p2: {
+      x: Math.max(r.p2.x, p.x),
+      y: Math.max(r.p2.y, p.y),
     },
   };
 }

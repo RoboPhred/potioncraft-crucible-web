@@ -1,10 +1,10 @@
 import * as React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useStore } from "react-redux";
 import { useDrop } from "react-dnd";
 import classNames from "classnames";
 
 import { getModifiers } from "@/modifier-keys";
-import { Rectangle } from "@/geometry";
+import { normalizeRectangle, pointIntersectsRect, Rectangle } from "@/geometry";
 import { MapEntity } from "@/map-config";
 
 import {
@@ -22,13 +22,13 @@ import { editorMouseMove } from "@/actions/editor-mouse-move";
 import { editorMouseUp } from "@/actions/editor-mouse-up";
 import { entityPrototypeInstantiate } from "@/actions/entity-prototype-instantiate";
 import { editorModifierKeysChanged } from "@/actions/editor-modifierkeys-changed";
+import { editorRendered } from "@/actions/editor-rendered";
 
 import {
   editorViewportHeightSelector,
   editorViewportWidthSelector,
 } from "@/services/editor-view/selectors/viewport";
 import { useClientToWorld } from "@/services/editor-view/hooks/use-client-to-world";
-import { entityKeysInViewSelector } from "@/services/editor-view/selectors/entities";
 import { entitiesByKeySelector } from "@/services/map-config/selectors/entities";
 import {
   editorOffsetXSelector,
@@ -40,6 +40,8 @@ import { selectedEntityKeysSelector } from "@/services/editor-selection/selector
 import { dragMoveOffsetSelector } from "@/services/editor-mouse/selectors/drag-move";
 
 import styles from "./MapCanvas.module.css";
+import { editorDamageRectSelector } from "@/services/editor-damage/selector/damage";
+import { worldToClientSelector } from "@/services/editor-view/selectors/coordinate-mapping";
 
 export interface MapCanvasProps {
   className?: string;
@@ -47,20 +49,14 @@ export interface MapCanvasProps {
 
 const MapCanvas = ({ className }: MapCanvasProps) => {
   const dispatch = useDispatch();
+  const store = useStore();
 
   const pointerRef = React.useRef<number | null>(null);
   const canvasRef = React.useRef<HTMLCanvasElement | null>(null);
   const canvasBounds = useComponentBounds(canvasRef);
   const viewportWidth = useSelector(editorViewportWidthSelector);
   const viewportHeight = useSelector(editorViewportHeightSelector);
-  const entitiesInView = useSelector(entityKeysInViewSelector);
-  const entitiesByKey = useSelector(entitiesByKeySelector);
-  const selectedEntityKeys = useSelector(selectedEntityKeysSelector);
-  const offsetX = useSelector(editorOffsetXSelector);
-  const offsetY = useSelector(editorOffsetYSelector);
-  const zoomFactor = useSelector(editorZoomFactorSelector);
-  const selectionRect = useSelector(dragSelectionRectSelector);
-  const dragMoveOffset = useSelector(dragMoveOffsetSelector);
+
   const clientToWorld = useClientToWorld();
 
   const eventCanvasPoint = React.useCallback(
@@ -160,57 +156,116 @@ const MapCanvas = ({ className }: MapCanvasProps) => {
     [clientToWorld, canvasBounds]
   );
 
-  React.useLayoutEffect(() => {
-    if (!canvasRef.current) {
-      return;
-    }
-    const ctx = canvasRef.current.getContext("2d")!;
+  React.useEffect(() => {
+    let animationFrame: number | null = null;
 
-    clear(ctx);
+    function render() {
+      animationFrame = null;
 
-    transformToMap(ctx, zoomFactor, offsetX, offsetY, () => {
-      ctx.beginPath();
-      ctx.lineWidth = 0.2;
-      ctx.setLineDash([2, 2]);
-      ctx.moveTo(-60, -60);
-      ctx.lineTo(-60, 60);
-      ctx.lineTo(60, 60);
-      ctx.lineTo(60, -60);
-      ctx.lineTo(-60, -60);
-      ctx.stroke();
-
-      renderPotionStart(ctx);
-
-      for (const key of entitiesInView) {
-        const entity = entitiesByKey[key];
-        const isSelected = selectedEntityKeys.includes(key);
-        if (dragMoveOffset != null && isSelected) {
-          continue;
-        }
-        renderEntity(ctx, entity, isSelected);
+      if (!canvasRef.current) {
+        return;
       }
 
-      if (dragMoveOffset != null) {
-        ctx.save();
-        ctx.translate(dragMoveOffset.x, dragMoveOffset.y);
-        for (const key of selectedEntityKeys) {
+      const state = store.getState();
+      const entitiesByKey = entitiesByKeySelector(state);
+      const selectedEntityKeys = selectedEntityKeysSelector(state);
+      const offsetX = editorOffsetXSelector(state);
+      const offsetY = editorOffsetYSelector(state);
+      const zoomFactor = editorZoomFactorSelector(state);
+      const selectionRect = dragSelectionRectSelector(state);
+      const dragMoveOffset = dragMoveOffsetSelector(state);
+      const damageRect = editorDamageRectSelector(state);
+
+      if (!damageRect) {
+        return;
+      }
+
+      // Redraw a little outside the damage in case we cleared an entity partially in the rect
+      const redrawRect: Rectangle = {
+        p1: {
+          x: damageRect.p1.x - 1,
+          y: damageRect.p1.y - 1,
+        },
+        p2: {
+          x: damageRect.p2.x + 1,
+          y: damageRect.p2.y + 1,
+        },
+      };
+
+      const ctx = canvasRef.current.getContext("2d")!;
+
+      const clearClientP1 = worldToClientSelector(state, damageRect.p1);
+      const clearClientP2 = worldToClientSelector(state, damageRect.p2);
+      const clearRect = normalizeRectangle(clearClientP1, clearClientP2);
+      ctx.clearRect(
+        Math.max(0, clearRect.p1.x),
+        Math.max(0, clearRect.p1.y),
+        Math.min(ctx.canvas.width, clearRect.p2.x - clearRect.p1.x),
+        Math.min(ctx.canvas.height, clearRect.p2.y - clearRect.p1.y)
+      );
+
+      transformToMap(ctx, zoomFactor, offsetX, offsetY, () => {
+        ctx.beginPath();
+        ctx.lineWidth = 0.2;
+        ctx.setLineDash([2, 2]);
+        ctx.moveTo(-60, -60);
+        ctx.lineTo(-60, 60);
+        ctx.lineTo(60, 60);
+        ctx.lineTo(60, -60);
+        ctx.lineTo(-60, -60);
+        ctx.stroke();
+
+        renderPotionStart(ctx);
+
+        let renderCount = 0;
+        for (const key of Object.keys(entitiesByKey)) {
           const entity = entitiesByKey[key];
-          renderEntity(ctx, entity, true);
+          if (!pointIntersectsRect(entity, redrawRect)) {
+            continue;
+          }
+          const isSelected = selectedEntityKeys.includes(key);
+          if (dragMoveOffset != null && isSelected) {
+            continue;
+          }
+          renderCount++;
+          renderEntity(ctx, entity, isSelected);
         }
-        ctx.restore();
-      }
-    });
 
-    if (selectionRect) {
-      renderSelectionRect(ctx, selectionRect);
+        if (dragMoveOffset != null) {
+          ctx.save();
+          ctx.translate(dragMoveOffset.x, dragMoveOffset.y);
+          for (const key of selectedEntityKeys) {
+            const entity = entitiesByKey[key];
+            renderEntity(ctx, entity, true);
+          }
+          ctx.restore();
+        }
+      });
+
+      if (selectionRect) {
+        renderSelectionRect(ctx, selectionRect);
+      }
+
+      dispatch(editorRendered());
     }
-  }, [
-    entitiesInView,
-    entitiesByKey,
-    selectionRect,
-    selectedEntityKeys,
-    dragMoveOffset,
-  ]);
+
+    function requestRender() {
+      if (animationFrame != null) {
+        return;
+      }
+      animationFrame = requestAnimationFrame(render);
+    }
+
+    const unsubscribe = store.subscribe(requestRender);
+
+    return () => {
+      if (animationFrame) {
+        cancelAnimationFrame(animationFrame);
+        animationFrame = null;
+      }
+      unsubscribe();
+    };
+  }, []);
 
   return (
     <canvas
@@ -231,10 +286,6 @@ const MapCanvas = ({ className }: MapCanvasProps) => {
     />
   );
 };
-
-function clear(ctx: CanvasRenderingContext2D) {
-  ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-}
 
 function transformToMap(
   ctx: CanvasRenderingContext2D,
