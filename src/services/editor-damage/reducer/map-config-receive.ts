@@ -6,8 +6,6 @@ export default createEditorDamageReducer((state, action, appState) => {
     return state;
   }
 
-  console.log("viewport " + action.type);
-
   return {
     ...state,
     damageWorldRect: {

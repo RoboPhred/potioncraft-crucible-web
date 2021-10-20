@@ -177,6 +177,7 @@ const MapCanvas = ({ className }: MapCanvasProps) => {
       const damageRect = editorDamageRectSelector(state);
 
       if (!damageRect) {
+        // Nothing to redraw
         return;
       }
 

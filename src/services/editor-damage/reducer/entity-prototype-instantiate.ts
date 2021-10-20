@@ -11,12 +11,10 @@ export default createEditorDamageReducer((state, action, appState) => {
 
   const { worldPos } = action.payload;
 
-  const clientPos = worldToClientSelector(appState, worldPos);
-
   return {
     ...state,
     damageWorldRect: state.damageWorldRect
-      ? addPointToRect(state.damageWorldRect, clientPos)
-      : { p1: clientPos, p2: clientPos },
+      ? addPointToRect(state.damageWorldRect, worldPos)
+      : { p1: worldPos, p2: worldPos },
   };
 });
