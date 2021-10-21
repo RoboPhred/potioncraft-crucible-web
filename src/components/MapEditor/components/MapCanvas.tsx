@@ -180,6 +180,7 @@ const MapCanvas = ({ className }: MapCanvasProps) => {
       }
 
       // Increment the damage rect to account for entity radius that needs to be cleared.
+      // TODO: Restrict this to the visible viewport.
       damageRect = {
         p1: {
           x: damageRect.p1.x - LargestEntityRadius,
