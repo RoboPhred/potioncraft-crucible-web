@@ -12,14 +12,14 @@ import {
   isEditorMouseUpAction,
 } from "@/actions/editor-mouse-up";
 import { selectEntity } from "@/actions/select-entity";
-
-import {
-  entitiesByKeySelector,
-  entityKeyAtPointSelector,
-} from "@/services/map-entities/selectors/entities";
-import { clientToWorldSelector } from "@/services/editor-view/selectors/coordinate-mapping";
 import { selectClear } from "@/actions/select-clear";
 import { entityOffset } from "@/actions/entity-offset";
+
+import {
+  entityKeyAtPointSelector,
+  entityKeysAtRectSelector,
+} from "@/services/map-entities/selectors/entities";
+import { clientToWorldSelector } from "@/services/editor-view/selectors/coordinate-mapping";
 
 export default function mouseUpReducer(
   state: AppState = defaultAppState,
@@ -70,20 +70,7 @@ function completeDragSelect(
 
   const selectionRect = normalizeRectangle(worldMouseDownPos, worldMouseUpPos);
 
-  const entitiesById = entitiesByKeySelector(state);
-
-  const idsToSelect = Object.entries(entitiesById)
-    .filter(([_, entity]) => {
-      // Not caring about entity sizes for now
-      if (entity.x < selectionRect.p1.x || entity.x > selectionRect.p2.x) {
-        return false;
-      }
-      if (entity.y < selectionRect.p1.y || entity.y > selectionRect.p2.y) {
-        return false;
-      }
-      return true;
-    })
-    .map(([id]) => id);
+  const idsToSelect = entityKeysAtRectSelector(state, selectionRect);
 
   const mode = getSelectMode(modifierKeys);
   return rootReducer(state, selectEntity(idsToSelect, mode));

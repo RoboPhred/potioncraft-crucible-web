@@ -1,6 +1,12 @@
 import { createSelector } from "reselect";
 import { AppState } from "@/state";
-import { magnitude, Point, pointSubtract, Rectangle } from "@/geometry";
+import {
+  magnitude,
+  Point,
+  pointIntersectsRect,
+  pointSubtract,
+  Rectangle,
+} from "@/geometry";
 import { EntityDefsByType } from "@/entities";
 
 import { createMapEntitiesSelector } from "../state-utils";
@@ -74,4 +80,13 @@ export const entityKeysAtPointSelector = (
   }
 
   return result;
+};
+
+export const entityKeysAtRectSelector = (state: AppState, rect: Rectangle) => {
+  const mapEntities = state.services.mapEntities;
+  const regionKeys = getEntityKeysFromRect(mapEntities, rect);
+
+  return regionKeys.filter((entityKey) =>
+    pointIntersectsRect(mapEntities.entitiesByKey[entityKey], rect)
+  );
 };

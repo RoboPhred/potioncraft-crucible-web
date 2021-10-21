@@ -42,8 +42,6 @@ const DragPreview = ({ className }: DragPreviewProps) => {
 
     const ctx = canvasRef.current.getContext("2d")!;
 
-    console.log("Redrawing drag preview");
-
     ctx.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
 
     transformToMap(ctx, zoomFactor, offsetX, offsetY, () => {
