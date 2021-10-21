@@ -13,6 +13,8 @@ export default createMapEntitiesReducer((state, action) => {
     return state;
   }
 
+  state = defaultMapEntityStates;
+
   const { mapConfig } = action.payload;
 
   const entitiesByKey: Record<string, MapEntity> = {};
@@ -26,7 +28,7 @@ export default createMapEntitiesReducer((state, action) => {
   }
 
   return {
-    ...defaultMapEntityStates,
+    ...state,
     entitiesByKey,
   };
 });

@@ -9,6 +9,7 @@ import { selectionDelete } from "@/actions/selection-delete";
 import PanZoomHandler from "./components/PanZoomHandler";
 import MapCanvas from "./components/MapCanvas";
 import MapWidgets from "./components/MapWidgets";
+import DragPreview from "./components/DragPreview";
 
 import keymap, { HotkeyHandler, KeymapHandler, KEYMAP_DELETE } from "./keymap";
 
@@ -46,6 +47,7 @@ const MapEditor = ({ className }: MapEditorProps) => {
       >
         <PanZoomHandler className={styles["map-editor-container"]}>
           <MapCanvas className={styles["map-editor-item"]} />
+          <DragPreview className={styles["map-editor-item"]} />
           <MapWidgets className={styles["map-editor-item"]} />
         </PanZoomHandler>
       </HotKeys>

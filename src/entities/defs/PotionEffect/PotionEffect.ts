@@ -37,7 +37,7 @@ const PotionEffectImages: Record<string, HTMLImageElement> = {
 };
 
 const PotionEffectDef: EntityDef<PotionEffectMapEntity> = {
-  hitRadius: 0.4,
+  hitRadius: POTION_RADIUS,
   render(
     ctx: CanvasRenderingContext2D,
     entity: PotionEffectMapEntity,

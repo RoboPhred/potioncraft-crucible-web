@@ -5,15 +5,15 @@ import classNames from "classnames";
 
 import { getModifiers } from "@/modifier-keys";
 import { normalizeRectangle, pointIntersectsRect, Rectangle } from "@/geometry";
-import { MapEntity } from "@/map-config";
+
+import { renderEntity, renderPotionStart, transformToMap } from "@/canvas";
 
 import {
   DRAGOBJECT_NEW_ENTITY,
   isNewEntityDragObject,
 } from "@/drag-items/new-entity";
 
-import { EntityDefsByType, LargestEntityRadius } from "@/entities";
-import { POTION_RADIUS } from "@/entities/consts";
+import { LargestEntityRadius } from "@/entities";
 
 import { useSelector } from "@/hooks/use-selector";
 import { useComponentBounds } from "@/hooks/use-component-bounds";
@@ -172,14 +172,26 @@ const MapCanvas = ({ className }: MapCanvasProps) => {
       const offsetY = editorOffsetYSelector(state);
       const zoomFactor = editorZoomFactorSelector(state);
       const dragMoveOffset = dragMoveOffsetSelector(state);
-      const damageRect = editorDamageRectSelector(state);
+      let damageRect = editorDamageRectSelector(state);
 
       if (!damageRect) {
         // Nothing to redraw
         return;
       }
 
-      // Redraw a little outside the damage in case we cleared an entity partially in the rect
+      // Increment the damage rect to account for entity radius that needs to be cleared.
+      damageRect = {
+        p1: {
+          x: damageRect.p1.x - LargestEntityRadius,
+          y: damageRect.p1.y - LargestEntityRadius,
+        },
+        p2: {
+          x: damageRect.p2.x + LargestEntityRadius,
+          y: damageRect.p2.y + LargestEntityRadius,
+        },
+      };
+
+      // Increment redraw yet again to redraw entities that were partially cut by the clear
       const redrawRect: Rectangle = {
         p1: {
           x: damageRect.p1.x - LargestEntityRadius,
@@ -229,16 +241,6 @@ const MapCanvas = ({ className }: MapCanvasProps) => {
           renderCount++;
           renderEntity(ctx, entity, isSelected);
         }
-
-        if (dragMoveOffset != null) {
-          ctx.save();
-          ctx.translate(dragMoveOffset.x, dragMoveOffset.y);
-          for (const key of selectedEntityKeys) {
-            const entity = entitiesByKey[key];
-            renderEntity(ctx, entity, true);
-          }
-          ctx.restore();
-        }
       });
 
       dispatch(editorRendered());
@@ -281,62 +283,5 @@ const MapCanvas = ({ className }: MapCanvasProps) => {
     />
   );
 };
-
-function transformToMap(
-  ctx: CanvasRenderingContext2D,
-  zoomFactor: number,
-  offsetX: number,
-  offsetY: number,
-  handler: () => void
-) {
-  ctx.save();
-  ctx.scale(zoomFactor, zoomFactor);
-  ctx.translate(-offsetX + 60, -offsetY + 60);
-  ctx.scale(1, -1);
-
-  handler();
-  ctx.restore();
-}
-
-function renderPotionStart(ctx: CanvasRenderingContext2D) {
-  ctx.beginPath();
-  ctx.fillStyle = "blue";
-  ctx.arc(0, 0, POTION_RADIUS, 0, 2 * Math.PI);
-  ctx.fill();
-}
-
-function renderEntity(
-  ctx: CanvasRenderingContext2D,
-  entity: MapEntity,
-  isSelected: boolean
-) {
-  const type = EntityDefsByType[entity.entityType];
-  if (!type) {
-    return;
-  }
-
-  ctx.save();
-
-  ctx.translate(entity.x, entity.y);
-  type.render(ctx, entity, (ctx) => {
-    if (isSelected) {
-      // This should apply a blue effect on the entity, but it doesn't seem to be taking.
-      /*
-      ctx.filter =
-        "brightness(0) saturate(100%) invert(58%) sepia(97%) saturate(2398%) hue-rotate(155deg) brightness(86%) contrast(101%);";
-      */
-      ctx.fillStyle = "lightblue";
-    }
-  });
-
-  ctx.restore();
-}
-
-function renderSelectionRect(ctx: CanvasRenderingContext2D, r: Rectangle) {
-  ctx.beginPath();
-  ctx.strokeStyle = "blue";
-  ctx.rect(r.p1.x, r.p1.y, r.p2.x - r.p1.x, r.p2.y - r.p1.y);
-  ctx.stroke();
-}
 
 export default MapCanvas;

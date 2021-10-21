@@ -117,13 +117,7 @@ export function getRegionIndexesFromRect(r: Rectangle): number[] {
 
   for (let x = x1; x <= x2; x++) {
     for (let y = y1; y <= y2; y++) {
-      const index = x + y * (MAP_WIDTH / REGION_WIDTH);
-      if (index >= REGION_COUNT) {
-        console.log(
-          `Tried to calculate index ${index} at ${x} ${y} but it is out of bounds ${REGION_COUNT}`
-        );
-      }
-      indexes.push(index);
+      indexes.push(x + y * (MAP_WIDTH / REGION_WIDTH));
     }
   }
 
@@ -139,15 +133,6 @@ export function getEntityKeysFromRect(
   regionIndexes.forEach((regionIndex) => {
     if (regionIndex === -1) {
       regionKeys.push(...container.outOfBoundsRegion.entityKeys);
-    } else if (regionIndex >= container.entityRegions.length) {
-      console.log(
-        "!! regionIndex",
-        regionIndex,
-        "outside of limits",
-        container.entityRegions.length
-      );
-    } else if (!container.entityRegions[regionIndex]) {
-      console.log("Index in range but region is undefined!", regionIndex);
     } else {
       regionKeys.push(...container.entityRegions[regionIndex].entityKeys);
     }
