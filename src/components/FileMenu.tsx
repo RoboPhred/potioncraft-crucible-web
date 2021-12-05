@@ -10,20 +10,51 @@ import { mapConfigSave } from "@/actions/map-config-save";
 import { useClickAction } from "@/hooks/use-action";
 import { useSelector } from "@/hooks/use-selector";
 
+import useLoadMapConfig from "@/services/map-config/hooks/use-load-map-file";
+
 import Menu from "@/components/Menus/Menu";
 import MenuItem from "@/components/Menus/MenuItem";
 import DividerMenuItem from "@/components/Menus/DividerMenuItem";
 import SubMenuItem from "@/components/Menus/SubMenuItem";
 import { useMenuCloseContext } from "@/components/Menus/MenuCloseContext";
-import AbstractLoadButton from "@/components/AbstractLoadButton";
+import AbstractFileLoadButton from "@/components/AbstractFileLoadButton";
+import useLoadPackage from "@/services/package/hooks/use-load-package";
 
 const FileMenu = () => {
+  const { t } = useTranslation();
+  const { loadStatus, onLoadPackage } = useLoadPackage();
+  const requestMenuClose = useMenuCloseContext();
+  return (
+    <Menu>
+      <AbstractFileLoadButton
+        disabled={loadStatus == "loading"}
+        accept={".zip"}
+        onFileLoaded={onLoadPackage}
+        onInteractionComplete={requestMenuClose}
+      >
+        {({ disabled, onClick }) => (
+          <MenuItem
+            autoDismissMenu={false}
+            disabled={disabled}
+            onClick={onClick}
+          >
+            {t("package.load")}
+          </MenuItem>
+        )}
+      </AbstractFileLoadButton>
+      <DividerMenuItem />
+      <SubMenuItem content={<LegacyMapMenu />}>Legacy Map Editor</SubMenuItem>
+    </Menu>
+  );
+};
+
+const LegacyMapMenu = () => {
   const { t } = useTranslation();
   const loadingStatus = useSelector(loadingStatusSelector);
   const onNewBlankMap = useClickAction(mapConfigLoadBlank);
   const onSaveMap = useClickAction(mapConfigSave);
   const requestMenuClose = useMenuCloseContext();
-
+  const { disabled, onLoadSave } = useLoadMapConfig();
   return (
     <Menu>
       <MenuItem onClick={onNewBlankMap}>{t("map.new.blank")}</MenuItem>
@@ -31,7 +62,12 @@ const FileMenu = () => {
         {t("map.new.template")}
       </SubMenuItem>
       <DividerMenuItem />
-      <AbstractLoadButton onInteractionComplete={requestMenuClose}>
+      <AbstractFileLoadButton
+        disabled={disabled}
+        accept={".json"}
+        onFileLoaded={onLoadSave}
+        onInteractionComplete={requestMenuClose}
+      >
         {({ disabled, onClick }) => (
           <MenuItem
             autoDismissMenu={false}
@@ -41,7 +77,7 @@ const FileMenu = () => {
             Load Map
           </MenuItem>
         )}
-      </AbstractLoadButton>
+      </AbstractFileLoadButton>
       <DividerMenuItem />
       <MenuItem disabled={loadingStatus !== "loaded"} onClick={onSaveMap}>
         {t("map.save")}

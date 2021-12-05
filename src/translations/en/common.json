@@ -5,6 +5,10 @@
       "name": "File"
     }
   },
+  "package": {
+    "content": "Package Content",
+    "load": "Load Package"
+  },
   "map": {
     "new": {
       "blank": "New Blank Map",

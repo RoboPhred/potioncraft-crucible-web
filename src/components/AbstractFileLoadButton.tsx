@@ -1,22 +1,25 @@
 import * as React from "react";
 
-import useLoadMapConfig from "@/services/map-config/hooks/use-load-map-file";
-
-export interface AbstractLoadButtonProps {
-  onInteractionComplete?(): void;
+export interface AbstractFileLoadButtonProps {
+  disabled?: boolean;
+  accept: string;
+  onFileLoaded(file: File): void;
   children(props: AbstractLoadButtonRenderProps): React.ReactChild;
+  onInteractionComplete?(): void;
 }
 export interface AbstractLoadButtonRenderProps {
   disabled: boolean;
   onClick(): void;
 }
 
-type Props = AbstractLoadButtonProps;
-const AbstractLoadButton: React.FC<Props> = ({
+type Props = AbstractFileLoadButtonProps;
+const AbstractFileLoadButton: React.FC<Props> = ({
+  disabled = false,
+  accept,
+  onFileLoaded,
   onInteractionComplete = () => {},
   children,
 }) => {
-  const { disabled, onLoadSave } = useLoadMapConfig();
   const inputRef = React.useRef<HTMLInputElement | null>(null);
 
   const onClick = React.useCallback(() => {
@@ -34,10 +37,10 @@ const AbstractLoadButton: React.FC<Props> = ({
       }
       const file = files[0];
 
-      onLoadSave(file);
-      onInteractionComplete;
+      onFileLoaded(file);
+      onInteractionComplete();
     },
-    [onLoadSave]
+    [onFileLoaded, onInteractionComplete]
   );
 
   return (
@@ -47,11 +50,11 @@ const AbstractLoadButton: React.FC<Props> = ({
         ref={inputRef}
         style={{ display: "none" }}
         type="file"
-        accept=".json"
+        accept={accept}
         onChange={onFileChange}
       />
     </>
   );
 };
 
-export default AbstractLoadButton;
+export default AbstractFileLoadButton;

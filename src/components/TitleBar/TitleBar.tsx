@@ -10,7 +10,7 @@ export interface TitleBarProps {
 const TitleBar: React.FC<TitleBarProps> = ({ className, title, children }) => {
   return (
     <div className={classNames(styles.titlebar, className)}>
-      <span className={styles["titlebar-heading"]}>MapMixer</span>
+      <span className={styles["titlebar-heading"]}>Crucible</span>
       <div className={styles["titlebar-divider"]} />
       {title && <div className={styles["titlebar-title"]}>{title}</div>}
       {children}

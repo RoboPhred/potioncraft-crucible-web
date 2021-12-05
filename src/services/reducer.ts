@@ -1,12 +1,13 @@
 import { concatReducers } from "@/reducer/utils";
 
-import editorDamageReducer from "@/services/editor-damage/reducer";
-import editorMouseReducer from "@/services/editor-mouse/reducer";
-import editorSelectionReducer from "@/services/editor-selection/reducer";
-import editorViewReducer from "@/services/editor-view/reducer";
-import i18nReducer from "@/services/i18n/reducer";
-import mapConfigReducer from "@/services/map-config/reducer";
-import mapEntitiesReducer from "@/services/map-entities/reducer";
+import editorDamageReducer from "./editor-damage/reducer";
+import editorMouseReducer from "./editor-mouse/reducer";
+import editorSelectionReducer from "./editor-selection/reducer";
+import editorViewReducer from "./editor-view/reducer";
+import i18nReducer from "./i18n/reducer";
+import mapConfigReducer from "./map-config/reducer";
+import mapEntitiesReducer from "./map-entities/reducer";
+import packageReducer from "./package/reducer";
 
 export default concatReducers(
   editorDamageReducer,
@@ -15,5 +16,6 @@ export default concatReducers(
   editorViewReducer,
   i18nReducer,
   mapConfigReducer,
-  mapEntitiesReducer
+  mapEntitiesReducer,
+  packageReducer
 );

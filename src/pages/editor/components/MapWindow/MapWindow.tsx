@@ -2,8 +2,7 @@ import * as React from "react";
 
 import MapEditor from "@/components/MapEditor";
 import MapEditorToolBar from "@/components/MapEditorToolbar";
-
-import Window from "../Window";
+import Window from "@/components/Window";
 
 import styles from "./MapWindow.module.css";
 

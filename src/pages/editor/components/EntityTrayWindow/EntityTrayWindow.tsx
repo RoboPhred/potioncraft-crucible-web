@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { DangerZonePartMapEntity, PotionEffectMapEntity } from "@/map-config";
 
-import Window from "../Window";
+import Window from "@/components/Window";
 
 import { EntityTrayItemData } from "./types";
 

@@ -1,5 +1,6 @@
 {
   "bases": {
+    "noun_titlecase_plural": "Potion Bases",
     "water_titlecase": "Water",
     "oil_titlecase": "Oil"
   },

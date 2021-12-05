@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { loadingStatusSelector } from "@/services/map-config/selectors/loading-status";
 
 import TitleBar from "@/components/TitleBar";
-import FileMenuButton from "@/components/FileMenuButton";
+import DefaultTitlebarContent from "@/components/DefaultTitlebarContent";
 
 import EntitiesWindow from "./components/EntityTrayWindow";
 import MapWindow from "./components/MapWindow";
@@ -17,7 +17,7 @@ const EditorPage = () => {
   return (
     <div className={styles["editor-page"]}>
       <TitleBar>
-        <FileMenuButton />
+        <DefaultTitlebarContent />
       </TitleBar>
       <div className={styles["editor-page-content"]}>
         {status === "loaded" && (
