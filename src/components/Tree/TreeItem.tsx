@@ -18,15 +18,13 @@ const TreeItem: React.FC<TreeItemProps> = ({
 }) => {
   return (
     <li id={id} className={classNames("tree-item", styles["tree-item"])}>
-      <div className={styles["tree-item-content"]}>
-        <span
-          className={classNames(
-            styles["tree-item-label"],
-            selected && styles["tree-item-label--selected"]
-          )}
-        >
-          {label}
-        </span>
+      <div
+        className={classNames(
+          styles["tree-item-content"],
+          selected && styles["tree-item-label--selected"]
+        )}
+      >
+        <span className={classNames(styles["tree-item-label"])}>{label}</span>
       </div>
       <div className={styles["tree-item-children"]}>{children}</div>
     </li>

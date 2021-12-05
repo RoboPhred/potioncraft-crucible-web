@@ -6,31 +6,27 @@
 }
 
 .tree-item {
-  margin: 6px 0;
   background: var(--color-ui-light-bg);
   box-sizing: border-box;
   cursor: default;
 }
 
 .tree-item-content {
+  box-sizing: border-box;
+  padding: 3px 10px;
   cursor: inherit;
   user-select: none;
 }
 
-.tree-item-label {
-  box-sizing: border-box;
-  padding: 6px 10px;
-}
-
-.tree-item-label:hover {
+.tree-item-content:hover {
   background-color: var(--color-ui-light-hover);
 }
 
-.tree-item-label--selected {
+.tree-item-content--selected {
   background-color: var(--color-ui-light-selected);
 }
 
-.tree-item-label--selected:hover {
+.tree-item-content--selected:hover {
   background-color: var(--color-ui-light-selected-hover);
 }
 
