@@ -11,9 +11,5 @@ export default function* mapConfigLoadBlank(): SagaIterator {
 function* handleMapConfigLoadBlank(): SagaIterator {
   // TODO: Ask if unsaved changes.
 
-  yield put(
-    mapConfigReceive({
-      entities: [],
-    })
-  );
+  yield put(mapConfigReceive([]));
 }

@@ -1,7 +1,7 @@
 import { put, call, takeEvery } from "redux-saga/effects";
 import { SagaIterator } from "@redux-saga/types";
 
-import { MapConfig } from "@/map-config";
+import { MapEntity } from "@/map-config";
 
 import {
   ACTION_MAPCONFIG_LOAD_FILE,
@@ -23,9 +23,9 @@ function* handleMapConfigLoadFile(
   // TODO: catch errors and report
   const text = yield call(() => file.text());
 
-  const mapConfig = JSON.parse(text) as MapConfig;
+  const entities = JSON.parse(text) as MapEntity[];
 
   // TODO: Validate config
 
-  yield put(mapConfigReceive(mapConfig));
+  yield put(mapConfigReceive(entities));
 }

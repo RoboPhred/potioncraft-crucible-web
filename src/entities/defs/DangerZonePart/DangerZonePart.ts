@@ -66,7 +66,7 @@ const DangerZonePartDef: EntityDef<DangerZonePartMapEntity> = {
 
     ctx.rotate(degreesToRadians(entity.angle));
 
-    switch (entity.type) {
+    switch (entity.prefab) {
       case "Fang1":
         // 0.1226418, 0.400135
         ctx.fillRect(-0.06, -0.02, 0.12, 0.4);
@@ -90,7 +90,7 @@ const DangerZonePartDef: EntityDef<DangerZonePartMapEntity> = {
     }
     ctx.fill();
 
-    const img = DangerZoneImages[entity.type];
+    const img = DangerZoneImages[entity.prefab];
     if (img) {
       const w = img.width / 130;
       const h = img.height / 130;

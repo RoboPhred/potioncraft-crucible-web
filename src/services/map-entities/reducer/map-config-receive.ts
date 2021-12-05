@@ -15,10 +15,10 @@ export default createMapEntitiesReducer((state, action) => {
 
   state = defaultMapEntityStates;
 
-  const { mapConfig } = action.payload;
+  const { entities } = action.payload;
 
   const entitiesByKey: Record<string, MapEntity> = {};
-  for (let entity of mapConfig.entities) {
+  for (let entity of entities) {
     entitiesByKey[uuidV4()] = entity;
   }
 

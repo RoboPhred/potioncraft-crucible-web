@@ -17,7 +17,7 @@ export interface VortexMapEntity extends MapEntityBase {
 
 export interface DangerZonePartMapEntity extends MapEntityBase {
   entityType: "DangerZonePart";
-  type: string;
+  prefab: string;
   angle: number;
 }
 

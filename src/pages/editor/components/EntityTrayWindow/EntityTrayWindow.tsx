@@ -26,7 +26,7 @@ function bonePrototype(
   return {
     i18nKey: `danger_zone_parts.type_names.${type}`,
     entityType: "DangerZonePart",
-    type,
+    prefab: type,
     angle: 0,
   };
 }
