@@ -11,6 +11,7 @@ import {
 import { EditorViewState, defaultEditorViewState } from "./view/state";
 
 export interface MapEditorState {
+  potionBaseId: string | null;
   damage: EditorDamageState;
   entities: MapEntitiesState;
   mouse: EditorMouseServiceState;
@@ -19,6 +20,7 @@ export interface MapEditorState {
 }
 
 const _defaultState: MapEditorState = {
+  potionBaseId: null,
   damage: defaultEditorDamageState,
   entities: defaultMapEntityStates,
   mouse: defaultEditorMouseServiceState,

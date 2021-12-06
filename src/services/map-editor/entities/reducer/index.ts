@@ -4,7 +4,7 @@ import entityDeleteReducer from "./entity-delete";
 import entityInsertReducer from "./entity-insert";
 import entityOffsetReducer from "./entity-offset";
 import prototypeInstantiateReducer from "./prototype-instantiate";
-import receiveMapConfigReducer from "./map-config-receive";
+import receiveMapConfigReducer from "./map-receive";
 
 export default concatReducers(
   entityDeleteReducer,

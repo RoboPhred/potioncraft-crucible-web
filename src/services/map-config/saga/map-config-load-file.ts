@@ -7,7 +7,7 @@ import {
   ACTION_MAPCONFIG_LOAD_FILE,
   MapConfigLoadFileAction,
 } from "@/actions/map-config-load-file";
-import { mapConfigReceive } from "@/actions/map-config-receive";
+import { mapEditorMapReceive } from "@/actions/potionbase-map-editor/map-receive";
 
 export default function* mapConfigLoadFileSaga(): SagaIterator {
   yield takeEvery(ACTION_MAPCONFIG_LOAD_FILE, handleMapConfigLoadFile);
@@ -27,5 +27,5 @@ function* handleMapConfigLoadFile(
 
   // TODO: Validate config
 
-  yield put(mapConfigReceive(entities));
+  yield put(mapEditorMapReceive(entities));
 }

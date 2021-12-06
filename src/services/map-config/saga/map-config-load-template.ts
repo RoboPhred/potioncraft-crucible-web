@@ -6,7 +6,7 @@ import {
   ACTION_MAPCONFIG_LOAD_TEMPLATE,
   MapConfigLoadTemplateAction,
 } from "@/actions/map-config-load-template";
-import { mapConfigReceive } from "@/actions/map-config-receive";
+import { mapEditorMapReceive } from "@/actions/potionbase-map-editor/map-receive";
 import { TemplatesByName } from "@/map-templates";
 
 export default function* mapConfigLoadTemplate(): SagaIterator {
@@ -25,5 +25,5 @@ function* handleMapConfigLoadTemplate(
     return;
   }
 
-  yield put(mapConfigReceive(cloneDeep(template)));
+  yield put(mapEditorMapReceive(cloneDeep(template)));
 }

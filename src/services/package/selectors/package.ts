@@ -1,6 +1,7 @@
 import { parseYaml } from "@/services/yaml/api";
 
 import { createPackageSelector } from "../state-utils";
+import { CruciblePackage } from "../types";
 
 import { packageTextResourceSelector } from "./resources";
 
@@ -13,7 +14,7 @@ export const packageLoadErrorSelector = createPackageSelector(
 );
 
 let cacheResources: any;
-let cacheYaml: any;
+let cacheYaml: CruciblePackage | undefined;
 export const packageDataSelector = createPackageSelector((state) => {
   if (state.loadingStatus !== "loaded") {
     return null;
@@ -38,7 +39,7 @@ export const packageDataSelector = createPackageSelector((state) => {
       throw new Error(`Resource ${resourePath} not found`);
     }
     return resource;
-  });
+  }) as CruciblePackage;
 
   cacheResources = state.resources;
   cacheYaml = yaml;

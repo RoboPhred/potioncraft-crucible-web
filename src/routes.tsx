@@ -2,13 +2,17 @@ import * as React from "react";
 
 import { Redirect, Route, Switch } from "react-router-dom";
 
-import EditorPage from "./pages/editor";
 import HomePage from "./pages/home";
+import PotionBaseMapEditorPage from "./pages/potionbase-mapeditor";
 
 const Routes: React.FC = () => (
   <Switch>
     <Route path="/" exact component={HomePage} />
-    <Route path="/map-editor" exact component={EditorPage} />
+    <Route
+      path="/potion-bases/:potionBaseId/map-editor"
+      exact
+      component={PotionBaseMapEditorPage}
+    />
     <Redirect to="/" />
   </Switch>
 );

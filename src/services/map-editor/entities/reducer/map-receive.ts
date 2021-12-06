@@ -2,14 +2,14 @@ import { v4 as uuidV4 } from "uuid";
 
 import { MapEntity } from "@/map-config";
 
-import { isMapConfigReceiveAction } from "@/actions/map-config-receive";
+import { isMapEditorMapReceiveAction } from "@/actions/potionbase-map-editor/map-receive";
 
 import { createMapEntitiesReducer } from "../state-utils";
 import { addToRegionContainer } from "../regions";
 import { defaultMapEntityStates } from "../state";
 
 export default createMapEntitiesReducer((state, action) => {
-  if (!isMapConfigReceiveAction(action)) {
+  if (!isMapEditorMapReceiveAction(action)) {
     return state;
   }
 
