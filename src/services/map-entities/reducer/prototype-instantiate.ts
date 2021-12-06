@@ -1,11 +1,11 @@
-import { isEntityPrototypeInstantiateAction } from "@/actions/entity-prototype-instantiate";
+import { isMapEditorEntityPrototypeInstantiateAction } from "@/actions/potionbase-map-editor/entity-prototype-instantiate";
 import { MapEntity } from "@/map-config";
 import { addToRegionContainer } from "../regions";
 
 import { createMapEntitiesReducer } from "../state-utils";
 
 export default createMapEntitiesReducer((state, action) => {
-  if (!isEntityPrototypeInstantiateAction(action)) {
+  if (!isMapEditorEntityPrototypeInstantiateAction(action)) {
     return state;
   }
 

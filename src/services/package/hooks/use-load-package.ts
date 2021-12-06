@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { packageLoadFile } from "@/actions/package-load-file";
+import { packageLoadFile } from "@/actions/packages/package-load-file";
 
 import {
   packageLoadErrorSelector,

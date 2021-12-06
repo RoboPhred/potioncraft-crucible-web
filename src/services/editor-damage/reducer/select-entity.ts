@@ -2,7 +2,7 @@ import { addPointToRect } from "@/geometry";
 
 import { PRIORITY_PRE, reducerPriority } from "@/reducer/priorities";
 
-import { isSelectEntityAction } from "@/actions/select-entity";
+import { isMapEditorSelectEntityAction } from "@/actions/potionbase-map-editor/select-entity";
 import { entityFromKeySelector } from "@/services/map-entities/selectors/entities";
 import { selectedEntityKeysSelector } from "@/services/editor-selection/selectors/selection";
 
@@ -11,7 +11,7 @@ import { createEditorDamageReducer } from "../state-utils";
 export default reducerPriority(
   PRIORITY_PRE,
   createEditorDamageReducer((state, action, appState) => {
-    if (!isSelectEntityAction(action)) {
+    if (!isMapEditorSelectEntityAction(action)) {
       return state;
     }
 

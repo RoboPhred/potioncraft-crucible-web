@@ -5,504 +5,504 @@
   },
   "entities": [
     {
-      "type": "Bone2",
+      "prefab": "Bone2",
       "angle": 112.230476,
       "x": -1.707,
       "y": 0.308999538,
       "entityType": "DangerZonePart"
     },
     {
-      "type": "Bone1",
+      "prefab": "Bone1",
       "angle": 356.016663,
       "x": -1.583,
       "y": 1.38599968,
       "entityType": "DangerZonePart"
     },
     {
-      "type": "Bone1",
+      "prefab": "Bone1",
       "angle": 75.24535,
       "x": -0.832999945,
       "y": 0.9709997,
       "entityType": "DangerZonePart"
     },
     {
-      "type": "Bone2",
+      "prefab": "Bone2",
       "angle": 319.0984,
       "x": -0.532,
       "y": 1.577,
       "entityType": "DangerZonePart"
     },
     {
-      "type": "Fang1",
+      "prefab": "Fang1",
       "angle": 65.63153,
       "x": -1.17299986,
       "y": 1.41499972,
       "entityType": "DangerZonePart"
     },
     {
-      "type": "Fang2",
+      "prefab": "Fang2",
       "angle": 26.0775185,
       "x": 0.009,
       "y": 1.891,
       "entityType": "DangerZonePart"
     },
     {
-      "type": "Bone2",
+      "prefab": "Bone2",
       "angle": 112.230476,
       "x": 0.0360000134,
       "y": 0.9179995,
       "entityType": "DangerZonePart"
     },
     {
-      "type": "Fang2",
+      "prefab": "Fang2",
       "angle": 120.044044,
       "x": -0.5239999,
       "y": 0.5689995,
       "entityType": "DangerZonePart"
     },
     {
-      "type": "Fang1",
+      "prefab": "Fang1",
       "angle": 232.649628,
       "x": 0.382,
       "y": 1.338,
       "entityType": "DangerZonePart"
     },
     {
-      "type": "Fang1",
+      "prefab": "Fang1",
       "angle": 65.63153,
       "x": -1.11799991,
       "y": -0.199000359,
       "entityType": "DangerZonePart"
     },
     {
-      "type": "Skull1",
+      "prefab": "Skull1",
       "angle": 343.5681,
       "x": -0.09000003,
       "y": -0.235000372,
       "entityType": "DangerZonePart"
     },
     {
-      "type": "Bone2",
+      "prefab": "Bone2",
       "angle": 102.085335,
       "x": 0.09099996,
       "y": -0.6960006,
       "entityType": "DangerZonePart"
     },
     {
-      "type": "Bone2",
+      "prefab": "Bone2",
       "angle": 346.3164,
       "x": -2.286,
       "y": -0.667999744,
       "entityType": "DangerZonePart"
     },
     {
-      "type": "Fang2",
+      "prefab": "Fang2",
       "angle": 26.0775185,
       "x": 1.57399988,
       "y": 0.8759997,
       "entityType": "DangerZonePart"
     },
     {
-      "type": "Fang1",
+      "prefab": "Fang1",
       "angle": 79.1260452,
       "x": 2.226,
       "y": 0.292999744,
       "entityType": "DangerZonePart"
     },
     {
-      "type": "Fang1",
+      "prefab": "Fang1",
       "angle": 84.05951,
       "x": 0.505,
       "y": 1.942,
       "entityType": "DangerZonePart"
     },
     {
-      "type": "Bone2",
+      "prefab": "Bone2",
       "angle": 2.49637151,
       "x": -0.473999977,
       "y": -1.727,
       "entityType": "DangerZonePart"
     },
     {
-      "type": "Skull1",
+      "prefab": "Skull1",
       "angle": 229.906021,
       "x": -1.888,
       "y": 0.769999743,
       "entityType": "DangerZonePart"
     },
     {
-      "type": "Fang2",
+      "prefab": "Fang2",
       "angle": 120.044044,
       "x": -2.267,
       "y": -0.04000044,
       "entityType": "DangerZonePart"
     },
     {
-      "type": "Fang1",
+      "prefab": "Fang1",
       "angle": 232.649628,
       "x": -1.295,
       "y": 0.7509997,
       "entityType": "DangerZonePart"
     },
     {
-      "type": "Bone1",
+      "prefab": "Bone1",
       "angle": 75.24535,
       "x": -0.803,
       "y": -0.681,
       "entityType": "DangerZonePart"
     },
     {
-      "type": "Fang2",
+      "prefab": "Fang2",
       "angle": 26.0775185,
       "x": -0.149000049,
       "y": 0.328999519,
       "entityType": "DangerZonePart"
     },
     {
-      "type": "Skull1",
+      "prefab": "Skull1",
       "angle": 102.1596,
       "x": -0.9669999,
       "y": 0.2569995,
       "entityType": "DangerZonePart"
     },
     {
-      "type": "Fang1",
+      "prefab": "Fang1",
       "angle": 232.649628,
       "x": 0.5030001,
       "y": -0.254000425,
       "entityType": "DangerZonePart"
     },
     {
-      "type": "Bone2",
+      "prefab": "Bone2",
       "angle": 335.269928,
       "x": -0.546,
       "y": -0.086,
       "entityType": "DangerZonePart"
     },
     {
-      "type": "Fang2",
+      "prefab": "Fang2",
       "angle": 120.044044,
       "x": -0.468999982,
       "y": -1.04500055,
       "entityType": "DangerZonePart"
     },
     {
-      "type": "Fang1",
+      "prefab": "Fang1",
       "angle": 65.63153,
       "x": 0.698,
       "y": 0.329,
       "entityType": "DangerZonePart"
     },
     {
-      "type": "Fang1",
+      "prefab": "Fang1",
       "angle": 232.649628,
       "x": -1.24799991,
       "y": -0.8779998,
       "entityType": "DangerZonePart"
     },
     {
-      "type": "Bone1",
+      "prefab": "Bone1",
       "angle": 75.24535,
       "x": 0.944999933,
       "y": -0.0960001945,
       "entityType": "DangerZonePart"
     },
     {
-      "type": "Skull1",
+      "prefab": "Skull1",
       "angle": 251.229935,
       "x": 1.676,
       "y": 0.399,
       "entityType": "DangerZonePart"
     },
     {
-      "type": "Skull1",
+      "prefab": "Skull1",
       "angle": 10.7515841,
       "x": 0.7560001,
       "y": 0.803999662,
       "entityType": "DangerZonePart"
     },
     {
-      "type": "Fang2",
+      "prefab": "Fang2",
       "angle": 120.044044,
       "x": 1.254,
       "y": -0.498000383,
       "entityType": "DangerZonePart"
     },
     {
-      "type": "Fang2",
+      "prefab": "Fang2",
       "angle": 26.0775185,
       "x": -1.9000001,
       "y": -0.295000076,
       "entityType": "DangerZonePart"
     },
     {
-      "type": "Skull1",
+      "prefab": "Skull1",
       "angle": 305.299377,
       "x": -1.84100008,
       "y": -0.8589997,
       "entityType": "DangerZonePart"
     },
     {
-      "type": "Bone2",
+      "prefab": "Bone2",
       "angle": 94.11417,
       "x": -1.66,
       "y": -1.32,
       "entityType": "DangerZonePart"
     },
     {
-      "type": "Bone1",
+      "prefab": "Bone1",
       "angle": 17.54082,
       "x": -1.53599989,
       "y": -0.243000031,
       "entityType": "DangerZonePart"
     },
     {
-      "type": "Bone2",
+      "prefab": "Bone2",
       "angle": 358.459534,
       "x": 1.188,
       "y": 0.5029998,
       "entityType": "DangerZonePart"
     },
     {
-      "type": "Bone1",
+      "prefab": "Bone1",
       "angle": 43.5237122,
       "x": 2.002,
       "y": 0.887,
       "entityType": "DangerZonePart"
     },
     {
-      "type": "Fang1",
+      "prefab": "Fang1",
       "angle": 65.63153,
       "x": -1.05699992,
       "y": -1.88200009,
       "entityType": "DangerZonePart"
     },
     {
-      "type": "Bone1",
+      "prefab": "Bone1",
       "angle": 13.546175,
       "x": 0.275999963,
       "y": -1.302,
       "entityType": "DangerZonePart"
     },
     {
-      "type": "Fang2",
+      "prefab": "Fang2",
       "angle": 26.0775185,
       "x": -0.08800006,
       "y": -1.35400009,
       "entityType": "DangerZonePart"
     },
     {
-      "type": "Skull1",
+      "prefab": "Skull1",
       "angle": 30.6478786,
       "x": -0.9059999,
       "y": -1.42600012,
       "entityType": "DangerZonePart"
     },
     {
-      "type": "Skull1",
+      "prefab": "Skull1",
       "angle": 137.902817,
       "x": 0.803000033,
       "y": -0.828000069,
       "entityType": "DangerZonePart"
     },
     {
-      "type": "Bone2",
+      "prefab": "Bone2",
       "angle": 326.7757,
       "x": 1.209,
       "y": -1.238,
       "entityType": "DangerZonePart"
     },
     {
-      "type": "Fang2",
+      "prefab": "Fang2",
       "angle": 26.0775185,
       "x": 1.652,
       "y": -0.756,
       "entityType": "DangerZonePart"
     },
     {
-      "type": "Bone1",
+      "prefab": "Bone1",
       "angle": 5.6235795,
       "x": 2.013,
       "y": -0.76,
       "entityType": "DangerZonePart"
     },
     {
-      "type": "Fang2",
+      "prefab": "Fang2",
       "angle": 120.044044,
       "x": 1.213,
       "y": 1.11099958,
       "entityType": "DangerZonePart"
     },
     {
-      "type": "Bone2",
+      "prefab": "Bone2",
       "angle": 112.230476,
       "x": 1.81399989,
       "y": -0.1490004,
       "entityType": "DangerZonePart"
     },
     {
-      "type": "Skull1",
+      "prefab": "Skull1",
       "angle": 196.565735,
       "x": 0.029,
       "y": -1.91799986,
       "entityType": "DangerZonePart"
     },
     {
-      "type": "Fang1",
+      "prefab": "Fang1",
       "angle": 232.649628,
       "x": 0.563999951,
       "y": -1.93699992,
       "entityType": "DangerZonePart"
     },
     {
-      "type": "Bone1",
+      "prefab": "Bone1",
       "angle": 75.24535,
       "x": 1.02,
       "y": -1.78399992,
       "entityType": "DangerZonePart"
     },
     {
-      "type": "Fang1",
+      "prefab": "Fang1",
       "angle": 65.63153,
       "x": 0.621,
       "y": -1.291,
       "entityType": "DangerZonePart"
     },
     {
-      "type": "Skull1",
+      "prefab": "Skull1",
       "angle": 174.714554,
       "x": -0.144999981,
       "y": 1.37899971,
       "entityType": "DangerZonePart"
     },
     {
-      "type": "Skull1",
+      "prefab": "Skull1",
       "angle": 41.226696,
       "x": 1.708,
       "y": -1.37599993,
       "entityType": "DangerZonePart"
     },
     {
-      "type": "Skull1",
+      "prefab": "Skull1",
       "angle": 55.0718346,
       "x": -1.02199984,
       "y": 1.87099957,
       "entityType": "DangerZonePart"
     },
     {
-      "type": "Bone1",
+      "prefab": "Bone1",
       "angle": 344.000763,
       "x": 0.214999974,
       "y": 0.380999565,
       "entityType": "DangerZonePart"
     },
     {
-      "type": "Bone1",
+      "prefab": "Bone1",
       "angle": 75.24535,
       "x": 0.816,
       "y": 1.572,
       "entityType": "DangerZonePart"
     },
     {
-      "type": "Skull1",
+      "prefab": "Skull1",
       "angle": 355.019257,
       "x": 1.56800008,
       "y": 1.5029999,
       "entityType": "DangerZonePart"
     },
     {
-      "type": "Skull1",
+      "prefab": "Skull1",
       "angle": 4.78637457,
       "x": -2.071,
       "y": 1.664,
       "entityType": "DangerZonePart"
     },
     {
-      "type": "Fang1",
+      "prefab": "Fang1",
       "angle": 118.325706,
       "x": -1.548,
       "y": 2.033,
       "entityType": "DangerZonePart"
     },
     {
-      "type": "Fang2",
+      "prefab": "Fang2",
       "angle": 80.40994,
       "x": -2.064,
       "y": 1.239,
       "entityType": "DangerZonePart"
     },
     {
-      "type": "Bone2",
+      "prefab": "Bone2",
       "angle": 142.164017,
       "x": 2.192,
       "y": -1.595,
       "entityType": "DangerZonePart"
     },
     {
-      "type": "Fang1",
+      "prefab": "Fang1",
       "angle": 305.2058,
       "x": 2.211,
       "y": 1.309,
       "entityType": "DangerZonePart"
     },
     {
-      "type": "Skull1",
+      "prefab": "Skull1",
       "angle": 143.08371,
       "x": -1.642,
       "y": -1.843,
       "entityType": "DangerZonePart"
     },
     {
-      "type": "Fang2",
+      "prefab": "Fang2",
       "angle": 98.9958344,
       "x": 1.609,
       "y": -1.78,
       "entityType": "DangerZonePart"
     },
     {
-      "type": "Bone2",
+      "prefab": "Bone2",
       "angle": 83.9515839,
       "x": 1.878,
       "y": 2.025,
       "entityType": "DangerZonePart"
     },
     {
-      "type": "Skull1",
+      "prefab": "Skull1",
       "angle": 236.933136,
       "x": 1.117,
       "y": 2.008,
       "entityType": "DangerZonePart"
     },
     {
-      "type": "Fang2",
+      "prefab": "Fang2",
       "angle": 29.3362637,
       "x": -2.099,
       "y": -1.689,
       "entityType": "DangerZonePart"
     },
     {
-      "type": "Fang2",
+      "prefab": "Fang2",
       "angle": 84.69443,
       "x": 2.139,
       "y": 1.672,
       "entityType": "DangerZonePart"
     },
     {
-      "type": "Fang1",
+      "prefab": "Fang1",
       "angle": 280.482971,
       "x": -2.146,
       "y": 2.084,
       "entityType": "DangerZonePart"
     },
     {
-      "type": "Fang2",
+      "prefab": "Fang2",
       "angle": 300.558655,
       "x": -2.339,
       "y": -1.948,
       "entityType": "DangerZonePart"
     },
     {
-      "type": "Fang1",
+      "prefab": "Fang1",
       "angle": 202.149963,
       "x": -2.315,
       "y": 0.797,

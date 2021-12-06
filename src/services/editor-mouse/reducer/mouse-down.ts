@@ -1,9 +1,9 @@
-import { isEditorMouseDownAction } from "@/actions/editor-mouse-down";
+import { isMapEditorMouseDownAction } from "@/actions/potionbase-map-editor/mouse-down";
 
 import { createEditorMouseReducer } from "../state-utils";
 
 export default createEditorMouseReducer((state, action) => {
-  if (!isEditorMouseDownAction(action)) {
+  if (!isMapEditorMouseDownAction(action)) {
     return state;
   }
 

@@ -3,7 +3,7 @@ import * as React from "react";
 import { useClickAction } from "@/hooks/use-action";
 import { useSelector } from "@/hooks/use-selector";
 
-import { editorToolSet } from "@/actions/editor-tool-set";
+import { mapEditorToolSet } from "@/actions/potionbase-map-editor/tool-set";
 
 import {
   currentToolSelector,
@@ -12,22 +12,22 @@ import {
 
 import ToolBar from "../ToolBar/ToolBar";
 import ToggleButton from "../ToolBar/ToggleButton";
-import { editorToolRadiusSet } from "@/actions/editor-tool-radius-set";
+import { mapEditorToolRadiusSet } from "@/actions/potionbase-map-editor/tool-radius-set";
 
 const MapEditorToolBar = () => {
   const toolSize = useSelector(toolRadiusSelector);
   const currentTool = useSelector(currentToolSelector);
   const onIncreaseToolSize = useClickAction(
-    editorToolRadiusSet,
+    mapEditorToolRadiusSet,
     toolSize + 0.2
   );
   const onDecreaseToolSize = useClickAction(
-    editorToolRadiusSet,
+    mapEditorToolRadiusSet,
     toolSize - 0.2
   );
-  const onPointerClick = useClickAction(editorToolSet, "pointer");
-  const onEraserClick = useClickAction(editorToolSet, "eraser");
-  const onBonesClick = useClickAction(editorToolSet, "paint-danger-zone");
+  const onPointerClick = useClickAction(mapEditorToolSet, "pointer");
+  const onEraserClick = useClickAction(mapEditorToolSet, "eraser");
+  const onBonesClick = useClickAction(mapEditorToolSet, "paint-danger-zone");
   return (
     <ToolBar>
       <ToggleButton

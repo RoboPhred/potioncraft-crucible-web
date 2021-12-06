@@ -10,9 +10,9 @@ import { useSelector } from "@/hooks/use-selector";
 
 import { editorZoomFactorSelector } from "@/services/editor-view/selectors/view";
 
-import { editorViewportResize } from "@/actions/editor-viewport-resize";
-import { editorZoom } from "@/actions/editor-zoom";
-import { editorPan } from "@/actions/editor-pan";
+import { mapEditorViewportResize } from "@/actions/potionbase-map-editor/viewport-resize";
+import { mapEditorZoom } from "@/actions/potionbase-map-editor/zoom";
+import { mapEditorPan } from "@/actions/potionbase-map-editor/pan";
 
 import style from "./PanZoomHandler.module.css";
 
@@ -33,7 +33,7 @@ const PanZoomHandler = ({ className, children }: PanZoomHandlerProps) => {
 
   React.useLayoutEffect(() => {
     dispatch(
-      editorViewportResize(containerBounds.width, containerBounds.height)
+      mapEditorViewportResize(containerBounds.width, containerBounds.height)
     );
   }, [containerBounds.width, containerBounds.height]);
 
@@ -49,15 +49,15 @@ const PanZoomHandler = ({ className, children }: PanZoomHandlerProps) => {
       if (modifiers.ctrlMetaKey) {
         const nextZoom =
           e.deltaY < 0 ? zoomFactor * ZOOM_FACTOR : zoomFactor / ZOOM_FACTOR;
-        dispatch(editorZoom(nextZoom));
+        dispatch(mapEditorZoom(nextZoom));
         e.preventDefault();
         e.stopPropagation();
       } else if (modifiers.shiftKey) {
-        dispatch(editorPan((e.deltaY * PAN_FACTOR) / zoomFactor, 0));
+        dispatch(mapEditorPan((e.deltaY * PAN_FACTOR) / zoomFactor, 0));
         e.preventDefault();
         e.stopPropagation();
       } else {
-        dispatch(editorPan(0, (e.deltaY * PAN_FACTOR) / zoomFactor));
+        dispatch(mapEditorPan(0, (e.deltaY * PAN_FACTOR) / zoomFactor));
         e.preventDefault();
         e.stopPropagation();
       }

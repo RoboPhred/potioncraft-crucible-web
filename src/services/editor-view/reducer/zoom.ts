@@ -8,14 +8,14 @@ import rootReducer from "@/reducer";
 
 import { worldMousePosSelector } from "@/services/editor-mouse/selectors/world-coords";
 
-import { isEditorZoomAction } from "@/actions/editor-zoom";
-import { editorPan } from "@/actions/editor-pan";
+import { isMapEditorZoomAction } from "@/actions/potionbase-map-editor/zoom";
+import { mapEditorPan } from "@/actions/potionbase-map-editor/pan";
 
 export default function zoomReducer(
   state: AppState = defaultAppState,
   action: AnyAction
 ): AppState {
-  if (!isEditorZoomAction(action)) {
+  if (!isMapEditorZoomAction(action)) {
     return state;
   }
 
@@ -29,7 +29,7 @@ export default function zoomReducer(
 
   if (worldMousePos != null && newMousePos != null) {
     const offset = pointSubtract(worldMousePos, newMousePos);
-    state = rootReducer(state, editorPan(offset.x, -offset.y));
+    state = rootReducer(state, mapEditorPan(offset.x, -offset.y));
   }
 
   return state;

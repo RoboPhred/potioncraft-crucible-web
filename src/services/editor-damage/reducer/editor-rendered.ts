@@ -1,8 +1,8 @@
-import { isEditorRenderedAction } from "@/actions/editor-rendered";
+import { isMapEditorRenderedAction } from "@/actions/potionbase-map-editor/rendered";
 import { createEditorDamageReducer } from "../state-utils";
 
 export default createEditorDamageReducer((state, action) => {
-  if (!isEditorRenderedAction(action)) {
+  if (!isMapEditorRenderedAction(action)) {
     return state;
   }
 

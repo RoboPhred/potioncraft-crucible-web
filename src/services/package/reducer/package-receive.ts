@@ -1,6 +1,6 @@
 import { AnyAction } from "redux";
 
-import { isPackageReceiveAction } from "@/actions/package-receive";
+import { isPackageReceiveAction } from "@/actions/packages/package-receive";
 
 import { defaultPackageState, PackageState } from "../state";
 import { createPackageReducer } from "../state-utils";

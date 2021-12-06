@@ -1,6 +1,6 @@
 import { AnyAction } from "redux";
 
-import { isEditorPanAction } from "@/actions/editor-pan";
+import { isMapEditorPanAction } from "@/actions/potionbase-map-editor/pan";
 
 import { defaultEditorViewState, EditorViewState } from "../state";
 import { createEditorViewReducer } from "../state-utils";
@@ -9,7 +9,7 @@ export default createEditorViewReducer(function panReducer(
   state: EditorViewState = defaultEditorViewState,
   action: AnyAction
 ): EditorViewState {
-  if (!isEditorPanAction(action)) {
+  if (!isMapEditorPanAction(action)) {
     return state;
   }
 

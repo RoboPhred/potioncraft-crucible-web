@@ -2,8 +2,8 @@ import { AnyAction } from "redux";
 
 import { AppState, defaultAppState } from "@/state";
 
-import { isSelectionDeleteAction } from "@/actions/selection-delete";
-import { entityDelete } from "@/actions/entity-delete";
+import { isMapEditorSelectionDeleteAction } from "@/actions/potionbase-map-editor/selection-delete";
+import { mapEditorEntityDelete } from "@/actions/potionbase-map-editor/entity-delete";
 
 import rootReducer from "@/reducer";
 
@@ -11,7 +11,7 @@ export default function selectionDeleteReducer(
   state: AppState = defaultAppState,
   action: AnyAction
 ): AppState {
-  if (!isSelectionDeleteAction(action)) {
+  if (!isMapEditorSelectionDeleteAction(action)) {
     return state;
   }
 
@@ -21,5 +21,5 @@ export default function selectionDeleteReducer(
     return state;
   }
 
-  return rootReducer(state, entityDelete(selectedEntityKeys));
+  return rootReducer(state, mapEditorEntityDelete(selectedEntityKeys));
 }

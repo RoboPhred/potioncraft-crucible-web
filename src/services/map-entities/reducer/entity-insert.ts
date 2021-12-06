@@ -1,11 +1,11 @@
-import { isEntityInsertAction } from "@/actions/entity-insert";
+import { isMapEditorEntityInsertAction } from "@/actions/potionbase-map-editor/entity-insert";
 
 import { addToRegionContainer } from "../regions";
 
 import { createMapEntitiesReducer } from "../state-utils";
 
 export default createMapEntitiesReducer((state, action) => {
-  if (!isEntityInsertAction(action)) {
+  if (!isMapEditorEntityInsertAction(action)) {
     return state;
   }
 

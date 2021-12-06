@@ -6,9 +6,9 @@ import { SagaIterator } from "@redux-saga/types";
 import {
   ACTION_PACKAGE_LOAD_FILE,
   PackageLoadFileAction,
-} from "@/actions/package-load-file";
-import { packageLoadError } from "@/actions/package-load-error";
-import { packageReceive } from "@/actions/package-receive";
+} from "@/actions/packages/package-load-file";
+import { packageLoadError } from "@/actions/packages/package-load-error";
+import { packageReceive } from "@/actions/packages/package-receive";
 
 export default function* packageLoadFileSaga() {
   yield takeLatest(ACTION_PACKAGE_LOAD_FILE, handlePackageLoadFile);

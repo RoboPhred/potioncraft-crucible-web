@@ -1,8 +1,8 @@
-import { isEntityDeleteAction } from "@/actions/entity-delete";
+import { isMapEditorEntityDeleteAction } from "@/actions/potionbase-map-editor/entity-delete";
 import { createEditorSelectionReducer } from "../state-utils";
 
 export default createEditorSelectionReducer((state, action) => {
-  if (!isEntityDeleteAction(action)) {
+  if (!isMapEditorEntityDeleteAction(action)) {
     return state;
   }
 

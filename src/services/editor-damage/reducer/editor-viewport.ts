@@ -1,13 +1,13 @@
-import { isEditorPanAction } from "@/actions/editor-pan";
-import { isEditorViewportResizeAction } from "@/actions/editor-viewport-resize";
-import { isEditorZoomAction } from "@/actions/editor-zoom";
+import { isMapEditorPanAction } from "@/actions/potionbase-map-editor/pan";
+import { isMapEditorViewportResizeAction } from "@/actions/potionbase-map-editor/viewport-resize";
+import { isMapEditorZoomAction } from "@/actions/potionbase-map-editor/zoom";
 import { createEditorDamageReducer } from "../state-utils";
 
 export default createEditorDamageReducer((state, action, appState) => {
   if (
-    !isEditorPanAction(action) &&
-    !isEditorZoomAction(action) &&
-    !isEditorViewportResizeAction(action)
+    !isMapEditorPanAction(action) &&
+    !isMapEditorZoomAction(action) &&
+    !isMapEditorViewportResizeAction(action)
   ) {
     return state;
   }

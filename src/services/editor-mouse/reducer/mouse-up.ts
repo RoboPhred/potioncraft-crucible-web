@@ -8,12 +8,12 @@ import { normalizeRectangle, pointSubtract } from "@/geometry";
 import rootReducer from "@/reducer";
 
 import {
-  EditorMouseUpAction,
-  isEditorMouseUpAction,
-} from "@/actions/editor-mouse-up";
-import { selectEntity } from "@/actions/select-entity";
-import { selectClear } from "@/actions/select-clear";
-import { entityOffset } from "@/actions/entity-offset";
+  MapEditorMouseUpAction,
+  isMapEditorMouseUpAction,
+} from "@/actions/potionbase-map-editor/mouse-up";
+import { mapEditorSelectEntity } from "@/actions/potionbase-map-editor/select-entity";
+import { mapEditorSelectClear } from "@/actions/potionbase-map-editor/select-clear";
+import { mapEditorEntityOffset } from "@/actions/potionbase-map-editor/entity-offset";
 
 import {
   entityKeyAtPointSelector,
@@ -25,7 +25,7 @@ export default function mouseUpReducer(
   state: AppState = defaultAppState,
   action: AnyAction
 ): AppState {
-  if (!isEditorMouseUpAction(action)) {
+  if (!isMapEditorMouseUpAction(action)) {
     return state;
   }
 
@@ -56,7 +56,7 @@ export default function mouseUpReducer(
 
 function completeDragSelect(
   state: AppState,
-  action: EditorMouseUpAction
+  action: MapEditorMouseUpAction
 ): AppState {
   const { viewportPos, modifierKeys } = action.payload;
 
@@ -73,12 +73,12 @@ function completeDragSelect(
   const idsToSelect = entityKeysAtRectSelector(state, selectionRect);
 
   const mode = getSelectMode(modifierKeys);
-  return rootReducer(state, selectEntity(idsToSelect, mode));
+  return rootReducer(state, mapEditorSelectEntity(idsToSelect, mode));
 }
 
 function completeDragMove(
   state: AppState,
-  action: EditorMouseUpAction
+  action: MapEditorMouseUpAction
 ): AppState {
   const selectedEntityKeys = state.services.editorSelection.selectedEntityKeys;
   if (selectedEntityKeys.length === 0) {
@@ -99,11 +99,14 @@ function completeDragMove(
 
   return rootReducer(
     state,
-    entityOffset(selectedEntityKeys, offset.x, offset.y)
+    mapEditorEntityOffset(selectedEntityKeys, offset.x, offset.y)
   );
 }
 
-function completeClick(state: AppState, action: EditorMouseUpAction): AppState {
+function completeClick(
+  state: AppState,
+  action: MapEditorMouseUpAction
+): AppState {
   const { viewportPos, modifierKeys } = action.payload;
 
   const worldPos = clientToWorldSelector(state, viewportPos);
@@ -112,9 +115,9 @@ function completeClick(state: AppState, action: EditorMouseUpAction): AppState {
   const mode = getSelectMode(modifierKeys);
 
   if (selectedKey != null) {
-    return rootReducer(state, selectEntity(selectedKey, mode));
+    return rootReducer(state, mapEditorSelectEntity(selectedKey, mode));
   } else if (mode === "set") {
-    return rootReducer(state, selectClear());
+    return rootReducer(state, mapEditorSelectClear());
   }
 
   return state;

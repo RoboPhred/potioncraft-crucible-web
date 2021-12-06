@@ -1,9 +1,9 @@
-import { isEditorToolRadiusSetAction } from "@/actions/editor-tool-radius-set";
+import { isMapEditorToolRadiusSetAction } from "@/actions/potionbase-map-editor/tool-radius-set";
 
 import { createEditorMouseReducer } from "../state-utils";
 
 export default createEditorMouseReducer((state, action) => {
-  if (!isEditorToolRadiusSetAction(action)) {
+  if (!isMapEditorToolRadiusSetAction(action)) {
     return state;
   }
 

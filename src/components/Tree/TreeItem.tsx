@@ -21,10 +21,10 @@ const TreeItem: React.FC<TreeItemProps> = ({
       <div
         className={classNames(
           styles["tree-item-content"],
-          selected && styles["tree-item-label--selected"]
+          selected && styles["tree-item-content--selected"]
         )}
       >
-        <span className={classNames(styles["tree-item-label"])}>{label}</span>
+        {label}
       </div>
       <div className={styles["tree-item-children"]}>{children}</div>
     </li>

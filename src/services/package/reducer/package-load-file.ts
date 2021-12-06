@@ -1,6 +1,6 @@
 import { AnyAction } from "redux";
 
-import { isPackageLoadFileAction } from "@/actions/package-load-file";
+import { isPackageLoadFileAction } from "@/actions/packages/package-load-file";
 
 import { defaultPackageState, PackageState } from "../state";
 import { createPackageReducer } from "../state-utils";

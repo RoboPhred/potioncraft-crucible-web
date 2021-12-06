@@ -11,13 +11,13 @@ import rootReducer from "@/reducer";
 import { generateTileEntities } from "@/entities/tiles";
 
 import {
-  EditorMouseMoveAction,
-  isEditorMouseMoveAction,
-} from "@/actions/editor-mouse-move";
-import { selectEntity } from "@/actions/select-entity";
-import { editorPan } from "@/actions/editor-pan";
-import { entityDelete } from "@/actions/entity-delete";
-import { entityInsert } from "@/actions/entity-insert";
+  MapEditorMouseMoveAction,
+  isMapEditorMouseMoveAction,
+} from "@/actions/potionbase-map-editor/mouse-move";
+import { mapEditorSelectEntity } from "@/actions/potionbase-map-editor/select-entity";
+import { mapEditorPan } from "@/actions/potionbase-map-editor/pan";
+import { mapEditorEntityDelete } from "@/actions/potionbase-map-editor/entity-delete";
+import { mapEditorEntityInsert } from "@/actions/potionbase-map-editor/entity-insert";
 
 import { clientToWorldSelector } from "@/services/editor-view/selectors/coordinate-mapping";
 import {
@@ -33,7 +33,7 @@ export default function mouseMoveReducer(
   state: AppState = defaultAppState,
   action: AnyAction
 ): AppState {
-  if (!isEditorMouseMoveAction(action)) {
+  if (!isMapEditorMouseMoveAction(action)) {
     return state;
   }
 
@@ -61,7 +61,7 @@ export default function mouseMoveReducer(
 
 function detectGestureReducer(
   state: AppState,
-  action: EditorMouseMoveAction
+  action: MapEditorMouseMoveAction
 ): AppState {
   const { viewportPos, modifierKeys } = action.payload;
 
@@ -84,7 +84,10 @@ function detectGestureReducer(
 
     if (entityKeyAtMouse) {
       const selectionMode = getSelectMode(modifierKeys, "append");
-      state = rootReducer(state, selectEntity(entityKeyAtMouse, selectionMode));
+      state = rootReducer(
+        state,
+        mapEditorSelectEntity(entityKeyAtMouse, selectionMode)
+      );
       currentPointerGesture = "drag-move";
     } else {
       currentPointerGesture = "drag-select";
@@ -104,7 +107,7 @@ function detectGestureReducer(
 
 function gestureReducer(
   state: AppState,
-  action: EditorMouseMoveAction,
+  action: MapEditorMouseMoveAction,
   currentGesture: EditorMousePointerGesture
 ): AppState {
   switch (currentGesture) {
@@ -117,7 +120,7 @@ function gestureReducer(
 
 function panGestureReducer(
   state: AppState,
-  action: EditorMouseMoveAction
+  action: MapEditorMouseMoveAction
 ): AppState {
   let previousPos = state.services.editorMouse.mouseViewportPos;
   if (!previousPos) {
@@ -127,12 +130,12 @@ function panGestureReducer(
   previousPos = clientToWorldSelector(state, previousPos);
   const currentPos = clientToWorldSelector(state, action.payload.viewportPos);
   const offset = pointSubtract(previousPos, currentPos);
-  return rootReducer(state, editorPan(offset.x, -offset.y));
+  return rootReducer(state, mapEditorPan(offset.x, -offset.y));
 }
 
 function toolReducer(
   state: AppState,
-  action: EditorMouseMoveAction,
+  action: MapEditorMouseMoveAction,
   currentTool: EditorMouseTool
 ): AppState {
   const { mouseDownViewportPos } = state.services.editorMouse;
@@ -153,25 +156,25 @@ function toolReducer(
 
 function eraserReducer(
   state: AppState,
-  action: EditorMouseMoveAction
+  action: MapEditorMouseMoveAction
 ): AppState {
   const { viewportPos } = action.payload;
   const { toolRadius } = state.services.editorMouse;
   const worldPoint = clientToWorldSelector(state, viewportPos);
   const keys = entityKeysAtPointSelector(state, worldPoint, toolRadius);
-  return rootReducer(state, entityDelete(keys));
+  return rootReducer(state, mapEditorEntityDelete(keys));
 }
 
 function paintDangerZoneReducer(
   state: AppState,
-  action: EditorMouseMoveAction
+  action: MapEditorMouseMoveAction
 ) {
   const { viewportPos } = action.payload;
   const { toolRadius } = state.services.editorMouse;
   const worldPoint = clientToWorldSelector(state, viewportPos);
   const keys = entityKeysAtPointSelector(state, worldPoint, toolRadius, true);
 
-  state = rootReducer(state, entityDelete(keys));
+  state = rootReducer(state, mapEditorEntityDelete(keys));
 
   const p1 = pointSubtract(worldPoint, { x: toolRadius, y: toolRadius });
   const p2 = pointAdd(worldPoint, { x: toolRadius, y: toolRadius });
@@ -185,6 +188,6 @@ function paintDangerZoneReducer(
     }
   );
 
-  state = rootReducer(state, entityInsert(entities));
+  state = rootReducer(state, mapEditorEntityInsert(entities));
   return state;
 }

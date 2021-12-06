@@ -2,7 +2,7 @@ import { addPointToRect } from "@/geometry";
 
 import { PRIORITY_PRE, reducerPriority } from "@/reducer/priorities";
 
-import { isEntityOffsetAction } from "@/actions/entity-offset";
+import { isMapEditorEntityOffsetAction } from "@/actions/potionbase-map-editor/entity-offset";
 
 import { entityFromKeySelector } from "@/services/map-entities/selectors/entities";
 
@@ -11,7 +11,7 @@ import { createEditorDamageReducer } from "../state-utils";
 export default reducerPriority(
   PRIORITY_PRE,
   createEditorDamageReducer((state, action, appState) => {
-    if (!isEntityOffsetAction(action)) {
+    if (!isMapEditorEntityOffsetAction(action)) {
       return state;
     }
 

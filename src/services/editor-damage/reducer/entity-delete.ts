@@ -1,4 +1,4 @@
-import { isEntityDeleteAction } from "@/actions/entity-delete";
+import { isMapEditorEntityDeleteAction } from "@/actions/potionbase-map-editor/entity-delete";
 import { addPointToRect } from "@/geometry";
 import { PRIORITY_PRE, reducerPriority } from "@/reducer/priorities";
 import { entityFromKeySelector } from "@/services/map-entities/selectors/entities";
@@ -8,7 +8,7 @@ import { createEditorDamageReducer } from "../state-utils";
 export default reducerPriority(
   PRIORITY_PRE,
   createEditorDamageReducer((state, action, appState) => {
-    if (!isEntityDeleteAction(action)) {
+    if (!isMapEditorEntityDeleteAction(action)) {
       return state;
     }
 

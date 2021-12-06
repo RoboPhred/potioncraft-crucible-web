@@ -4,7 +4,7 @@ import { AnyAction } from "redux";
 import { HotKeys, ComponentProps } from "react-hotkeys";
 import { useDispatch } from "react-redux";
 
-import { selectionDelete } from "@/actions/selection-delete";
+import { mapEditorSelectionDelete } from "@/actions/potionbase-map-editor/selection-delete";
 
 import PanZoomHandler from "./components/PanZoomHandler";
 import MapCanvas from "./components/MapCanvas";
@@ -33,7 +33,7 @@ const MapEditor = ({ className }: MapEditorProps) => {
       };
     }
     const keyHandlers: KeymapHandler = {
-      [KEYMAP_DELETE]: createEventDispatcher(selectionDelete()),
+      [KEYMAP_DELETE]: createEventDispatcher(mapEditorSelectionDelete()),
     };
     return keyHandlers;
   }, []);

@@ -17,12 +17,12 @@ import { LargestEntityRadius } from "@/entities";
 
 import { useSelector } from "@/hooks/use-selector";
 import { useComponentBounds } from "@/hooks/use-component-bounds";
-import { editorMouseDown } from "@/actions/editor-mouse-down";
-import { editorMouseMove } from "@/actions/editor-mouse-move";
-import { editorMouseUp } from "@/actions/editor-mouse-up";
-import { entityPrototypeInstantiate } from "@/actions/entity-prototype-instantiate";
-import { editorModifierKeysChanged } from "@/actions/editor-modifierkeys-changed";
-import { editorRendered } from "@/actions/editor-rendered";
+import { mapEditorMouseDown } from "@/actions/potionbase-map-editor/mouse-down";
+import { mapEditorMouseMove } from "@/actions/potionbase-map-editor/mouse-move";
+import { mapEditorMouseUp } from "@/actions/potionbase-map-editor/mouse-up";
+import { mapEditorEntityPrototypeInstantiate } from "@/actions/potionbase-map-editor/entity-prototype-instantiate";
+import { mapEditorModifierKeysChanged } from "@/actions/potionbase-map-editor/modifierkeys-changed";
+import { mapEditorRendered } from "@/actions/potionbase-map-editor/rendered";
 
 import {
   editorViewportHeightSelector,
@@ -82,7 +82,7 @@ const MapCanvas = ({ className }: MapCanvasProps) => {
 
       const modifiers = getModifiers(e);
       const p = eventCanvasPoint(e);
-      dispatch(editorMouseDown(p, modifiers));
+      dispatch(mapEditorMouseDown(p, modifiers));
     },
     [eventCanvasPoint]
   );
@@ -95,7 +95,7 @@ const MapCanvas = ({ className }: MapCanvasProps) => {
 
       const modifiers = getModifiers(e);
       const p = eventCanvasPoint(e);
-      dispatch(editorMouseMove(p, modifiers));
+      dispatch(mapEditorMouseMove(p, modifiers));
     },
     [eventCanvasPoint]
   );
@@ -111,14 +111,14 @@ const MapCanvas = ({ className }: MapCanvasProps) => {
 
       const modifiers = getModifiers(e);
       const p = eventCanvasPoint(e);
-      dispatch(editorMouseUp(p, modifiers));
+      dispatch(mapEditorMouseUp(p, modifiers));
     },
     [eventCanvasPoint]
   );
 
   const onKeyDown = React.useCallback((e: React.KeyboardEvent) => {
     const modifiers = getModifiers(e);
-    dispatch(editorModifierKeysChanged(modifiers));
+    dispatch(mapEditorModifierKeysChanged(modifiers));
     if (e.key === "Alt") {
       e.preventDefault();
     }
@@ -126,7 +126,7 @@ const MapCanvas = ({ className }: MapCanvasProps) => {
 
   const onKeyUp = React.useCallback((e: React.KeyboardEvent) => {
     const modifiers = getModifiers(e);
-    dispatch(editorModifierKeysChanged(modifiers));
+    dispatch(mapEditorModifierKeysChanged(modifiers));
     if (e.key === "Alt") {
       e.preventDefault();
     }
@@ -149,7 +149,7 @@ const MapCanvas = ({ className }: MapCanvasProps) => {
         p.x -= canvasBounds.left;
         p.y -= canvasBounds.top;
         const worldP = clientToWorld(p);
-        dispatch(entityPrototypeInstantiate(prototype, worldP));
+        dispatch(mapEditorEntityPrototypeInstantiate(prototype, worldP));
       },
     },
     [clientToWorld, canvasBounds]
@@ -244,7 +244,7 @@ const MapCanvas = ({ className }: MapCanvasProps) => {
         }
       });
 
-      dispatch(editorRendered());
+      dispatch(mapEditorRendered());
     }
 
     function requestRender() {

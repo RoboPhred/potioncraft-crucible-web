@@ -1,4 +1,4 @@
-import { isPackageLoadErrorAction } from "@/actions/package-load-error";
+import { isPackageLoadErrorAction } from "@/actions/packages/package-load-error";
 import { createPackageReducer } from "../state-utils";
 
 export default createPackageReducer((state, action) => {
