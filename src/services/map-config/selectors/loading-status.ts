@@ -1,4 +1,5 @@
-import { AppState } from "@/state";
+import { createMapConfigSelector } from "../state-utils";
 
-export const loadingStatusSelector = (state: AppState) =>
-  state.services.mapConfig.loadingStatus;
+export const loadingStatusSelector = createMapConfigSelector(
+  (s) => s.loadingStatus
+);

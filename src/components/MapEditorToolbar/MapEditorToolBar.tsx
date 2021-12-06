@@ -8,7 +8,7 @@ import { mapEditorToolSet } from "@/actions/potionbase-map-editor/tool-set";
 import {
   currentToolSelector,
   toolRadiusSelector,
-} from "@/services/editor-mouse/selectors/tools";
+} from "@/services/map-editor/mouse/selectors/tools";
 
 import ToolBar from "../ToolBar/ToolBar";
 import ToggleButton from "../ToolBar/ToggleButton";

@@ -3,12 +3,12 @@ import classNames from "classnames";
 
 import { useSelector } from "@/hooks/use-selector";
 
-import { viewportMousePosSelector } from "@/services/editor-mouse/selectors/viewport";
+import { viewportMousePosSelector } from "@/services/map-editor/mouse/selectors/viewport";
 import {
   currentToolSelector,
   toolViewportRadiusSelector,
-} from "@/services/editor-mouse/selectors/tools";
-import { dragSelectionRectSelector } from "@/services/editor-mouse/selectors/drag-select";
+} from "@/services/map-editor/mouse/selectors/tools";
+import { dragSelectionRectSelector } from "@/services/map-editor/mouse/selectors/drag-select";
 
 import styles from "./MapWidgets.module.css";
 

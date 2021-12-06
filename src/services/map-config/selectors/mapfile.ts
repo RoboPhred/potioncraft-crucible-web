@@ -1,7 +1,7 @@
 import values from "lodash/values";
 
-import { AppState } from "@/state";
+import { createMapEntitiesSelector } from "@/services/map-editor/entities/state-utils";
 
-export const mapFileSelector = (state: AppState) => {
-  return values(state.services.mapEntities.entitiesByKey);
-};
+export const mapFileSelector = createMapEntitiesSelector((s) =>
+  values(s.entitiesByKey)
+);

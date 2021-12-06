@@ -27,18 +27,18 @@ import { mapEditorRendered } from "@/actions/potionbase-map-editor/rendered";
 import {
   editorViewportHeightSelector,
   editorViewportWidthSelector,
-} from "@/services/editor-view/selectors/viewport";
-import { useClientToWorld } from "@/services/editor-view/hooks/use-client-to-world";
-import { entitiesByKeySelector } from "@/services/map-entities/selectors/entities";
+} from "@/services/map-editor/view/selectors/viewport";
+import { useClientToWorld } from "@/services/map-editor/view/hooks/use-client-to-world";
+import { entitiesByKeySelector } from "@/services/map-editor/entities/selectors/entities";
 import {
   editorOffsetXSelector,
   editorOffsetYSelector,
   editorZoomFactorSelector,
-} from "@/services/editor-view/selectors/view";
-import { selectedEntityKeysSelector } from "@/services/editor-selection/selectors/selection";
-import { dragMoveOffsetSelector } from "@/services/editor-mouse/selectors/drag-move";
-import { editorDamageRectSelector } from "@/services/editor-damage/selector/damage";
-import { worldToClientSelector } from "@/services/editor-view/selectors/coordinate-mapping";
+} from "@/services/map-editor/view/selectors/view";
+import { selectedEntityKeysSelector } from "@/services/map-editor/selection/selectors/selection";
+import { dragMoveOffsetSelector } from "@/services/map-editor/mouse/selectors/drag-move";
+import { editorDamageRectSelector } from "@/services/map-editor/damage/selector/damage";
+import { worldToClientSelector } from "@/services/map-editor/view/selectors/coordinate-mapping";
 
 import styles from "./MapCanvas.module.css";
 

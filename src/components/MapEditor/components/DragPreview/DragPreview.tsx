@@ -7,18 +7,18 @@ import { renderEntity, transformToMap } from "@/canvas";
 
 import { useSelector } from "@/hooks/use-selector";
 
-import { entitiesByKeySelector } from "@/services/map-entities/selectors/entities";
-import { selectedEntityKeysSelector } from "@/services/editor-selection/selectors/selection";
+import { entitiesByKeySelector } from "@/services/map-editor/entities/selectors/entities";
+import { selectedEntityKeysSelector } from "@/services/map-editor/selection/selectors/selection";
 import {
   editorOffsetXSelector,
   editorOffsetYSelector,
   editorZoomFactorSelector,
-} from "@/services/editor-view/selectors/view";
-import { dragMoveOffsetSelector } from "@/services/editor-mouse/selectors/drag-move";
+} from "@/services/map-editor/view/selectors/view";
+import { dragMoveOffsetSelector } from "@/services/map-editor/mouse/selectors/drag-move";
 import {
   editorViewportHeightSelector,
   editorViewportWidthSelector,
-} from "@/services/editor-view/selectors/viewport";
+} from "@/services/map-editor/view/selectors/viewport";
 
 export interface DragPreviewProps {
   className?: string;

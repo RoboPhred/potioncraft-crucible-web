@@ -8,7 +8,7 @@ import { useComponentBounds } from "@/hooks/use-component-bounds";
 import { useNativeEvent } from "@/hooks/use-native-event";
 import { useSelector } from "@/hooks/use-selector";
 
-import { editorZoomFactorSelector } from "@/services/editor-view/selectors/view";
+import { editorZoomFactorSelector } from "@/services/map-editor/view/selectors/view";
 
 import { mapEditorViewportResize } from "@/actions/potionbase-map-editor/viewport-resize";
 import { mapEditorZoom } from "@/actions/potionbase-map-editor/zoom";

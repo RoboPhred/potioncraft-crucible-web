@@ -18,6 +18,21 @@ export function fpSet<
   P3 extends keyof Target[P1][P2],
   T extends Target[P1][P2][P3]
 >(target: Target, p1: P1, p2: P2, p3: P3, value: ValueSetter<T>): Target;
+export function fpSet<
+  Target extends Record<string, any> | any[],
+  P1 extends keyof Target,
+  P2 extends keyof Target[P1],
+  P3 extends keyof Target[P1][P2],
+  P4 extends keyof Target[P1][P2][P3],
+  T extends Target[P1][P2][P3][P4]
+>(
+  target: Target,
+  p1: P1,
+  p2: P2,
+  p3: P3,
+  p4: P4,
+  value: ValueSetter<T>
+): Target;
 export function fpSet(...args: any[]): any {
   const target = args[0];
   const path = args.slice(1, args.length - 1).map(String);
