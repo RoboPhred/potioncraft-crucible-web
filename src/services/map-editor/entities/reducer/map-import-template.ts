@@ -1,21 +1,24 @@
 import { v4 as uuidV4 } from "uuid";
 
+import { TemplatesByName } from "@/map-templates";
 import { MapEntity } from "@/map-config";
 
-import { isMapEditorMapReceiveAction } from "@/actions/potionbase-map-editor/map-receive";
+import { isMapEditorMapImportTemplateAction } from "@/actions/potionbase-map-editor/map-import-template";
 
 import { createMapEntitiesReducer } from "../state-utils";
 import { addToRegionContainer } from "../regions";
-import { defaultMapEntitiesState } from "../state";
 
 export default createMapEntitiesReducer((state, action) => {
-  if (!isMapEditorMapReceiveAction(action)) {
+  if (!isMapEditorMapImportTemplateAction(action)) {
     return state;
   }
 
-  state = defaultMapEntitiesState;
+  const { templateId } = action.payload;
 
-  const { entities } = action.payload;
+  const entities = TemplatesByName[templateId];
+  if (!entities) {
+    return state;
+  }
 
   const entitiesByKey: Record<string, MapEntity> = {};
   for (let entity of entities) {

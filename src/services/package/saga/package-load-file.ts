@@ -30,6 +30,8 @@ function* handlePackageLoadFile(action: PackageLoadFileAction): SagaIterator {
       loadAsync(buffer)
     );
 
+    zip.generateAsync();
+
     const resources: Record<string, Uint8Array> = {};
     yield call(() =>
       Promise.all(

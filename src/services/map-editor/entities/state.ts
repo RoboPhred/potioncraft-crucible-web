@@ -16,4 +16,4 @@ const _defaultState: MapEntitiesState = {
   outOfBoundsRegion: defaultRegion,
 };
 
-export const defaultMapEntityStates = Object.freeze(_defaultState);
+export const defaultMapEntitiesState = Object.freeze(_defaultState);

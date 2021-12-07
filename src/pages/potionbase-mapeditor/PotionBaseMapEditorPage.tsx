@@ -13,6 +13,7 @@ import PackageContentTree from "@/components/PackageContentTree";
 
 import MapWindow from "./components/MapWindow";
 import EntitiesWindow from "./components/EntityTrayWindow";
+import MapMenuButton from "./components/MapMenuButton";
 
 import styles from "./PotionBaseMapEditorPage.module.css";
 
@@ -40,6 +41,7 @@ const PotionBaseMapEditorPage: React.FC<
       <div className={styles["editor-page"]}>
         <TitleBar>
           <DefaultTitlebarContent />
+          <MapMenuButton />
         </TitleBar>
         <div className={styles["editor-page-content"]}>
           <PackageContentTree className={styles["package-content"]} />

@@ -3,13 +3,17 @@ import { concatReducers } from "@/reducer/utils";
 import entityDeleteReducer from "./entity-delete";
 import entityInsertReducer from "./entity-insert";
 import entityOffsetReducer from "./entity-offset";
-import prototypeInstantiateReducer from "./prototype-instantiate";
+import mapClearReducer from "./map-clear";
+import mapImportTemplateReducer from "./map-import-template";
 import receiveMapConfigReducer from "./map-receive";
+import prototypeInstantiateReducer from "./prototype-instantiate";
 
 export default concatReducers(
   entityDeleteReducer,
   entityInsertReducer,
   entityOffsetReducer,
-  prototypeInstantiateReducer,
-  receiveMapConfigReducer
+  mapClearReducer,
+  mapImportTemplateReducer,
+  receiveMapConfigReducer,
+  prototypeInstantiateReducer
 );

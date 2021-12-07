@@ -1,21 +1,16 @@
 {
-  "load_potioncraft_map": "Load a Potion Craft Map",
-  "menus": {
-    "file": {
-      "name": "File"
-    }
-  },
   "package": {
+    "toolbar_menu_item": "Package",
     "content": "Package Content",
     "load": "Load Package",
     "save": "Save Package"
   },
   "map": {
-    "new": {
-      "blank": "New Blank Map",
-      "template": "New Map from Template"
-    },
-    "save": "Save Map"
+    "toolbar_menu_item": "Map",
+    "clear": "Clear Map",
+    "import": "Import Map",
+    "import_template": "Import From Template",
+    "import_file": "Import From File"
   },
   "potion_effects": "Potion Effects",
   "danger_zone_parts": {

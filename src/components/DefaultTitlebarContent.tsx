@@ -1,11 +1,11 @@
 import * as React from "react";
 
-import FileMenuButton from "./FileMenuButton";
+import PackageMenuButton from "./PackageMenuButton";
 
 const DefaultTitlebarContent = () => {
   return (
     <>
-      <FileMenuButton />
+      <PackageMenuButton />
     </>
   );
 };

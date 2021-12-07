@@ -6,7 +6,9 @@ import entityDeleteReducer from "./entity-delete";
 import entityInsertReducer from "./entity-insert";
 import entityOffsetReducer from "./entity-offset";
 import entityPrototypeInstantiateReducer from "./entity-prototype-instantiate";
-import mapConfigReceiveReducer from "./map-receive";
+import mapClearReducer from "./map-clear";
+import mapImportTemplateReducer from "./map-import-template";
+import mapReceiveReducer from "./map-receive";
 import selectClearReducer from "./select-clear";
 import selectEntityReducer from "./select-entity";
 
@@ -17,7 +19,9 @@ export default concatReducers(
   entityInsertReducer,
   entityOffsetReducer,
   entityPrototypeInstantiateReducer,
-  mapConfigReceiveReducer,
+  mapClearReducer,
+  mapImportTemplateReducer,
+  mapReceiveReducer,
   selectClearReducer,
   selectEntityReducer
 );

@@ -1,5 +1,5 @@
 import { EditorDamageState, defaultEditorDamageState } from "./damage/state";
-import { MapEntitiesState, defaultMapEntityStates } from "./entities/state";
+import { MapEntitiesState, defaultMapEntitiesState } from "./entities/state";
 import {
   EditorMouseServiceState,
   defaultEditorMouseServiceState,
@@ -22,7 +22,7 @@ export interface MapEditorState {
 const _defaultState: MapEditorState = {
   potionBaseId: null,
   damage: defaultEditorDamageState,
-  entities: defaultMapEntityStates,
+  entities: defaultMapEntitiesState,
   mouse: defaultEditorMouseServiceState,
   selection: defaultEditorSelectionState,
   view: defaultEditorViewState,
