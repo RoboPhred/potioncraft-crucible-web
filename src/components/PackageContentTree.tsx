@@ -9,6 +9,7 @@ import Window from "./Window";
 
 import Tree from "./Tree/Tree";
 import TreeItem from "./Tree/TreeItem";
+import LinkTreeItem from "./Tree/LinkTreeItem";
 
 export interface PackageContentTreeProps {
   className?: string;
@@ -24,7 +25,11 @@ const PackageContentTree: React.FC<PackageContentTreeProps> = ({
       <Tree>
         <TreeItem label={t("potioncraft:bases.noun_titlecase_plural")}>
           {potionBaseIds.map((id) => (
-            <TreeItem label={id} key={id} />
+            <LinkTreeItem
+              key={id}
+              label={id}
+              to={`/potion-bases/${id}/map-editor`}
+            />
           ))}
         </TreeItem>
       </Tree>

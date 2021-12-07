@@ -1,6 +1,8 @@
 import { put, select, takeLatest } from "redux-saga/effects";
 import find from "lodash/find";
 
+import history from "@/history";
+
 import {
   ACTION_POTIONBASE_MAP_EDIT,
   PotionBaseMapEditAction,
@@ -28,4 +30,9 @@ function* handlePotionbaseMapEdit(action: PotionBaseMapEditAction) {
   }
 
   yield put(mapEditorMapReceive(potionBase.mapEntities ?? []));
+
+  const path = `/potion-bases/${potionBaseId}/map-editor`;
+  if (history.location.pathname !== path) {
+    history.push(path);
+  }
 }

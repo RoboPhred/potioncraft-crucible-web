@@ -25,3 +25,8 @@
 .editor-page-content > :not(:last-child) {
   margin-right: 2.5px;
 }
+
+.package-content {
+  width: 250px;
+  height: 100%;
+}

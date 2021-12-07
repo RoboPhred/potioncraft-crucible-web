@@ -23,3 +23,7 @@ export function getModifiers(e: MouseEventModifierKeys): ModifierKeys {
     shiftKey,
   };
 }
+
+export function isModifierPressed(event: React.MouseEvent<any>) {
+  return !!(event.metaKey || event.altKey || event.ctrlKey || event.shiftKey);
+}
