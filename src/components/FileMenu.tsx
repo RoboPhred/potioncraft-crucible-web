@@ -6,11 +6,13 @@ import { loadingStatusSelector } from "@/services/map-config/selectors/loading-s
 import { mapConfigLoadBlank } from "@/actions/map-config-load-blank";
 import { mapConfigLoadTemplate } from "@/actions/map-config-load-template";
 import { mapConfigSave } from "@/actions/map-config-save";
+import { packageSave } from "@/actions/packages/package-save";
 
-import { useClickAction } from "@/hooks/use-action";
+import { useAction, useClickAction } from "@/hooks/use-action";
 import { useSelector } from "@/hooks/use-selector";
 
 import useLoadMapConfig from "@/services/map-config/hooks/use-load-map-file";
+import useLoadPackage from "@/services/package/hooks/use-load-package";
 
 import Menu from "@/components/Menus/Menu";
 import MenuItem from "@/components/Menus/MenuItem";
@@ -18,17 +20,17 @@ import DividerMenuItem from "@/components/Menus/DividerMenuItem";
 import SubMenuItem from "@/components/Menus/SubMenuItem";
 import { useMenuCloseContext } from "@/components/Menus/MenuCloseContext";
 import AbstractFileLoadButton from "@/components/AbstractFileLoadButton";
-import useLoadPackage from "@/services/package/hooks/use-load-package";
 
 const FileMenu = () => {
   const { t } = useTranslation();
   const { loadStatus, onLoadPackage } = useLoadPackage();
   const requestMenuClose = useMenuCloseContext();
+  const onSave = useAction(packageSave);
   return (
     <Menu>
       <AbstractFileLoadButton
         disabled={loadStatus == "loading"}
-        accept={".zip"}
+        accept=".zip"
         onFileLoaded={onLoadPackage}
         onInteractionComplete={requestMenuClose}
       >
@@ -42,6 +44,7 @@ const FileMenu = () => {
           </MenuItem>
         )}
       </AbstractFileLoadButton>
+      <MenuItem onClick={onSave}>{t("package.save")}</MenuItem>
       <DividerMenuItem />
       <SubMenuItem content={<LegacyMapMenu />}>Legacy Map Editor</SubMenuItem>
     </Menu>

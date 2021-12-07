@@ -13,6 +13,8 @@ export const packageLoadErrorSelector = createPackageSelector(
   (x) => x.loadError
 );
 
+export const packageIdSelector = createPackageSelector((x) => x.packageId);
+
 let cacheResources: any;
 let cacheYaml: CruciblePackage | undefined;
 export const packageDataSelector = createPackageSelector((state) => {
