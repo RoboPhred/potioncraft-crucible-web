@@ -7,7 +7,8 @@
     "save": "Save Package"
   },
   "potion_base": {
-    "noun_titlecase_plural": "Potion Bases"
+    "noun_titlecase_plural": "Potion Bases",
+    "new": "New Potion Base"
   },
   "map": {
     "toolbar_menu_item": "Map",

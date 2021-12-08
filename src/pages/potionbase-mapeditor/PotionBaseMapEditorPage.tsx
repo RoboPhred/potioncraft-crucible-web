@@ -7,15 +7,10 @@ import history from "@/history";
 import { potionBaseMapEdit } from "@/actions/potion-bases/map-edit";
 
 import EnsurePackageLoaded from "@/components/EnsurePackageLoaded";
-import TitleBar from "@/components/TitleBar";
-import DefaultTitlebarContent from "@/components/DefaultTitlebarContent";
-import PackageContentTree from "@/components/PackageContentTree";
+import HorizontalPageFlow from "@/components/HorizontalPageFlow";
 
 import MapWindow from "./components/MapWindow";
 import EntitiesWindow from "./components/EntityTrayWindow";
-import MapMenuButton from "./components/MapMenuButton";
-
-import styles from "./PotionBaseMapEditorPage.module.css";
 
 export interface PotionBaseMapEditorPageParams {
   potionBaseId: string;
@@ -38,17 +33,10 @@ const PotionBaseMapEditorPage: React.FC<
   return (
     <>
       <EnsurePackageLoaded />
-      <div className={styles["editor-page"]}>
-        <TitleBar>
-          <DefaultTitlebarContent />
-          <MapMenuButton />
-        </TitleBar>
-        <div className={styles["editor-page-content"]}>
-          <PackageContentTree className={styles["package-content"]} />
-          <MapWindow />
-          <EntitiesWindow />
-        </div>
-      </div>
+      <HorizontalPageFlow>
+        <MapWindow />
+        <EntitiesWindow />
+      </HorizontalPageFlow>
     </>
   );
 };

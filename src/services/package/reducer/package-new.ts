@@ -14,7 +14,7 @@ export default createPackageReducer((state, action) => {
     packageId: "new-package",
     loadingStatus: "loaded",
     resources: {
-      "package.yml": Encoder.encode(""),
+      "package.yml": Encoder.encode(`{}`),
     },
   };
 });

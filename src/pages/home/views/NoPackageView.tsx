@@ -1,7 +1,13 @@
 import * as React from "react";
 
+import HorizontalPageFlow from "@/components/HorizontalPageFlow";
+
 const NoPackageView = () => {
-  return <div>No package loaded.</div>;
+  return (
+    <HorizontalPageFlow showContentTree={false}>
+      No package loaded.
+    </HorizontalPageFlow>
+  );
 };
 
 export default NoPackageView;

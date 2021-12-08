@@ -6,6 +6,7 @@ import packageLoadErrorReducer from "./package-load-error";
 import packageLoadFileReducer from "./package-load-file";
 import packageNewReducer from "./package-new";
 import packageReceiveReducer from "./package-receive";
+import potionBaseNew from "./potionbase-new";
 
 export default concatReducers(
   packageDataSetByIdReducer,
@@ -13,5 +14,6 @@ export default concatReducers(
   packageLoadErrorReducer,
   packageLoadFileReducer,
   packageNewReducer,
-  packageReceiveReducer
+  packageReceiveReducer,
+  potionBaseNew
 );
