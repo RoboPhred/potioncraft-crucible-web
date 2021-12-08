@@ -1,4 +1,4 @@
-import { isMapEditorMapImportTemplateAction } from "@/actions/potionbase-map-editor/map-import-template";
+import { isMapEditorMapImportTemplateAction } from "@/actions/map-editor/map-import-template";
 
 import { createEditorDamageReducer } from "../state-utils";
 

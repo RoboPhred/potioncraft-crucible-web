@@ -1,4 +1,4 @@
-import { isMapEditorMouseOutAction } from "@/actions/potionbase-map-editor/mouse-out";
+import { isMapEditorMouseOutAction } from "@/actions/map-editor/mouse-out";
 
 import { defaultEditorMouseServiceState } from "../state";
 import { createEditorMouseReducer } from "../state-utils";

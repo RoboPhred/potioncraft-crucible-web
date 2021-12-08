@@ -2,7 +2,7 @@ import { v4 as uuidV4 } from "uuid";
 
 import { MapEntity } from "@/map-config";
 
-import { isMapEditorMapReceiveAction } from "@/actions/potionbase-map-editor/map-receive";
+import { isMapEditorMapReceiveAction } from "@/actions/map-editor/map-receive";
 
 import { createMapEntitiesReducer } from "../state-utils";
 import { addToRegionContainer } from "../regions";

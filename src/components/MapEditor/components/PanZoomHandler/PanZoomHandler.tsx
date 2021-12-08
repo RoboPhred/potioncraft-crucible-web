@@ -10,9 +10,9 @@ import { useSelector } from "@/hooks/use-selector";
 
 import { editorZoomFactorSelector } from "@/services/map-editor/view/selectors/view";
 
-import { mapEditorViewportResize } from "@/actions/potionbase-map-editor/viewport-resize";
-import { mapEditorZoom } from "@/actions/potionbase-map-editor/zoom";
-import { mapEditorPan } from "@/actions/potionbase-map-editor/pan";
+import { mapEditorViewportResize } from "@/actions/map-editor/viewport-resize";
+import { mapEditorZoom } from "@/actions/map-editor/zoom";
+import { mapEditorPan } from "@/actions/map-editor/pan";
 
 import style from "./PanZoomHandler.module.css";
 

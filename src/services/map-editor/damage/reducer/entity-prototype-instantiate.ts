@@ -1,4 +1,4 @@
-import { isMapEditorEntityPrototypeInstantiateAction } from "@/actions/potionbase-map-editor/entity-prototype-instantiate";
+import { isMapEditorEntityPrototypeInstantiateAction } from "@/actions/map-editor/entity-prototype-instantiate";
 import { addPointToRect } from "@/geometry";
 
 import { createEditorDamageReducer } from "../state-utils";

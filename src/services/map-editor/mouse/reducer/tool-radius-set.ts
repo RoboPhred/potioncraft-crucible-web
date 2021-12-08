@@ -1,4 +1,4 @@
-import { isMapEditorToolRadiusSetAction } from "@/actions/potionbase-map-editor/tool-radius-set";
+import { isMapEditorToolRadiusSetAction } from "@/actions/map-editor/tool-radius-set";
 
 import { createEditorMouseReducer } from "../state-utils";
 

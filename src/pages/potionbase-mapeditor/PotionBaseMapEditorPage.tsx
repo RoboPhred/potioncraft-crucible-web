@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 
 import history from "@/history";
 
-import { potionBaseMapEdit } from "@/actions/potionbase-edit-map";
+import { potionBaseMapEdit } from "@/actions/potion-bases/map-edit";
 
 import EnsurePackageLoaded from "@/components/EnsurePackageLoaded";
 import TitleBar from "@/components/TitleBar";

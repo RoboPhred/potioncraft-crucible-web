@@ -1,6 +1,6 @@
 import { AnyAction } from "redux";
 
-import { isMapEditorPanAction } from "@/actions/potionbase-map-editor/pan";
+import { isMapEditorPanAction } from "@/actions/map-editor/pan";
 
 import { defaultEditorViewState, EditorViewState } from "../state";
 import { createEditorViewReducer } from "../state-utils";

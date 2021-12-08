@@ -2,7 +2,7 @@ import { addPointToRect } from "@/geometry";
 
 import { PRIORITY_PRE, reducerPriority } from "@/reducer/priorities";
 
-import { isMapEditorSelectClearAction } from "@/actions/potionbase-map-editor/select-clear";
+import { isMapEditorSelectClearAction } from "@/actions/map-editor/select-clear";
 
 import { selectedEntityKeysSelector } from "@/services/map-editor/selection/selectors/selection";
 import { entityFromKeySelector } from "@/services/map-editor/entities/selectors/entities";

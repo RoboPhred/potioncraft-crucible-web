@@ -2,8 +2,8 @@ import { AnyAction } from "redux";
 
 import { AppState, defaultAppState } from "@/state";
 
-import { isMapEditorSelectionDeleteAction } from "@/actions/potionbase-map-editor/selection-delete";
-import { mapEditorEntityDelete } from "@/actions/potionbase-map-editor/entity-delete";
+import { isMapEditorSelectionDeleteAction } from "@/actions/map-editor/selection-delete";
+import { mapEditorEntityDelete } from "@/actions/map-editor/entity-delete";
 
 import rootReducer from "@/reducer";
 

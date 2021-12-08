@@ -10,8 +10,8 @@ import DividerMenuItem from "@/components/Menus/DividerMenuItem";
 import AutoPopover from "@/components/AutoPopover";
 import Button from "@/components/Button";
 
-import { mapEditorMapClear } from "@/actions/potionbase-map-editor/map-clear";
-import { mapEditorMapImportTemplate } from "@/actions/potionbase-map-editor/map-import-template";
+import { mapEditorMapClear } from "@/actions/map-editor/map-clear";
+import { mapEditorMapImportTemplate } from "@/actions/map-editor/map-import-template";
 
 const MapMenuButton = () => {
   const { t } = useTranslation();

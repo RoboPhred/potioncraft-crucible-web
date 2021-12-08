@@ -1,6 +1,6 @@
 import { AnyAction } from "redux";
 
-import { isMapEditorViewportResizeAction } from "@/actions/potionbase-map-editor/viewport-resize";
+import { isMapEditorViewportResizeAction } from "@/actions/map-editor/viewport-resize";
 
 import { defaultEditorViewState, EditorViewState } from "../state";
 import { createEditorViewReducer } from "../state-utils";

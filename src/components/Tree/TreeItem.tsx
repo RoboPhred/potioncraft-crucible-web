@@ -1,6 +1,8 @@
 import * as React from "react";
 import classNames from "classnames";
 
+import Tree from "./Tree";
+
 import styles from "./Tree.module.css";
 
 export interface TreeItemProps {
@@ -29,7 +31,9 @@ const TreeItem: React.FC<TreeItemProps> = ({
       >
         {label}
       </div>
-      <div className={styles["tree-item-children"]}>{children}</div>
+      {children && (
+        <Tree className={styles["tree-item-children"]}>{children}</Tree>
+      )}
     </li>
   );
 };

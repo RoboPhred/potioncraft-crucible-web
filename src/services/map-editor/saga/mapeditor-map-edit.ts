@@ -6,17 +6,17 @@ import history from "@/history";
 import {
   ACTION_POTIONBASE_MAP_EDIT,
   PotionBaseMapEditAction,
-} from "@/actions/potionbase-edit-map";
+} from "@/actions/potion-bases/map-edit";
 
 import { packageDataSelector } from "@/services/package/selectors/package";
 import { CruciblePackage } from "@/services/package/types";
-import { mapEditorMapReceive } from "@/actions/potionbase-map-editor/map-receive";
+import { mapEditorMapReceive } from "@/actions/map-editor/map-receive";
 
-export default function* potionBaseMapEditSaga() {
-  yield takeLatest(ACTION_POTIONBASE_MAP_EDIT, handlePotionbaseMapEdit);
+export default function* mapEditorMapEditSaga() {
+  yield takeLatest(ACTION_POTIONBASE_MAP_EDIT, handleMapEdit);
 }
 
-function* handlePotionbaseMapEdit(action: PotionBaseMapEditAction) {
+function* handleMapEdit(action: PotionBaseMapEditAction) {
   const { potionBaseId } = action.payload;
 
   const pkg: CruciblePackage | null = yield select(packageDataSelector);

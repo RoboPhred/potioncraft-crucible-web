@@ -1,6 +1,6 @@
 import { AnyAction } from "redux";
 
-import { isMapEditorSelectEntityAction } from "@/actions/potionbase-map-editor/select-entity";
+import { isMapEditorSelectEntityAction } from "@/actions/map-editor/select-entity";
 import { combineSelection } from "@/selection-mode";
 
 import { defaultEditorSelectionState, EditorSelectionState } from "../state";

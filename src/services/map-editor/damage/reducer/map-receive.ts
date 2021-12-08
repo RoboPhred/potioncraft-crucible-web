@@ -1,4 +1,4 @@
-import { isMapEditorMapReceiveAction } from "@/actions/potionbase-map-editor/map-receive";
+import { isMapEditorMapReceiveAction } from "@/actions/map-editor/map-receive";
 import { createEditorDamageReducer } from "../state-utils";
 
 export default createEditorDamageReducer((state, action, appState) => {

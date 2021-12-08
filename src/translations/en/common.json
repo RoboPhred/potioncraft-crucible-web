@@ -1,9 +1,13 @@
 {
   "package": {
-    "toolbar_menu_item": "Package",
+    "noun_titlecase": "Package",
     "content": "Package Content",
+    "new": "New Package",
     "load": "Load Package",
     "save": "Save Package"
+  },
+  "potion_base": {
+    "noun_titlecase_plural": "Potion Bases"
   },
   "map": {
     "toolbar_menu_item": "Map",

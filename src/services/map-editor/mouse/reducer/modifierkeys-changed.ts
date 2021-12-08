@@ -1,4 +1,4 @@
-import { isMapEditorModifierKeysChangedAction } from "@/actions/potionbase-map-editor/modifierkeys-changed";
+import { isMapEditorModifierKeysChangedAction } from "@/actions/map-editor/modifierkeys-changed";
 import { createEditorMouseReducer } from "../state-utils";
 
 export default createEditorMouseReducer((state, action) => {

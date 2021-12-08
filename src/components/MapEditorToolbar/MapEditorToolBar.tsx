@@ -3,7 +3,7 @@ import * as React from "react";
 import { useClickAction } from "@/hooks/use-action";
 import { useSelector } from "@/hooks/use-selector";
 
-import { mapEditorToolSet } from "@/actions/potionbase-map-editor/tool-set";
+import { mapEditorToolSet } from "@/actions/map-editor/tool-set";
 
 import {
   currentToolSelector,
@@ -12,7 +12,7 @@ import {
 
 import ToolBar from "../ToolBar/ToolBar";
 import ToggleButton from "../ToolBar/ToggleButton";
-import { mapEditorToolRadiusSet } from "@/actions/potionbase-map-editor/tool-radius-set";
+import { mapEditorToolRadiusSet } from "@/actions/map-editor/tool-radius-set";
 
 const MapEditorToolBar = () => {
   const toolSize = useSelector(toolRadiusSelector);

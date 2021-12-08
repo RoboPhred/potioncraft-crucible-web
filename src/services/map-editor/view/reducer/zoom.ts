@@ -8,8 +8,8 @@ import rootReducer from "@/reducer";
 
 import { worldMousePosSelector } from "@/services/map-editor/mouse/selectors/world-coords";
 
-import { isMapEditorZoomAction } from "@/actions/potionbase-map-editor/zoom";
-import { mapEditorPan } from "@/actions/potionbase-map-editor/pan";
+import { isMapEditorZoomAction } from "@/actions/map-editor/zoom";
+import { mapEditorPan } from "@/actions/map-editor/pan";
 
 export default function zoomReducer(
   state: AppState = defaultAppState,

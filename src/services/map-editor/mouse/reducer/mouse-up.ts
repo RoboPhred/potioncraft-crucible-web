@@ -10,10 +10,10 @@ import rootReducer from "@/reducer";
 import {
   MapEditorMouseUpAction,
   isMapEditorMouseUpAction,
-} from "@/actions/potionbase-map-editor/mouse-up";
-import { mapEditorSelectEntity } from "@/actions/potionbase-map-editor/select-entity";
-import { mapEditorSelectClear } from "@/actions/potionbase-map-editor/select-clear";
-import { mapEditorEntityOffset } from "@/actions/potionbase-map-editor/entity-offset";
+} from "@/actions/map-editor/mouse-up";
+import { mapEditorSelectEntity } from "@/actions/map-editor/select-entity";
+import { mapEditorSelectClear } from "@/actions/map-editor/select-clear";
+import { mapEditorEntityOffset } from "@/actions/map-editor/entity-offset";
 
 import {
   entityKeyAtPointSelector,

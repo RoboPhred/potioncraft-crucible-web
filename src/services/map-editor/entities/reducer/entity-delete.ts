@@ -1,6 +1,6 @@
 import omit from "lodash/omit";
 
-import { isMapEditorEntityDeleteAction } from "@/actions/potionbase-map-editor/entity-delete";
+import { isMapEditorEntityDeleteAction } from "@/actions/map-editor/entity-delete";
 
 import { createMapEntitiesReducer } from "../state-utils";
 import { removeFromRegionContainer } from "../regions";

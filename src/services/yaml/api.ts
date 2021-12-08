@@ -1,4 +1,4 @@
-import { parse, CST, Document } from "yaml";
+import { parse, stringify, CST, Document } from "yaml";
 
 export function parseYaml(
   yaml: string,
@@ -18,4 +18,8 @@ export function parseYaml(
     },
   };
   return parse(yaml, { merge: true, customTags: [importTag] });
+}
+
+export function stringifyYaml(data: any) {
+  return stringify(data);
 }

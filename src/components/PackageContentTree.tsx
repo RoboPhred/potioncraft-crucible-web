@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 
 import { useSelector } from "@/hooks/use-selector";
 
-import { potionBaseIdsSelector } from "@/services/package-potionbases/selectors/potion-bases";
+import { potionBaseIdsSelector } from "@/services/package/selectors/potion-bases";
 
 import Window from "./Window";
 

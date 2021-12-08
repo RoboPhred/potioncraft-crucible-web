@@ -2,6 +2,7 @@ import * as React from "react";
 import { useTranslation } from "react-i18next";
 
 import { packageSave } from "@/actions/packages/package-save";
+import { packageNew } from "@/actions/packages/package-new";
 
 import { useAction } from "@/hooks/use-action";
 
@@ -20,7 +21,7 @@ const PackageMenuButton = () => {
 
   return (
     <AutoPopover content={<PackageMenu />} placement="bottom-start">
-      <Button variant="menu">{t("package.toolbar_menu_item")}</Button>
+      <Button variant="menu">{t("package.noun_titlecase")}</Button>
     </AutoPopover>
   );
 };
@@ -29,9 +30,11 @@ const PackageMenu = () => {
   const { t } = useTranslation();
   const { loadStatus, onLoadPackage } = useLoadPackage();
   const requestMenuClose = useMenuCloseContext();
+  const onNew = useAction(packageNew);
   const onSave = useAction(packageSave);
   return (
     <Menu>
+      <MenuItem onClick={onNew}>{t("package.new")}</MenuItem>
       <AbstractFileLoadButton
         disabled={loadStatus == "loading"}
         accept=".zip"

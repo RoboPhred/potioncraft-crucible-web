@@ -1,4 +1,4 @@
-import { isMapEditorEntityInsertAction } from "@/actions/potionbase-map-editor/entity-insert";
+import { isMapEditorEntityInsertAction } from "@/actions/map-editor/entity-insert";
 
 import { addToRegionContainer } from "../regions";
 

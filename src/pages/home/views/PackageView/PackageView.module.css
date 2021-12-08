@@ -12,3 +12,15 @@
   width: 250px;
   height: 100%;
 }
+
+.package-view > :not(:first-child) {
+  margin-left: 2.5px;
+}
+
+.package-view > :not(:last-child) {
+  margin-right: 2.5px;
+}
+
+.package-editor {
+  width: 100%;
+}

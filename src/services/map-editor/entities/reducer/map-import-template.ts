@@ -3,10 +3,11 @@ import { v4 as uuidV4 } from "uuid";
 import { TemplatesByName } from "@/map-templates";
 import { MapEntity } from "@/map-config";
 
-import { isMapEditorMapImportTemplateAction } from "@/actions/potionbase-map-editor/map-import-template";
+import { isMapEditorMapImportTemplateAction } from "@/actions/map-editor/map-import-template";
 
 import { createMapEntitiesReducer } from "../state-utils";
 import { addToRegionContainer } from "../regions";
+import { defaultMapEntitiesState } from "../state";
 
 export default createMapEntitiesReducer((state, action) => {
   if (!isMapEditorMapImportTemplateAction(action)) {
@@ -25,13 +26,15 @@ export default createMapEntitiesReducer((state, action) => {
     entitiesByKey[uuidV4()] = entity;
   }
 
+  state = {
+    ...defaultMapEntitiesState,
+    entitiesByKey,
+  };
+
   for (const entityKey of Object.keys(entitiesByKey)) {
     const entity = entitiesByKey[entityKey];
     state = addToRegionContainer(state, entity, entityKey);
   }
 
-  return {
-    ...state,
-    entitiesByKey,
-  };
+  return state;
 });

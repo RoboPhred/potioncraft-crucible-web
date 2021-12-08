@@ -2,7 +2,7 @@ import mapValues from "lodash/mapValues";
 
 import { pointAdd } from "@/geometry";
 
-import { isMapEditorEntityOffsetAction } from "@/actions/potionbase-map-editor/entity-offset";
+import { isMapEditorEntityOffsetAction } from "@/actions/map-editor/entity-offset";
 
 import { createMapEntitiesReducer } from "../state-utils";
 import { addToRegionContainer, removeFromRegionContainer } from "../regions";

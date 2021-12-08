@@ -13,11 +13,11 @@ import { generateTileEntities } from "@/entities/tiles";
 import {
   MapEditorMouseMoveAction,
   isMapEditorMouseMoveAction,
-} from "@/actions/potionbase-map-editor/mouse-move";
-import { mapEditorSelectEntity } from "@/actions/potionbase-map-editor/select-entity";
-import { mapEditorPan } from "@/actions/potionbase-map-editor/pan";
-import { mapEditorEntityDelete } from "@/actions/potionbase-map-editor/entity-delete";
-import { mapEditorEntityInsert } from "@/actions/potionbase-map-editor/entity-insert";
+} from "@/actions/map-editor/mouse-move";
+import { mapEditorSelectEntity } from "@/actions/map-editor/select-entity";
+import { mapEditorPan } from "@/actions/map-editor/pan";
+import { mapEditorEntityDelete } from "@/actions/map-editor/entity-delete";
+import { mapEditorEntityInsert } from "@/actions/map-editor/entity-insert";
 
 import { clientToWorldSelector } from "@/services/map-editor/view/selectors/coordinate-mapping";
 import {

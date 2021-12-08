@@ -4,7 +4,7 @@ import { AnyAction } from "redux";
 import { HotKeys, ComponentProps } from "react-hotkeys";
 import { useDispatch } from "react-redux";
 
-import { mapEditorSelectionDelete } from "@/actions/potionbase-map-editor/selection-delete";
+import { mapEditorSelectionDelete } from "@/actions/map-editor/selection-delete";
 
 import PanZoomHandler from "./components/PanZoomHandler";
 import MapCanvas from "./components/MapCanvas";

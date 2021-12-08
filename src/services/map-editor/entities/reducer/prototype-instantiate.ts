@@ -1,4 +1,4 @@
-import { isMapEditorEntityPrototypeInstantiateAction } from "@/actions/potionbase-map-editor/entity-prototype-instantiate";
+import { isMapEditorEntityPrototypeInstantiateAction } from "@/actions/map-editor/entity-prototype-instantiate";
 import { MapEntity } from "@/map-config";
 import { addToRegionContainer } from "../regions";
 

@@ -17,12 +17,12 @@ import { LargestEntityRadius } from "@/entities";
 
 import { useSelector } from "@/hooks/use-selector";
 import { useComponentBounds } from "@/hooks/use-component-bounds";
-import { mapEditorMouseDown } from "@/actions/potionbase-map-editor/mouse-down";
-import { mapEditorMouseMove } from "@/actions/potionbase-map-editor/mouse-move";
-import { mapEditorMouseUp } from "@/actions/potionbase-map-editor/mouse-up";
-import { mapEditorEntityPrototypeInstantiate } from "@/actions/potionbase-map-editor/entity-prototype-instantiate";
-import { mapEditorModifierKeysChanged } from "@/actions/potionbase-map-editor/modifierkeys-changed";
-import { mapEditorRendered } from "@/actions/potionbase-map-editor/rendered";
+import { mapEditorMouseDown } from "@/actions/map-editor/mouse-down";
+import { mapEditorMouseMove } from "@/actions/map-editor/mouse-move";
+import { mapEditorMouseUp } from "@/actions/map-editor/mouse-up";
+import { mapEditorEntityPrototypeInstantiate } from "@/actions/map-editor/entity-prototype-instantiate";
+import { mapEditorModifierKeysChanged } from "@/actions/map-editor/modifierkeys-changed";
+import { mapEditorRendered } from "@/actions/map-editor/rendered";
 
 import {
   editorViewportHeightSelector,

@@ -1,4 +1,4 @@
-import { isMapEditorMapClearAction } from "@/actions/potionbase-map-editor/map-clear";
+import { isMapEditorMapClearAction } from "@/actions/map-editor/map-clear";
 
 import { createEditorDamageReducer } from "../state-utils";
 

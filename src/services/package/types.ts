@@ -8,6 +8,12 @@ export interface CruciblePackage {
   potionBases: CruciblePackagePotionBase[];
 }
 
+export type CruciblePackageSectionKey = "potionBases";
+export type CruciblePackageSections = Pick<
+  CruciblePackage,
+  CruciblePackageSectionKey
+>;
+
 export interface CruciblePackagePotionBase {
   id: string;
   mapEntities: MapEntity[];

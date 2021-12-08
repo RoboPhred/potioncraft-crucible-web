@@ -1,4 +1,4 @@
-import { isMapEditorEntityDeleteAction } from "@/actions/potionbase-map-editor/entity-delete";
+import { isMapEditorEntityDeleteAction } from "@/actions/map-editor/entity-delete";
 import { addPointToRect } from "@/geometry";
 import { PRIORITY_PRE, reducerPriority } from "@/reducer/priorities";
 import { entityFromKeySelector } from "@/services/map-editor/entities/selectors/entities";

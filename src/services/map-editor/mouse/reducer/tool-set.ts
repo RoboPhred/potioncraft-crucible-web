@@ -1,4 +1,4 @@
-import { isMapEditorToolSetAction } from "@/actions/potionbase-map-editor/tool-set";
+import { isMapEditorToolSetAction } from "@/actions/map-editor/tool-set";
 import { createEditorMouseReducer } from "../state-utils";
 
 export default createEditorMouseReducer((state, action) => {

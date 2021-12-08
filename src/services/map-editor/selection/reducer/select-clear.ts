@@ -1,6 +1,6 @@
 import { AnyAction } from "redux";
 
-import { isMapEditorSelectClearAction } from "@/actions/potionbase-map-editor/select-clear";
+import { isMapEditorSelectClearAction } from "@/actions/map-editor/select-clear";
 
 import { defaultEditorSelectionState, EditorSelectionState } from "../state";
 import { createEditorSelectionReducer } from "../state-utils";

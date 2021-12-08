@@ -1,6 +1,6 @@
 import values from "lodash/values";
 
-import { isMapEditorEntityInsertAction } from "@/actions/potionbase-map-editor/entity-insert";
+import { isMapEditorEntityInsertAction } from "@/actions/map-editor/entity-insert";
 import { addPointToRect } from "@/geometry";
 
 import { createEditorDamageReducer } from "../state-utils";

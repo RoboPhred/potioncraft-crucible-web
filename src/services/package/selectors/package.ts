@@ -26,9 +26,7 @@ export const packageDataSelector = createPackageSelector((state) => {
     return cacheYaml;
   }
 
-  const yamlStr =
-    packageTextResourceSelector.local(state, "package.yml") ??
-    packageTextResourceSelector.local(state, "package.yaml");
+  const yamlStr = packageTextResourceSelector.local(state, "package.yml");
   if (yamlStr == null) {
     return null;
   }

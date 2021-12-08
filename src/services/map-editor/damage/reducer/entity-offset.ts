@@ -2,7 +2,7 @@ import { addPointToRect } from "@/geometry";
 
 import { PRIORITY_PRE, reducerPriority } from "@/reducer/priorities";
 
-import { isMapEditorEntityOffsetAction } from "@/actions/potionbase-map-editor/entity-offset";
+import { isMapEditorEntityOffsetAction } from "@/actions/map-editor/entity-offset";
 
 import { entityFromKeySelector } from "@/services/map-editor/entities/selectors/entities";
 

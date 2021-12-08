@@ -1,6 +1,7 @@
 import * as React from "react";
 import { useTranslation } from "react-i18next";
 import { useDrag } from "react-dnd";
+import omit from "lodash/omit";
 
 import { EntityDefsByType } from "@/entities";
 
@@ -23,7 +24,7 @@ const EntityTrayItem = ({ entity }: DraggableEntityProps) => {
   const canvasRef = React.useRef<HTMLCanvasElement | null>(null);
   const [, dragRef] = useDrag({
     type: DRAGOBJECT_NEW_ENTITY,
-    item: newEntityDragObject(entity),
+    item: newEntityDragObject(omit(entity, "i18nKey")),
   });
 
   React.useLayoutEffect(() => {
