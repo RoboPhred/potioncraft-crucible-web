@@ -16,5 +16,18 @@ export type CruciblePackageSections = Pick<
 
 export interface CruciblePackagePotionBase {
   id: string;
-  mapEntities: MapEntity[];
+  name: string;
+  description?: string;
+  unlockOnStart?: boolean;
+  liquidColor?: string;
+  ingredientListIcon?: string;
+  menuButtonImage?: string;
+  menuButtonSelectedImage?: string;
+  menuButtonHoverImage?: string;
+  menuButtonLockedImage?: string;
+  tooltipImage?: string;
+  ladleImage?: string;
+  recipeStepImage?: string;
+  mapOriginImage?: string;
+  mapEntities?: MapEntity[];
 }

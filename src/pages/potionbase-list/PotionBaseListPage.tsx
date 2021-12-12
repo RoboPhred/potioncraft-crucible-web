@@ -10,7 +10,7 @@ import Window from "@/components/Window";
 import Button from "@/components/Button";
 import EnsurePackageLoaded from "@/components/EnsurePackageLoaded";
 
-import styles from "./PotionBasesPage.module.css";
+import styles from "./PotionBaseListPage.module.css";
 
 const PotionBasesPage = () => {
   const { t } = useTranslation();

@@ -1,4 +1,5 @@
 import { v4 as uuidV4 } from "uuid";
+
 import { stringifyYaml } from "@/services/yaml/api";
 import { Encoder } from "@/text-encoding";
 
@@ -26,6 +27,8 @@ export default createPackageReducer((state, action) => {
   const newPotionBase: CruciblePackagePotionBase = {
     // TODO: Get id from user.
     id: `potionbase_${uuidV4()}`,
+    name: "New Potion Base",
+    unlockOnStart: true,
     mapEntities: [],
   };
 

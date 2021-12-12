@@ -7,6 +7,7 @@
     "save": "Save Package"
   },
   "potion_base": {
+    "not_found": "Potion Base not found",
     "noun_titlecase_plural": "Potion Bases",
     "new": "New Potion Base"
   },

@@ -1,9 +1,17 @@
+import find from "lodash/find";
+
 import { parseYaml } from "@/services/yaml/api";
+import { AppState } from "@/state";
 
 import { createPackageSelector } from "../state-utils";
-import { CruciblePackage } from "../types";
+import {
+  CruciblePackage,
+  CruciblePackageSectionKey,
+  CruciblePackageSections,
+} from "../types";
 
 import { packageTextResourceSelector } from "./resources";
+import { ItemOf } from "@/arrays";
 
 export const packageLoadStatusSelector = createPackageSelector(
   (x) => x.loadingStatus
@@ -46,3 +54,19 @@ export const packageDataSelector = createPackageSelector((state) => {
 
   return yaml;
 });
+
+export function packageIdObjectDataSelector<
+  TKey extends CruciblePackageSectionKey
+>(
+  state: AppState,
+  key: TKey,
+  id: string
+): ItemOf<CruciblePackageSections[TKey]> | null {
+  const data = packageDataSelector(state);
+  if (!data) {
+    return null;
+  }
+
+  const entries = data[key];
+  return (find(entries, (entry) => entry.id === id) as any) ?? null;
+}
