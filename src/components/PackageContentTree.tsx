@@ -23,15 +23,14 @@ const PackageContentTree: React.FC<PackageContentTreeProps> = ({
   return (
     <Window className={className} title={t("package.content")}>
       <Tree>
-        <TreeItem label={t("potioncraft:bases.noun_titlecase_plural")}>
+        <LinkTreeItem
+          to="/potion-bases"
+          label={t("potioncraft:bases.noun_titlecase_plural")}
+        >
           {potionBaseIds.map((id) => (
-            <LinkTreeItem
-              key={id}
-              label={id}
-              to={`/potion-bases/${id}/map-editor`}
-            />
+            <LinkTreeItem key={id} label={id} to={`/potion-bases/${id}`} />
           ))}
-        </TreeItem>
+        </LinkTreeItem>
       </Tree>
     </Window>
   );
