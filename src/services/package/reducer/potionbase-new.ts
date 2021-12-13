@@ -38,7 +38,6 @@ export default createPackageReducer((state, action) => {
   };
 
   const newPackageStr = stringifyYaml(newPackageData);
-  console.log("new pkg", newPackageStr);
   const newResource = Encoder.encode(newPackageStr);
   return {
     ...state,
