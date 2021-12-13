@@ -25,6 +25,9 @@ const PackageView = () => {
   const onSetPackageDescription = React.useCallback((description: string) => {
     dispatch(packageDataSet("description", description));
   }, []);
+  const onSetPackageAuthor = React.useCallback((description: string) => {
+    dispatch(packageDataSet("author", description));
+  }, []);
   return (
     <HorizontalPageFlow>
       <Window
@@ -32,14 +35,21 @@ const PackageView = () => {
         title={t("package.noun_titlecase")}
       >
         <div>
-          Name:
+          {t("package.name")}:{" "}
           <CommitTextBox
             value={packageData?.name ?? ""}
             onCommit={onSetPackageName}
           />
         </div>
         <div>
-          Description:
+          {t("package.author")}:{" "}
+          <CommitTextBox
+            value={packageData?.author ?? ""}
+            onCommit={onSetPackageAuthor}
+          />
+        </div>
+        <div>
+          {t("package.description")}:{" "}
           <CommitTextBox
             textArea
             value={packageData?.description ?? ""}

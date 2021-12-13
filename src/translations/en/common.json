@@ -1,15 +1,21 @@
 {
   "package": {
     "noun_titlecase": "Package",
+    "name": "Package Name",
+    "description": "Package Description",
+    "author": "Package Author",
     "content": "Package Content",
     "new": "New Package",
     "load": "Load Package",
     "save": "Save Package"
   },
   "potion_base": {
+    "name": "Name",
     "not_found": "Potion Base not found",
     "noun_titlecase_plural": "Potion Bases",
-    "new": "New Potion Base"
+    "new": "New Potion Base",
+    "unlock_on_start": "Unlocked on Start",
+    "edit_map": "Edit Map"
   },
   "map": {
     "toolbar_menu_item": "Map",
@@ -18,9 +24,11 @@
     "import_template": "Import From Template",
     "import_file": "Import From File"
   },
-  "potion_effects": "Potion Effects",
+  "potion_effects": {
+    "noun_titlecase_plural": "Potion Effects"
+  },
   "danger_zone_parts": {
-    "title": "Danger Zone Parts",
+    "noun_titlecase_plural": "Danger Zone Parts",
     "type_names": {
       "Bone1": "Bone 1",
       "Bone2": "Bone 2",

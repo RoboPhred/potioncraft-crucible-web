@@ -36,7 +36,7 @@ const EntityCategories: {
   entities: EntityTrayItemData[];
 }[] = [
   {
-    i18nKey: "danger_zone_parts.title",
+    i18nKey: "danger_zone_parts.noun_titlecase_plural",
     entities: [
       bonePrototype("Skull1"),
       bonePrototype("Bone1"),
@@ -46,7 +46,7 @@ const EntityCategories: {
     ],
   },
   {
-    i18nKey: "potion_effects",
+    i18nKey: "potion_effects.noun_titlecase_plural",
     entities: [
       potionEffectPrototype("Crop"),
       potionEffectPrototype("Invisibility"),

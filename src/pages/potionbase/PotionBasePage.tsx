@@ -27,24 +27,35 @@ const PotionBasePage: React.FC<RouteComponentProps<PotionBaseRouteParams>> = ({
 }) => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
+
   const potionBase = useSelector((state) =>
     packageIdObjectDataSelector(state, "potionBases", potionBaseId)
   );
 
-  const onSetName = React.useCallback(
-    (name: string) => {
+  const onSetName = React.useCallback((name: string) => {
+    if (potionBase == null) {
+      return;
+    }
+    dispatch(packageDataSetById("potionBases", potionBaseId, "name", name));
+  }, []);
+
+  const onSetUnlockedOnStart = React.useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
       if (potionBase == null) {
         return;
       }
       dispatch(
-        packageDataSetById("potionBases", potionBaseId, {
-          ...potionBase,
-          name,
-        })
+        packageDataSetById(
+          "potionBases",
+          potionBaseId,
+          "unlockOnStart",
+          e.target.checked
+        )
       );
     },
-    [potionBase]
+    []
   );
+
   return (
     <>
       <EnsurePackageLoaded />
@@ -56,11 +67,20 @@ const PotionBasePage: React.FC<RouteComponentProps<PotionBaseRouteParams>> = ({
             title={t("potion_base.noun_titlecase_plural")}
           >
             <div>
-              <span>name:</span>
+              {t("potion_base.name")}:
               <CommitTextBox value={potionBase.name} onCommit={onSetName} />
             </div>
+            <div>
+              {t("potion_base.unlock_on_start")}:{" "}
+              <input
+                type="checkbox"
+                checked={potionBase.unlockOnStart ?? false}
+                onChange={onSetUnlockedOnStart}
+              />
+            </div>
+
             <Link to={`/potion-bases/${potionBaseId}/map-editor`}>
-              Edit Map
+              {t("potion_base.edit_map")}
             </Link>
           </Window>
         )}
