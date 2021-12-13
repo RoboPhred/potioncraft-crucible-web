@@ -1,0 +1,7 @@
+.text {
+  width: 100%;
+  margin-top: 25px;
+  font-size: 2em;
+  text-align: center;
+  color: var(--color-ui-surface-text);
+}

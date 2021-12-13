@@ -11,7 +11,6 @@
     as variants need to override them
   */
   padding: 7px 10px;
-  background: var(--color-ui-surface-bg);
 }
 
 .button.disabled {
@@ -39,6 +38,21 @@
 
 .button--size-small {
   padding: 3px 6px;
+}
+
+.button--variant-default {
+  background: var(--color-ui-dark-bg);
+  color: var(--color-ui-dark-text);
+}
+
+.button--variant-default:hover {
+  background: var(--color-ui-dark-hover);
+  color: var(--color-ui-dark-hover-text);
+}
+
+.button--variant-default:focus {
+  border: none;
+  background: var(--color-ui-dark-selected);
 }
 
 .button--variant-primary {

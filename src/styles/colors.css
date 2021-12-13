@@ -1,22 +1,30 @@
 :root {
   --color-canvas: #ecd1aa;
 
-  --color-ui-light-bg: white;
-  --color-ui-light-border: rgb(117, 117, 117);
-  --color-ui-light-hover: rgb(218, 218, 218);
-  --color-ui-light-selected: rgb(209, 224, 255);
-  --color-ui-light-selected-hover: rgb(179, 194, 225);
-  --color-ui-light-text: black;
-  --color-ui-light-text-disabled: rgb(218, 218, 218);
+  --color-base: #aa7939;
+  --color-darker: #76490d;
+  --color-darkest: #432600;
+  --color-lighter: #deb47b;
+  --color-lightest: #ffe7c7;
 
-  --color-ui-surface-bg: rgb(221, 221, 221);
-  --color-ui-surface-bg-disabled: rgb(230, 230, 230);
-  --color-ui-surface-border: rgb(209, 209, 209);
-  --color-ui-surface-hover: rgb(231, 231, 231);
-  --color-ui-surface-text: black;
-  --color-ui-surface-text-disabled: rgb(175, 175, 175);
+  --color-ui-light-bg: var(--color-lighter);
+  --color-ui-light-border: var(--color-darker);
+  --color-ui-light-hover: var(--color-lighter);
+  --color-ui-light-selected: var(--color-lighter);
+  --color-ui-light-selected-hover: var(--color-lightest);
+  --color-ui-light-text: var(--color-darkest);
+  --color-ui-light-text-disabled: var(--color-darker);
 
-  --color-ui-dark-bg: rgb(117, 117, 117);
+  --color-ui-surface-bg: var(--color-base);
+  --color-ui-surface-bg-disabled: var(--color-darker);
+  --color-ui-surface-border: var(--color-darkest);
+  --color-ui-surface-hover: var(--color-lightest);
+  --color-ui-surface-text: var(--color-lighter);
+  --color-ui-surface-text-disabled: var(--color-lighter);
 
-  --color-entity-selected: goldenrod;
+  --color-ui-dark-bg: var(--color-darker);
+  --color-ui-dark-hover: var(--color-base);
+  --color-ui-dark-selected: var(--color-base);
+  --color-ui-dark-hover-text: var(--color-darkest);
+  --color-ui-dark-text: var(--color-lighter);
 }

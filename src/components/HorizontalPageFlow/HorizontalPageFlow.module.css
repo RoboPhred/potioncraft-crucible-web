@@ -13,6 +13,7 @@
   padding: 5px;
   box-sizing: border-box;
   background: var(--color-ui-dark-bg);
+  color: var(--color-ui-dark-text);
   display: flex;
   flex-direction: row;
 }

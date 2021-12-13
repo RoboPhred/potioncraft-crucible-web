@@ -18,44 +18,57 @@ import styles from "./PackageView.module.css";
 const PackageView = () => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
+
   const packageData = useSelector(packageDataSelector);
+
   const onSetPackageName = React.useCallback((name: string) => {
     dispatch(packageDataSet("name", name));
+  }, []);
+  const onSetPackageAuthor = React.useCallback((author: string) => {
+    dispatch(packageDataSet("author", author));
   }, []);
   const onSetPackageDescription = React.useCallback((description: string) => {
     dispatch(packageDataSet("description", description));
   }, []);
-  const onSetPackageAuthor = React.useCallback((description: string) => {
-    dispatch(packageDataSet("author", description));
-  }, []);
+
   return (
     <HorizontalPageFlow>
       <Window
         className={styles["package-editor"]}
         title={t("package.noun_titlecase")}
       >
-        <div>
-          {t("package.name")}:{" "}
-          <CommitTextBox
-            value={packageData?.name ?? ""}
-            onCommit={onSetPackageName}
-          />
-        </div>
-        <div>
-          {t("package.author")}:{" "}
-          <CommitTextBox
-            value={packageData?.author ?? ""}
-            onCommit={onSetPackageAuthor}
-          />
-        </div>
-        <div>
-          {t("package.description")}:{" "}
-          <CommitTextBox
-            textArea
-            value={packageData?.description ?? ""}
-            onCommit={onSetPackageDescription}
-          />
-        </div>
+        <table className={styles["package-editor-content"]}>
+          <tbody>
+            <tr>
+              <td>{t("package.name")}</td>
+              <td>
+                <CommitTextBox
+                  value={packageData?.name ?? ""}
+                  onCommit={onSetPackageName}
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>{t("package.author")}</td>
+              <td>
+                <CommitTextBox
+                  value={packageData?.author ?? ""}
+                  onCommit={onSetPackageAuthor}
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>{t("package.description")}</td>
+              <td>
+                <CommitTextBox
+                  textArea
+                  value={packageData?.description ?? ""}
+                  onCommit={onSetPackageDescription}
+                />
+              </td>
+            </tr>
+          </tbody>
+        </table>
         <Link to="/potion-bases">{t("potion_base.noun_titlecase_plural")}</Link>
       </Window>
     </HorizontalPageFlow>

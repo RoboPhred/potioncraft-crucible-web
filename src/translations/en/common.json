@@ -1,6 +1,7 @@
 {
   "package": {
     "noun_titlecase": "Package",
+    "message_no_package": "No package loaded.",
     "name": "Package Name",
     "description": "Package Description",
     "author": "Package Author",
