@@ -16,6 +16,8 @@
   padding: 3px 10px;
   cursor: inherit;
   user-select: none;
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
 }
 
 .tree-item-content:hover {

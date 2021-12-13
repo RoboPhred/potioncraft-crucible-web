@@ -1,4 +1,6 @@
 :root {
+  --fontsize: 18px;
+
   --color-canvas: #ecd1aa;
 
   --color-base: #aa7939;
@@ -9,8 +11,8 @@
 
   --color-ui-light-bg: var(--color-lighter);
   --color-ui-light-border: var(--color-darker);
-  --color-ui-light-hover: var(--color-lighter);
-  --color-ui-light-selected: var(--color-lighter);
+  --color-ui-light-hover: var(--color-lightest);
+  --color-ui-light-selected: var(--color-lightest);
   --color-ui-light-selected-hover: var(--color-lightest);
   --color-ui-light-text: var(--color-darkest);
   --color-ui-light-text-disabled: var(--color-darker);
