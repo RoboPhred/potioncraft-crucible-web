@@ -1,4 +1,5 @@
 import * as React from "react";
+import classNames from "classnames";
 
 import { useClickAction } from "@/hooks/use-action";
 import { useSelector } from "@/hooks/use-selector";
@@ -10,11 +11,21 @@ import {
   toolRadiusSelector,
 } from "@/services/map-editor/mouse/selectors/tools";
 
-import ToolBar from "../ToolBar/ToolBar";
-import ToggleButton from "../ToolBar/ToggleButton";
 import { mapEditorToolRadiusSet } from "@/actions/map-editor/tool-radius-set";
 
-const MapEditorToolBar = () => {
+import Button from "../Button";
+
+import PotionEffectsDropButton from "./components/PotionEffectsDropButton";
+import BonesDropButton from "./components/BonesDropButton";
+
+import styles from "./MapEditorToolbar.module.css";
+
+console.log(styles);
+
+export interface MapEditorToolBarProps {
+  className?: string;
+}
+const MapEditorToolBar = ({ className }: MapEditorToolBarProps) => {
   const toolSize = useSelector(toolRadiusSelector);
   const currentTool = useSelector(currentToolSelector);
   const onIncreaseToolSize = useClickAction(
@@ -29,30 +40,37 @@ const MapEditorToolBar = () => {
   const onEraserClick = useClickAction(mapEditorToolSet, "eraser");
   const onBonesClick = useClickAction(mapEditorToolSet, "paint-danger-zone");
   return (
-    <ToolBar>
-      <ToggleButton
-        isPressed={currentTool === "pointer"}
+    <div className={classNames(styles["map-toolbar"], className)}>
+      <Button
+        className={styles["toolbar-button"]}
+        variant={currentTool === "pointer" ? "primary" : "default"}
         onClick={onPointerClick}
       >
         Pointer
-      </ToggleButton>
-      <ToggleButton
-        isPressed={currentTool === "eraser"}
+      </Button>
+      <Button
+        className={styles["toolbar-button"]}
+        variant={currentTool === "eraser" ? "primary" : "default"}
         onClick={onEraserClick}
       >
         Eraser
-      </ToggleButton>
-      <ToggleButton
-        isPressed={currentTool === "paint-danger-zone"}
+      </Button>
+      <Button
+        className={styles["toolbar-button"]}
+        variant={currentTool === "paint-danger-zone" ? "primary" : "default"}
         onClick={onBonesClick}
       >
         Bones
-      </ToggleButton>
+      </Button>
       Brush Size:
-      <button onClick={onDecreaseToolSize}>-</button>
+      <Button onClick={onDecreaseToolSize}>-</Button>
       {toolSize.toFixed(1)}
-      <button onClick={onIncreaseToolSize}>+</button>
-    </ToolBar>
+      <Button onClick={onIncreaseToolSize}>+</Button>
+      <div className={styles["map-toolbar-entities"]}>
+        <PotionEffectsDropButton />
+        <BonesDropButton />
+      </div>
+    </div>
   );
 };
 

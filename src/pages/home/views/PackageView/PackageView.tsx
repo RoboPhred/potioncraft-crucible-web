@@ -69,7 +69,6 @@ const PackageView = () => {
             </tr>
           </tbody>
         </table>
-        <Link to="/potion-bases">{t("potion_base.noun_titlecase_plural")}</Link>
       </Window>
     </HorizontalPageFlow>
   );

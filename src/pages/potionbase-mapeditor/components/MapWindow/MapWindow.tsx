@@ -10,8 +10,8 @@ const MapWindow = () => {
   return (
     <Window className={styles["map-window"]} title="Map">
       <div className={styles["map-window-container"]}>
-        <MapEditorToolBar />
         <MapEditor className={styles["map-window-editor"]} />
+        <MapEditorToolBar className={styles["map-window-toolbar"]} />
       </div>
     </Window>
   );

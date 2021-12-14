@@ -1,8 +1,6 @@
 :root {
   --fontsize: 18px;
 
-  --color-canvas: #ecd1aa;
-
   --color-base: #aa7939;
   --color-darker: #76490d;
   --color-darkest: #432600;
@@ -29,4 +27,7 @@
   --color-ui-dark-selected: var(--color-base);
   --color-ui-dark-hover-text: var(--color-darkest);
   --color-ui-dark-text: var(--color-lighter);
+
+  --color-ui-tooltip-bg: var(--color-base);
+  --color-ui-tooltip-text: var(--color-lighter);
 }

@@ -2,6 +2,7 @@ import * as React from "react";
 import classNames from "classnames";
 
 export interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
+  className?: string;
   variant?: "default" | "primary" | "text" | "menu";
   size?: "default" | "small";
   disabled?: boolean;
@@ -9,26 +10,28 @@ export interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
 
 import styles from "./Button.module.css";
 
-const Button: React.FC<ButtonProps> = ({
-  variant = "default",
-  size = "default",
-  disabled,
-  ...props
-}) => {
-  return (
-    <button
-      className={classNames(
-        styles["button"],
-        (styles as any)[`button--variant-${variant}`],
-        (styles as any)[`button--size-${size}`],
-        disabled && styles["disabled"]
-      )}
-      type="button"
-      {...props}
-    >
-      {props.children}
-    </button>
-  );
-};
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  (
+    { className, variant = "default", size = "default", disabled, ...props },
+    ref
+  ) => {
+    return (
+      <button
+        ref={ref}
+        className={classNames(
+          styles["button"],
+          (styles as any)[`button--variant-${variant}`],
+          (styles as any)[`button--size-${size}`],
+          disabled && styles["disabled"],
+          className
+        )}
+        type="button"
+        {...props}
+      >
+        {props.children}
+      </button>
+    );
+  }
+);
 
 export default Button;

@@ -10,7 +10,6 @@ import EnsurePackageLoaded from "@/components/EnsurePackageLoaded";
 import HorizontalPageFlow from "@/components/HorizontalPageFlow";
 
 import MapWindow from "./components/MapWindow";
-import EntitiesWindow from "./components/EntityTrayWindow";
 import MapMenuButton from "./components/MapMenuButton";
 
 export interface PotionBaseMapEditorPageParams {
@@ -36,7 +35,6 @@ const PotionBaseMapEditorPage: React.FC<
       <EnsurePackageLoaded />
       <HorizontalPageFlow titlebarContent={<MapMenuButton />}>
         <MapWindow />
-        <EntitiesWindow />
       </HorizontalPageFlow>
     </>
   );

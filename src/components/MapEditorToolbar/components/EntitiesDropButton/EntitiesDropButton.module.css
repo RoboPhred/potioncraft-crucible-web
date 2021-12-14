@@ -1,0 +1,19 @@
+.entities-drop-button {
+  border: 1px solid var(--color-ui-surface-border);
+  background: var(--color-ui-surface-bg);
+}
+
+.entities-drop-list {
+  background: var(--color-ui-light-bg);
+  border: 1px solid var(--color-ui-light-border);
+  list-style: none;
+  padding: 5px 2px;
+  border-radius: 3px;
+  min-width: 150px;
+  margin: 0;
+}
+
+.entities-drop-list-item {
+  cursor: pointer;
+  user-select: none;
+}

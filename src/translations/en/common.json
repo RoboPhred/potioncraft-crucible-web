@@ -37,5 +37,8 @@
       "Fang2": "Fang 2",
       "Skull1": "Skull"
     }
+  },
+  "entities": {
+    "message_click_drag_create": "Click and drag to create a new entity."
   }
 }
