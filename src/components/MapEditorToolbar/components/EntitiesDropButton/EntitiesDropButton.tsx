@@ -25,7 +25,7 @@ const EntitiesDropButton = ({
 
   return (
     <MenuCloseListener onClose={setClosed}>
-      <Button ref={anchorEl} onClick={setOpen}>
+      <Button variant="primary" ref={anchorEl} onClick={setOpen}>
         {children}
       </Button>
       <Popover

@@ -15,6 +15,9 @@
   --color-ui-light-text: var(--color-darkest);
   --color-ui-light-text-disabled: var(--color-darker);
 
+  --color-ui-primary-bg: var(--color-lighter);
+  --color-ui-primary-bg-hover: var(--color-lightest);
+
   --color-ui-surface-bg: var(--color-base);
   --color-ui-surface-bg-disabled: var(--color-darker);
   --color-ui-surface-border: var(--color-darkest);

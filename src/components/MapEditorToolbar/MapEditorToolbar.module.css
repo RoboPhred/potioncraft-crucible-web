@@ -9,11 +9,3 @@
   margin-left: auto;
   min-width: 0;
 }
-
-.toolbar-button {
-  border: 1px solid var(--color-ui-surface-border);
-}
-
-.toolbar-button:focus {
-  border: 1px solid var(--color-ui-surface-border);
-}

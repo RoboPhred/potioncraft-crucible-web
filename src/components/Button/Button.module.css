@@ -40,29 +40,28 @@
   padding: 3px 6px;
 }
 
-.button--variant-default {
+.button--variant-primary {
   background: var(--color-ui-dark-bg);
   color: var(--color-ui-dark-text);
 }
 
-.button--variant-default:hover {
+.button--variant-primary:hover {
   background: var(--color-ui-dark-hover);
   color: var(--color-ui-dark-hover-text);
 }
 
-.button--variant-default:focus {
-  border: none;
+.button--variant-primary:focus {
   background: var(--color-ui-dark-selected);
 }
 
-.button--variant-primary {
+.button--variant-default {
   background: var(--color-ui-primary-bg);
+  border: 1px solid var(--color-ui-surface-border);
 }
-.button--variant-primary:hover {
+.button--variant-default:hover {
   background: var(--color-ui-primary-bg-hover);
 }
-.button--variant-primary:focus {
-  border: none;
+.button--variant-default:focus {
   background: var(--color-ui-primary-bg-hover);
 }
 
