@@ -28,7 +28,7 @@ export default createPackageReducer((state, action) => {
     // TODO: Get id from user.
     id: `potionbase_${uuidV4()}`,
     name: "New Potion Base",
-    unlockOnStart: true,
+    unlockedOnStart: true,
     mapEntities: [],
   };
 

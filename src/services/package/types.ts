@@ -18,7 +18,7 @@ export interface CruciblePackagePotionBase {
   id: string;
   name: string;
   description?: string;
-  unlockOnStart?: boolean;
+  unlockedOnStart?: boolean;
   liquidColor?: string;
   ingredientListIcon?: string;
   menuButtonImage?: string;

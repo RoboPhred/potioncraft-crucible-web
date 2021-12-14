@@ -42,21 +42,18 @@ const MapEditorToolBar = ({ className }: MapEditorToolBarProps) => {
   return (
     <div className={classNames(styles["map-toolbar"], className)}>
       <Button
-        className={styles["toolbar-button"]}
         variant={currentTool === "pointer" ? "primary" : "default"}
         onClick={onPointerClick}
       >
         Pointer
       </Button>
       <Button
-        className={styles["toolbar-button"]}
         variant={currentTool === "eraser" ? "primary" : "default"}
         onClick={onEraserClick}
       >
         Eraser
       </Button>
       <Button
-        className={styles["toolbar-button"]}
         variant={currentTool === "paint-danger-zone" ? "primary" : "default"}
         onClick={onBonesClick}
       >

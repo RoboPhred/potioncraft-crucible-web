@@ -7,9 +7,19 @@ export const packageResourcesSelector = createPackageSelector(
   (s) => s.resources
 );
 
+export const packageResourceSelector = createPackageSelector(
+  (state: PackageState, resourcePath: string) => {
+    const resource = state.resources[resourcePath];
+    if (resource == null) {
+      return null;
+    }
+    return resource;
+  }
+);
+
 export const packageTextResourceSelector = createPackageSelector(
   (state: PackageState, resourcePath: string) => {
-    var resource = state.resources[resourcePath];
+    const resource = state.resources[resourcePath];
     if (resource == null) {
       return null;
     }

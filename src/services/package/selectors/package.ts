@@ -10,8 +10,12 @@ import {
   CruciblePackageSections,
 } from "../types";
 
-import { packageTextResourceSelector } from "./resources";
+import {
+  packageResourceSelector,
+  packageTextResourceSelector,
+} from "./resources";
 import { ItemOf } from "@/arrays";
+import { extname } from "@/paths";
 
 export const packageLoadStatusSelector = createPackageSelector(
   (x) => x.loadingStatus
@@ -69,4 +73,21 @@ export function packageIdObjectDataSelector<
 
   const entries = data[key];
   return (find(entries, (entry) => entry.id === id) as any) ?? null;
+}
+
+export function packageIdObjectResourceSelector<
+  TSection extends CruciblePackageSectionKey,
+  TK1 extends keyof ItemOf<CruciblePackageSections[TSection]>
+>(state: AppState, key: TSection, id: string, k1: TK1): Uint8Array | null {
+  const data = packageIdObjectDataSelector(state, key, id);
+  if (!data) {
+    return null;
+  }
+
+  const resourcePath = data[k1] as unknown;
+  if (typeof resourcePath !== "string") {
+    return null;
+  }
+
+  return packageResourceSelector(state, resourcePath);
 }

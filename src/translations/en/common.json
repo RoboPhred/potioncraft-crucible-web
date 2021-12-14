@@ -11,9 +11,11 @@
     "save": "Save Package"
   },
   "potion_base": {
-    "name": "Name",
-    "not_found": "Potion Base not found",
+    "noun_titlecase": "Potion Base",
     "noun_titlecase_plural": "Potion Bases",
+    "name": "Name",
+    "description": "Description",
+    "not_found": "Potion Base not found",
     "new": "New Potion Base",
     "unlock_on_start": "Unlocked on Start",
     "edit_map": "Edit Map"
