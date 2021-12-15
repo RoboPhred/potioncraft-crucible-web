@@ -1,0 +1,5 @@
+.modal {
+  background: var(--color-ui-light-bg);
+  color: var(--color-ui-light-text);
+  border: 3px solid var(--color-ui-light-border);
+}

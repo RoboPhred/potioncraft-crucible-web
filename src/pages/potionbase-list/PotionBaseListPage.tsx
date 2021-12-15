@@ -1,9 +1,8 @@
 import * as React from "react";
 import { useTranslation } from "react-i18next";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-
-import { useClickAction } from "@/hooks/use-action";
+import { v4 as uuidV4 } from "uuid";
 
 import { potionBaseNew } from "@/actions/potion-bases/potionbase-new";
 
@@ -15,11 +14,24 @@ import EnsurePackageLoaded from "@/components/EnsurePackageLoaded";
 import { potionBaseIdsSelector } from "@/services/package/selectors/potion-bases";
 
 import styles from "./PotionBaseListPage.module.css";
+import Modal from "@/components/Modal/Modal";
+import TextBox from "@/components/TextBox";
 
 const PotionBasesPage = () => {
+  const dispatch = useDispatch();
   const { t } = useTranslation();
-  const onNewPotionBase = useClickAction(potionBaseNew);
   const potionBaseIds = useSelector(potionBaseIdsSelector);
+
+  const [newPotionId, setNewPotionId] = React.useState<string | null>(null);
+
+  const onRequestNewPotionBase = React.useCallback(() => {
+    setNewPotionId("");
+  }, []);
+  const onNewPotionBase = React.useCallback(() => {
+    if (newPotionId != null) {
+      dispatch(potionBaseNew(newPotionId));
+    }
+  }, [newPotionId]);
 
   return (
     <>
@@ -36,7 +48,25 @@ const PotionBasesPage = () => {
               </li>
             ))}
           </ul>
-          <Button onClick={onNewPotionBase}>{t("potion_base.new")}</Button>
+          <Button onClick={onRequestNewPotionBase}>
+            {t("potion_base.new")}
+          </Button>
+          <Modal isOpen={newPotionId != null}>
+            <p>
+              Choose the new potion base id. This must be unique among all
+              potion bases added by this package. Once an id is chosen, it
+              cannot be changed.
+            </p>
+            <div>
+              <TextBox
+                value={newPotionId!}
+                onChange={(e) => setNewPotionId(e.target.value)}
+              />
+            </div>
+            <div>
+              <Button onClick={onNewPotionBase}>Create potion base</Button>
+            </div>
+          </Modal>
         </Window>
       </HorizontalPageFlow>
     </>

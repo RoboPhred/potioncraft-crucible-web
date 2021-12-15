@@ -3,7 +3,10 @@ import classNames from "classnames";
 
 import styles from "./TextBox.module.css";
 
-export type TextBoxProps = Omit<React.HTMLAttributes<HTMLInputElement>, "type">;
+export type TextBoxProps = Omit<
+  React.InputHTMLAttributes<HTMLInputElement>,
+  "type"
+>;
 
 const TextBox = (props: TextBoxProps) => (
   <div className={classNames(styles["textbox"], props.className)}>

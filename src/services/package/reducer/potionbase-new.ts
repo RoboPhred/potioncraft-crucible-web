@@ -1,16 +1,17 @@
-import { v4 as uuidV4 } from "uuid";
-
 import { stringifyYaml } from "@/services/yaml/api";
 import { Encoder } from "@/text-encoding";
 
 import { isPotionBaseNewAction } from "@/actions/potion-bases/potionbase-new";
 
-import { packageDataSelector } from "../selectors/package";
+import {
+  packageDataSelector,
+  packageIdObjectDataSelector,
+} from "../selectors/package";
 
 import { createPackageReducer } from "../state-utils";
 import { CruciblePackage, CruciblePackagePotionBase } from "../types";
 
-export default createPackageReducer((state, action) => {
+export default createPackageReducer((state, action, appState) => {
   if (!isPotionBaseNewAction(action)) {
     return state;
   }
@@ -24,9 +25,19 @@ export default createPackageReducer((state, action) => {
     return state;
   }
 
+  const { potionBaseId } = action.payload;
+
+  const exists = packageIdObjectDataSelector(
+    appState,
+    "potionBases",
+    potionBaseId
+  );
+  if (exists != null) {
+    return state;
+  }
+
   const newPotionBase: CruciblePackagePotionBase = {
-    // TODO: Get id from user.
-    id: `potionbase_${uuidV4()}`,
+    id: potionBaseId,
     name: "New Potion Base",
     unlockedOnStart: true,
     mapEntities: [],
@@ -43,7 +54,7 @@ export default createPackageReducer((state, action) => {
     ...state,
     resources: {
       ...state.resources,
-      ["package.yml"]: newResource,
+      "package.yml": newResource,
     },
   };
 });

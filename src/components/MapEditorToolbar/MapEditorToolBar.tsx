@@ -20,8 +20,6 @@ import BonesDropButton from "./components/BonesDropButton";
 
 import styles from "./MapEditorToolbar.module.css";
 
-console.log(styles);
-
 export interface MapEditorToolBarProps {
   className?: string;
 }
