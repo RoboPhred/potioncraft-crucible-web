@@ -1,13 +1,13 @@
 import * as React from "react";
 
 import Button from "@/components/Button";
-import AutoPopover from "@/components/AutoPopover";
+import AutoPopper from "@/components/AutoPopper";
 
 import EntitiesDropList from "./EntitiesDropList";
 
 import { DropButtonEntityPrefab } from "./types";
 import { useBooleanSetState } from "@/hooks/use-boolean-state";
-import Popover from "@/components/Popover";
+import Popper from "@/components/Popper";
 import { MenuCloseListener } from "@/components/Menus/MenuCloseContext";
 
 export interface EntitiesDropButtonProps {
@@ -28,14 +28,14 @@ const EntitiesDropButton = ({
       <Button variant="primary" ref={anchorEl} onClick={setOpen}>
         {children}
       </Button>
-      <Popover
+      <Popper
         anchorEl={anchorEl.current}
         isOpen={isOpen}
         placement="bottom-start"
         onRequestClose={setClosed}
       >
         {isOpen && <EntitiesDropList entityPrototypes={entityPrototypes} />}
-      </Popover>
+      </Popper>
     </MenuCloseListener>
   );
 };

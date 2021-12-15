@@ -1,7 +1,7 @@
 import * as React from "react";
 import classNames from "classnames";
 
-import AutoPopover from "@/components/AutoPopover";
+import AutoPopper from "@/components/AutoPopper";
 
 import styles from "./Menus.module.css";
 
@@ -23,7 +23,7 @@ const SubMenuItem: React.FC<SubMenuItemProps> = ({
         disabled && styles["menu-item--disabled"]
       )}
     >
-      <AutoPopover placement="right-start" content={content}>
+      <AutoPopper placement="right-start" content={content}>
         <a className={styles["menu-item-content"]}>
           <span className={styles["menu-item-text"]}>{children}</span>
           {secondary && (
@@ -33,7 +33,7 @@ const SubMenuItem: React.FC<SubMenuItemProps> = ({
             <path d="M0,0 l6,6 l-6,6 z" fill="black" strokeWidth={0} />
           </svg>
         </a>
-      </AutoPopover>
+      </AutoPopper>
     </li>
   );
 };

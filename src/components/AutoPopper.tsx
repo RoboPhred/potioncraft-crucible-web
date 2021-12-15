@@ -1,15 +1,15 @@
 import * as React from "react";
 import { Options } from "@popperjs/core";
 
-import Popover from "./Popover";
+import Popper from "./Popper";
 import { MenuCloseListener } from "./Menus/MenuCloseContext";
 
-export interface AutoPopoverProps {
+export interface AutoPopperProps {
   content: JSX.Element;
   placement?: Options["placement"];
 }
 
-const AutoPopover: React.FC<AutoPopoverProps> = ({
+const AutoPopper: React.FC<AutoPopperProps> = ({
   content,
   placement,
   children,
@@ -29,16 +29,16 @@ const AutoPopover: React.FC<AutoPopoverProps> = ({
       <div ref={anchorEl} onClick={onClick}>
         {children}
       </div>
-      <Popover
+      <Popper
         anchorEl={anchorEl.current}
         isOpen={open}
         placement={placement}
         onRequestClose={onClose}
       >
         {open && content}
-      </Popover>
+      </Popper>
     </MenuCloseListener>
   );
 };
 
-export default AutoPopover;
+export default AutoPopper;

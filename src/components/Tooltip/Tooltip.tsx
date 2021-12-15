@@ -5,7 +5,7 @@ import classNames from "classnames";
 import { Options, VirtualElement } from "@popperjs/core";
 import { usePopper } from "react-popper";
 
-export interface PopoverProps {
+export interface PopperProps {
   className?: string;
   anchorEl: Element | VirtualElement | null;
   placement?: Options["placement"];
@@ -14,21 +14,19 @@ export interface PopoverProps {
 
 import styles from "./Tooltip.module.css";
 
-const Tooltip: React.FC<PopoverProps> = ({
+const Tooltip: React.FC<PopperProps> = ({
   className,
   isOpen,
   anchorEl,
   placement = "auto",
   children,
 }) => {
-  const [popoverRef, setPopoverRef] = React.useState<HTMLDivElement | null>(
-    null
-  );
+  const [popperRef, setPopperRef] = React.useState<HTMLDivElement | null>(null);
   const [arrowRef, setArrowRef] = React.useState<HTMLDivElement | null>(null);
 
   const { attributes, styles: popperStyles } = usePopper(
     isOpen ? anchorEl : null,
-    popoverRef,
+    popperRef,
     {
       placement,
       modifiers: [
@@ -54,7 +52,7 @@ const Tooltip: React.FC<PopoverProps> = ({
 
   return createPortal(
     <div
-      ref={setPopoverRef}
+      ref={setPopperRef}
       className={classNames(styles["tooltip"], className)}
       style={popperStyles.popper}
       role="tooltip"

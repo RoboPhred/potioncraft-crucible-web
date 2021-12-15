@@ -13,16 +13,16 @@ import MenuItem from "@/components/Menus/MenuItem";
 import { useMenuCloseContext } from "@/components/Menus/MenuCloseContext";
 import AbstractFileLoadButton from "@/components/AbstractFileLoadButton";
 
-import AutoPopover from "./AutoPopover";
+import AutoPopper from "./AutoPopper";
 import Button from "./Button";
 
 const PackageMenuButton = () => {
   const { t } = useTranslation();
 
   return (
-    <AutoPopover content={<PackageMenu />} placement="bottom-start">
+    <AutoPopper content={<PackageMenu />} placement="bottom-start">
       <Button variant="menu">{t("package.noun_titlecase")}</Button>
-    </AutoPopover>
+    </AutoPopper>
   );
 };
 

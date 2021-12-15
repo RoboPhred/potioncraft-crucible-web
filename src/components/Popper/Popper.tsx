@@ -8,11 +8,11 @@ import { useOutsideMouseEvent } from "@/hooks/use-outside-mouse-event";
 import { useArrayState } from "@/hooks/use-array-state";
 
 import {
-  PopoverChildContextProvider,
-  usePopoverChild,
-} from "./PopoverChildContext";
+  PopperChildContextProvider,
+  usePopperChild,
+} from "./PopperChildContext";
 
-export interface PopoverProps {
+export interface PopperProps {
   anchorEl: Element | VirtualElement | null;
   placement?: Options["placement"];
   isOpen: boolean;
@@ -23,36 +23,34 @@ const noop = () => {
   /*no op*/
 };
 
-const Popover: React.FC<PopoverProps> = ({
+const Popper: React.FC<PopperProps> = ({
   isOpen,
   anchorEl,
   placement = "auto",
   onRequestClose = noop,
   children,
 }) => {
-  const [popoverRef, setPopoverRef] = React.useState<HTMLDivElement | null>(
-    null
-  );
+  const [popperRef, setPopperRef] = React.useState<HTMLDivElement | null>(null);
   const { attributes, styles } = usePopper(
     isOpen ? anchorEl : null,
-    popoverRef,
+    popperRef,
     {
       placement,
     }
   );
 
-  // Register us as a child of a parent popover, if any is present.
-  usePopoverChild(popoverRef);
+  // Register us as a child of a parent popper, if any is present.
+  usePopperChild(popperRef);
 
-  const [popoverChildren, registerPopoverChild, unregisterPopoverChild] =
+  const [popperChildren, registerPopperChild, unregisterPopperChild] =
     useArrayState<HTMLElement>();
 
   // Close when a click happens on the outside.
   // We still want to handle this even if we are a child, as the user
-  // may have clicked on a parent popover which should close us.
+  // may have clicked on a parent popper which should close us.
   const insideRefs = React.useMemo(
-    () => [popoverRef, ...popoverChildren],
-    [popoverChildren, popoverRef]
+    () => [popperRef, ...popperChildren],
+    [popperChildren, popperRef]
   );
   useOutsideMouseEvent(insideRefs, onRequestClose);
 
@@ -61,16 +59,16 @@ const Popover: React.FC<PopoverProps> = ({
   }
 
   return createPortal(
-    <PopoverChildContextProvider
-      registerPopoverChild={registerPopoverChild}
-      unregisterPopoverChild={unregisterPopoverChild}
+    <PopperChildContextProvider
+      registerPopperChild={registerPopperChild}
+      unregisterPopperChild={unregisterPopperChild}
     >
-      <div ref={setPopoverRef} style={styles.popper} {...attributes.popper}>
+      <div ref={setPopperRef} style={styles.popper} {...attributes.popper}>
         {children}
       </div>
-    </PopoverChildContextProvider>,
+    </PopperChildContextProvider>,
     document.body
   );
 };
 
-export default Popover;
+export default Popper;
