@@ -21,6 +21,7 @@ import {
 } from "@/services/package/selectors/package";
 
 import styles from "./PotionBasePage.module.css";
+import { packageResourceSetById } from "@/actions/packages/package-resource-set-byid";
 
 interface PotionBaseRouteParams {
   potionBaseId: string;
@@ -36,6 +37,30 @@ const PotionBasePage: React.FC<RouteComponentProps<PotionBaseRouteParams>> = ({
 
   const potionBase = useSelector((state) =>
     packageIdObjectDataSelector(state, "potionBases", potionBaseId)
+  );
+
+  const tooltipImage = useSelector((state) =>
+    packageIdObjectResourceSelector(
+      state,
+      "potionBases",
+      potionBaseId,
+      "tooltipImage"
+    )
+  );
+
+  const onSetTooltipImage = React.useCallback(
+    (image: Uint8Array, imageName: string) => {
+      dispatch(
+        packageResourceSetById(
+          "potionBases",
+          potionBaseId,
+          "tooltipImage",
+          imageName,
+          image
+        )
+      );
+    },
+    [potionBaseId]
   );
 
   const ingredientListIconResource = useSelector((state) =>
@@ -80,15 +105,6 @@ const PotionBasePage: React.FC<RouteComponentProps<PotionBaseRouteParams>> = ({
       "potionBases",
       potionBaseId,
       "menuButtonLockedImage"
-    )
-  );
-
-  const tooltipImage = useSelector((state) =>
-    packageIdObjectResourceSelector(
-      state,
-      "potionBases",
-      potionBaseId,
-      "tooltipImage"
     )
   );
 
@@ -196,7 +212,7 @@ const PotionBasePage: React.FC<RouteComponentProps<PotionBaseRouteParams>> = ({
                   desiredHeight={125}
                   imageResource={tooltipImage}
                   imageResourceName={potionBase!.tooltipImage ?? null}
-                  onChange={() => {}}
+                  onChange={onSetTooltipImage}
                 />
               </FieldBox>
               <FieldBox label={t("potion_base.recipe_images")}>

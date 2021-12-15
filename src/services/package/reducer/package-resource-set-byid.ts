@@ -4,17 +4,17 @@ import { fpSetByArray } from "@/fp-set";
 import { Encoder } from "@/text-encoding";
 import { stringifyYaml } from "@/services/yaml/api";
 
-import { isPackageDataSetByIdAction } from "@/actions/packages/package-data-set-byid";
+import { isPackageResourceSetByIdAction } from "@/actions/packages/package-resource-set-byid";
 
 import { createPackageReducer } from "../state-utils";
 import { packageDataSelector } from "../selectors/package";
 
 export default createPackageReducer((state, action) => {
-  if (!isPackageDataSetByIdAction(action)) {
+  if (!isPackageResourceSetByIdAction(action)) {
     return state;
   }
 
-  const { sectionKey, id, path, data } = action.payload;
+  const { sectionKey, id, path, resourceName, resource } = action.payload;
 
   if (state.loadingStatus != "loaded") {
     return state;
@@ -34,7 +34,7 @@ export default createPackageReducer((state, action) => {
   const newPackageData = fpSetByArray(
     packageData,
     [sectionKey, index, ...path],
-    data
+    resourceName
   );
   const newPackgeStr = stringifyYaml(newPackageData);
   const newPackageResource = Encoder.encode(newPackgeStr);
@@ -43,6 +43,7 @@ export default createPackageReducer((state, action) => {
     resources: {
       ...state.resources,
       "package.yml": newPackageResource,
+      [resourceName]: resource,
     },
   };
 });

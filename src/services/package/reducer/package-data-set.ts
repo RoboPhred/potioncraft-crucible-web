@@ -23,12 +23,12 @@ export default createPackageReducer((state, action) => {
 
   const newPackageData = fpSetByArray(packageData, path, data);
   const newPackageStr = stringifyYaml(newPackageData);
-  const newResource = Encoder.encode(newPackageStr);
+  const newPackageResource = Encoder.encode(newPackageStr);
   return {
     ...state,
     resources: {
       ...state.resources,
-      ["package.yml"]: newResource,
+      "package.yml": newPackageResource,
     },
   };
 });
