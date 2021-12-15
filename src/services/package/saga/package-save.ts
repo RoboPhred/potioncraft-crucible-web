@@ -1,9 +1,10 @@
 import { SagaIterator } from "redux-saga";
-import { call, select, takeEvery } from "redux-saga/effects";
+import { call, put, select, takeEvery } from "redux-saga/effects";
 import { saveAs } from "file-saver";
 import JSZip from "jszip";
 
 import { ACTION_PACKAGE_SAVE } from "@/actions/packages/package-save";
+import { editorCommit } from "@/actions/editors/commit";
 
 import { packageResourcesSelector } from "../selectors/resources";
 import { packageIdSelector } from "../selectors/package";
@@ -17,6 +18,8 @@ function* savePackage() {
   if (!packageId) {
     return;
   }
+
+  yield put(editorCommit());
 
   const zipData: Uint8Array = yield call(buildZip);
   try {

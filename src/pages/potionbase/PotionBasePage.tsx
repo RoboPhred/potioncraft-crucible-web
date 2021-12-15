@@ -25,9 +25,43 @@ import {
 
 import styles from "./PotionBasePage.module.css";
 import { packageResourceSetById } from "@/actions/packages/package-resource-set-byid";
+import { CruciblePackage } from "@/services/package/types";
+import { ItemOf } from "@/arrays";
 
 interface PotionBaseRouteParams {
   potionBaseId: string;
+}
+
+function usePotionBaseResource(
+  potionBaseId: string,
+  resourceKey: keyof ItemOf<CruciblePackage["potionBases"]>
+): [Uint8Array, (image: Uint8Array, imageName: string) => void] {
+  const dispatch = useDispatch();
+  return [
+    useSelector(
+      (state) =>
+        packageIdObjectResourceSelector(
+          state,
+          "potionBases",
+          potionBaseId,
+          resourceKey
+        ) as any
+    ),
+    React.useCallback(
+      (image: Uint8Array, imageName: string) => {
+        dispatch(
+          packageResourceSetById(
+            "potionBases",
+            potionBaseId,
+            resourceKey,
+            `${potionBaseId}/${resourceKey}.${extname(imageName)}`,
+            image
+          )
+        );
+      },
+      [potionBaseId]
+    ),
+  ];
 }
 
 const PotionBasePage: React.FC<RouteComponentProps<PotionBaseRouteParams>> = ({
@@ -42,100 +76,38 @@ const PotionBasePage: React.FC<RouteComponentProps<PotionBaseRouteParams>> = ({
     packageIdObjectDataSelector(state, "potionBases", potionBaseId)
   );
 
-  const tooltipImage = useSelector((state) =>
-    packageIdObjectResourceSelector(
-      state,
-      "potionBases",
-      potionBaseId,
-      "tooltipImage"
-    )
+  const [tooltipImage, onSetTooltipImage] = usePotionBaseResource(
+    potionBaseId,
+    "tooltipImage"
   );
 
-  const onSetTooltipImage = React.useCallback(
-    (image: Uint8Array, imageName: string) => {
-      dispatch(
-        packageResourceSetById(
-          "potionBases",
-          potionBaseId,
-          "tooltipImage",
-          `${potionBaseId}/tooltip.${extname(imageName)}`,
-          image
-        )
-      );
-    },
-    [potionBaseId]
+  const [ingredientListIcon, onSetIngredientListIcon] = usePotionBaseResource(
+    potionBaseId,
+    "ingredientListIcon"
   );
 
-  const ingredientListIconResource = useSelector((state) =>
-    packageIdObjectResourceSelector(
-      state,
-      "potionBases",
-      potionBaseId,
-      "ingredientListIcon"
-    )
+  const [menuButtonImage, onSetMenuButtonImage] = usePotionBaseResource(
+    potionBaseId,
+    "menuButtonImage"
   );
+  const [menuButtonHoverImage, onSetMenuButtonHoverImage] =
+    usePotionBaseResource(potionBaseId, "menuButtonHoverImage");
+  const [menuButtonSelectedImage, onSetMenuButtonSelectedImage] =
+    usePotionBaseResource(potionBaseId, "menuButtonSelectedImage");
+  const [menuButtonLockedImage, onSetMenuButtonLockedImage] =
+    usePotionBaseResource(potionBaseId, "menuButtonLockedImage");
 
-  const menuButtonImage = useSelector((state) =>
-    packageIdObjectResourceSelector(
-      state,
-      "potionBases",
-      potionBaseId,
-      "menuButtonImage"
-    )
+  const [ladleImage, onSetLadleImage] = usePotionBaseResource(
+    potionBaseId,
+    "ladleImage"
   );
-
-  const menuButtonHoverImage = useSelector((state) =>
-    packageIdObjectResourceSelector(
-      state,
-      "potionBases",
-      potionBaseId,
-      "menuButtonHoverImage"
-    )
+  const [recipeStepImage, onSetRecipeStepImage] = usePotionBaseResource(
+    potionBaseId,
+    "recipeStepImage"
   );
-
-  const menuButtonSelectedImage = useSelector((state) =>
-    packageIdObjectResourceSelector(
-      state,
-      "potionBases",
-      potionBaseId,
-      "menuButtonSelectedImage"
-    )
-  );
-
-  const menuButtonLockedImage = useSelector((state) =>
-    packageIdObjectResourceSelector(
-      state,
-      "potionBases",
-      potionBaseId,
-      "menuButtonLockedImage"
-    )
-  );
-
-  const ladleImage = useSelector((state) =>
-    packageIdObjectResourceSelector(
-      state,
-      "potionBases",
-      potionBaseId,
-      "ladleImage"
-    )
-  );
-
-  const recipeStepImageResource = useSelector((state) =>
-    packageIdObjectResourceSelector(
-      state,
-      "potionBases",
-      potionBaseId,
-      "recipeStepImage"
-    )
-  );
-
-  const mapOriginImage = useSelector((state) =>
-    packageIdObjectResourceSelector(
-      state,
-      "potionBases",
-      potionBaseId,
-      "mapOriginImage"
-    )
+  const [mapOriginImage, onSetMapOriginImage] = usePotionBaseResource(
+    potionBaseId,
+    "mapOriginImage"
   );
 
   const onSetName = React.useCallback((name: string) => {
@@ -233,22 +205,22 @@ const PotionBasePage: React.FC<RouteComponentProps<PotionBaseRouteParams>> = ({
                         <ImageField
                           desiredWidth={50}
                           desiredHeight={50}
-                          imageResource={ingredientListIconResource}
+                          imageResource={ingredientListIcon}
                           imageResourceName={
                             potionBase!.ingredientListIcon ?? null
                           }
-                          onChange={() => {}}
+                          onChange={onSetIngredientListIcon}
                         />
                       </td>
                       <td>
                         <ImageField
                           desiredWidth={50}
                           desiredHeight={50}
-                          imageResource={recipeStepImageResource}
+                          imageResource={recipeStepImage}
                           imageResourceName={
                             potionBase!.recipeStepImage ?? null
                           }
-                          onChange={() => {}}
+                          onChange={onSetRecipeStepImage}
                         />
                       </td>
                     </tr>
@@ -275,7 +247,7 @@ const PotionBasePage: React.FC<RouteComponentProps<PotionBaseRouteParams>> = ({
                           imageResourceName={
                             potionBase!.menuButtonImage ?? null
                           }
-                          onChange={() => {}}
+                          onChange={onSetMenuButtonImage}
                         />
                       </td>
                       <td>
@@ -286,7 +258,7 @@ const PotionBasePage: React.FC<RouteComponentProps<PotionBaseRouteParams>> = ({
                           imageResourceName={
                             potionBase!.menuButtonSelectedImage ?? null
                           }
-                          onChange={() => {}}
+                          onChange={onSetMenuButtonSelectedImage}
                         />
                       </td>
                       <td>
@@ -297,7 +269,7 @@ const PotionBasePage: React.FC<RouteComponentProps<PotionBaseRouteParams>> = ({
                           imageResourceName={
                             potionBase!.menuButtonHoverImage ?? null
                           }
-                          onChange={() => {}}
+                          onChange={onSetMenuButtonHoverImage}
                         />
                       </td>
                       <td>
@@ -308,7 +280,7 @@ const PotionBasePage: React.FC<RouteComponentProps<PotionBaseRouteParams>> = ({
                           imageResourceName={
                             potionBase!.menuButtonLockedImage ?? null
                           }
-                          onChange={() => {}}
+                          onChange={onSetMenuButtonLockedImage}
                         />
                       </td>
                     </tr>
@@ -323,7 +295,7 @@ const PotionBasePage: React.FC<RouteComponentProps<PotionBaseRouteParams>> = ({
                   desiredHeight={60}
                   imageResource={ladleImage}
                   imageResourceName={potionBase!.ladleImage ?? null}
-                  onChange={() => {}}
+                  onChange={onSetLadleImage}
                 />
               </div>
               <div>
@@ -333,7 +305,7 @@ const PotionBasePage: React.FC<RouteComponentProps<PotionBaseRouteParams>> = ({
                   desiredHeight={50}
                   imageResource={mapOriginImage}
                   imageResourceName={potionBase!.mapOriginImage ?? null}
-                  onChange={() => {}}
+                  onChange={onSetMapOriginImage}
                 />
               </div>
               <Link to={`/potion-bases/${potionBaseId}/map-editor`}>
