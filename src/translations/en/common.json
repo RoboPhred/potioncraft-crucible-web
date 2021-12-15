@@ -13,9 +13,14 @@
   "potion_base": {
     "noun_titlecase": "Potion Base",
     "noun_titlecase_plural": "Potion Bases",
+    "not_found": "Potion Base not found",
     "name": "Name",
     "description": "Description",
-    "not_found": "Potion Base not found",
+    "description_image": "Description Image",
+    "recipe_images": "Recipe Images",
+    "ingredient_icon": "Ingredient Icon",
+    "recipe_icon": "Recipe Icon",
+    "menu_icons": "Menu Icons",
     "new": "New Potion Base",
     "unlock_on_start": "Unlocked on Start",
     "edit_map": "Edit Map"

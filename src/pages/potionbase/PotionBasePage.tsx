@@ -11,8 +11,9 @@ import { packageDataSetById } from "@/actions/packages/package-data-set-byid";
 import Window from "@/components/Window";
 import EnsurePackageLoaded from "@/components/EnsurePackageLoaded";
 import HorizontalPageFlow from "@/components/HorizontalPageFlow";
-import CommitTextBox from "@/components/CommitTextBox";
-import ImageChooser from "@/components/ImageChooser";
+import CommitTextEditor from "@/components/CommitTextEditor";
+import ImageField from "@/components/ImageField";
+import FieldBox from "@/components/FieldBox";
 
 import {
   packageIdObjectDataSelector,
@@ -169,7 +170,7 @@ const PotionBasePage: React.FC<RouteComponentProps<PotionBaseRouteParams>> = ({
             <div className={styles["potionbase-editor-content"]}>
               <div>
                 {t("potion_base.name")}:
-                <CommitTextBox
+                <CommitTextEditor
                   value={potionBase.name ?? ""}
                   onCommit={onSetName}
                 />
@@ -184,118 +185,120 @@ const PotionBasePage: React.FC<RouteComponentProps<PotionBaseRouteParams>> = ({
               </div>
               <div>
                 {t("potion_base.description")}:
-                <CommitTextBox
+                <CommitTextEditor
                   value={potionBase.description ?? ""}
                   onCommit={onSetDescription}
                 />
               </div>
-              <div>
-                Description Image:
-                <ImageChooser
+              <FieldBox label={t("potion_base.description_image")}>
+                <ImageField
                   desiredWidth={350}
                   desiredHeight={125}
                   imageResource={tooltipImage}
                   imageResourceName={potionBase!.tooltipImage ?? null}
                   onChange={() => {}}
                 />
-              </div>
-              <table>
-                <thead>
-                  <tr>
-                    <th colSpan={2}>Recipes</th>
-                  </tr>
-                  <tr>
-                    <th>Ingredient List</th>
-                    <th>Recipe Step</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>
-                      <ImageChooser
-                        desiredWidth={50}
-                        desiredHeight={50}
-                        imageResource={ingredientListIconResource}
-                        imageResourceName={
-                          potionBase!.ingredientListIcon ?? null
-                        }
-                        onChange={() => {}}
-                      />
-                    </td>
-                    <td>
-                      <ImageChooser
-                        desiredWidth={50}
-                        desiredHeight={50}
-                        imageResource={recipeStepImageResource}
-                        imageResourceName={potionBase!.recipeStepImage ?? null}
-                        onChange={() => {}}
-                      />
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-              <table>
-                <thead>
-                  <tr>
-                    <th colSpan={4}>Menu Button</th>
-                  </tr>
-                  <tr>
-                    <th>Menu</th>
-                    <th>Selected</th>
-                    <th>Hover</th>
-                    <th>Locked</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>
-                      <ImageChooser
-                        desiredWidth={65}
-                        desiredHeight={65}
-                        imageResource={menuButtonImage}
-                        imageResourceName={potionBase!.menuButtonImage ?? null}
-                        onChange={() => {}}
-                      />
-                    </td>
-                    <td>
-                      <ImageChooser
-                        desiredWidth={65}
-                        desiredHeight={65}
-                        imageResource={menuButtonSelectedImage}
-                        imageResourceName={
-                          potionBase!.menuButtonSelectedImage ?? null
-                        }
-                        onChange={() => {}}
-                      />
-                    </td>
-                    <td>
-                      <ImageChooser
-                        desiredWidth={65}
-                        desiredHeight={65}
-                        imageResource={menuButtonHoverImage}
-                        imageResourceName={
-                          potionBase!.menuButtonHoverImage ?? null
-                        }
-                        onChange={() => {}}
-                      />
-                    </td>
-                    <td>
-                      <ImageChooser
-                        desiredWidth={65}
-                        desiredHeight={65}
-                        imageResource={menuButtonLockedImage}
-                        imageResourceName={
-                          potionBase!.menuButtonLockedImage ?? null
-                        }
-                        onChange={() => {}}
-                      />
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+              </FieldBox>
+              <FieldBox label={t("potion_base.recipe_images")}>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Ingredient Icon</th>
+                      <th>Recipe Icon</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <ImageField
+                          desiredWidth={50}
+                          desiredHeight={50}
+                          imageResource={ingredientListIconResource}
+                          imageResourceName={
+                            potionBase!.ingredientListIcon ?? null
+                          }
+                          onChange={() => {}}
+                        />
+                      </td>
+                      <td>
+                        <ImageField
+                          desiredWidth={50}
+                          desiredHeight={50}
+                          imageResource={recipeStepImageResource}
+                          imageResourceName={
+                            potionBase!.recipeStepImage ?? null
+                          }
+                          onChange={() => {}}
+                        />
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </FieldBox>
+              <FieldBox label={t("potion_base.menu_icons")}>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Menu</th>
+                      <th>Selected</th>
+                      <th>Hover</th>
+                      <th>Locked</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <ImageField
+                          desiredWidth={65}
+                          desiredHeight={65}
+                          imageResource={menuButtonImage}
+                          imageResourceName={
+                            potionBase!.menuButtonImage ?? null
+                          }
+                          onChange={() => {}}
+                        />
+                      </td>
+                      <td>
+                        <ImageField
+                          desiredWidth={65}
+                          desiredHeight={65}
+                          imageResource={menuButtonSelectedImage}
+                          imageResourceName={
+                            potionBase!.menuButtonSelectedImage ?? null
+                          }
+                          onChange={() => {}}
+                        />
+                      </td>
+                      <td>
+                        <ImageField
+                          desiredWidth={65}
+                          desiredHeight={65}
+                          imageResource={menuButtonHoverImage}
+                          imageResourceName={
+                            potionBase!.menuButtonHoverImage ?? null
+                          }
+                          onChange={() => {}}
+                        />
+                      </td>
+                      <td>
+                        <ImageField
+                          desiredWidth={65}
+                          desiredHeight={65}
+                          imageResource={menuButtonLockedImage}
+                          imageResourceName={
+                            potionBase!.menuButtonLockedImage ?? null
+                          }
+                          onChange={() => {}}
+                        />
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </FieldBox>
+
               <div>
                 Ladle icon:
-                <ImageChooser
+                <ImageField
                   desiredWidth={60}
                   desiredHeight={60}
                   imageResource={ladleImage}
@@ -305,7 +308,7 @@ const PotionBasePage: React.FC<RouteComponentProps<PotionBaseRouteParams>> = ({
               </div>
               <div>
                 Map origin icon:
-                <ImageChooser
+                <ImageField
                   desiredWidth={50}
                   desiredHeight={50}
                   imageResource={mapOriginImage}

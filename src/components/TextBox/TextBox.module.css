@@ -1,0 +1,9 @@
+.textbox {
+  display: inline-block;
+  border-bottom: 1px solid var(--color-darkest);
+}
+
+.textbox-input {
+  border: none;
+  background: none;
+}

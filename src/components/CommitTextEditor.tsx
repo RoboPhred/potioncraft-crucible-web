@@ -1,14 +1,18 @@
 import * as React from "react";
 
+import TextBox from "./TextBox";
+
 export interface CommitTextBoxProps {
   value: string;
-  textArea?: boolean;
+  component?:
+    | React.ComponentType<React.HTMLAttributes<HTMLInputElement>>
+    | React.ComponentType<React.HTMLAttributes<HTMLTextAreaElement>>;
   onCommit: (value: string) => void;
 }
 
-const CommitTextBox: React.FC<CommitTextBoxProps> = ({
+const CommitTextEditor: React.FC<CommitTextBoxProps> = ({
   value,
-  textArea = false,
+  component: Component = TextBox,
   onCommit,
 }) => {
   const [editingValue, setEditingValue] = React.useState<string | null>(null);
@@ -23,11 +27,7 @@ const CommitTextBox: React.FC<CommitTextBoxProps> = ({
       }
     },
   } as const;
-  if (textArea) {
-    return <textarea {...props} />;
-  } else {
-    return <input type="text" {...props} />;
-  }
+  return <Component {...(props as any)} />;
 };
 
-export default CommitTextBox;
+export default CommitTextEditor;

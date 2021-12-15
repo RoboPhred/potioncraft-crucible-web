@@ -1,5 +1,4 @@
 import * as React from "react";
-import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 
@@ -9,7 +8,8 @@ import { packageDataSelector } from "@/services/package/selectors/package";
 
 import Window from "@/components/Window";
 import HorizontalPageFlow from "@/components/HorizontalPageFlow";
-import CommitTextBox from "@/components/CommitTextBox";
+import CommitTextEditor from "@/components/CommitTextEditor";
+import TextArea from "@/components/TextArea";
 
 import { packageDataSet } from "@/actions/packages/package-data-set";
 
@@ -42,7 +42,7 @@ const PackageView = () => {
             <tr>
               <td>{t("package.name")}</td>
               <td>
-                <CommitTextBox
+                <CommitTextEditor
                   value={packageData?.name ?? ""}
                   onCommit={onSetPackageName}
                 />
@@ -51,7 +51,7 @@ const PackageView = () => {
             <tr>
               <td>{t("package.author")}</td>
               <td>
-                <CommitTextBox
+                <CommitTextEditor
                   value={packageData?.author ?? ""}
                   onCommit={onSetPackageAuthor}
                 />
@@ -60,8 +60,8 @@ const PackageView = () => {
             <tr>
               <td>{t("package.description")}</td>
               <td>
-                <CommitTextBox
-                  textArea
+                <CommitTextEditor
+                  component={TextArea}
                   value={packageData?.description ?? ""}
                   onCommit={onSetPackageDescription}
                 />
