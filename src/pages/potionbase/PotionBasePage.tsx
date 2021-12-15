@@ -4,6 +4,8 @@ import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
+import { extname } from "@/paths";
+
 import { useSelector } from "@/hooks/use-selector";
 
 import { packageDataSetById } from "@/actions/packages/package-data-set-byid";
@@ -55,7 +57,7 @@ const PotionBasePage: React.FC<RouteComponentProps<PotionBaseRouteParams>> = ({
           "potionBases",
           potionBaseId,
           "tooltipImage",
-          imageName,
+          `${potionBaseId}/tooltip.${extname(imageName)}`,
           image
         )
       );
@@ -209,7 +211,7 @@ const PotionBasePage: React.FC<RouteComponentProps<PotionBaseRouteParams>> = ({
               <FieldBox label={t("potion_base.description_image")}>
                 <ImageField
                   desiredWidth={350}
-                  desiredHeight={125}
+                  desiredHeight={350}
                   imageResource={tooltipImage}
                   imageResourceName={potionBase!.tooltipImage ?? null}
                   onChange={onSetTooltipImage}

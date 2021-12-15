@@ -1,13 +1,14 @@
 import * as React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFileUpload } from "@fortawesome/free-solid-svg-icons";
+import classNames from "classnames";
 
 import { extname } from "@/paths";
 
-import { useBooleanSetState } from "@/hooks/use-boolean-state";
-
 import Button from "../Button";
 import AbstractFileLoadButton from "../AbstractFileLoadButton";
+
+import styles from "./ImageField.module.css";
 
 export interface ImageFieldProps {
   imageResource: Uint8Array | null;
@@ -53,36 +54,33 @@ const ImageField = ({
 
   return (
     <div
+      className={classNames(
+        styles["imagefield"],
+        imageUrl && styles["imagefield--has-image"]
+      )}
       style={{
-        width: `${desiredWidth}px`,
-        height: `${desiredHeight}px`,
-        overflow: "hidden",
+        minWidth: `${desiredWidth}px`,
+        minHeight: `${desiredHeight}px`,
       }}
     >
-      {!imageUrl && (
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-around",
-            width: "100%",
-            height: "100%",
-          }}
+      <div className={styles["imagefield-upload"]}>
+        <AbstractFileLoadButton
+          accept="image/*"
+          onFileLoaded={onFileLoaded}
+          disabled={isLoading}
         >
-          <AbstractFileLoadButton
-            accept="image/*"
-            onFileLoaded={onFileLoaded}
-            disabled={isLoading}
-          >
-            {(props) => (
-              <Button {...props}>
-                <FontAwesomeIcon icon={faFileUpload} />
-              </Button>
-            )}
-          </AbstractFileLoadButton>
+          {(props) => (
+            <Button {...props}>
+              <FontAwesomeIcon icon={faFileUpload} />
+            </Button>
+          )}
+        </AbstractFileLoadButton>
+      </div>
+      {imageUrl && (
+        <div className={styles["imagefield-image-container"]}>
+          <img src={imageUrl} />
         </div>
       )}
-      {imageUrl && <img src={imageUrl} />}
     </div>
   );
 };

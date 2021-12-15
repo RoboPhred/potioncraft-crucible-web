@@ -1,0 +1,30 @@
+.imagefield {
+  display: inline-block;
+  position: relative;
+  display: table;
+}
+
+.imagefield.imagefield--has-image > .imagefield-upload {
+  visibility: collapse;
+}
+
+.imagefield:not(.imagefield--has-image) > .imagefield-upload,
+.imagefield.imagefield--has-image:hover > .imagefield-upload {
+  visibility: visible;
+}
+
+.imagefield-upload {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.imagefield-image-container {
+  display: table-cell;
+  text-align: center;
+}
