@@ -6,4 +6,5 @@
 .textbox-input {
   border: none;
   background: none;
+  color: var(--color-ui-light-text);
 }

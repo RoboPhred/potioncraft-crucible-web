@@ -12,10 +12,12 @@ export type TextAreaProps = Omit<
 >;
 
 const TextArea = (props: TextAreaProps) => (
-  <TextAreaAutosize
-    {...props}
-    className={classNames(styles["textarea-input"], props.className)}
-  />
+  <div className={styles["textarea"]}>
+    <TextAreaAutosize
+      {...props}
+      className={classNames(styles["textarea-input"], props.className)}
+    />
+  </div>
 );
 
 export default TextArea;
