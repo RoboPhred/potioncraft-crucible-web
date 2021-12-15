@@ -57,6 +57,7 @@
 .button--variant-default {
   background: var(--color-ui-primary-bg);
   border: 1px solid var(--color-ui-surface-border);
+  color: var(--color-ui-light-text);
 }
 .button--variant-default:hover {
   background: var(--color-ui-primary-bg-hover);
@@ -67,9 +68,11 @@
 
 .button--variant-text {
   background: none;
+  color: var(--color-ui-light-text);
 }
 
 .button--variant-menu {
   background: none;
+  color: var(--color-ui-light-text);
   padding: 7px 7px;
 }

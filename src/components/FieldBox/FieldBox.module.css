@@ -1,7 +1,7 @@
 .fieldbox {
   display: inline-block;
   border-width: 0 2px 2px 2px;
-  border-color: var(--color-darkest);
+  border-color: var(--color-darker);
   border-style: solid;
   position: relative;
   margin-top: 10px; /* FIXME: Probably based on fieldbox-label top, which is based on font size. */
@@ -32,7 +32,7 @@
 .fieldbox-label:after {
   content: " ";
   height: 2px;
-  background: var(--color-darkest);
+  background: var(--color-darker);
   display: block;
 }
 

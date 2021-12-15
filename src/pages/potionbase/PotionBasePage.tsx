@@ -15,6 +15,7 @@ import EnsurePackageLoaded from "@/components/EnsurePackageLoaded";
 import HorizontalPageFlow from "@/components/HorizontalPageFlow";
 import CommitTextEditor from "@/components/CommitTextEditor";
 import ImageField from "@/components/ImageField";
+import TextArea from "@/components/TextArea";
 import FieldBox from "@/components/FieldBox";
 
 import {
@@ -204,6 +205,7 @@ const PotionBasePage: React.FC<RouteComponentProps<PotionBaseRouteParams>> = ({
               <div>
                 {t("potion_base.description")}:
                 <CommitTextEditor
+                  component={TextArea}
                   value={potionBase.description ?? ""}
                   onCommit={onSetDescription}
                 />

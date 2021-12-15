@@ -65,11 +65,7 @@ const Popover: React.FC<PopoverProps> = ({
       registerPopoverChild={registerPopoverChild}
       unregisterPopoverChild={unregisterPopoverChild}
     >
-      <div
-        ref={setPopoverRef}
-        style={{ ...styles.popper, zIndex: 10 }}
-        {...attributes.popper}
-      >
+      <div ref={setPopoverRef} style={styles.popper} {...attributes.popper}>
         {children}
       </div>
     </PopoverChildContextProvider>,

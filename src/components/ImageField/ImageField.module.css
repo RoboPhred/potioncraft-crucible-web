@@ -4,7 +4,7 @@
   display: table;
 }
 
-.imagefield.imagefield--has-image > .imagefield-upload {
+.imagefield-upload {
   visibility: collapse;
 }
 
@@ -26,5 +26,6 @@
 
 .imagefield-image-container {
   display: table-cell;
+  vertical-align: middle;
   text-align: center;
 }
