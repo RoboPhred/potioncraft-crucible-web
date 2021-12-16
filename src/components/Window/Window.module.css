@@ -2,7 +2,7 @@
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  background: var(--color-ui-light-bg);
+  background: url("@/assets/papertile2.png") var(--color-lighter);
   color: var(--color-ui-light-text);
 }
 

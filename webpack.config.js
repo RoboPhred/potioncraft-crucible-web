@@ -16,7 +16,7 @@ const PATHS = {
   changelog: path.resolve(root, "./CHANGELOG.md"),
 };
 
-const PUBLIC_URL_PATH = "/potioncraft-mapmixer-web/";
+const PUBLIC_URL_PATH = "/potioncraft-crucible-web/";
 
 console.log("Webpack build", isDev ? "[development]" : "[production]");
 
@@ -74,7 +74,6 @@ module.exports = {
       // css files with the modular option.
       {
         test: /\.module\.css$/,
-        exclude: /node_modules/,
         use: [
           { loader: MiniCssExtractPlugin.loader },
           {
@@ -93,7 +92,8 @@ module.exports = {
 
       // Any css that is not .module.css
       {
-        test: /^(?!.*[.]module\.css$).*(\.css)$/,
+        test: /\.css$/,
+        exclude: /\.module\.css$/,
         use: [
           { loader: MiniCssExtractPlugin.loader },
           {
@@ -107,31 +107,16 @@ module.exports = {
 
       {
         test: /\.(woff|woff2)$/,
-        use: {
-          loader: "url-loader",
-          options: {
-            name: "fonts/[hash].[ext]",
-            limit: 5000,
-            mimetype: "application/font-woff",
-          },
-        },
+        type: "asset/inline",
       },
       {
         test: /\.(ttf|eot)$/,
-        use: {
-          loader: "file-loader",
-          options: {
-            name: "fonts/[hash].[ext]",
-          },
-        },
+        type: "asset/resource",
       },
 
       {
-        test: /\.png|\.webp/,
-        loader: "file-loader",
-        options: {
-          name: "images/[hash].[ext]",
-        },
+        test: /\.(png|webp)$/,
+        type: "asset/resource",
       },
 
       {

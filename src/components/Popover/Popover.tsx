@@ -6,9 +6,6 @@ import { FocusOn, AutoFocusInside } from "react-focus-on";
 
 import styles from "./Popover.module.css";
 
-console.log("what the fuck");
-console.log("styles for popover", styles);
-
 export interface PopoverProps {
   placement: "center-screen";
   isOpen: boolean;

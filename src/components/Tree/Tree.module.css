@@ -2,11 +2,9 @@
   margin: 0;
   padding: 0;
   list-style: none;
-  background: var(--color-ui-light-bg);
 }
 
 .tree-item {
-  background: var(--color-ui-light-bg);
   box-sizing: border-box;
   cursor: default;
 }
@@ -21,15 +19,15 @@
 }
 
 .tree-item-content:hover {
-  background-color: var(--color-ui-light-hover);
+  box-shadow: inset 0 0 5px var(--color-darkest);
 }
 
 .tree-item-content--selected {
-  background-color: var(--color-ui-light-selected);
+  box-shadow: inset 0 0 10px var(--color-darkest);
 }
 
 .tree-item-content--selected:hover {
-  background-color: var(--color-ui-light-selected-hover);
+  box-shadow: inset 0 0 15px var(--color-darkest);
 }
 
 .tree-item-children {

@@ -14,26 +14,22 @@
 }
 
 .button.disabled {
-  background: var(--color-ui-surface-bg-disabled);
-  color: var(--color-ui-surface-text-disabled);
+  color: var(--color-ui-light-text-disabled);
   cursor: not-allowed;
 }
 
 .button:hover {
-  background: var(--color-ui-surface-hover);
+  box-shadow: inset 0 0 5px var(--color-darkest);
 }
 
 .button.disabled:hover {
-  background: var(--color-ui-surface-bg-disabled);
+  box-shadow: none;
 }
 
 .button:focus {
   border: none;
-  background: var(--color-ui-surface-hover);
-}
-
-.button.disabled:focus {
-  background: var(--color-ui-surface-bg-disabled);
+  outline: none;
+  box-shadow: inset 0 0 10px var(--color-darkest);
 }
 
 .button--size-small {
@@ -44,26 +40,25 @@
   background: var(--color-ui-dark-bg);
   color: var(--color-ui-dark-text);
 }
-
 .button--variant-primary:hover {
-  background: var(--color-ui-dark-hover);
-  color: var(--color-ui-dark-hover-text);
+  box-shadow: inset 0 0 5px var(--color-lightest);
 }
 
 .button--variant-primary:focus {
-  background: var(--color-ui-dark-selected);
+  border: none;
+  box-shadow: inset 0 0 10px var(--color-lightest);
 }
 
 .button--variant-default {
-  background: var(--color-ui-primary-bg);
+  background: url("@/assets/papertile2.png") var(--color-lighter);
   border: 1px solid var(--color-ui-surface-border);
   color: var(--color-ui-light-text);
 }
 .button--variant-default:hover {
-  background: var(--color-ui-primary-bg-hover);
+  box-shadow: inset 0 0 5px var(--color-darkest);
 }
 .button--variant-default:focus {
-  background: var(--color-ui-primary-bg-hover);
+  box-shadow: inset 0 0 10px var(--color-darkest);
 }
 
 .button--variant-text {

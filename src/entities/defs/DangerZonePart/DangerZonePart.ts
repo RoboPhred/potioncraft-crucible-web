@@ -10,11 +10,11 @@ function makeImg(src: string): HTMLImageElement {
 }
 
 const DangerZoneImages: Record<string, HTMLImageElement> = {
-  Bone1: makeImg(require("./Bone1.png").default),
-  Bone2: makeImg(require("./Bone2.png").default),
-  Fang1: makeImg(require("./Fang1.png").default),
-  Fang2: makeImg(require("./Fang2.png").default),
-  Skull1: makeImg(require("./Skull1.png").default),
+  Bone1: makeImg(require("./Bone1.png")),
+  Bone2: makeImg(require("./Bone2.png")),
+  Fang1: makeImg(require("./Fang1.png")),
+  Fang2: makeImg(require("./Fang2.png")),
+  Skull1: makeImg(require("./Skull1.png")),
 };
 
 // TODO: Use bones as mask

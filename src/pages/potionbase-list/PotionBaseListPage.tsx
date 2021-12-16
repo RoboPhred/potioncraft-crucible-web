@@ -28,7 +28,7 @@ const PotionBasesPage = () => {
     setNewPotionId("");
   }, []);
   const onNewPotionBase = React.useCallback(() => {
-    if (newPotionId != null) {
+    if (newPotionId != null && newPotionId.length > 0) {
       dispatch(potionBaseNew(newPotionId));
     }
   }, [newPotionId]);
@@ -64,7 +64,12 @@ const PotionBasesPage = () => {
               />
             </div>
             <div>
-              <Button onClick={onNewPotionBase}>Create potion base</Button>
+              <Button
+                disabled={newPotionId == null || newPotionId == ""}
+                onClick={onNewPotionBase}
+              >
+                Create potion base
+              </Button>
             </div>
           </Modal>
         </Window>
