@@ -11,6 +11,7 @@ import AbstractFileLoadButton from "../AbstractFileLoadButton";
 import styles from "./ImageField.module.css";
 
 export interface ImageFieldProps {
+  className?: string;
   imageResource: Uint8Array | null;
   imageResourceName: string | null;
   desiredWidth: number;
@@ -19,6 +20,7 @@ export interface ImageFieldProps {
 }
 
 const ImageField = ({
+  className,
   imageResource,
   imageResourceName,
   desiredWidth,
@@ -56,12 +58,9 @@ const ImageField = ({
     <div
       className={classNames(
         styles["imagefield"],
-        imageUrl && styles["imagefield--has-image"]
+        imageUrl && styles["imagefield--has-image"],
+        className
       )}
-      style={{
-        minWidth: `${desiredWidth}px`,
-        minHeight: `${desiredHeight}px`,
-      }}
     >
       <div className={styles["imagefield-upload"]}>
         <AbstractFileLoadButton

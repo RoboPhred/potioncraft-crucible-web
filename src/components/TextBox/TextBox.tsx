@@ -9,9 +9,11 @@ export type TextBoxProps = Omit<
 >;
 
 const TextBox = (props: TextBoxProps) => (
-  <div className={classNames(styles["textbox"], props.className)}>
-    <input {...props} className={styles["textbox-input"]} type="text" />
-  </div>
+  <input
+    {...props}
+    className={classNames(styles["textbox-input"], props.className)}
+    type="text"
+  />
 );
 
 export default TextBox;

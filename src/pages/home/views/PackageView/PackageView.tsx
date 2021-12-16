@@ -8,8 +8,8 @@ import { packageDataSelector } from "@/services/package/selectors/package";
 
 import Window from "@/components/Window";
 import HorizontalPageFlow from "@/components/HorizontalPageFlow";
-import CommitTextEditor from "@/components/CommitTextEditor";
-import TextArea from "@/components/TextArea";
+import CommitTextBox from "@/components/CommitTextBox";
+import CommitTextArea from "@/components/CommitTextArea";
 
 import { packageDataSet } from "@/actions/packages/package-data-set";
 
@@ -42,7 +42,7 @@ const PackageView = () => {
             <tr>
               <td>{t("package.name")}</td>
               <td>
-                <CommitTextEditor
+                <CommitTextBox
                   value={packageData?.name ?? ""}
                   onCommit={onSetPackageName}
                 />
@@ -51,7 +51,7 @@ const PackageView = () => {
             <tr>
               <td>{t("package.author")}</td>
               <td>
-                <CommitTextEditor
+                <CommitTextBox
                   value={packageData?.author ?? ""}
                   onCommit={onSetPackageAuthor}
                 />
@@ -60,8 +60,7 @@ const PackageView = () => {
             <tr>
               <td>{t("package.description")}</td>
               <td>
-                <CommitTextEditor
-                  component={TextArea}
+                <CommitTextArea
                   value={packageData?.description ?? ""}
                   onCommit={onSetPackageDescription}
                 />

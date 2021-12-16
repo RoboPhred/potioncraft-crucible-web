@@ -1,7 +1,8 @@
 .imagefield {
   display: inline-block;
   position: relative;
-  display: table;
+  min-width: 50px;
+  min-height: 50px;
 }
 
 .imagefield-upload {
@@ -25,7 +26,7 @@
 }
 
 .imagefield-image-container {
-  display: table-cell;
-  vertical-align: middle;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

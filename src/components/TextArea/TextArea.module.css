@@ -1,11 +1,66 @@
 .textarea {
   display: inline-block;
-  border: 2px dashed var(--color-darker);
+  border-width: 2px 0;
+  border-style: solid;
+  border-color: var(--color-darker);
+  position: relative;
+}
+
+.textarea-edge-left:before,
+.textarea-edge-right:before,
+.textarea-edge-left:after,
+.textarea-edge-right:after {
+  content: " ";
+  width: 2px;
+  background: var(--color-darker);
+  display: block;
+  height: 25px;
+}
+
+.textarea-edge-left,
+.textarea-edge-right {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.textarea-edge-left:before,
+.textarea-edge-right:before {
+  margin-bottom: auto;
+}
+
+.textarea-edge-left:after,
+.textarea-edge-right:after {
+  margin-top: auto;
+}
+
+.textarea-edge-left {
+  left: 0;
+}
+
+.textarea-edge-right {
+  right: 0;
+}
+
+.textarea-wrapper {
+  width: 100%;
+  padding: 4px;
+  box-sizing: border-box;
 }
 
 .textarea-input {
+  padding: 0;
+  box-sizing: border-box;
+  width: 100%;
   resize: none;
   border: none;
   background: none;
   color: var(--color-ui-light-text);
+}
+
+.textarea-input:focus {
+  outline: none;
 }

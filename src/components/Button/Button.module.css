@@ -4,13 +4,7 @@
   cursor: pointer;
   margin: 2px;
   user-select: none;
-
-  /*
-  Default size and variant
-    These are specified here and not in their -default classNames
-    as variants need to override them
-  */
-  padding: 7px 10px;
+  background: none;
 }
 
 .button.disabled {
@@ -39,6 +33,7 @@
 .button--variant-primary {
   background: var(--color-ui-dark-bg);
   color: var(--color-ui-dark-text);
+  padding: 7px 10px;
 }
 .button--variant-primary:hover {
   box-shadow: inset 0 0 5px var(--color-lightest);
@@ -53,6 +48,7 @@
   background: url("@/assets/papertile2.png") var(--color-lighter);
   border: 1px solid var(--color-ui-surface-border);
   color: var(--color-ui-light-text);
+  padding: 7px 10px;
 }
 .button--variant-default:hover {
   box-shadow: inset 0 0 5px var(--color-darkest);
@@ -62,12 +58,11 @@
 }
 
 .button--variant-text {
-  background: none;
   color: var(--color-ui-light-text);
+  padding: 7px 10px;
 }
 
 .button--variant-menu {
-  background: none;
   color: var(--color-ui-light-text);
   padding: 7px 7px;
 }

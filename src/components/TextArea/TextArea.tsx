@@ -7,16 +7,20 @@ import styles from "./TextArea.module.css";
 
 // TextAreaAutosize does something weird with the style props.
 export type TextAreaProps = Omit<
-  React.HTMLAttributes<HTMLTextAreaElement>,
+  React.TextareaHTMLAttributes<HTMLTextAreaElement>,
   "style"
->;
+> & {
+  minRows?: number;
+  maxRows?: number;
+};
 
 const TextArea = (props: TextAreaProps) => (
-  <div className={styles["textarea"]}>
-    <TextAreaAutosize
-      {...props}
-      className={classNames(styles["textarea-input"], props.className)}
-    />
+  <div className={classNames(styles["textarea"], props.className)}>
+    <span className={styles["textarea-edge-left"]} />
+    <span className={styles["textarea-edge-right"]} />
+    <div className={styles["textarea-wrapper"]}>
+      <TextAreaAutosize {...props} className={styles["textarea-input"]} />
+    </div>
   </div>
 );
 
