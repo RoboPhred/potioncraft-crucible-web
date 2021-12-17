@@ -14,8 +14,6 @@ export interface ImageFieldProps {
   className?: string;
   imageResource: Uint8Array | null;
   imageResourceName: string | null;
-  desiredWidth: number;
-  desiredHeight: number;
   onChange(image: Uint8Array, resourceName: string): void;
 }
 
@@ -23,8 +21,6 @@ const ImageField = ({
   className,
   imageResource,
   imageResourceName,
-  desiredWidth,
-  desiredHeight,
   onChange,
 }: ImageFieldProps) => {
   const [isLoading, setLoading] = React.useState(false);

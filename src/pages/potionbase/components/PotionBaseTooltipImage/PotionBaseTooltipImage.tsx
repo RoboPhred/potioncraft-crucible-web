@@ -18,8 +18,6 @@ const PotionBaseTooltipImage = ({
   return (
     <ImageField
       className={styles["potionbasetooltipimage"]}
-      desiredWidth={350}
-      desiredHeight={350}
       imageResource={tooltipImage}
       imageResourceName={tooltipImageName}
       onChange={onSetTooltipImage}

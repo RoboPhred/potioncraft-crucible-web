@@ -16,6 +16,7 @@
     "not_found": "Potion Base not found",
     "name": "Name",
     "description": "Description",
+    "settings": "Settings",
     "recipe_images": "Recipe Images",
     "ingredient_icon": "Ingredient Icon",
     "recipe_icon": "Recipe Icon",

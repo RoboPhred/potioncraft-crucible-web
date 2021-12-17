@@ -59,6 +59,7 @@ const PotionBasesPage = () => {
             </p>
             <div>
               <TextBox
+                autoFocus
                 value={newPotionId!}
                 onChange={(e) => setNewPotionId(e.target.value)}
               />
@@ -68,7 +69,7 @@ const PotionBasesPage = () => {
                 disabled={newPotionId == null || newPotionId == ""}
                 onClick={onNewPotionBase}
               >
-                Create potion base
+                {t("potion_base.new")}
               </Button>
             </div>
           </Modal>
