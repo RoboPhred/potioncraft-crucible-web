@@ -407,9 +407,9 @@ a:hover {
   color: var(--color-text-link-hover);
 }
 
-.menu--W9WLz {
-  background: #deb47b;
-  background: var(--color-ui-light-bg);
+.menu--TLS_C {
+  background: url(/potioncraft-crucible-web/cc4a0aa96a3e38063c6c.png) #deb47b;
+  background: url(/potioncraft-crucible-web/cc4a0aa96a3e38063c6c.png) var(--color-lighter);
   border: 1px solid #76490d;
   border: 1px solid var(--color-ui-light-border);
   list-style: none;
@@ -419,7 +419,7 @@ a:hover {
   margin: 0;
 }
 
-.menu-item--juzxZ {
+.menu-item--TCx3P {
   padding: 5px 7px;
   margin: 0 2px;
   border-radius: 3px;
@@ -428,50 +428,50 @@ a:hover {
   cursor: pointer;
 }
 
-.menu-item--disabled--_0p3x {
+.menu-item--disabled--scw6v {
   color: #76490d;
   color: var(--color-ui-light-text-disabled);
   cursor: not-allowed;
 }
 
-.menu-item--juzxZ:hover {
-  background-color: #ffe7c7;
-  background-color: var(--color-ui-light-hover);
+.menu-item--TCx3P:hover {
+  box-shadow: inset 0 0 5px #432600;
+  box-shadow: inset 0 0 5px var(--color-darkest);
   text-decoration: none;
 }
 
-.menu-item-content--mA3cH {
+.menu-item-content--oAHNE {
   display: flex;
 }
 
-.menu-item-content--mA3cH,
-.menu-item-content--mA3cH:hover {
+.menu-item-content--oAHNE,
+.menu-item-content--oAHNE:hover {
   color: inherit;
 }
 
-.menu-item-text--aajNI {
+.menu-item-text--ypKRN {
   width: 100%;
   padding-right: 5px;
 }
 
-.menu-item-secondary--YVuq4 {
+.menu-item-secondary--RZxVA {
   margin-left: auto;
   font-size: 0.8em;
   align-self: flex-end;
   padding-right: 5px;
 }
 
-.menu-item-icon--ZXjd0 {
+.menu-item-icon--VLMV_ {
   margin-left: auto;
   align-self: center;
 }
 
-.menu-divider--_Evx2 {
+.menu-divider--B1Pmy {
   border-bottom: 1px solid rgba(0, 0, 0, 20%);
   margin: 5px;
 }
 
-.button--rRkjR {
+.button--AisLs {
   border-radius: 3px;
   border: none;
   cursor: pointer;
@@ -480,108 +480,94 @@ a:hover {
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
-
-  /*
-  Default size and variant
-    These are specified here and not in their -default classNames
-    as variants need to override them
-  */
-  padding: 7px 10px;
+  background: none;
 }
 
-.button--rRkjR.disabled--FkB9N {
-  background: #76490d;
-  background: var(--color-ui-surface-bg-disabled);
-  color: #deb47b;
-  color: var(--color-ui-surface-text-disabled);
+.button--AisLs.disabled--v8v84 {
+  color: #76490d;
+  color: var(--color-ui-light-text-disabled);
   cursor: not-allowed;
 }
 
-.button--rRkjR:hover {
-  background: #ffe7c7;
-  background: var(--color-ui-surface-hover);
+.button--AisLs:hover {
+  box-shadow: inset 0 0 5px #432600;
+  box-shadow: inset 0 0 5px var(--color-darkest);
 }
 
-.button--rRkjR.disabled--FkB9N:hover {
-  background: #76490d;
-  background: var(--color-ui-surface-bg-disabled);
+.button--AisLs.disabled--v8v84:hover {
+  box-shadow: none;
 }
 
-.button--rRkjR:focus {
+.button--AisLs:focus {
   border: none;
-  background: #ffe7c7;
-  background: var(--color-ui-surface-hover);
+  outline: none;
+  box-shadow: inset 0 0 10px #432600;
+  box-shadow: inset 0 0 10px var(--color-darkest);
 }
 
-.button--rRkjR.disabled--FkB9N:focus {
-  background: #76490d;
-  background: var(--color-ui-surface-bg-disabled);
-}
-
-.button--size-small--tjZi7 {
+.button--size-small--LL1uc {
   padding: 3px 6px;
 }
 
-.button--variant-primary--MU4Xz {
+.button--variant-primary--2NXnj {
   background: #76490d;
   background: var(--color-ui-dark-bg);
   color: #deb47b;
   color: var(--color-ui-dark-text);
+  padding: 7px 10px;
+}
+.button--variant-primary--2NXnj:hover {
+  box-shadow: inset 0 0 5px #ffe7c7;
+  box-shadow: inset 0 0 5px var(--color-lightest);
 }
 
-.button--variant-primary--MU4Xz:hover {
-  background: #aa7939;
-  background: var(--color-ui-dark-hover);
-  color: #432600;
-  color: var(--color-ui-dark-hover-text);
+.button--variant-primary--2NXnj:focus {
+  border: none;
+  box-shadow: inset 0 0 10px #ffe7c7;
+  box-shadow: inset 0 0 10px var(--color-lightest);
 }
 
-.button--variant-primary--MU4Xz:focus {
-  background: #aa7939;
-  background: var(--color-ui-dark-selected);
-}
-
-.button--variant-default--_XEEj {
-  background: #deb47b;
-  background: var(--color-ui-primary-bg);
+.button--variant-default--DXnZG {
+  background: url(/potioncraft-crucible-web/cc4a0aa96a3e38063c6c.png) #deb47b;
+  background: url(/potioncraft-crucible-web/cc4a0aa96a3e38063c6c.png) var(--color-lighter);
   border: 1px solid #432600;
   border: 1px solid var(--color-ui-surface-border);
   color: #432600;
   color: var(--color-ui-light-text);
+  padding: 7px 10px;
 }
-.button--variant-default--_XEEj:hover {
-  background: #ffe7c7;
-  background: var(--color-ui-primary-bg-hover);
+.button--variant-default--DXnZG:hover {
+  box-shadow: inset 0 0 5px #432600;
+  box-shadow: inset 0 0 5px var(--color-darkest);
 }
-.button--variant-default--_XEEj:focus {
-  background: #ffe7c7;
-  background: var(--color-ui-primary-bg-hover);
+.button--variant-default--DXnZG:focus {
+  box-shadow: inset 0 0 10px #432600;
+  box-shadow: inset 0 0 10px var(--color-darkest);
 }
 
-.button--variant-text--q2G_L {
-  background: none;
+.button--variant-text--W2TEX {
   color: #432600;
   color: var(--color-ui-light-text);
+  padding: 7px 10px;
 }
 
-.button--variant-menu--lkzTq {
-  background: none;
+.button--variant-menu--aFzH4 {
   color: #432600;
   color: var(--color-ui-light-text);
   padding: 7px 7px;
 }
 
-.window--iKx_d {
+.window--au46u {
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  background: #deb47b;
-  background: var(--color-ui-light-bg);
+  background: url(/potioncraft-crucible-web/cc4a0aa96a3e38063c6c.png) #deb47b;
+  background: url(/potioncraft-crucible-web/cc4a0aa96a3e38063c6c.png) var(--color-lighter);
   color: #432600;
   color: var(--color-ui-light-text);
 }
 
-.window-titlebar--UTij_ {
+.window-titlebar--_gBjV {
   background: #aa7939;
   background: var(--color-ui-surface-bg);
   display: flex;
@@ -594,7 +580,7 @@ a:hover {
   border-bottom: 1px solid var(--color-ui-surface-border);
 }
 
-.window-title--_jLlL {
+.window-title--Ota8R {
   font-size: 0.9em;
   font-weight: 600;
   cursor: default;
@@ -604,7 +590,7 @@ a:hover {
           user-select: none;
 }
 
-.window-content--ErBuH {
+.window-content--Dr_Y9 {
   width: 100%;
   height: 100%;
   flex-shrink: 1;
@@ -612,22 +598,18 @@ a:hover {
   box-sizing: border-box;
 }
 
-.tree--Dbstt {
+.tree--bfK4V {
   margin: 0;
   padding: 0;
   list-style: none;
-  background: #deb47b;
-  background: var(--color-ui-light-bg);
 }
 
-.tree-item--do7KD {
-  background: #deb47b;
-  background: var(--color-ui-light-bg);
+.tree-item--uHp4J {
   box-sizing: border-box;
   cursor: default;
 }
 
-.tree-item-content--_Ss8C {
+.tree-item-content--P2OzT {
   box-sizing: border-box;
   padding: 3px 10px;
   cursor: inherit;
@@ -639,62 +621,62 @@ a:hover {
   border-bottom-left-radius: 2px;
 }
 
-.tree-item-content--_Ss8C:hover {
-  background-color: #ffe7c7;
-  background-color: var(--color-ui-light-hover);
+.tree-item-content--P2OzT:hover {
+  box-shadow: inset 0 0 5px #432600;
+  box-shadow: inset 0 0 5px var(--color-darkest);
 }
 
-.tree-item-content--selected--oYrAC {
-  background-color: #ffe7c7;
-  background-color: var(--color-ui-light-selected);
+.tree-item-content--selected--NHhZr {
+  box-shadow: inset 0 0 10px #432600;
+  box-shadow: inset 0 0 10px var(--color-darkest);
 }
 
-.tree-item-content--selected--oYrAC:hover {
-  background-color: #ffe7c7;
-  background-color: var(--color-ui-light-selected-hover);
+.tree-item-content--selected--NHhZr:hover {
+  box-shadow: inset 0 0 15px #432600;
+  box-shadow: inset 0 0 15px var(--color-darkest);
 }
 
-.tree-item-children--tYe68 {
+.tree-item-children--gPKj0 {
   margin-left: 10px;
 }
 
-.titlebar--uHLA9 {
+.titlebar--iQnDM {
   height: 50px;
   padding: 0 15px;
   display: flex;
   align-items: center;
   border-bottom: 1px solid rgba(0, 0, 0, 40%);
   position: relative;
-  background: #deb47b;
-  background: var(--color-ui-light-bg);
+  background: url(/potioncraft-crucible-web/cc4a0aa96a3e38063c6c.png) #deb47b;
+  background: url(/potioncraft-crucible-web/cc4a0aa96a3e38063c6c.png) var(--color-lighter);
 }
 
-.titlebar-heading--c3QIH {
+.titlebar-heading--CKvDN {
   font-size: 18px;
   font-weight: 600;
 }
 
-.titlebar-divider--FQJW7 {
+.titlebar-divider--K1ZmQ {
   display: inline;
   border-right: 1px solid rgba(0, 0, 0, 20%);
   height: 20px;
   margin: 0 10px;
 }
 
-.titlebar-title--gEy31 {
+.titlebar-title--tRYGh {
   position: absolute;
   left: 50%;
   text-align: center;
 }
 
-.horizontal-page-flow--w8Wns {
+.horizontal-page-flow--Rntkc {
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
 }
 
-.horizontal-page-flow-content--uzYz2 {
+.horizontal-page-flow-content--ZbMEz {
   width: 100%;
   height: 100%;
   min-height: 0;
@@ -709,20 +691,20 @@ a:hover {
   flex-direction: row;
 }
 
-.horizontal-page-flow-content--uzYz2 > :not(:first-child) {
+.horizontal-page-flow-content--ZbMEz > :not(:first-child) {
   margin-left: 2.5px;
 }
 
-.horizontal-page-flow-content--uzYz2 > :not(:last-child) {
+.horizontal-page-flow-content--ZbMEz > :not(:last-child) {
   margin-right: 2.5px;
 }
 
-.package-content--u3kbM {
+.package-content--eiiLb {
   width: 250px;
   height: 100%;
 }
 
-.text--xKJsf {
+.text--EnZYC {
   width: 100%;
   margin-top: 25px;
   font-size: 2em;
@@ -731,26 +713,80 @@ a:hover {
   color: var(--color-ui-surface-text);
 }
 
-.textbox--O5Rw2 {
-  display: inline-block;
-  border-bottom: 1px solid #432600;
-  border-bottom: 1px solid var(--color-darkest);
-}
-
-.textbox-input--_8Bk0 {
+.textbox-input--u9Oc8 {
   border: none;
   background: none;
   color: #432600;
   color: var(--color-ui-light-text);
+  border-bottom: 1px solid #432600;
+  border-bottom: 1px solid var(--color-darkest);
 }
 
-.textarea--ubm0p {
+.textbox-input--u9Oc8:focus {
+  outline: none;
+  box-shadow: inset 0 0 10px #ffe7c7;
+  box-shadow: inset 0 0 10px var(--color-lightest);
+}
+
+.textarea--akhKg {
   display: inline-block;
-  border: 2px dashed #76490d;
-  border: 2px dashed var(--color-darker);
+  border-width: 2px 0;
+  border-style: solid;
+  border-color: #76490d;
+  border-color: var(--color-darker);
+  position: relative;
 }
 
-.textarea-input--S_Adk {
+.textarea-edge-left--Bbone:before,
+.textarea-edge-right--iVFwW:before,
+.textarea-edge-left--Bbone:after,
+.textarea-edge-right--iVFwW:after {
+  content: " ";
+  width: 2px;
+  background: #76490d;
+  background: var(--color-darker);
+  display: block;
+  height: 25px;
+}
+
+.textarea-edge-left--Bbone,
+.textarea-edge-right--iVFwW {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.textarea-edge-left--Bbone:before,
+.textarea-edge-right--iVFwW:before {
+  margin-bottom: auto;
+}
+
+.textarea-edge-left--Bbone:after,
+.textarea-edge-right--iVFwW:after {
+  margin-top: auto;
+}
+
+.textarea-edge-left--Bbone {
+  left: 0;
+}
+
+.textarea-edge-right--iVFwW {
+  right: 0;
+}
+
+.textarea-wrapper--LNJqP {
+  width: 100%;
+  padding: 4px;
+  box-sizing: border-box;
+}
+
+.textarea-input--A7Nah {
+  padding: 0;
+  box-sizing: border-box;
+  width: 100%;
   resize: none;
   border: none;
   background: none;
@@ -758,53 +794,55 @@ a:hover {
   color: var(--color-ui-light-text);
 }
 
-.package-editor--nKBin {
+.textarea-input--A7Nah:focus {
+  outline: none;
+}
+
+.package-editor--Ve8Gn {
   width: 100%;
 }
 
-.package-editor-content--EM2U5 {
+.package-editor-content--9h2wd {
   padding: 2px;
 }
 
-.pan-zoom-handler--nL1s7 {
+.pan-zoom-handler--afGPu {
   width: 100%;
   height: 100%;
 }
 
-.map-canvas--D53bb {
-  background: #deb47b;
-  background: var(--color-lighter);
+.map-canvas--v5nim {
 }
 
-.map-widgets--VBMgc {
+.map-widgets--oakLP {
   pointer-events: none;
 }
 
-.drag-preview--OwODL {
+.drag-preview--FZPs4 {
   pointer-events: none;
 }
 
-.map-editor--CxdeU {
+.map-editor--kUf0l {
   width: 100%;
   height: 100%;
 }
 
-.hotkeys-container--_toW8 {
+.hotkeys-container--SGx4q {
   width: 100%;
   height: 100%;
 }
 
-.map-editor-container--_YO7c {
+.map-editor-container--TqInP {
   position: relative;
 }
 
-.map-editor-item--ytSJP {
+.map-editor-item--zUxb3 {
   position: absolute;
   top: 0;
   left: 0;
 }
 
-.tooltip--ESII6 {
+.tooltip--Km6UU {
   background: #aa7939;
   background: var(--color-ui-tooltip-bg);
   color: #deb47b;
@@ -816,7 +854,7 @@ a:hover {
   text-align: center;
 }
 
-.tooltip-arrow--ziQyT {
+.tooltip-arrow--YCNPE {
   position: absolute;
   width: 8px;
   height: 8px;
@@ -824,7 +862,7 @@ a:hover {
   visibility: hidden;
 }
 
-.tooltip-arrow--ziQyT:before {
+.tooltip-arrow--YCNPE:before {
   visibility: visible;
   position: absolute;
   left: 0;
@@ -836,30 +874,30 @@ a:hover {
   transform: rotate(45deg);
 }
 
-.tooltip--ESII6[data-popper-placement^="top"] > .tooltip-arrow--ziQyT {
+.tooltip--Km6UU[data-popper-placement^="top"] > .tooltip-arrow--YCNPE {
   bottom: -4px;
 }
 
-.tooltip--ESII6[data-popper-placement^="bottom"] > .tooltip-arrow--ziQyT {
+.tooltip--Km6UU[data-popper-placement^="bottom"] > .tooltip-arrow--YCNPE {
   top: -4px;
 }
 
-.tooltip--ESII6[data-popper-placement^="left"] > .tooltip-arrow--ziQyT {
+.tooltip--Km6UU[data-popper-placement^="left"] > .tooltip-arrow--YCNPE {
   right: -4px;
 }
 
-.tooltip--ESII6[data-popper-placement^="right"] > .tooltip-arrow--ziQyT {
+.tooltip--Km6UU[data-popper-placement^="right"] > .tooltip-arrow--YCNPE {
   left: -4px;
 }
 
-.entities-drop-button--RKYeq {
+.entities-drop-button--UK6Mc {
   border: 1px solid #432600;
   border: 1px solid var(--color-ui-surface-border);
   background: #aa7939;
   background: var(--color-ui-surface-bg);
 }
 
-.entities-drop-list--aItDt {
+.entities-drop-list--e8Odv {
   background: #deb47b;
   background: var(--color-ui-light-bg);
   border: 1px solid #76490d;
@@ -871,7 +909,7 @@ a:hover {
   margin: 0;
 }
 
-.entities-drop-list-item--Vt6Wl {
+.entities-drop-list-item--ueJbI {
   cursor: pointer;
   -webkit-user-select: none;
      -moz-user-select: none;
@@ -879,25 +917,25 @@ a:hover {
           user-select: none;
 }
 
-.map-toolbar--Fn6la {
+.map-toolbar--I9E7w {
   display: flex;
   flex-direction: row;
   align-items: center;
   width: 100%;
 }
 
-.map-toolbar-entities--tNOYc {
+.map-toolbar-entities--On_Rc {
   margin-left: auto;
   min-width: 0;
 }
 
-.map-window--b8JUq {
+.map-window--JiE0u {
   flex-shrink: 1;
   flex-grow: 1;
   min-width: 0;
 }
 
-.map-window-container--PWTGK {
+.map-window-container--vwVI2 {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -905,7 +943,7 @@ a:hover {
   position: relative;
 }
 
-.map-window-editor--Zkscz {
+.map-window-editor--K747t {
   flex-grow: 1;
   flex-shrink: 1;
   min-height: 0;
@@ -913,7 +951,7 @@ a:hover {
   height: 100%;
 }
 
-.map-window-toolbar--fIqSF {
+.map-window-toolbar--c5f47 {
   position: absolute;
   top: 5px;
   left: 0;
@@ -921,18 +959,18 @@ a:hover {
   width: 100%;
 }
 
-.potionbases-editor--_5EVX {
+.potionbases-editor--lm9kU {
   width: 100%;
 }
 
-.popover-backdrop--n2UBp {
+.popover-backdrop--r5hOV {
   position: fixed;
   left: 0;
   right: 0;
   top: 0;
   bottom: 0;
 }
-.popover-container--center--ucc45 {
+.popover-container--center--EagvZ {
   position: fixed;
   left: 0;
   right: 0;
@@ -940,19 +978,19 @@ a:hover {
   bottom: 0;
 }
 
-.popover-container--center--ucc45 .popover-content--rOHWn {
+.popover-container--center--EagvZ .popover-content--1dluG {
   position: fixed;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
 }
 
-.popover-autofocuser--kkVNY {
+.popover-autofocuser--yKv58 {
   width: 100%;
   height: 100%;
 }
 
-.modal--b9GJG {
+.modal--hTXcZ {
   background: #deb47b;
   background: var(--color-ui-light-bg);
   color: #432600;
@@ -961,22 +999,23 @@ a:hover {
   border: 3px solid var(--color-ui-light-border);
 }
 
-.imagefield--k671U {
+.imagefield--mO_g5 {
   display: inline-block;
   position: relative;
-  display: table;
+  min-width: 50px;
+  min-height: 50px;
 }
 
-.imagefield-upload--dj2P1 {
+.imagefield-upload--HqT6h {
   visibility: collapse;
 }
 
-.imagefield--k671U:not(.imagefield--has-image--FCbYe) > .imagefield-upload--dj2P1,
-.imagefield--k671U.imagefield--has-image--FCbYe:hover > .imagefield-upload--dj2P1 {
+.imagefield--mO_g5:not(.imagefield--has-image--tq1HW) > .imagefield-upload--HqT6h,
+.imagefield--mO_g5.imagefield--has-image--tq1HW:hover > .imagefield-upload--HqT6h {
   visibility: visible;
 }
 
-.imagefield-upload--dj2P1 {
+.imagefield-upload--HqT6h {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -987,13 +1026,13 @@ a:hover {
   justify-content: space-around;
 }
 
-.imagefield-image-container--_Ryed {
-  display: table-cell;
-  vertical-align: middle;
-  text-align: center;
+.imagefield-image-container--Ox1pi {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.fieldbox--D58dj {
+.fieldbox--rmVj8 {
   display: inline-block;
   border-width: 0 2px 2px 2px;
   border-color: #76490d;
@@ -1003,7 +1042,7 @@ a:hover {
   margin-top: 10px; /* FIXME: Probably based on fieldbox-label top, which is based on font size. */
 }
 
-.fieldbox-label--Hihi9 {
+.fieldbox-label--pny0n {
   position: absolute;
   right: 0;
   left: 0;
@@ -1013,19 +1052,19 @@ a:hover {
   white-space: nowrap;
 }
 
-.fieldbox-label--Hihi9:before {
+.fieldbox-label--pny0n:before {
   width: 15px;
   margin-right: 5px;
 }
 
-.fieldbox-label--Hihi9:after {
+.fieldbox-label--pny0n:after {
   margin-left: 5px;
   flex: 1;
   min-width: 0;
 }
 
-.fieldbox-label--Hihi9:before,
-.fieldbox-label--Hihi9:after {
+.fieldbox-label--pny0n:before,
+.fieldbox-label--pny0n:after {
   content: " ";
   height: 2px;
   background: #76490d;
@@ -1033,22 +1072,74 @@ a:hover {
   display: block;
 }
 
-.fieldbox-content--bwotV {
+.fieldbox-content--BKQJp {
   padding: 5px;
   padding-top: 12px; /* FIXME: Based on font size / fieldbox-label top */
 }
 
-.potionbase-editor--pSa5W {
+.potionbase-editor--LAEgD {
   width: 100%;
   height: 100%;
 }
 
-.potionbase-editor-content--FyO_3 {
+.potionbase-editor-content--l6JRm {
   padding: 2px;
   box-sizing: border-box;
   width: 100%;
   height: 100%;
   overflow: auto;
+  display: flex;
+  flex-direction: row;
+  overflow: auto;
+}
+
+.potionbase-editor-left--hL7kw {
+  width: 50%;
+  height: 100%;
+  max-width: 450px;
+}
+
+.potionbasename-input--CV82N {
+  background: none;
+  border: none;
+  font-size: 1.2em;
+  font-weight: bold;
+  text-align: center;
+  margin: 4px 0;
+  width: 100%;
+}
+
+.potionbasename-input--CV82N:focus {
+  outline: none;
+}
+
+.divider--k40jI {
+  width: 100%;
+  padding: 0 15px;
+  box-sizing: border-box;
+}
+
+.divider-line--y3r3j {
+  height: 5px;
+  width: 100%;
+  border-radius: 3.5px;
+  background: #76490d;
+  background: var(--color-darker);
+}
+
+.potionbasetooltipimage--DrlVG {
+  width: 100%;
+  padding: 5px 0;
+}
+
+.potionbasedescription--vED2n {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.potionbasedescription-input--stzBi {
+  width: 100%;
 }
 
 
