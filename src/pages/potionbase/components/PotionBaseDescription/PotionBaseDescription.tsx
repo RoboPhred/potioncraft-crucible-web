@@ -25,19 +25,22 @@ const PotionBaseDescription = ({
     packageIdObjectDataSelector(state, "potionBases", potionBaseId)
   );
 
-  const onSetDescription = React.useCallback((description: string) => {
-    if (potionBase == null) {
-      return;
-    }
-    dispatch(
-      packageDataSetById(
-        "potionBases",
-        potionBaseId,
-        "description",
-        description
-      )
-    );
-  }, []);
+  const onSetDescription = React.useCallback(
+    (description: string) => {
+      if (potionBase == null) {
+        return;
+      }
+      dispatch(
+        packageDataSetById(
+          "potionBases",
+          potionBaseId,
+          "description",
+          description
+        )
+      );
+    },
+    [potionBaseId]
+  );
 
   if (!potionBase) {
     return null;

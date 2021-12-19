@@ -23,7 +23,7 @@ const CommitTextBox: React.FC<CommitTextBoxProps> = ({
       setEditingValue(null);
       onCommit(editingValue);
     }
-  }, []);
+  }, [editingValue]);
   return (
     <TextBox
       {...props}

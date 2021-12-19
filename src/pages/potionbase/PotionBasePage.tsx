@@ -76,20 +76,6 @@ const PotionBasePage: React.FC<RouteComponentProps<PotionBaseRouteParams>> = ({
     "mapOriginImage"
   );
 
-  const onSetDescription = React.useCallback((description: string) => {
-    if (potionBase == null) {
-      return;
-    }
-    dispatch(
-      packageDataSetById(
-        "potionBases",
-        potionBaseId,
-        "description",
-        description
-      )
-    );
-  }, []);
-
   const onSetUnlockedOnStart = React.useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       if (potionBase == null) {
