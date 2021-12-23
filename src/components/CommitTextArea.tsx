@@ -23,7 +23,7 @@ const CommitTextArea: React.FC<CommitTextAreaProps> = ({
       setEditingValue(null);
       onCommit(editingValue);
     }
-  }, []);
+  }, [editingValue]);
   return (
     <TextArea
       {...props}

@@ -18,16 +18,20 @@ export interface PotionBaseNameProps {
 const PotionBaseName = ({ potionBaseId }: PotionBaseNameProps) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
+
   const potionBase = useSelector((state) =>
     packageIdObjectDataSelector(state, "potionBases", potionBaseId)
   );
 
-  const onSetName = React.useCallback((name: string) => {
-    if (potionBase == null) {
-      return;
-    }
-    dispatch(packageDataSetById("potionBases", potionBaseId, "name", name));
-  }, []);
+  const onSetName = React.useCallback(
+    (name: string) => {
+      if (potionBase == null) {
+        return;
+      }
+      dispatch(packageDataSetById("potionBases", potionBaseId, "name", name));
+    },
+    [potionBaseId]
+  );
 
   if (!potionBase) {
     return null;
