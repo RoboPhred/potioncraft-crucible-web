@@ -4,14 +4,14 @@
   border-color: var(--color-darker);
   border-style: solid;
   position: relative;
-  margin-top: 10px; /* FIXME: Probably based on fieldbox-label top, which is based on font size. */
+  margin-top: 13px; /* FIXME: Probably based on fieldbox-label top, which is based on font size. */
 }
 
 .fieldbox-label {
   position: absolute;
   right: 0;
   left: 0;
-  top: -10px; /* Not calculated.  Just tweaked the numbers until things aligned.  FIXME: probably based on font size */
+  top: -13px; /* Not calculated.  Just tweaked the numbers until things aligned.  FIXME: probably based on font size */
   display: flex;
   align-items: center;
   white-space: nowrap;
@@ -38,5 +38,5 @@
 
 .fieldbox-content {
   padding: 5px;
-  padding-top: 12px; /* FIXME: Based on font size / fieldbox-label top */
+  padding-top: 13px; /* FIXME: Based on font size / fieldbox-label top */
 }

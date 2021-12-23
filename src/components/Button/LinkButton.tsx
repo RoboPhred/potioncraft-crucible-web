@@ -1,38 +1,33 @@
 import * as React from "react";
 import classNames from "classnames";
+import { Link, LinkProps } from "react-router-dom";
 
-export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  className?: string;
+export interface LinkButtonProps
+  extends React.AnchorHTMLAttributes<HTMLAnchorElement>,
+    LinkProps {
   variant?: "default" | "primary" | "text" | "menu";
   size?: "default" | "small";
-  disabled?: boolean;
 }
 
 import styles from "./Button.module.css";
 
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  (
-    { className, variant = "default", size = "default", disabled, ...props },
-    ref
-  ) => {
+const LinkButton = React.forwardRef<HTMLAnchorElement, LinkButtonProps>(
+  ({ className, variant = "default", size = "default", ...props }, ref) => {
     return (
-      <button
+      <Link
         ref={ref}
         className={classNames(
           styles["button"],
           (styles as any)[`button--variant-${variant}`],
           (styles as any)[`button--size-${size}`],
-          disabled && styles["disabled"],
           className
         )}
-        type="button"
         {...props}
       >
         {props.children}
-      </button>
+      </Link>
     );
   }
 );
 
-export default Button;
+export default LinkButton;

@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 
 import { useSelector } from "@/hooks/use-selector";
 
-import { potionBaseIdsSelector } from "@/services/package/selectors/potion-bases";
+import { packageIdObjectIdsSelector } from "@/services/package/selectors/package";
 
 import Window from "./Window";
 
@@ -18,7 +18,9 @@ const PackageContentTree: React.FC<PackageContentTreeProps> = ({
   className,
 }) => {
   const { t } = useTranslation();
-  const potionBaseIds = useSelector(potionBaseIdsSelector);
+  const potionBaseIds = useSelector((state) =>
+    packageIdObjectIdsSelector(state, "potionBases")
+  );
   return (
     <Window className={className} title={t("package.content")}>
       <Tree>

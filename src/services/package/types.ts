@@ -6,16 +6,20 @@ export interface CruciblePackage {
   description?: string;
 
   potionBases: CruciblePackagePotionBase[];
+  potionEffects: CruciblePackagePotionEffect[];
 }
 
-export type CruciblePackageSectionKey = "potionBases";
+export type CruciblePackageSectionKey = "potionBases" | "potionEffects";
 export type CruciblePackageSections = Pick<
   CruciblePackage,
   CruciblePackageSectionKey
 >;
 
-export interface CruciblePackagePotionBase {
+export interface CruciblePackageIdObject {
   id: string;
+}
+
+export interface CruciblePackagePotionBase extends CruciblePackageIdObject {
   name: string;
   description?: string;
   unlockedOnStart?: boolean;
@@ -30,4 +34,9 @@ export interface CruciblePackagePotionBase {
   recipeStepImage?: string;
   mapOriginImage?: string;
   mapEntities?: MapEntity[];
+}
+
+export interface CruciblePackagePotionEffect extends CruciblePackageIdObject {
+  name: string;
+  icon?: string;
 }

@@ -1,26 +1,30 @@
 import * as React from "react";
 import { useTranslation } from "react-i18next";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { v4 as uuidV4 } from "uuid";
 
 import { potionBaseNew } from "@/actions/potion-bases/potionbase-new";
+
+import { useSelector } from "@/hooks/use-selector";
 
 import HorizontalPageFlow from "@/components/HorizontalPageFlow";
 import Window from "@/components/Window";
 import Button from "@/components/Button";
 import EnsurePackageLoaded from "@/components/EnsurePackageLoaded";
 
-import { potionBaseIdsSelector } from "@/services/package/selectors/potion-bases";
+import { packageIdObjectIdsSelector } from "@/services/package/selectors/package";
+
+import Modal from "@/components/Modal";
+import TextBox from "@/components/TextBox";
 
 import styles from "./PotionBaseListPage.module.css";
-import Modal from "@/components/Modal/Modal";
-import TextBox from "@/components/TextBox";
 
 const PotionBasesPage = () => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
-  const potionBaseIds = useSelector(potionBaseIdsSelector);
+  const potionBaseIds = useSelector((state) =>
+    packageIdObjectIdsSelector(state, "potionBases")
+  );
 
   const [newPotionId, setNewPotionId] = React.useState<string | null>(null);
 
@@ -52,11 +56,7 @@ const PotionBasesPage = () => {
             {t("potion_base.new")}
           </Button>
           <Modal isOpen={newPotionId != null}>
-            <p>
-              Choose the new potion base id. This must be unique among all
-              potion bases added by this package. Once an id is chosen, it
-              cannot be changed.
-            </p>
+            <p>{t("potion_base.new_id_prompt")}</p>
             <div>
               <TextBox
                 autoFocus

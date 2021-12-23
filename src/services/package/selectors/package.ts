@@ -1,11 +1,14 @@
 import find from "lodash/find";
 
-import { parseYaml } from "@/services/yaml/api";
 import { AppState } from "@/state";
+import { emptyFrozenArray, ItemOf } from "@/arrays";
+
+import { parseYaml } from "@/services/yaml/api";
 
 import { createPackageSelector } from "../state-utils";
 import {
   CruciblePackage,
+  CruciblePackageIdObject,
   CruciblePackageSectionKey,
   CruciblePackageSections,
 } from "../types";
@@ -14,8 +17,6 @@ import {
   packageResourceSelector,
   packageTextResourceSelector,
 } from "./resources";
-import { ItemOf } from "@/arrays";
-import { extname } from "@/paths";
 
 export const packageLoadStatusSelector = createPackageSelector(
   (x) => x.loadingStatus
@@ -59,6 +60,25 @@ export const packageDataSelector = createPackageSelector((state) => {
   return yaml;
 });
 
+export function packageIdObjectIdsSelector(
+  state: AppState,
+  key: CruciblePackageSectionKey
+): string[] {
+  const data = packageDataSelector(state);
+  if (!data) {
+    return [];
+  }
+
+  const ids = data[key]?.map(
+    (idObject: CruciblePackageIdObject) => idObject.id
+  );
+  if (ids == null) {
+    return emptyFrozenArray<string>();
+  }
+
+  return ids;
+}
+
 export function packageIdObjectDataSelector<
   TKey extends CruciblePackageSectionKey
 >(
@@ -71,7 +91,9 @@ export function packageIdObjectDataSelector<
     return null;
   }
 
-  const entries = data[key];
+  // This cast should be unnecessary, since all CruciblePackageSections are arrays of id objects.
+  // Typescript doesnt seem to agree though.
+  const entries = data[key] as CruciblePackageIdObject[];
   return (find(entries, (entry) => entry.id === id) as any) ?? null;
 }
 

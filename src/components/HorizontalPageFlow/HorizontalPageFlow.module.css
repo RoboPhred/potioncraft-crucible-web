@@ -27,6 +27,7 @@
 }
 
 .package-content {
-  width: 250px;
+  width: 450px;
+  min-width: 200px;
   height: 100%;
 }

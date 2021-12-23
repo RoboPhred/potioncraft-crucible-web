@@ -14,6 +14,7 @@
     "noun_titlecase": "Potion Base",
     "noun_titlecase_plural": "Potion Bases",
     "not_found": "Potion Base not found",
+    "new_id_prompt": "Choose the new potion base id. This must be unique among all potion bases added by this package. Once an id is chosen, it cannot be changed.",
     "name": "Name",
     "description": "Description",
     "settings": "Settings",

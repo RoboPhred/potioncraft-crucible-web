@@ -5,6 +5,7 @@
   margin: 2px;
   user-select: none;
   background: none;
+  text-align: center;
 }
 
 .button.disabled {

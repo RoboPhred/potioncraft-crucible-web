@@ -4,6 +4,13 @@
 }
 
 .potionbase-editor-content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+.potionbase-editor-panels {
   width: 100%;
   height: 100%;
   overflow: auto;
@@ -21,6 +28,7 @@
 }
 
 .potionbase-editor-right {
+  margin-left: 20px;
   width: 50%;
   height: 100%;
   max-width: 450px;

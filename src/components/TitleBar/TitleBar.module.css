@@ -1,5 +1,5 @@
 .titlebar {
-  height: 50px;
+  height: 70px;
   padding: 0 15px;
   display: flex;
   align-items: center;
@@ -9,7 +9,7 @@
 }
 
 .titlebar-heading {
-  font-size: 18px;
+  font-size: 1.5em;
   font-weight: 600;
 }
 
