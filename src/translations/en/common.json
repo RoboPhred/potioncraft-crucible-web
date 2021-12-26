@@ -26,6 +26,9 @@
     "unlock_on_start": "Unlocked on Start",
     "edit_map": "Edit Map"
   },
+  "potion_effect": {
+    "noun_titlecase_plural": "Potion Effects"
+  },
   "map": {
     "toolbar_menu_item": "Map",
     "clear": "Clear Map",

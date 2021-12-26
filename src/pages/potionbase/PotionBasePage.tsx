@@ -41,9 +41,6 @@ const PotionBasePage: React.FC<RouteComponentProps<PotionBaseRouteParams>> = ({
 
   const onSetUnlockedOnStart = React.useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
-      if (potionBase == null) {
-        return;
-      }
       dispatch(
         packageDataSetById(
           "potionBases",
@@ -53,7 +50,7 @@ const PotionBasePage: React.FC<RouteComponentProps<PotionBaseRouteParams>> = ({
         )
       );
     },
-    []
+    [potionBaseId]
   );
 
   return (

@@ -21,16 +21,27 @@ const PackageContentTree: React.FC<PackageContentTreeProps> = ({
   const potionBaseIds = useSelector((state) =>
     packageIdObjectIdsSelector(state, "potionBases")
   );
+  const potionEffectIds = useSelector((state) =>
+    packageIdObjectIdsSelector(state, "potionEffects")
+  );
   return (
     <Window className={className} title={t("package.content")}>
       <Tree>
         <LinkTreeItem to="/" label={t("package.noun_titlecase")}>
           <LinkTreeItem
             to="/potion-bases"
-            label={t("potioncraft:bases.noun_titlecase_plural")}
+            label={t("potion_base.noun_titlecase_plural")}
           >
             {potionBaseIds.map((id) => (
               <LinkTreeItem key={id} label={id} to={`/potion-bases/${id}`} />
+            ))}
+          </LinkTreeItem>
+          <LinkTreeItem
+            to="/potion-effects"
+            label={t("potion_effect.noun_titlecase_plural")}
+          >
+            {potionEffectIds.map((id) => (
+              <LinkTreeItem key={id} label={id} to={`/potion-effects/${id}`} />
             ))}
           </LinkTreeItem>
         </LinkTreeItem>

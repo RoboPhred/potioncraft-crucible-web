@@ -6,6 +6,7 @@ import HomePage from "./pages/home";
 import PotionBaseMapEditorPage from "./pages/potionbase-mapeditor";
 import PotionBaseListPage from "./pages/potionbase-list";
 import PotionBasePage from "./pages/potionbase";
+import PotionEffectPage from "./pages/potioneffect";
 
 const Routes: React.FC = () => (
   <Switch>
@@ -22,6 +23,13 @@ const Routes: React.FC = () => (
       exact
       component={PotionBaseMapEditorPage}
     />
+
+    <Route
+      path="/potion-effects/:potionEffectId"
+      exact
+      component={PotionEffectPage}
+    />
+
     <Redirect to="/" />
   </Switch>
 );
