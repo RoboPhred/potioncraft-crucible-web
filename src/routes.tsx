@@ -7,6 +7,7 @@ import PotionBaseMapEditorPage from "./pages/potionbase-mapeditor";
 import PotionBaseListPage from "./pages/potionbase-list";
 import PotionBasePage from "./pages/potionbase";
 import PotionEffectPage from "./pages/potioneffect";
+import PotionEffectListPage from "./pages/potionbase-list";
 
 const Routes: React.FC = () => (
   <Switch>
@@ -24,6 +25,7 @@ const Routes: React.FC = () => (
       component={PotionBaseMapEditorPage}
     />
 
+    <Route path="/potion-effects" exact component={PotionEffectListPage} />
     <Route
       path="/potion-effects/:potionEffectId"
       exact

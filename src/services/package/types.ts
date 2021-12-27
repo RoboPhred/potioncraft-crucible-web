@@ -20,7 +20,7 @@ export interface CruciblePackageIdObject {
 }
 
 export interface CruciblePackagePotionBase extends CruciblePackageIdObject {
-  name: string;
+  name?: string;
   description?: string;
   unlockedOnStart?: boolean;
   liquidColor?: string;
@@ -37,6 +37,6 @@ export interface CruciblePackagePotionBase extends CruciblePackageIdObject {
 }
 
 export interface CruciblePackagePotionEffect extends CruciblePackageIdObject {
-  name: string;
+  name?: string;
   icon?: string;
 }

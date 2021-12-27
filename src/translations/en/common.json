@@ -27,7 +27,9 @@
     "edit_map": "Edit Map"
   },
   "potion_effect": {
-    "noun_titlecase_plural": "Potion Effects"
+    "noun_titlecase_plural": "Potion Effects",
+    "new": "New Potion Effect",
+    "new_id_prompt": "Choose the new potion effect id. This must be unique among all potion effects added by this package. Once an id is chosen, it cannot be changed."
   },
   "map": {
     "toolbar_menu_item": "Map",

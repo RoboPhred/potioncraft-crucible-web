@@ -1,7 +1,7 @@
 import { stringifyYaml } from "@/services/yaml/api";
 import { Encoder } from "@/text-encoding";
 
-import { isPotionBaseNewAction } from "@/actions/potion-bases/potionbase-new";
+import { isPackageIdObjectNewAction } from "@/actions/packages/package-idobject-new";
 
 import {
   packageDataSelector,
@@ -9,10 +9,10 @@ import {
 } from "../selectors/package";
 
 import { createPackageReducer } from "../state-utils";
-import { CruciblePackage, CruciblePackagePotionBase } from "../types";
+import { CruciblePackage, CruciblePackageIdObject } from "../types";
 
 export default createPackageReducer((state, action, appState) => {
-  if (!isPotionBaseNewAction(action)) {
+  if (!isPackageIdObjectNewAction(action)) {
     return state;
   }
 
@@ -25,27 +25,20 @@ export default createPackageReducer((state, action, appState) => {
     return state;
   }
 
-  const { potionBaseId } = action.payload;
+  const { key, id } = action.payload;
 
-  const exists = packageIdObjectDataSelector(
-    appState,
-    "potionBases",
-    potionBaseId
-  );
+  const exists = packageIdObjectDataSelector(appState, key, id);
   if (exists != null) {
     return state;
   }
 
-  const newPotionBase: CruciblePackagePotionBase = {
-    id: potionBaseId,
-    name: "New Potion Base",
-    unlockedOnStart: true,
-    mapEntities: [],
+  const newItem: CruciblePackageIdObject = {
+    id,
   };
 
   const newPackageData: CruciblePackage = {
     ...packageData,
-    potionBases: [...(packageData.potionBases ?? []), newPotionBase],
+    [key]: [...(packageData[key] ?? []), newItem],
   };
 
   const newPackageStr = stringifyYaml(newPackageData);

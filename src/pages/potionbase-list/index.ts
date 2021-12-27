@@ -1,2 +1,2 @@
-import PotionBaseListPage from "./PotionBaseListPage";
-export default PotionBaseListPage;
+import PotionEffectListPage from "./PotionEffectListPage";
+export default PotionEffectListPage;

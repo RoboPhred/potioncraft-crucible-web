@@ -19,57 +19,59 @@ import TextBox from "@/components/TextBox";
 
 import styles from "./PotionBaseListPage.module.css";
 
-const PotionBasesPage = () => {
+const PotionEffectsPage = () => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
-  const potionBaseIds = useSelector((state) =>
-    packageIdObjectIdsSelector(state, "potionBases")
+  const potionEffectIds = useSelector((state) =>
+    packageIdObjectIdsSelector(state, "potionEffects")
   );
 
-  const [newPotionId, setNewPotionId] = React.useState<string | null>(null);
+  const [newEffectId, setNewEffectId] = React.useState<string | null>(null);
 
-  const onRequestNewPotionBase = React.useCallback(() => {
-    setNewPotionId("");
+  const onRequestNewPotionEffect = React.useCallback(() => {
+    setNewEffectId("");
   }, []);
-  const onNewPotionBase = React.useCallback(() => {
-    if (newPotionId != null && newPotionId.length > 0) {
-      dispatch(packageIdObjectNew("potionBases", newPotionId));
+  const onNewPotionEffect = React.useCallback(() => {
+    if (newEffectId != null && newEffectId.length > 0) {
+      dispatch(packageIdObjectNew("potionEffects", newEffectId));
     }
-  }, [newPotionId]);
+  }, [newEffectId]);
 
   return (
     <>
       <EnsurePackageLoaded />
       <HorizontalPageFlow>
         <Window
-          className={styles["potionbases-list"]}
-          title={t("potion_base.noun_titlecase_plural")}
+          className={styles["potioneffects-list"]}
+          title={t("potion_effect.noun_titlecase_plural")}
         >
           <ul>
-            {potionBaseIds.map((potionBaseId) => (
+            {potionEffectIds.map((potionBaseId) => (
               <li key={potionBaseId}>
-                <Link to={`/potion-bases/${potionBaseId}`}>{potionBaseId}</Link>
+                <Link to={`/potion-effects/${potionBaseId}`}>
+                  {potionBaseId}
+                </Link>
               </li>
             ))}
           </ul>
-          <Button onClick={onRequestNewPotionBase}>
-            {t("potion_base.new")}
+          <Button onClick={onRequestNewPotionEffect}>
+            {t("potion_effect.new")}
           </Button>
-          <Modal isOpen={newPotionId != null}>
-            <p>{t("potion_base.new_id_prompt")}</p>
+          <Modal isOpen={newEffectId != null}>
+            <p>{t("potion_effect.new_id_prompt")}</p>
             <div>
               <TextBox
                 autoFocus
-                value={newPotionId!}
-                onChange={(e) => setNewPotionId(e.target.value)}
+                value={newEffectId!}
+                onChange={(e) => setNewEffectId(e.target.value)}
               />
             </div>
             <div>
               <Button
-                disabled={newPotionId == null || newPotionId == ""}
-                onClick={onNewPotionBase}
+                disabled={newEffectId == null || newEffectId == ""}
+                onClick={onNewPotionEffect}
               >
-                {t("potion_base.new")}
+                {t("potion_effect.new")}
               </Button>
             </div>
           </Modal>
@@ -79,4 +81,4 @@ const PotionBasesPage = () => {
   );
 };
 
-export default PotionBasesPage;
+export default PotionEffectsPage;
