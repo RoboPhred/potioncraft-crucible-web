@@ -33,6 +33,7 @@ const PotionBasesPage = () => {
   }, []);
   const onNewPotionBase = React.useCallback(() => {
     if (newPotionId != null && newPotionId.length > 0) {
+      setNewPotionId(null);
       dispatch(packageIdObjectNew("potionBases", newPotionId));
     }
   }, [newPotionId]);

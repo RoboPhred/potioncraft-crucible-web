@@ -12,7 +12,7 @@ export interface PotionEffectMapEntity extends MapEntityBase {
 
 export interface VortexMapEntity extends MapEntityBase {
   entityType: "Vortex";
-  size: string;
+  prefab: string;
 }
 
 export interface DangerZonePartMapEntity extends MapEntityBase {
@@ -23,7 +23,7 @@ export interface DangerZonePartMapEntity extends MapEntityBase {
 
 export interface ExperienceBonusMapEntity extends MapEntityBase {
   entityType: "ExperienceBonus";
-  size: string;
+  prefab: string;
 }
 
 export type MapEntity =

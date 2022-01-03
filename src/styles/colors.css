@@ -31,6 +31,6 @@
   --color-ui-dark-hover-text: var(--color-darkest);
   --color-ui-dark-text: var(--color-lighter);
 
-  --color-ui-tooltip-bg: var(--color-base);
+  --color-ui-tooltip-bg: var(--color-darker);
   --color-ui-tooltip-text: var(--color-lighter);
 }
