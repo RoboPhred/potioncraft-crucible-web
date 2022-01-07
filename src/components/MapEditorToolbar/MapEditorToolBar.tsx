@@ -17,6 +17,7 @@ import Button from "../Button";
 
 import PotionEffectsDropButton from "./components/PotionEffectsDropButton";
 import BonesDropButton from "./components/BonesDropButton";
+import VortexesDropButton from "./components/VortexesDropButton";
 
 import styles from "./MapEditorToolbar.module.css";
 
@@ -64,6 +65,7 @@ const MapEditorToolBar = ({ className }: MapEditorToolBarProps) => {
       <div className={styles["map-toolbar-entities"]}>
         <PotionEffectsDropButton />
         <BonesDropButton />
+        <VortexesDropButton />
       </div>
     </div>
   );

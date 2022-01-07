@@ -11,7 +11,7 @@ function bonePrototype(
   type: string
 ): DropButtonEntityPrefab<DangerZonePartMapEntity> {
   return {
-    i18nKey: `danger_zone_parts.type_names.${type}`,
+    i18nKey: `entities.danger_zone_parts.type_names.${type}`,
     entityType: "DangerZonePart",
     prefab: type,
     angle: 0,
@@ -30,7 +30,7 @@ const PotionEffectsDropButton = () => {
   const { t } = useTranslation();
   return (
     <EntitiesDropButton entityPrototypes={boneItems}>
-      {t("danger_zone_parts.noun_titlecase_plural")}
+      {t("entities.danger_zone_parts.noun_titlecase_plural")}
     </EntitiesDropButton>
   );
 };

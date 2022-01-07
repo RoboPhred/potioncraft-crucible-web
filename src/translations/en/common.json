@@ -41,17 +41,24 @@
   "potion_effects": {
     "noun_titlecase_plural": "Potion Effects"
   },
-  "danger_zone_parts": {
-    "noun_titlecase_plural": "Danger Zone Parts",
-    "type_names": {
-      "Bone1": "Bone 1",
-      "Bone2": "Bone 2",
-      "Fang1": "Fang 1",
-      "Fang2": "Fang 2",
-      "Skull1": "Skull"
-    }
-  },
   "entities": {
-    "message_click_drag_create": "Click and drag to create a new entity."
+    "message_click_drag_create": "Click and drag to create a new entity.",
+    "danger_zone_parts": {
+      "noun_titlecase_plural": "Danger Zone Parts",
+      "type_names": {
+        "Bone1": "Bone 1",
+        "Bone2": "Bone 2",
+        "Fang1": "Fang 1",
+        "Fang2": "Fang 2",
+        "Skull1": "Skull"
+      }
+    },
+    "vortexes": {
+      "noun_titlecase_plural": "Vortexes",
+      "type_names": {
+        "Medium": "Medium",
+        "Large": "Large"
+      }
+    }
   }
 }
