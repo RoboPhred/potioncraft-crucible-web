@@ -1,5 +1,6 @@
 .modal {
-  background: var(--color-ui-light-bg);
+  background: url("@/assets/papertile2.png") var(--color-lighter);
   color: var(--color-ui-light-text);
   border: 3px solid var(--color-ui-light-border);
+  padding: 4px;
 }

@@ -17,7 +17,7 @@ import { packageIdObjectIdsSelector } from "@/services/package/selectors/package
 import Modal from "@/components/Modal";
 import TextBox from "@/components/TextBox";
 
-import styles from "./PotionBaseListPage.module.css";
+import styles from "./PotionEffectListPage.module.css";
 
 const PotionEffectsPage = () => {
   const dispatch = useDispatch();
@@ -32,6 +32,7 @@ const PotionEffectsPage = () => {
     setNewEffectId("");
   }, []);
   const onNewPotionEffect = React.useCallback(() => {
+    setNewEffectId(null);
     if (newEffectId != null && newEffectId.length > 0) {
       dispatch(packageIdObjectNew("potionEffects", newEffectId));
     }
