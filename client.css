@@ -382,7 +382,7 @@ template {
   --color-ui-dark-hover-text: var(--color-darkest);
   --color-ui-dark-text: var(--color-lighter);
 
-  --color-ui-tooltip-bg: var(--color-base);
+  --color-ui-tooltip-bg: var(--color-darker);
   --color-ui-tooltip-text: var(--color-lighter);
 }
 
@@ -395,7 +395,7 @@ body,
   padding: 0;
   color: var(--color-text-default);
   font-family: "Vollkorn", serif;
-  font-size: 18px; /* css vars don't seem to work here */
+  font-size: 24px; /* css vars don't seem to work here */
   color: #432600;
   color: var(--color-ui-light-text);
 }
@@ -481,6 +481,7 @@ a:hover {
       -ms-user-select: none;
           user-select: none;
   background: none;
+  text-align: center;
 }
 
 .button--AisLs.disabled--v8v84 {
@@ -641,7 +642,7 @@ a:hover {
 }
 
 .titlebar--iQnDM {
-  height: 50px;
+  height: 70px;
   padding: 0 15px;
   display: flex;
   align-items: center;
@@ -652,7 +653,7 @@ a:hover {
 }
 
 .titlebar-heading--CKvDN {
-  font-size: 18px;
+  font-size: 1.5em;
   font-weight: 600;
 }
 
@@ -700,7 +701,8 @@ a:hover {
 }
 
 .package-content--eiiLb {
-  width: 250px;
+  width: 450px;
+  min-width: 200px;
   height: 100%;
 }
 
@@ -724,8 +726,8 @@ a:hover {
 
 .textbox-input--u9Oc8:focus {
   outline: none;
-  box-shadow: inset 0 0 10px #ffe7c7;
-  box-shadow: inset 0 0 10px var(--color-lightest);
+  box-shadow: inset 0 0 10px #432600;
+  box-shadow: inset 0 0 10px var(--color-darkest);
 }
 
 .textarea--akhKg {
@@ -843,7 +845,7 @@ a:hover {
 }
 
 .tooltip--Km6UU {
-  background: #aa7939;
+  background: #76490d;
   background: var(--color-ui-tooltip-bg);
   color: #deb47b;
   color: var(--color-ui-tooltip-text);
@@ -898,8 +900,8 @@ a:hover {
 }
 
 .entities-drop-list--e8Odv {
-  background: #deb47b;
-  background: var(--color-ui-light-bg);
+  background: url(/potioncraft-crucible-web/cc4a0aa96a3e38063c6c.png) #deb47b;
+  background: url(/potioncraft-crucible-web/cc4a0aa96a3e38063c6c.png) var(--color-lighter);
   border: 1px solid #76490d;
   border: 1px solid var(--color-ui-light-border);
   list-style: none;
@@ -907,6 +909,8 @@ a:hover {
   border-radius: 3px;
   min-width: 150px;
   margin: 0;
+  max-height: 450px;
+  overflow: auto;
 }
 
 .entities-drop-list-item--ueJbI {
@@ -959,10 +963,6 @@ a:hover {
   width: 100%;
 }
 
-.potionbases-editor--lm9kU {
-  width: 100%;
-}
-
 .popover-backdrop--r5hOV {
   position: fixed;
   left: 0;
@@ -991,45 +991,17 @@ a:hover {
 }
 
 .modal--hTXcZ {
-  background: #deb47b;
-  background: var(--color-ui-light-bg);
+  background: url(/potioncraft-crucible-web/cc4a0aa96a3e38063c6c.png) #deb47b;
+  background: url(/potioncraft-crucible-web/cc4a0aa96a3e38063c6c.png) var(--color-lighter);
   color: #432600;
   color: var(--color-ui-light-text);
   border: 3px solid #76490d;
   border: 3px solid var(--color-ui-light-border);
+  padding: 4px;
 }
 
-.imagefield--mO_g5 {
-  display: inline-block;
-  position: relative;
-  min-width: 50px;
-  min-height: 50px;
-}
-
-.imagefield-upload--HqT6h {
-  visibility: collapse;
-}
-
-.imagefield--mO_g5:not(.imagefield--has-image--tq1HW) > .imagefield-upload--HqT6h,
-.imagefield--mO_g5.imagefield--has-image--tq1HW:hover > .imagefield-upload--HqT6h {
-  visibility: visible;
-}
-
-.imagefield-upload--HqT6h {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-}
-
-.imagefield-image-container--Ox1pi {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.potionbases-list--it2Cv {
+  width: 100%;
 }
 
 .fieldbox--rmVj8 {
@@ -1039,14 +1011,14 @@ a:hover {
   border-color: var(--color-darker);
   border-style: solid;
   position: relative;
-  margin-top: 10px; /* FIXME: Probably based on fieldbox-label top, which is based on font size. */
+  margin-top: 13px; /* FIXME: Probably based on fieldbox-label top, which is based on font size. */
 }
 
 .fieldbox-label--pny0n {
   position: absolute;
   right: 0;
   left: 0;
-  top: -10px; /* Not calculated.  Just tweaked the numbers until things aligned.  FIXME: probably based on font size */
+  top: -13px; /* Not calculated.  Just tweaked the numbers until things aligned.  FIXME: probably based on font size */
   display: flex;
   align-items: center;
   white-space: nowrap;
@@ -1074,29 +1046,7 @@ a:hover {
 
 .fieldbox-content--BKQJp {
   padding: 5px;
-  padding-top: 12px; /* FIXME: Based on font size / fieldbox-label top */
-}
-
-.potionbase-editor--LAEgD {
-  width: 100%;
-  height: 100%;
-}
-
-.potionbase-editor-content--l6JRm {
-  padding: 2px;
-  box-sizing: border-box;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  display: flex;
-  flex-direction: row;
-  overflow: auto;
-}
-
-.potionbase-editor-left--hL7kw {
-  width: 50%;
-  height: 100%;
-  max-width: 450px;
+  padding-top: 13px; /* FIXME: Based on font size / fieldbox-label top */
 }
 
 .potionbasename-input--CV82N {
@@ -1127,6 +1077,41 @@ a:hover {
   background: var(--color-darker);
 }
 
+.imagefield--mO_g5 {
+  display: inline-block;
+  position: relative;
+  min-width: 50px;
+  min-height: 50px;
+}
+
+.imagefield-upload--HqT6h {
+  visibility: collapse;
+}
+
+.imagefield--mO_g5:not(.imagefield--has-image--tq1HW) > .imagefield-upload--HqT6h,
+.imagefield--mO_g5.imagefield--has-image--tq1HW:hover > .imagefield-upload--HqT6h {
+  visibility: visible;
+}
+
+.imagefield-upload--HqT6h {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.imagefield-image-container--Ox1pi {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .potionbasetooltipimage--DrlVG {
   width: 100%;
   padding: 5px 0;
@@ -1139,6 +1124,84 @@ a:hover {
 }
 
 .potionbasedescription-input--stzBi {
+  width: 100%;
+}
+
+.potionbaseicons--TNKqO {
+  margin: 10px;
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: auto 1fr auto 1fr; /*repeat(4, 1fr);*/
+}
+
+.potionbaseicons-imagefield--jGVji {
+  width: 80px;
+  height: 80px;
+  background: #76490d;
+  background: var(--color-darker);
+}
+
+.potionbaseicons-imagetext--OAnBt {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.potionbase-editor--LAEgD {
+  width: 100%;
+  height: 100%;
+}
+
+.potionbase-editor-content--l6JRm {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+.potionbase-editor-panels--uLTYu {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  display: flex;
+  flex-direction: row;
+  overflow: auto;
+  padding: 5px 10px;
+  box-sizing: border-box;
+}
+
+.potionbase-editor-left--hL7kw {
+  width: 50%;
+  height: 100%;
+  max-width: 450px;
+}
+
+.potionbase-editor-right--adMKQ {
+  margin-left: 20px;
+  width: 50%;
+  height: 100%;
+  max-width: 450px;
+  display: flex;
+  flex-direction: column;
+}
+
+.potion-editor-settings--P9tJt {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  flex: 1;
+}
+
+.potion-editor-icons--gtVC0 {
+  width: 100%;
+}
+
+.potioneffect-editor--ZfDS6 {
+  width: 100%;
+  height: 100%;
+}
+
+.potioneffects-list--gkLgu {
   width: 100%;
 }
 
