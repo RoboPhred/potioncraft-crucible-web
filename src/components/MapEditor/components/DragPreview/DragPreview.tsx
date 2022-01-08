@@ -19,6 +19,7 @@ import {
   editorViewportHeightSelector,
   editorViewportWidthSelector,
 } from "@/services/map-editor/view/selectors/viewport";
+import { renderResourcesSelector } from "@/services/map-entitiy-prototypes/selectors/render-resources";
 
 export interface DragPreviewProps {
   className?: string;
@@ -32,6 +33,7 @@ const DragPreview = ({ className }: DragPreviewProps) => {
   const viewportWidth = useSelector(editorViewportWidthSelector);
   const viewportHeight = useSelector(editorViewportHeightSelector);
   const dragMoveOffset = useSelector(dragMoveOffsetSelector);
+  const renderResources = useSelector(renderResourcesSelector);
 
   const canvasRef = React.useRef<HTMLCanvasElement | null>(null);
 
@@ -49,7 +51,7 @@ const DragPreview = ({ className }: DragPreviewProps) => {
         ctx.translate(dragMoveOffset.x, dragMoveOffset.y);
         for (const key of selectedEntityKeys) {
           const entity = entitiesByKey[key];
-          renderEntity(ctx, entity, true);
+          renderEntity(ctx, entity, true, renderResources);
         }
       }
     });

@@ -13,10 +13,12 @@ import { EntityDefsByType } from "@/entities";
 import { useBooleanSetState } from "@/hooks/use-boolean-state";
 
 import { SpawnableEntityPrototype } from "@/services/map-entitiy-prototypes/types";
+import { renderResourcesSelector } from "@/services/map-entitiy-prototypes/selectors/render-resources";
 
 import Tooltip from "@/components/Tooltip/Tooltip";
 
 import styles from "./EntitiesDropButton.module.css";
+import { useSelector } from "@/hooks/use-selector";
 
 export interface EntitiesDropListProps {
   entityPrototypes: SpawnableEntityPrototype[];
@@ -52,6 +54,7 @@ const PotionEffectDraggableItem = ({
     ),
   });
   const [isShowingTooltip, showTooltip, hideTooltip] = useBooleanSetState();
+  const renderResources = useSelector(renderResourcesSelector);
 
   React.useLayoutEffect(() => {
     const type = EntityDefsByType[entityType];
@@ -64,8 +67,8 @@ const PotionEffectDraggableItem = ({
     ctx.scale(30, 30);
     ctx.translate(0.5, 0.55);
     ctx.scale(1, -1);
-    type.render(ctx, entityPrototype, () => {});
-  }, [entityType]);
+    type.render(ctx, entityPrototype, () => {}, renderResources);
+  }, [entityType, renderResources]);
 
   return (
     <li

@@ -39,6 +39,7 @@ import { selectedEntityKeysSelector } from "@/services/map-editor/selection/sele
 import { dragMoveOffsetSelector } from "@/services/map-editor/mouse/selectors/drag-move";
 import { editorDamageRectSelector } from "@/services/map-editor/damage/selector/damage";
 import { worldToClientSelector } from "@/services/map-editor/view/selectors/coordinate-mapping";
+import { renderResourcesSelector } from "@/services/map-entitiy-prototypes/selectors/render-resources";
 
 import styles from "./MapCanvas.module.css";
 
@@ -55,6 +56,8 @@ const MapCanvas = ({ className }: MapCanvasProps) => {
   const canvasBounds = useComponentBounds(canvasRef);
   const viewportWidth = useSelector(editorViewportWidthSelector);
   const viewportHeight = useSelector(editorViewportHeightSelector);
+
+  const renderResources = useSelector(renderResourcesSelector);
 
   const clientToWorld = useClientToWorld();
 
@@ -240,7 +243,7 @@ const MapCanvas = ({ className }: MapCanvasProps) => {
             continue;
           }
           renderCount++;
-          renderEntity(ctx, entity, isSelected);
+          renderEntity(ctx, entity, isSelected, renderResources);
         }
       });
 

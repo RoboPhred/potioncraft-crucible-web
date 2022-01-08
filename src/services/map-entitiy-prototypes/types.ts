@@ -4,3 +4,5 @@ export type SpawnableEntityPrototype<T extends MapEntity = MapEntity> = {
   i18nKey?: string;
   displayName?: string;
 } & MapEntityPrototype<T>;
+
+export type RenderResources = Record<string, string>;

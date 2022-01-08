@@ -50,7 +50,7 @@ export const potionEffectEntityPrototypesSelector = createSelector(
   (potionEffects) => {
     return [
       ...defaultPotionEffects,
-      ...values(potionEffects).map((potionEffect) => ({
+      ...potionEffects.map((potionEffect) => ({
         displayName: `${potionEffect.name} (${potionEffect.id})`,
         entityType: "PotionEffect" as const,
         effect: potionEffect.id,

@@ -2,17 +2,25 @@ import * as React from "react";
 import { RouteComponentProps } from "react-router";
 import { useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
+import { Redirect } from "react-router-dom";
+
+import { extname } from "@/paths";
 
 import { useSelector } from "@/hooks/use-selector";
 
-import { packageIdObjectDataSelector } from "@/services/package/selectors/package";
+import {
+  packageIdObjectDataSelector,
+  packageIdObjectResourceSelector,
+} from "@/services/package/selectors/package";
 
+import { packageResourceSetById } from "@/actions/packages/package-resource-set-byid";
 import { packageDataSetById } from "@/actions/packages/package-data-set-byid";
 
 import Window from "@/components/Window";
 import EnsurePackageLoaded from "@/components/EnsurePackageLoaded";
 import HorizontalPageFlow from "@/components/HorizontalPageFlow";
 import CommitTextBox from "@/components/CommitTextBox";
+import ImageField from "@/components/ImageField";
 
 import styles from "./PotionEffectPage.module.css";
 
@@ -26,6 +34,7 @@ const PotionEffectPage = ({
   },
 }: RouteComponentProps<PotionEffectPageParams>) => {
   const dispatch = useDispatch();
+  // TODO: translate
   const { t } = useTranslation();
 
   const potionEffect = useSelector((state) =>
@@ -41,6 +50,33 @@ const PotionEffectPage = ({
     [potionEffectId]
   );
 
+  const effectIcon = useSelector((state) =>
+    packageIdObjectResourceSelector(
+      state,
+      "potionEffects",
+      potionEffectId,
+      "icon"
+    )
+  );
+  const setEffectIcon = React.useCallback(
+    (image: Uint8Array, imageName: string) => {
+      dispatch(
+        packageResourceSetById(
+          "potionEffects",
+          potionEffectId,
+          "icon",
+          `${potionEffectId}/icon.${extname(imageName)}`,
+          image
+        )
+      );
+    },
+    [potionEffectId]
+  );
+
+  if (potionEffect == null) {
+    return <Redirect to="/" />;
+  }
+
   return (
     <>
       <EnsurePackageLoaded />
@@ -50,9 +86,14 @@ const PotionEffectPage = ({
           title="Potion Effects"
         >
           <CommitTextBox
-            value={potionEffect?.name}
+            value={potionEffect?.name ?? ""}
             placeholder="Effect Name"
             onCommit={onSetName}
+          />
+          <ImageField
+            imageResource={effectIcon}
+            imageResourceName={potionEffect.name ?? null}
+            onChange={setEffectIcon}
           />
         </Window>
       </HorizontalPageFlow>
