@@ -3,13 +3,13 @@ import { useTranslation } from "react-i18next";
 
 import { DangerZonePartMapEntity } from "@/map-config";
 
-import EntitiesDropButton, {
-  DropButtonEntityPrefab,
-} from "./EntitiesDropButton";
+import { SpawnableEntityPrototype } from "@/services/map-entitiy-prototypes/types";
+
+import EntitiesDropButton from "./EntitiesDropButton";
 
 function bonePrototype(
   type: string
-): DropButtonEntityPrefab<DangerZonePartMapEntity> {
+): SpawnableEntityPrototype<DangerZonePartMapEntity> {
   return {
     i18nKey: `entities.danger_zone_parts.type_names.${type}`,
     entityType: "DangerZonePart",

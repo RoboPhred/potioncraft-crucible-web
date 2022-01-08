@@ -1,53 +1,17 @@
 import * as React from "react";
 import { useTranslation } from "react-i18next";
 
-import { PotionEffectMapEntity } from "@/map-config";
+import { useSelector } from "@/hooks/use-selector";
 
-import EntitiesDropButton, {
-  DropButtonEntityPrefab,
-} from "./EntitiesDropButton";
+import { potionEffectEntityPrototypesSelector } from "@/services/map-entitiy-prototypes/selectors/potion-effects";
 
-function potionEffectPrototype(
-  effect: string
-): DropButtonEntityPrefab<PotionEffectMapEntity> {
-  return {
-    i18nKey: `potioncraft:effects.${effect}`,
-    entityType: "PotionEffect",
-    effect,
-    angle: 0,
-  };
-}
-
-const potionEffectItems = [
-  potionEffectPrototype("Crop"),
-  potionEffectPrototype("Invisibility"),
-  potionEffectPrototype("StoneSkin"),
-  potionEffectPrototype("Growth"),
-  potionEffectPrototype("SlowDown"),
-  potionEffectPrototype("Sleep"),
-  potionEffectPrototype("SharpVision"),
-  potionEffectPrototype("Mana"),
-  potionEffectPrototype("Lightning"),
-  potionEffectPrototype("Hallucinations"),
-  potionEffectPrototype("Fly"),
-  potionEffectPrototype("Explosion"),
-  potionEffectPrototype("Charm"),
-  potionEffectPrototype("Berserker"),
-  potionEffectPrototype("Light"),
-  potionEffectPrototype("Libido"),
-  potionEffectPrototype("Bounce"),
-  potionEffectPrototype("Acid"),
-  potionEffectPrototype("Fire"),
-  potionEffectPrototype("Necromancy"),
-  potionEffectPrototype("Frost"),
-  potionEffectPrototype("Poison"),
-  potionEffectPrototype("Healing"),
-];
+import EntitiesDropButton from "./EntitiesDropButton";
 
 const PotionEffectsDropButton = () => {
+  const effects = useSelector(potionEffectEntityPrototypesSelector);
   const { t } = useTranslation();
   return (
-    <EntitiesDropButton entityPrototypes={potionEffectItems}>
+    <EntitiesDropButton entityPrototypes={effects}>
       {t("potion_effects.noun_titlecase_plural")}
     </EntitiesDropButton>
   );

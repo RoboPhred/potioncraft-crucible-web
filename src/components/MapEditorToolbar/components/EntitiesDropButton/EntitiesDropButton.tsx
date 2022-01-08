@@ -1,17 +1,18 @@
 import * as React from "react";
 
 import Button from "@/components/Button";
-import AutoPopper from "@/components/AutoPopper";
 
 import EntitiesDropList from "./EntitiesDropList";
 
-import { DropButtonEntityPrefab } from "./types";
 import { useBooleanSetState } from "@/hooks/use-boolean-state";
+
+import { SpawnableEntityPrototype } from "@/services/map-entitiy-prototypes/types";
+
 import Popper from "@/components/Popper";
 import { MenuCloseListener } from "@/components/Menus/MenuCloseContext";
 
 export interface EntitiesDropButtonProps {
-  entityPrototypes: DropButtonEntityPrefab[];
+  entityPrototypes: SpawnableEntityPrototype[];
   children: React.ReactNode;
 }
 

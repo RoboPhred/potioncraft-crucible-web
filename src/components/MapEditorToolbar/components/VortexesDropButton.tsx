@@ -3,13 +3,13 @@ import { useTranslation } from "react-i18next";
 
 import { VortexMapEntity } from "@/map-config";
 
-import EntitiesDropButton, {
-  DropButtonEntityPrefab,
-} from "./EntitiesDropButton";
+import { SpawnableEntityPrototype } from "@/services/map-entitiy-prototypes/types";
+
+import EntitiesDropButton from "./EntitiesDropButton";
 
 function vortexPrototype(
   type: string
-): DropButtonEntityPrefab<VortexMapEntity> {
+): SpawnableEntityPrototype<VortexMapEntity> {
   return {
     i18nKey: `entities.vortexes.type_names.${type}`,
     entityType: "Vortex",

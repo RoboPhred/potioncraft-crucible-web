@@ -12,14 +12,14 @@ import { EntityDefsByType } from "@/entities";
 
 import { useBooleanSetState } from "@/hooks/use-boolean-state";
 
-import Tooltip from "@/components/Tooltip/Tooltip";
+import { SpawnableEntityPrototype } from "@/services/map-entitiy-prototypes/types";
 
-import { DropButtonEntityPrefab } from "./types";
+import Tooltip from "@/components/Tooltip/Tooltip";
 
 import styles from "./EntitiesDropButton.module.css";
 
 export interface EntitiesDropListProps {
-  entityPrototypes: DropButtonEntityPrefab[];
+  entityPrototypes: SpawnableEntityPrototype[];
 }
 
 const PotionEffectDragList = ({ entityPrototypes }: EntitiesDropListProps) => {
@@ -35,19 +35,21 @@ const PotionEffectDragList = ({ entityPrototypes }: EntitiesDropListProps) => {
 export default PotionEffectDragList;
 
 interface EntityDropListItemProps {
-  entityPrototype: DropButtonEntityPrefab;
+  entityPrototype: SpawnableEntityPrototype;
 }
 
 const PotionEffectDraggableItem = ({
   entityPrototype,
 }: EntityDropListItemProps) => {
   const [selfRef, setSelfRef] = React.useState<HTMLLIElement | null>(null);
-  const { entityType, i18nKey } = entityPrototype;
+  const { entityType, i18nKey, displayName } = entityPrototype;
   const { t } = useTranslation();
   const canvasRef = React.useRef<HTMLCanvasElement | null>(null);
   const [, dragRef] = useDrag({
     type: DRAGOBJECT_NEW_ENTITY,
-    item: newEntityDragObject(omit(entityPrototype, "i18nKey")),
+    item: newEntityDragObject(
+      omit(entityPrototype, ["i18nKey", "displayName"])
+    ),
   });
   const [isShowingTooltip, showTooltip, hideTooltip] = useBooleanSetState();
 
@@ -78,7 +80,7 @@ const PotionEffectDraggableItem = ({
       <span>
         <canvas ref={canvasRef} width={30} height={30} />
       </span>
-      <span>{t(i18nKey)}</span>
+      <span>{i18nKey ? t(i18nKey) : displayName}</span>
       <Tooltip anchorEl={selfRef} isOpen={isShowingTooltip}>
         {t("entities.message_click_drag_create")}
       </Tooltip>

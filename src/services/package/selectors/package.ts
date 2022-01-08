@@ -17,6 +17,7 @@ import {
   packageResourceSelector,
   packageTextResourceSelector,
 } from "./resources";
+import { forEach } from "lodash";
 
 export const packageLoadStatusSelector = createPackageSelector(
   (x) => x.loadingStatus
@@ -77,6 +78,22 @@ export function packageIdObjectIdsSelector(
   }
 
   return ids;
+}
+
+export function packageIdObjectsSelector<
+  TKey extends CruciblePackageSectionKey
+>(
+  state: AppState,
+  key: TKey
+): Record<string, ItemOf<CruciblePackageSections[TKey]>> {
+  // TODO: Cache by data
+  const ids = packageIdObjectIdsSelector(state, key);
+  const data: any = {};
+  for (const id of ids) {
+    const item = packageIdObjectDataSelector(state, key, id);
+    data[id] = item;
+  }
+  return data;
 }
 
 export function packageIdObjectDataSelector<
