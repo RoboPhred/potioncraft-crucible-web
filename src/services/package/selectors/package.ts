@@ -85,7 +85,7 @@ export function packageIdObjectsSelector<
   TKey extends CruciblePackageSectionKey
 >(state: AppState, key: TKey): CruciblePackageSections[TKey] {
   const data = packageDataSelector(state);
-  if (data == null) {
+  if (data == null || data[key] == null) {
     return emptyFrozenArray<ItemOf<CruciblePackageSections[TKey]>>();
   }
   return data[key];

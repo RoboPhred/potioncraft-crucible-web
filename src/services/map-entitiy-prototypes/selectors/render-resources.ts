@@ -48,9 +48,10 @@ export const renderResourcesSelector = createSelector(
       }
 
       const effectIcon = resources[effect.icon];
-      renderResources[
-        `potionEffect::${effect.id}`
-      ] = `data:image/png;base64,${Buffer.from(effectIcon).toString("base64")}`;
+      const iconUrl = `data:image/png;base64,${Buffer.from(effectIcon).toString(
+        "base64"
+      )}`;
+      renderResources[`potionEffect::${effect.id}`] = iconUrl;
     }
 
     return renderResources;
