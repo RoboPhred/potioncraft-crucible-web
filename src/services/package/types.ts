@@ -39,4 +39,5 @@ export interface CruciblePackagePotionBase extends CruciblePackageIdObject {
 export interface CruciblePackagePotionEffect extends CruciblePackageIdObject {
   name?: string;
   icon?: string;
+  potionColor?: string;
 }

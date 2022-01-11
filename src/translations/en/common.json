@@ -31,7 +31,8 @@
     "noun_titlecase": "Potion Effect",
     "new": "New Potion Effect",
     "name": "Effect Name",
-    "new_id_prompt": "Choose the new potion effect id. This must be unique among all potion effects added by this package. Once an id is chosen, it cannot be changed."
+    "new_id_prompt": "Choose the new potion effect id. This must be unique among all potion effects added by this package. Once an id is chosen, it cannot be changed.",
+    "potion_color": "Potion Color"
   },
   "map": {
     "toolbar_menu_item": "Map",

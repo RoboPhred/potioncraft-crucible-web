@@ -3,6 +3,7 @@ import { RouteComponentProps } from "react-router";
 import { useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { Redirect } from "react-router-dom";
+import { SliderPicker, ColorResult } from "react-color";
 
 import { extname } from "@/paths";
 
@@ -21,6 +22,7 @@ import EnsurePackageLoaded from "@/components/EnsurePackageLoaded";
 import HorizontalPageFlow from "@/components/HorizontalPageFlow";
 import CommitTextBox from "@/components/CommitTextBox";
 import ImageField from "@/components/ImageField";
+import FieldBox from "@/components/FieldBox";
 
 import styles from "./PotionEffectPage.module.css";
 
@@ -35,6 +37,8 @@ const PotionEffectPage = ({
 }: RouteComponentProps<PotionEffectPageParams>) => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
+
+  const [bufferedColor, setBufferedColor] = React.useState<string | null>(null);
 
   const potionEffect = useSelector((state) =>
     packageIdObjectDataSelector(state, "potionEffects", potionEffectId)
@@ -72,6 +76,25 @@ const PotionEffectPage = ({
     [potionEffectId]
   );
 
+  const onColorChange = React.useCallback((color: ColorResult) => {
+    setBufferedColor(color.hex);
+  }, []);
+
+  const onColorChangeComplete = React.useCallback(
+    (color: ColorResult) => {
+      setBufferedColor(null);
+      dispatch(
+        packageDataSetById(
+          "potionEffects",
+          potionEffectId,
+          "potionColor",
+          color.hex
+        )
+      );
+    },
+    [potionEffectId]
+  );
+
   if (potionEffect == null) {
     return <Redirect to="/" />;
   }
@@ -84,16 +107,36 @@ const PotionEffectPage = ({
           className={styles["potioneffect-editor"]}
           title={t("potion_effect.noun_titlecase")}
         >
-          <CommitTextBox
-            value={potionEffect?.name ?? ""}
-            placeholder={t("potion_effect.name")}
-            onCommit={onSetName}
-          />
-          <ImageField
-            imageResource={effectIcon}
-            imageResourceName={potionEffect.name ?? null}
-            onChange={setEffectIcon}
-          />
+          <div className={styles["potioneffect-content"]}>
+            <CommitTextBox
+              value={potionEffect?.name ?? ""}
+              placeholder={t("potion_effect.name")}
+              onCommit={onSetName}
+            />
+            <ImageField
+              imageResource={effectIcon}
+              imageResourceName={potionEffect.name ?? null}
+              onChange={setEffectIcon}
+            />
+            <FieldBox
+              label={t("potion_effect.potion_color")}
+              className={styles["potioneffect-potioncolor"]}
+            >
+              <svg width="50px" height="50px">
+                <circle
+                  cx={25}
+                  cy={25}
+                  r={25}
+                  fill={bufferedColor ?? potionEffect.potionColor ?? "#FFFFFF"}
+                />
+              </svg>
+              <SliderPicker
+                color={bufferedColor ?? potionEffect.potionColor ?? "#FFFFFF"}
+                onChange={onColorChange}
+                onChangeComplete={onColorChangeComplete}
+              />
+            </FieldBox>
+          </div>
         </Window>
       </HorizontalPageFlow>
     </>
