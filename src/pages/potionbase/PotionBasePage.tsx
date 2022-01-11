@@ -20,6 +20,7 @@ import Divider from "./components/Divider/Divider";
 import PotionBaseTooltipImage from "./components/PotionBaseTooltipImage/PotionBaseTooltipImage";
 import PotionBaseDescription from "./components/PotionBaseDescription/PotionBaseDescription";
 import PotionBaseIcons from "./components/PotionBaseIcons/PotionBaseIcons";
+import PotionBaseColor from "./components/PotionBaseColor";
 
 import styles from "./PotionBasePage.module.css";
 
@@ -70,6 +71,7 @@ const PotionBasePage: React.FC<RouteComponentProps<PotionBaseRouteParams>> = ({
                   <Divider />
                   <PotionBaseTooltipImage potionBaseId={potionBaseId} />
                   <Divider />
+                  <PotionBaseColor potionBaseId={potionBaseId} />
                   <PotionBaseDescription potionBaseId={potionBaseId} />
                 </div>
                 <div className={styles["potionbase-editor-right"]}>
