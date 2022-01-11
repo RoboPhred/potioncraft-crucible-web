@@ -1,5 +1,5 @@
 import { MapEntityPrototype } from "@/map-config";
-import { RenderResources } from "@/services/map-entitiy-prototypes/types";
+import { RenderResources } from "@/services/map-editor/entities/types";
 
 export interface EntityDef<T extends MapEntityPrototype = MapEntityPrototype> {
   hitRadius: number;

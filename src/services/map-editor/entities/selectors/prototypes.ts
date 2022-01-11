@@ -1,5 +1,4 @@
 import { createSelector } from "reselect";
-import values from "lodash/values";
 
 import { AppState } from "@/state";
 import { PotionEffectMapEntity } from "@/map-config";

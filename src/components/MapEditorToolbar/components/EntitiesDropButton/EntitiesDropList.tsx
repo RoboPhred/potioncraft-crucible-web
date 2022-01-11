@@ -12,8 +12,8 @@ import { EntityDefsByType } from "@/entities";
 
 import { useBooleanSetState } from "@/hooks/use-boolean-state";
 
-import { SpawnableEntityPrototype } from "@/services/map-entitiy-prototypes/types";
-import { renderResourcesSelector } from "@/services/map-entitiy-prototypes/selectors/render-resources";
+import { SpawnableEntityPrototype } from "@/services/map-editor/entities/types";
+import { renderResourcesSelector } from "@/services/map-editor/entities/selectors/render-resources";
 
 import Tooltip from "@/components/Tooltip/Tooltip";
 

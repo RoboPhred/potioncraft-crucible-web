@@ -39,7 +39,7 @@ import { selectedEntityKeysSelector } from "@/services/map-editor/selection/sele
 import { dragMoveOffsetSelector } from "@/services/map-editor/mouse/selectors/drag-move";
 import { editorDamageRectSelector } from "@/services/map-editor/damage/selector/damage";
 import { worldToClientSelector } from "@/services/map-editor/view/selectors/coordinate-mapping";
-import { renderResourcesSelector } from "@/services/map-entitiy-prototypes/selectors/render-resources";
+import { renderResourcesSelector } from "@/services/map-editor/entities/selectors/render-resources";
 
 import styles from "./MapCanvas.module.css";
 

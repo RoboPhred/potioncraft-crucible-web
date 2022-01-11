@@ -1,5 +1,5 @@
 import { PotionEffectMapEntity } from "@/map-config";
-import { RenderResources } from "@/services/map-entitiy-prototypes/types";
+import { RenderResources } from "@/services/map-editor/entities/types";
 
 import { POTION_RADIUS } from "../consts";
 import { EntityDef } from "../types";

@@ -19,7 +19,7 @@ import {
   editorViewportHeightSelector,
   editorViewportWidthSelector,
 } from "@/services/map-editor/view/selectors/viewport";
-import { renderResourcesSelector } from "@/services/map-entitiy-prototypes/selectors/render-resources";
+import { renderResourcesSelector } from "@/services/map-editor/entities/selectors/render-resources";
 
 export interface DragPreviewProps {
   className?: string;

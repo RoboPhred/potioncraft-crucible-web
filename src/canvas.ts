@@ -1,7 +1,7 @@
 import { EntityDefsByType } from "./entities";
 import { POTION_RADIUS } from "./entities/consts";
 import { MapEntity } from "./map-config";
-import { RenderResources } from "./services/map-entitiy-prototypes/types";
+import { RenderResources } from "./services/map-editor/entities/types";
 
 export function transformToMap(
   ctx: CanvasRenderingContext2D,

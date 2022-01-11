@@ -6,7 +6,7 @@ import EntitiesDropList from "./EntitiesDropList";
 
 import { useBooleanSetState } from "@/hooks/use-boolean-state";
 
-import { SpawnableEntityPrototype } from "@/services/map-entitiy-prototypes/types";
+import { SpawnableEntityPrototype } from "@/services/map-editor/entities/types";
 
 import Popper from "@/components/Popper";
 import { MenuCloseListener } from "@/components/Menus/MenuCloseContext";

@@ -34,7 +34,6 @@ const PotionEffectPage = ({
   },
 }: RouteComponentProps<PotionEffectPageParams>) => {
   const dispatch = useDispatch();
-  // TODO: translate
   const { t } = useTranslation();
 
   const potionEffect = useSelector((state) =>
@@ -83,11 +82,11 @@ const PotionEffectPage = ({
       <HorizontalPageFlow>
         <Window
           className={styles["potioneffect-editor"]}
-          title="Potion Effects"
+          title={t("potion_effect.noun_titlecase")}
         >
           <CommitTextBox
             value={potionEffect?.name ?? ""}
-            placeholder="Effect Name"
+            placeholder={t("potion_effect.name")}
             onCommit={onSetName}
           />
           <ImageField

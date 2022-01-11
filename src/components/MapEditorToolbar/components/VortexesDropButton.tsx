@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 
 import { VortexMapEntity } from "@/map-config";
 
-import { SpawnableEntityPrototype } from "@/services/map-entitiy-prototypes/types";
+import { SpawnableEntityPrototype } from "@/services/map-editor/entities/types";
 
 import EntitiesDropButton from "./EntitiesDropButton";
 

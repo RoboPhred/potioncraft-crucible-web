@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 
 import { useSelector } from "@/hooks/use-selector";
 
-import { potionEffectEntityPrototypesSelector } from "@/services/map-entitiy-prototypes/selectors/potion-effects";
+import { potionEffectEntityPrototypesSelector } from "@/services/map-editor/entities/selectors/prototypes";
 
 import EntitiesDropButton from "./EntitiesDropButton";
 
