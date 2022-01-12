@@ -1,20 +1,38 @@
+import cls from "classnames";
 import * as React from "react";
-
-import Popover from "../Popover";
+import { createPortal } from "react-dom";
+import { FocusOn, AutoFocusInside } from "react-focus-on";
 
 import styles from "./Modal.module.css";
 
 export interface ModalProps {
+  className?: string;
   isOpen: boolean;
-  children?: React.ReactNode;
+  onRequestClose?(): void;
 }
-const Modal = ({ isOpen, children }: ModalProps) => (
-  <Popover
-    placement="center-screen"
-    isOpen={isOpen}
-    className={styles["modal"]}
-  >
-    {children}
-  </Popover>
-);
+
+const Modal: React.FC<ModalProps> = ({
+  className,
+  isOpen,
+  onRequestClose,
+  children,
+}) => {
+  if (!isOpen) {
+    return null;
+  }
+
+  return createPortal(
+    <div className={cls("modal", styles["modal"])}>
+      <FocusOn onClickOutside={onRequestClose} onEscapeKey={onRequestClose}>
+        <div className={cls(styles["modal-content"], className)}>
+          <AutoFocusInside className={styles["modal-autofocus"]}>
+            {children}
+          </AutoFocusInside>
+        </div>
+      </FocusOn>
+    </div>,
+    document.body
+  );
+};
+
 export default Modal;
