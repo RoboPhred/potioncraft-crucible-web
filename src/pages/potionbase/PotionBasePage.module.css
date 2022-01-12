@@ -1,8 +1,3 @@
-.potionbase-editor {
-  width: 100%;
-  height: 100%;
-}
-
 .potionbase-editor-content {
   display: flex;
   flex-direction: column;

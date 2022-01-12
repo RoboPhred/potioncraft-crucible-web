@@ -5,11 +5,15 @@ export interface CruciblePackage {
   author?: string;
   description?: string;
 
+  ingredients: CruciblePackageIngredient[];
   potionBases: CruciblePackagePotionBase[];
   potionEffects: CruciblePackagePotionEffect[];
 }
 
-export type CruciblePackageSectionKey = "potionBases" | "potionEffects";
+export type CruciblePackageSectionKey =
+  | "ingredients"
+  | "potionBases"
+  | "potionEffects";
 export type CruciblePackageSections = Pick<
   CruciblePackage,
   CruciblePackageSectionKey
@@ -17,6 +21,32 @@ export type CruciblePackageSections = Pick<
 
 export interface CruciblePackageIdObject {
   id: string;
+}
+
+export interface CruciblePackageIngredient extends CruciblePackageIdObject {
+  name?: string;
+  description?: string;
+  inheritFrom?: string;
+  inventoryImage?: string;
+  recipeStepImage?: string;
+  ingredientListIcon?: string;
+  basePrice?: number;
+  path?: string;
+  grindStartPercent?: string;
+  groundColor: string;
+  isTeleportationIngredient?: boolean;
+  stackItems?: CruciblePackageIngredientStackItem[];
+  isStackItemSolid?: boolean;
+  soldBy?: any[];
+}
+
+export interface CruciblePackageIngredientStackItem {
+  sprite?: string;
+  collision?: string;
+  selfCollision: string;
+  positionInStack: { x: number; y: number };
+  angleInStack: number;
+  grindsInto: CruciblePackageIngredientStackItem[];
 }
 
 export interface CruciblePackagePotionBase extends CruciblePackageIdObject {

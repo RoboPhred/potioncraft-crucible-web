@@ -7,8 +7,6 @@ import { packageIdObjectNew } from "@/actions/packages/package-idobject-new";
 
 import { useSelector } from "@/hooks/use-selector";
 
-import HorizontalPageFlow from "@/components/HorizontalPageFlow";
-import Window from "@/components/Window";
 import Button from "@/components/Button";
 import EnsurePackageLoaded from "@/components/EnsurePackageLoaded";
 
@@ -17,7 +15,7 @@ import { packageIdObjectIdsSelector } from "@/services/package/selectors/package
 import Modal from "@/components/Modal";
 import TextBox from "@/components/TextBox";
 
-import styles from "./PotionBaseListPage.module.css";
+import SingleWindowPageFlow from "@/components/SingleWindowPageFlow";
 
 const PotionBasesPage = () => {
   const dispatch = useDispatch();
@@ -41,41 +39,34 @@ const PotionBasesPage = () => {
   return (
     <>
       <EnsurePackageLoaded />
-      <HorizontalPageFlow>
-        <Window
-          className={styles["potionbases-list"]}
-          title={t("potion_base.noun_titlecase_plural")}
-        >
-          <ul>
-            {potionBaseIds.map((potionBaseId) => (
-              <li key={potionBaseId}>
-                <Link to={`/potion-bases/${potionBaseId}`}>{potionBaseId}</Link>
-              </li>
-            ))}
-          </ul>
-          <Button onClick={onRequestNewPotionBase}>
-            {t("potion_base.new")}
-          </Button>
-          <Modal isOpen={newPotionId != null}>
-            <p>{t("potion_base.new_id_prompt")}</p>
-            <div>
-              <TextBox
-                autoFocus
-                value={newPotionId!}
-                onChange={(e) => setNewPotionId(e.target.value)}
-              />
-            </div>
-            <div>
-              <Button
-                disabled={newPotionId == null || newPotionId == ""}
-                onClick={onNewPotionBase}
-              >
-                {t("potion_base.new")}
-              </Button>
-            </div>
-          </Modal>
-        </Window>
-      </HorizontalPageFlow>
+      <SingleWindowPageFlow title={t("potion_base.noun_titlecase_plural")}>
+        <ul>
+          {potionBaseIds.map((potionBaseId) => (
+            <li key={potionBaseId}>
+              <Link to={`/potion-bases/${potionBaseId}`}>{potionBaseId}</Link>
+            </li>
+          ))}
+        </ul>
+        <Button onClick={onRequestNewPotionBase}>{t("potion_base.new")}</Button>
+        <Modal isOpen={newPotionId != null}>
+          <p>{t("potion_base.new_id_prompt")}</p>
+          <div>
+            <TextBox
+              autoFocus
+              value={newPotionId!}
+              onChange={(e) => setNewPotionId(e.target.value)}
+            />
+          </div>
+          <div>
+            <Button
+              disabled={newPotionId == null || newPotionId == ""}
+              onClick={onNewPotionBase}
+            >
+              {t("potion_base.new")}
+            </Button>
+          </div>
+        </Modal>
+      </SingleWindowPageFlow>
     </>
   );
 };

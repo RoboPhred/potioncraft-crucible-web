@@ -6,14 +6,13 @@ import { useSelector } from "@/hooks/use-selector";
 
 import { packageDataSelector } from "@/services/package/selectors/package";
 
-import Window from "@/components/Window";
-import HorizontalPageFlow from "@/components/HorizontalPageFlow";
 import CommitTextBox from "@/components/CommitTextBox";
 import CommitTextArea from "@/components/CommitTextArea";
 
 import { packageDataSet } from "@/actions/packages/package-data-set";
 
 import styles from "./PackageView.module.css";
+import SingleWindowPageFlow from "@/components/SingleWindowPageFlow";
 
 const PackageView = () => {
   const dispatch = useDispatch();
@@ -32,44 +31,39 @@ const PackageView = () => {
   }, []);
 
   return (
-    <HorizontalPageFlow>
-      <Window
-        className={styles["package-editor"]}
-        title={t("package.noun_titlecase")}
-      >
-        <table className={styles["package-editor-content"]}>
-          <tbody>
-            <tr>
-              <td>{t("package.name")}</td>
-              <td>
-                <CommitTextBox
-                  value={packageData?.name ?? ""}
-                  onCommit={onSetPackageName}
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>{t("package.author")}</td>
-              <td>
-                <CommitTextBox
-                  value={packageData?.author ?? ""}
-                  onCommit={onSetPackageAuthor}
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>{t("package.description")}</td>
-              <td>
-                <CommitTextArea
-                  value={packageData?.description ?? ""}
-                  onCommit={onSetPackageDescription}
-                />
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </Window>
-    </HorizontalPageFlow>
+    <SingleWindowPageFlow title={t("package.noun_titlecase")}>
+      <table className={styles["package-editor-content"]}>
+        <tbody>
+          <tr>
+            <td>{t("package.name")}</td>
+            <td>
+              <CommitTextBox
+                value={packageData?.name ?? ""}
+                onCommit={onSetPackageName}
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>{t("package.author")}</td>
+            <td>
+              <CommitTextBox
+                value={packageData?.author ?? ""}
+                onCommit={onSetPackageAuthor}
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>{t("package.description")}</td>
+            <td>
+              <CommitTextArea
+                value={packageData?.description ?? ""}
+                onCommit={onSetPackageDescription}
+              />
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </SingleWindowPageFlow>
   );
 };
 
