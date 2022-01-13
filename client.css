@@ -350,8 +350,6 @@ template {
 }
 
 :root {
-  --fontsize: 18px;
-
   --color-base: #aa7939;
   --color-darker: #76490d;
   --color-darkest: #432600;
@@ -393,11 +391,12 @@ body,
   height: 100%;
   margin: 0;
   padding: 0;
-  color: var(--color-text-default);
   font-family: "Vollkorn", serif;
   font-size: 24px; /* css vars don't seem to work here */
   color: #432600;
   color: var(--color-ui-light-text);
+  background: url(/potioncraft-crucible-web/cc4a0aa96a3e38063c6c.png) #deb47b;
+  background: url(/potioncraft-crucible-web/cc4a0aa96a3e38063c6c.png) var(--color-lighter);
 }
 
 a {
@@ -558,45 +557,34 @@ a:hover {
   padding: 7px 7px;
 }
 
-.window--au46u {
+.divider--lKbkM {
   box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  background: url(/potioncraft-crucible-web/cc4a0aa96a3e38063c6c.png) #deb47b;
-  background: url(/potioncraft-crucible-web/cc4a0aa96a3e38063c6c.png) var(--color-lighter);
-  color: #432600;
-  color: var(--color-ui-light-text);
 }
 
-.window-titlebar--_gBjV {
-  background: #aa7939;
-  background: var(--color-ui-surface-bg);
-  display: flex;
-  flex-direction: row;
-  flex-grow: 0;
-  flex-shrink: 0;
-  padding: 3px 5px;
-  box-sizing: border-box;
-  border-bottom: 1px solid #432600;
-  border-bottom: 1px solid var(--color-ui-surface-border);
-}
-
-.window-title--Ota8R {
-  font-size: 0.9em;
-  font-weight: 600;
-  cursor: default;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-}
-
-.window-content--Dr_Y9 {
+.divider--horizontal--B2Vr8 {
   width: 100%;
+  padding: 0 10px;
+}
+
+.divider--vertical--lwqfu {
   height: 100%;
-  flex-shrink: 1;
-  min-height: 0;
-  box-sizing: border-box;
+  padding: 10px 0;
+}
+
+.divider-line--DfWwB {
+  border-radius: 1.5px;
+  background: #76490d;
+  background: var(--color-darker);
+}
+
+.divider--horizontal--B2Vr8 .divider-line--DfWwB {
+  height: 3px;
+  width: 100%;
+}
+
+.divider--vertical--lwqfu .divider-line--DfWwB {
+  width: 3px;
+  height: 100%;
 }
 
 .tree--bfK4V {
@@ -610,8 +598,19 @@ a:hover {
   cursor: default;
 }
 
+.tree-item-chevron--NYlbP {
+  color: #432600;
+  color: var(--color-darkest);
+  margin-right: 5px;
+}
+
+.tree-item-nochevron--pp5pJ {
+  width: 35px;
+}
+
 .tree-item-content--P2OzT {
   box-sizing: border-box;
+  width: 100%;
   padding: 3px 10px;
   cursor: inherit;
   -webkit-user-select: none;
@@ -620,6 +619,8 @@ a:hover {
           user-select: none;
   border-top-left-radius: 2px;
   border-bottom-left-radius: 2px;
+  display: flex;
+  flex-direction: row;
 }
 
 .tree-item-content--P2OzT:hover {
@@ -637,6 +638,10 @@ a:hover {
   box-shadow: inset 0 0 15px var(--color-darkest);
 }
 
+.tree-item-label--NR835 {
+  width: 100%;
+}
+
 .tree-item-children--gPKj0 {
   margin-left: 10px;
 }
@@ -646,10 +651,7 @@ a:hover {
   padding: 0 15px;
   display: flex;
   align-items: center;
-  border-bottom: 1px solid rgba(0, 0, 0, 40%);
   position: relative;
-  background: url(/potioncraft-crucible-web/cc4a0aa96a3e38063c6c.png) #deb47b;
-  background: url(/potioncraft-crucible-web/cc4a0aa96a3e38063c6c.png) var(--color-lighter);
 }
 
 .titlebar-heading--CKvDN {
@@ -670,37 +672,33 @@ a:hover {
   text-align: center;
 }
 
-.horizontal-page-flow--Rntkc {
+.page--LVMNK {
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
 }
 
-.horizontal-page-flow-content--ZbMEz {
+.page-content--m0AM_ {
   width: 100%;
   height: 100%;
   min-height: 0;
   flex: 1 1 auto;
   padding: 5px;
   box-sizing: border-box;
-  background: #76490d;
-  background: var(--color-ui-dark-bg);
-  color: #deb47b;
-  color: var(--color-ui-dark-text);
   display: flex;
   flex-direction: row;
 }
 
-.horizontal-page-flow-content--ZbMEz > :not(:first-child) {
+.page-content--m0AM_ > :not(:first-child) {
   margin-left: 2.5px;
 }
 
-.horizontal-page-flow-content--ZbMEz > :not(:last-child) {
+.page-content--m0AM_ > :not(:last-child) {
   margin-right: 2.5px;
 }
 
-.package-content--eiiLb {
+.package-content--TH1h2 {
   width: 450px;
   min-width: 200px;
   height: 100%;
@@ -713,6 +711,13 @@ a:hover {
   text-align: center;
   color: #deb47b;
   color: var(--color-ui-surface-text);
+}
+
+.flow--vertical--REOIz {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .textbox-input--u9Oc8 {
@@ -800,12 +805,14 @@ a:hover {
   outline: none;
 }
 
-.package-editor--Ve8Gn {
-  width: 100%;
-}
-
 .package-editor-content--9h2wd {
   padding: 2px;
+}
+
+.package-editor-field--QEYLj {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
 }
 
 .pan-zoom-handler--afGPu {
@@ -933,12 +940,6 @@ a:hover {
   min-width: 0;
 }
 
-.map-window--JiE0u {
-  flex-shrink: 1;
-  flex-grow: 1;
-  min-width: 0;
-}
-
 .map-window-container--vwVI2 {
   display: flex;
   flex-direction: column;
@@ -963,34 +964,17 @@ a:hover {
   width: 100%;
 }
 
-.popover-backdrop--r5hOV {
-  position: fixed;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-}
-.popover-container--center--EagvZ {
-  position: fixed;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-}
-
-.popover-container--center--EagvZ .popover-content--1dluG {
-  position: fixed;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.popover-autofocuser--yKv58 {
-  width: 100%;
-  height: 100%;
-}
-
 .modal--hTXcZ {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+
+  background: rgba(0, 0, 0, 15%);
+}
+
+.modal-content--CRmm7 {
   background: url(/potioncraft-crucible-web/cc4a0aa96a3e38063c6c.png) #deb47b;
   background: url(/potioncraft-crucible-web/cc4a0aa96a3e38063c6c.png) var(--color-lighter);
   color: #432600;
@@ -998,10 +982,15 @@ a:hover {
   border: 3px solid #76490d;
   border: 3px solid var(--color-ui-light-border);
   padding: 4px;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 
-.potionbases-list--it2Cv {
+.modal-autofocus--ibvEW {
   width: 100%;
+  height: 100%;
 }
 
 .fieldbox--rmVj8 {
@@ -1061,20 +1050,6 @@ a:hover {
 
 .potionbasename-input--CV82N:focus {
   outline: none;
-}
-
-.divider--k40jI {
-  width: 100%;
-  padding: 0 15px;
-  box-sizing: border-box;
-}
-
-.divider-line--y3r3j {
-  height: 5px;
-  width: 100%;
-  border-radius: 3.5px;
-  background: #76490d;
-  background: var(--color-darker);
 }
 
 .imagefield--mO_g5 {
@@ -1147,9 +1122,15 @@ a:hover {
   align-items: center;
 }
 
-.potionbase-editor--LAEgD {
+.colorbutton-svg--nh4hD {
+  cursor: pointer;
+}
+
+.potionbase-liquidcolor--caDp5 {
+  padding: 10px;
   width: 100%;
-  height: 100%;
+  box-sizing: border-box;
+  margin-top: 20px;
 }
 
 .potionbase-editor-content--l6JRm {
@@ -1196,13 +1177,17 @@ a:hover {
   width: 100%;
 }
 
-.potioneffect-editor--ZfDS6 {
-  width: 100%;
-  height: 100%;
+.potioncolor-button--MhxPN {
+  padding: 10px;
 }
 
-.potioneffects-list--gkLgu {
+.potioneffect-content--bh_6r {
   width: 100%;
+  height: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
 }
 
 
