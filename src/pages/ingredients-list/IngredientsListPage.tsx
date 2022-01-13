@@ -17,58 +17,60 @@ import TextBox from "@/components/TextBox";
 
 import SingleWindowPageFlow from "@/components/SingleWindowPageFlow";
 
-const PotionBaseListPage = () => {
+const IngredientsListPage = () => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
-  const potionBaseIds = useSelector((state) =>
-    packageIdObjectIdsSelector(state, "potionBases")
+  const ingredientIds = useSelector((state) =>
+    packageIdObjectIdsSelector(state, "ingredients")
   );
 
-  const [newPotionId, setNewPotionId] = React.useState<string | null>(null);
+  const [newIngredientId, setNewIngredientId] = React.useState<string | null>(
+    null
+  );
 
-  const onRequestNewPotionBase = React.useCallback(() => {
-    setNewPotionId("");
+  const onRequestNewIngredient = React.useCallback(() => {
+    setNewIngredientId("");
   }, []);
-  const onNewPotionBase = React.useCallback(() => {
-    if (newPotionId != null && newPotionId.length > 0) {
-      setNewPotionId(null);
-      dispatch(packageIdObjectNew("potionBases", newPotionId));
+  const onNewIngredient = React.useCallback(() => {
+    if (newIngredientId != null && newIngredientId.length > 0) {
+      setNewIngredientId(null);
+      dispatch(packageIdObjectNew("ingredients", newIngredientId));
     }
-  }, [newPotionId]);
+  }, [newIngredientId]);
 
   return (
     <>
       <EnsurePackageLoaded />
-      <SingleWindowPageFlow title={t("potion_base.noun_titlecase_plural")}>
+      <SingleWindowPageFlow title={t("ingredient.noun_titlecase_plural")}>
         <ul>
-          {potionBaseIds.map((potionBaseId) => (
+          {ingredientIds.map((potionBaseId) => (
             <li key={potionBaseId}>
-              <Link to={`/potion-bases/${potionBaseId}`}>{potionBaseId}</Link>
+              <Link to={`/ingredients/${potionBaseId}`}>{potionBaseId}</Link>
             </li>
           ))}
         </ul>
-        <Button onClick={onRequestNewPotionBase}>{t("potion_base.new")}</Button>
-        <Modal isOpen={newPotionId != null}>
+        {/* <Button onClick={onRequestNewIngredient}>{t("ingredient.new")}</Button>
+        <Modal isOpen={newIngredientId != null}>
           <p>{t("potion_base.new_id_prompt")}</p>
           <div>
             <TextBox
               autoFocus
-              value={newPotionId!}
-              onChange={(e) => setNewPotionId(e.target.value)}
+              value={newIngredientId!}
+              onChange={(e) => setNewIngredientId(e.target.value)}
             />
           </div>
           <div>
             <Button
-              disabled={newPotionId == null || newPotionId == ""}
-              onClick={onNewPotionBase}
+              disabled={newIngredientId == null || newIngredientId == ""}
+              onClick={onNewIngredient}
             >
               {t("potion_base.new")}
             </Button>
           </div>
-        </Modal>
+        </Modal> */}
       </SingleWindowPageFlow>
     </>
   );
 };
 
-export default PotionBaseListPage;
+export default IngredientsListPage;

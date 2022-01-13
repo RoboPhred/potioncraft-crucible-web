@@ -10,6 +10,10 @@
     "load": "Load Package",
     "save": "Save Package"
   },
+  "ingredient": {
+    "noun_titlecase_plural": "Ingredients",
+    "new": "New Ingredient"
+  },
   "potion_base": {
     "noun_titlecase": "Potion Base",
     "noun_titlecase_plural": "Potion Bases",
