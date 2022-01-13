@@ -1,27 +1,22 @@
 import * as React from "react";
 import { useTranslation } from "react-i18next";
+import { useDispatch } from "react-redux";
 
 import { useSelector } from "@/hooks/use-selector";
-import { useAction } from "@/hooks/use-action";
 
 import { packageIdObjectIdsSelector } from "@/services/package/selectors/package";
 import { navtreeExpandedValuesSelector } from "@/services/navigation/selectors";
 
 import { navtreeExpandedValuesSet } from "@/actions/navigation/navtree-expanded-set";
 
-import Window from "./Window";
-
 import Tree from "./Tree/Tree";
 import LinkTreeItem from "./Tree/LinkTreeItem";
-import { useDispatch } from "react-redux";
 
 export interface PackageContentTreeProps {
   className?: string;
 }
 
-const PackageContentTree: React.FC<PackageContentTreeProps> = ({
-  className,
-}) => {
+const PackageContentTree = ({ className }: PackageContentTreeProps) => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
@@ -40,57 +35,56 @@ const PackageContentTree: React.FC<PackageContentTreeProps> = ({
     packageIdObjectIdsSelector(state, "potionEffects")
   );
   return (
-    <Window className={className} title={t("package.content")}>
-      <Tree
-        expandedValues={navtreeExpandedValues}
-        onExpandedValuesChanged={onExpandedValuesChanged}
-      >
-        <LinkTreeItem value="home" to="/" label={t("package.noun_titlecase")}>
-          <LinkTreeItem
-            value="ingredients"
-            to="/ingredients"
-            label={t("ingredient.noun_titlecase_plural")}
-          >
-            {ingredientIds.map((id) => (
-              <LinkTreeItem
-                value={`ingredients/${id}`}
-                key={id}
-                label={id}
-                to={`/ingredients/${id}`}
-              />
-            ))}
-          </LinkTreeItem>
-          <LinkTreeItem
-            value="potion-bases"
-            to="/potion-bases"
-            label={t("potion_base.noun_titlecase_plural")}
-          >
-            {potionBaseIds.map((id) => (
-              <LinkTreeItem
-                value={`potion-bases/${id}`}
-                key={id}
-                label={id}
-                to={`/potion-bases/${id}`}
-              />
-            ))}
-          </LinkTreeItem>
-          <LinkTreeItem
-            value="potion-effects"
-            to="/potion-effects"
-            label={t("potion_effect.noun_titlecase_plural")}
-          >
-            {potionEffectIds.map((id) => (
-              <LinkTreeItem
-                value={`potion-effects/${id}`}
-                key={id}
-                label={id}
-                to={`/potion-effects/${id}`}
-              />
-            ))}
-          </LinkTreeItem>
+    <Tree
+      className={className}
+      expandedValues={navtreeExpandedValues}
+      onExpandedValuesChanged={onExpandedValuesChanged}
+    >
+      <LinkTreeItem value="home" to="/" label={t("package.noun_titlecase")}>
+        <LinkTreeItem
+          value="ingredients"
+          to="/ingredients"
+          label={t("ingredient.noun_titlecase_plural")}
+        >
+          {ingredientIds.map((id) => (
+            <LinkTreeItem
+              value={`ingredients/${id}`}
+              key={id}
+              label={id}
+              to={`/ingredients/${id}`}
+            />
+          ))}
         </LinkTreeItem>
-      </Tree>
-    </Window>
+        <LinkTreeItem
+          value="potion-bases"
+          to="/potion-bases"
+          label={t("potion_base.noun_titlecase_plural")}
+        >
+          {potionBaseIds.map((id) => (
+            <LinkTreeItem
+              value={`potion-bases/${id}`}
+              key={id}
+              label={id}
+              to={`/potion-bases/${id}`}
+            />
+          ))}
+        </LinkTreeItem>
+        <LinkTreeItem
+          value="potion-effects"
+          to="/potion-effects"
+          label={t("potion_effect.noun_titlecase_plural")}
+        >
+          {potionEffectIds.map((id) => (
+            <LinkTreeItem
+              value={`potion-effects/${id}`}
+              key={id}
+              label={id}
+              to={`/potion-effects/${id}`}
+            />
+          ))}
+        </LinkTreeItem>
+      </LinkTreeItem>
+    </Tree>
   );
 };
 

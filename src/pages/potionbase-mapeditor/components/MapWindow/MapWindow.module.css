@@ -1,9 +1,3 @@
-.map-window {
-  flex-shrink: 1;
-  flex-grow: 1;
-  min-width: 0;
-}
-
 .map-window-container {
   display: flex;
   flex-direction: column;

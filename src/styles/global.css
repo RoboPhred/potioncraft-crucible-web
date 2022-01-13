@@ -5,10 +5,10 @@ body,
   height: 100%;
   margin: 0;
   padding: 0;
-  color: var(--color-text-default);
   font-family: "Vollkorn", serif;
   font-size: 24px; /* css vars don't seem to work here */
   color: var(--color-ui-light-text);
+  background: url("@/assets/papertile2.png") var(--color-lighter);
 }
 
 a {

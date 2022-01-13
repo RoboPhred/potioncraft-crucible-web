@@ -1,30 +1,35 @@
 import * as React from "react";
 
 import DefaultTitlebarContent from "../DefaultTitlebarContent";
+import Divider from "../Divider";
 import PackageContentTree from "../PackageContentTree";
 import TitleBar from "../TitleBar";
 
-import styles from "./HorizontalPageFlow.module.css";
+import styles from "./Page.module.css";
 
-export interface HorizontalPageFlowProps {
+export interface PageProps {
   titlebarContent?: React.ReactNode;
   showContentTree?: boolean;
 }
 
-const HorizontalPageFlow: React.FC<HorizontalPageFlowProps> = ({
+const Page: React.FC<PageProps> = ({
   titlebarContent,
   showContentTree = true,
   children,
 }) => {
   return (
-    <div className={styles["horizontal-page-flow"]}>
+    <div className={styles["page"]}>
       <TitleBar>
         <DefaultTitlebarContent />
         {titlebarContent}
       </TitleBar>
-      <div className={styles["horizontal-page-flow-content"]}>
+      <Divider />
+      <div className={styles["page-content"]}>
         {showContentTree && (
-          <PackageContentTree className={styles["package-content"]} />
+          <>
+            <PackageContentTree className={styles["package-content"]} />
+            <Divider orientation="vertical" />
+          </>
         )}
         {children}
       </div>
@@ -32,4 +37,4 @@ const HorizontalPageFlow: React.FC<HorizontalPageFlowProps> = ({
   );
 };
 
-export default HorizontalPageFlow;
+export default Page;

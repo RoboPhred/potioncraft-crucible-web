@@ -2,13 +2,14 @@ import * as React from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import history from "@/history";
 
 import { packageIdObjectNew } from "@/actions/packages/package-idobject-new";
 
 import { useSelector } from "@/hooks/use-selector";
 
-import HorizontalPageFlow from "@/components/HorizontalPageFlow";
-import Window from "@/components/Window";
+import Page from "@/components/Page";
+import Flow from "@/components/Flow";
 import Button from "@/components/Button";
 import EnsurePackageLoaded from "@/components/EnsurePackageLoaded";
 
@@ -16,8 +17,6 @@ import { packageIdObjectIdsSelector } from "@/services/package/selectors/package
 
 import Modal from "@/components/Modal";
 import TextBox from "@/components/TextBox";
-
-import styles from "./PotionEffectListPage.module.css";
 
 const PotionEffectsPage = () => {
   const dispatch = useDispatch();
@@ -28,24 +27,25 @@ const PotionEffectsPage = () => {
 
   const [newEffectId, setNewEffectId] = React.useState<string | null>(null);
 
-  const onRequestNewPotionEffect = React.useCallback(() => {
+  const onRequestNewEffect = React.useCallback(() => {
     setNewEffectId("");
+  }, []);
+  const onCancelNewEffect = React.useCallback(() => {
+    setNewEffectId(null);
   }, []);
   const onNewPotionEffect = React.useCallback(() => {
     setNewEffectId(null);
     if (newEffectId != null && newEffectId.length > 0) {
       dispatch(packageIdObjectNew("potionEffects", newEffectId));
+      history.push(`/potion-effects/${newEffectId}`);
     }
   }, [newEffectId]);
 
   return (
     <>
       <EnsurePackageLoaded />
-      <HorizontalPageFlow>
-        <Window
-          className={styles["potioneffects-list"]}
-          title={t("potion_effect.noun_titlecase_plural")}
-        >
+      <Page>
+        <Flow>
           <ul>
             {potionEffectIds.map((potionBaseId) => (
               <li key={potionBaseId}>
@@ -55,10 +55,13 @@ const PotionEffectsPage = () => {
               </li>
             ))}
           </ul>
-          <Button onClick={onRequestNewPotionEffect}>
+          <Button variant="primary" onClick={onRequestNewEffect}>
             {t("potion_effect.new")}
           </Button>
-          <Modal isOpen={newEffectId != null}>
+          <Modal
+            isOpen={newEffectId != null}
+            onRequestClose={onCancelNewEffect}
+          >
             <p>{t("potion_effect.new_id_prompt")}</p>
             <div>
               <TextBox
@@ -76,8 +79,8 @@ const PotionEffectsPage = () => {
               </Button>
             </div>
           </Modal>
-        </Window>
-      </HorizontalPageFlow>
+        </Flow>
+      </Page>
     </>
   );
 };

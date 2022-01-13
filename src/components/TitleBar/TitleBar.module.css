@@ -3,9 +3,7 @@
   padding: 0 15px;
   display: flex;
   align-items: center;
-  border-bottom: 1px solid rgba(0, 0, 0, 40%);
   position: relative;
-  background: url("@/assets/papertile2.png") var(--color-lighter);
 }
 
 .titlebar-heading {

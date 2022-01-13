@@ -42,6 +42,10 @@
   box-shadow: inset 0 0 15px var(--color-darkest);
 }
 
+.tree-item-label {
+  width: 100%;
+}
+
 .tree-item-children {
   margin-left: 10px;
 }

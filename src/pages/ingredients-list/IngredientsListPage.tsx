@@ -7,15 +7,15 @@ import { packageIdObjectNew } from "@/actions/packages/package-idobject-new";
 
 import { useSelector } from "@/hooks/use-selector";
 
-import Button from "@/components/Button";
 import EnsurePackageLoaded from "@/components/EnsurePackageLoaded";
+import Page from "@/components/Page";
+import Flow from "@/components/Flow";
+import Button from "@/components/Button";
 
 import { packageIdObjectIdsSelector } from "@/services/package/selectors/package";
 
 import Modal from "@/components/Modal";
 import TextBox from "@/components/TextBox";
-
-import SingleWindowPageFlow from "@/components/SingleWindowPageFlow";
 
 const IngredientsListPage = () => {
   const dispatch = useDispatch();
@@ -41,15 +41,16 @@ const IngredientsListPage = () => {
   return (
     <>
       <EnsurePackageLoaded />
-      <SingleWindowPageFlow title={t("ingredient.noun_titlecase_plural")}>
-        <ul>
-          {ingredientIds.map((potionBaseId) => (
-            <li key={potionBaseId}>
-              <Link to={`/ingredients/${potionBaseId}`}>{potionBaseId}</Link>
-            </li>
-          ))}
-        </ul>
-        {/* <Button onClick={onRequestNewIngredient}>{t("ingredient.new")}</Button>
+      <Page>
+        <Flow>
+          <ul>
+            {ingredientIds.map((potionBaseId) => (
+              <li key={potionBaseId}>
+                <Link to={`/ingredients/${potionBaseId}`}>{potionBaseId}</Link>
+              </li>
+            ))}
+          </ul>
+          {/* <Button onClick={onRequestNewIngredient}>{t("ingredient.new")}</Button>
         <Modal isOpen={newIngredientId != null}>
           <p>{t("potion_base.new_id_prompt")}</p>
           <div>
@@ -68,7 +69,8 @@ const IngredientsListPage = () => {
             </Button>
           </div>
         </Modal> */}
-      </SingleWindowPageFlow>
+        </Flow>
+      </Page>
     </>
   );
 };

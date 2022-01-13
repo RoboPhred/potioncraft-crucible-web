@@ -7,7 +7,7 @@ import history from "@/history";
 import { potionBaseMapEdit } from "@/actions/potion-bases/map-edit";
 
 import EnsurePackageLoaded from "@/components/EnsurePackageLoaded";
-import HorizontalPageFlow from "@/components/HorizontalPageFlow";
+import Page from "@/components/Page";
 
 import MapWindow from "./components/MapWindow";
 import MapMenuButton from "./components/MapMenuButton";
@@ -33,9 +33,9 @@ const PotionBaseMapEditorPage: React.FC<
   return (
     <>
       <EnsurePackageLoaded />
-      <HorizontalPageFlow titlebarContent={<MapMenuButton />}>
+      <Page titlebarContent={<MapMenuButton />}>
         <MapWindow />
-      </HorizontalPageFlow>
+      </Page>
     </>
   );
 };

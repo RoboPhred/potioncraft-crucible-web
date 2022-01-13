@@ -2,16 +2,16 @@ import * as React from "react";
 
 import { useSelector } from "@/hooks/use-selector";
 
-import HorizontalPageFlow from "@/components/HorizontalPageFlow";
+import Page from "@/components/Page";
 
 import { packageLoadErrorSelector } from "@/services/package/selectors/package";
 
 const LoadErrorView = () => {
   const error = useSelector(packageLoadErrorSelector);
   return (
-    <HorizontalPageFlow showContentTree={false}>
+    <Page showContentTree={false}>
       <code>{error}</code>
-    </HorizontalPageFlow>
+    </Page>
   );
 };
 

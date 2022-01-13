@@ -8,7 +8,8 @@ import { useSelector } from "@/hooks/use-selector";
 import { packageIdObjectDataSelector } from "@/services/package/selectors/package";
 
 import EnsurePackageLoaded from "@/components/EnsurePackageLoaded";
-import SingleWindowPageFlow from "@/components/SingleWindowPageFlow";
+import Page from "@/components/Page";
+import Flow from "@/components/Flow";
 
 import PotionEffectName from "./components/PotionEffectName";
 import PotionEffectIcon from "./components/PotionEffectIcon";
@@ -38,13 +39,15 @@ const PotionEffectPage = ({
   return (
     <>
       <EnsurePackageLoaded />
-      <SingleWindowPageFlow title={t("potion_effect.noun_titlecase")}>
-        <div className={styles["potioneffect-content"]}>
-          <PotionEffectName potionEffectId={potionEffectId} />
-          <PotionEffectIcon potionEffectId={potionEffectId} />
-          <PotionEffectColor potionEffectId={potionEffectId} />
-        </div>
-      </SingleWindowPageFlow>
+      <Page>
+        <Flow>
+          <div className={styles["potioneffect-content"]}>
+            <PotionEffectName potionEffectId={potionEffectId} />
+            <PotionEffectIcon potionEffectId={potionEffectId} />
+            <PotionEffectColor potionEffectId={potionEffectId} />
+          </div>
+        </Flow>
+      </Page>
     </>
   );
 };

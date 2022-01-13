@@ -1,0 +1,28 @@
+.divider {
+  box-sizing: border-box;
+}
+
+.divider--horizontal {
+  width: 100%;
+  padding: 0 10px;
+}
+
+.divider--vertical {
+  height: 100%;
+  padding: 10px 0;
+}
+
+.divider-line {
+  border-radius: 1.5px;
+  background: var(--color-darker);
+}
+
+.divider--horizontal .divider-line {
+  height: 3px;
+  width: 100%;
+}
+
+.divider--vertical .divider-line {
+  width: 3px;
+  height: 100%;
+}

@@ -79,7 +79,9 @@ const TreeItem: React.FC<TreeItemProps> = ({
         ) : (
           <div className={styles["tree-item-nochevron"]} />
         )}
-        <div onClick={onLabelClick}>{label}</div>
+        <div className={styles["tree-item-label"]} onClick={onLabelClick}>
+          {label}
+        </div>
       </div>
       {isExpanded && children && (
         <Tree
