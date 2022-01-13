@@ -9,13 +9,25 @@
   cursor: default;
 }
 
+.tree-item-chevron {
+  color: var(--color-darkest);
+  margin-right: 5px;
+}
+
+.tree-item-nochevron {
+  width: 35px;
+}
+
 .tree-item-content {
   box-sizing: border-box;
+  width: 100%;
   padding: 3px 10px;
   cursor: inherit;
   user-select: none;
   border-top-left-radius: 2px;
   border-bottom-left-radius: 2px;
+  display: flex;
+  flex-direction: row;
 }
 
 .tree-item-content:hover {
