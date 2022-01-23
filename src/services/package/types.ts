@@ -1,3 +1,4 @@
+import { ItemOf } from "@/arrays";
 import { MapEntity } from "@/map-config";
 
 export interface CruciblePackage {
@@ -20,6 +21,9 @@ export type CruciblePackageSections = Pick<
   CruciblePackage,
   CruciblePackageSectionKey
 >;
+
+export type CruciblePackageSectionItem<TKey extends CruciblePackageSectionKey> =
+  ItemOf<CruciblePackageSections[TKey]>;
 
 export interface CruciblePackageIdObject {
   id: string;

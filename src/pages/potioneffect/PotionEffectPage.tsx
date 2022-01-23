@@ -1,6 +1,5 @@
 import * as React from "react";
 import { RouteComponentProps } from "react-router";
-import { useTranslation } from "react-i18next";
 import { Redirect } from "react-router-dom";
 
 import { useSelector } from "@/hooks/use-selector";
@@ -9,7 +8,6 @@ import { packageIdObjectDataSelector } from "@/services/package/selectors/packag
 
 import EnsurePackageLoaded from "@/components/EnsurePackageLoaded";
 import Page from "@/components/Page";
-import Flow from "@/components/Flow";
 
 import PotionEffectName from "./components/PotionEffectName";
 import PotionEffectIcon from "./components/PotionEffectIcon";
@@ -26,8 +24,6 @@ const PotionEffectPage = ({
     params: { potionEffectId },
   },
 }: RouteComponentProps<PotionEffectPageParams>) => {
-  const { t } = useTranslation();
-
   const potionEffect = useSelector((state) =>
     packageIdObjectDataSelector(state, "potionEffects", potionEffectId)
   );
@@ -40,13 +36,11 @@ const PotionEffectPage = ({
     <>
       <EnsurePackageLoaded />
       <Page>
-        <Flow>
-          <div className={styles["potioneffect-content"]}>
-            <PotionEffectName potionEffectId={potionEffectId} />
-            <PotionEffectIcon potionEffectId={potionEffectId} />
-            <PotionEffectColor potionEffectId={potionEffectId} />
-          </div>
-        </Flow>
+        <div className={styles["potioneffect-content"]}>
+          <PotionEffectName potionEffectId={potionEffectId} />
+          <PotionEffectIcon potionEffectId={potionEffectId} />
+          <PotionEffectColor potionEffectId={potionEffectId} />
+        </div>
       </Page>
     </>
   );

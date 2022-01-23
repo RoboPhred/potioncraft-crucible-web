@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import ImageField from "@/components/ImageField";
-import { usePotionBaseResource } from "@/services/package/hooks/use-potionbase-resource";
+import { useIdObjectResource } from "@/services/package/hooks/use-idobject-resource";
 
 import styles from "./PotionBaseTooltipImage.module.css";
 
@@ -13,7 +13,7 @@ const PotionBaseTooltipImage = ({
   potionBaseId,
 }: PotionBaseTooltipImageProps) => {
   const [tooltipImage, tooltipImageName, onSetTooltipImage] =
-    usePotionBaseResource(potionBaseId, "tooltipImage");
+    useIdObjectResource("potionBases", potionBaseId, "tooltipImage");
 
   return (
     <ImageField

@@ -10,6 +10,7 @@ import PotionBasePage from "./pages/potionbase";
 import PotionEffectPage from "./pages/potioneffect";
 import PotionEffectListPage from "./pages/potioneffect-list";
 import PotionBottleListPage from "./pages/potionbottle-list";
+import PotionBottlePage from "./pages/potionbottle";
 
 const Routes: React.FC = () => (
   <Switch>
@@ -37,6 +38,11 @@ const Routes: React.FC = () => (
     />
 
     <Route path="/potion-bottles" exact component={PotionBottleListPage} />
+    <Route
+      path="/potion-bottles/:potionBottleId"
+      exact
+      component={PotionBottlePage}
+    />
 
     <Redirect to="/" />
   </Switch>

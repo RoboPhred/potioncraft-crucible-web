@@ -4,12 +4,13 @@ import {
   CruciblePackageSectionKey,
   CruciblePackageSections,
 } from "@/services/package/types";
+import { ItemOf } from "@/arrays";
 
 export const ACTION_PACKAGE_RESOURCE_SET_BYID = "package-resource-set-byid";
 
 export function packageResourceSetById<
   TSectionKey extends CruciblePackageSectionKey,
-  K1 extends keyof CruciblePackageSections[TSectionKey][0]
+  K1 extends keyof ItemOf<CruciblePackageSections[TSectionKey]>
 >(
   sectionKey: TSectionKey,
   id: string,

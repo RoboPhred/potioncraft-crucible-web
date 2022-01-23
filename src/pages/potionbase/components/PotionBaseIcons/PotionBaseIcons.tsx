@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { usePotionBaseResource } from "@/services/package/hooks/use-potionbase-resource";
+import { useIdObjectResource } from "@/services/package/hooks/use-idobject-resource";
 
 import ImageField from "@/components/ImageField";
 
@@ -12,34 +12,39 @@ export interface PotionbaseIconsProps {
 
 const PotionBaseIcons = ({ potionBaseId }: PotionbaseIconsProps) => {
   const [ingredientListIcon, ingredientListIconName, onSetIngredientListIcon] =
-    usePotionBaseResource(potionBaseId, "ingredientListIcon");
+    useIdObjectResource("potionBases", potionBaseId, "ingredientListIcon");
 
   const [menuButtonImage, menuButtonImageName, onSetMenuButtonImage] =
-    usePotionBaseResource(potionBaseId, "menuButtonImage");
+    useIdObjectResource("potionBases", potionBaseId, "menuButtonImage");
   const [
     menuButtonHoverImage,
     menuButtonHoverImageName,
     onSetMenuButtonHoverImage,
-  ] = usePotionBaseResource(potionBaseId, "menuButtonHoverImage");
+  ] = useIdObjectResource("potionBases", potionBaseId, "menuButtonHoverImage");
   const [
     menuButtonSelectedImage,
     menuButtonSelectedImageName,
     onSetMenuButtonSelectedImage,
-  ] = usePotionBaseResource(potionBaseId, "menuButtonSelectedImage");
+  ] = useIdObjectResource(
+    "potionBases",
+    potionBaseId,
+    "menuButtonSelectedImage"
+  );
   const [
     menuButtonLockedImage,
     menuButtonLockedImageName,
     onSetMenuButtonLockedImage,
-  ] = usePotionBaseResource(potionBaseId, "menuButtonLockedImage");
+  ] = useIdObjectResource("potionBases", potionBaseId, "menuButtonLockedImage");
 
-  const [ladleImage, ladleImageName, onSetLadleImage] = usePotionBaseResource(
+  const [ladleImage, ladleImageName, onSetLadleImage] = useIdObjectResource(
+    "potionBases",
     potionBaseId,
     "ladleImage"
   );
   const [recipeStepImage, recipeStepImageName, onSetRecipeStepImage] =
-    usePotionBaseResource(potionBaseId, "recipeStepImage");
+    useIdObjectResource("potionBases", potionBaseId, "recipeStepImage");
   const [mapOriginImage, mapOriginImageName, onSetMapOriginImage] =
-    usePotionBaseResource(potionBaseId, "mapOriginImage");
+    useIdObjectResource("potionBases", potionBaseId, "mapOriginImage");
 
   return (
     <div className={styles["potionbaseicons"]}>

@@ -12,45 +12,56 @@ import {
   packageIdObjectDataSelector,
   packageIdObjectResourceSelector,
 } from "../selectors/package";
-import { CruciblePackage } from "../types";
+import {
+  CruciblePackageSectionItem,
+  CruciblePackageSectionKey,
+} from "../types";
 
-export function usePotionBaseResource(
-  potionBaseId: string,
-  resourceKey: keyof ItemOf<CruciblePackage["potionBases"]>
+// TODO: Move to utilities.
+export type StringKeysOf<T> = {
+  [K in keyof T]: T[K] extends string | undefined ? K : never;
+}[keyof T];
+
+export function useIdObjectResource<T extends CruciblePackageSectionKey>(
+  objectType: T,
+  objectId: string,
+  resourceKey: StringKeysOf<CruciblePackageSectionItem<T>>
 ): [
   Uint8Array | null,
   string | null,
   (image: Uint8Array, imageName: string) => void
 ] {
   const dispatch = useDispatch();
-  const potionBase = useSelector((state) =>
-    packageIdObjectDataSelector(state, "potionBases", potionBaseId)
+  const idObject = useSelector((state) =>
+    packageIdObjectDataSelector(state, objectType, objectId)
   );
+
+  const currentValue = idObject != null ? idObject[resourceKey] : null;
 
   return [
     useSelector(
       (state) =>
         packageIdObjectResourceSelector(
           state,
-          "potionBases",
-          potionBaseId,
+          objectType,
+          objectId,
           resourceKey
         ) as any
     ),
-    potionBase?.name ?? null,
+    currentValue as any,
     React.useCallback(
       (image: Uint8Array, imageName: string) => {
         dispatch(
           packageResourceSetById(
-            "potionBases",
-            potionBaseId,
+            objectType,
+            objectId,
             resourceKey,
-            `${potionBaseId}/${resourceKey}.${extname(imageName)}`,
+            `${objectId}/${resourceKey}.${extname(imageName)}`,
             image
           )
         );
       },
-      [potionBaseId]
+      [objectId]
     ),
   ];
 }
