@@ -10,12 +10,15 @@ import { packageIdObjectDataSelector } from "@/services/package/selectors/packag
 import EnsurePackageLoaded from "@/components/EnsurePackageLoaded";
 import Page from "@/components/Page";
 import Divider from "@/components/Divider";
+import IdObjectResourceField from "@/components/IdObjectResourceField";
 
 import PotionBottleIcon from "./components/PotionBottleIcon";
 import PotionBottleForeground from "./components/PotionBottleForeground";
 
 import styles from "./PotionBottlePage.module.css";
 import PotionBottleMask from "./components/PotionBottleMask";
+
+const PotionBottleResourceField = IdObjectResourceField.ofType("potionBottles");
 
 interface PotionBottlePageParams {
   potionBottleId: string;
@@ -83,6 +86,11 @@ const PotionBottlePage = ({
               />
             </div>
           </div>
+          <PotionBottleResourceField
+            resourceKey="liquidMain"
+            objectId={potionBottleId}
+            accept="image/png"
+          />
         </div>
       </Page>
     </>

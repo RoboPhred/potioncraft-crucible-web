@@ -1,8 +1,8 @@
 import * as React from "react";
 import { useDispatch } from "react-redux";
 
-import { ItemOf } from "@/arrays";
 import { extname } from "@/paths";
+import { StringKeysOf } from "@/object-utils";
 
 import { useSelector } from "@/hooks/use-selector";
 
@@ -18,9 +18,6 @@ import {
 } from "../types";
 
 // TODO: Move to utilities.
-export type StringKeysOf<T> = {
-  [K in keyof T]: T[K] extends string | undefined ? K : never;
-}[keyof T];
 
 export function useIdObjectResource<T extends CruciblePackageSectionKey>(
   objectType: T,

@@ -59,13 +59,9 @@ const ImageField = ({
       )}
     >
       <div className={styles["imagefield-upload"]}>
-        <AbstractFileLoadButton
-          accept="image/png"
-          onFileLoaded={onFileLoaded}
-          disabled={isLoading}
-        >
+        <AbstractFileLoadButton accept="image/png" onFileLoaded={onFileLoaded}>
           {(props) => (
-            <Button {...props}>
+            <Button {...props} disabled={isLoading}>
               <FontAwesomeIcon color="inherit" icon={faFileUpload} />
             </Button>
           )}

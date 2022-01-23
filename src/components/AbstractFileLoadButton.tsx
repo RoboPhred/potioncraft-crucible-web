@@ -1,20 +1,17 @@
 import * as React from "react";
 
 export interface AbstractFileLoadButtonProps {
-  disabled?: boolean;
   accept: string;
   onFileLoaded(file: File): void;
   children(props: AbstractLoadButtonRenderProps): React.ReactChild;
   onInteractionComplete?(): void;
 }
 export interface AbstractLoadButtonRenderProps {
-  disabled: boolean;
   onClick(): void;
 }
 
 type Props = AbstractFileLoadButtonProps;
 const AbstractFileLoadButton: React.FC<Props> = ({
-  disabled = false,
   accept,
   onFileLoaded,
   onInteractionComplete = () => {},
@@ -45,7 +42,7 @@ const AbstractFileLoadButton: React.FC<Props> = ({
 
   return (
     <>
-      {children({ disabled, onClick })}
+      {children({ onClick })}
       <input
         ref={inputRef}
         style={{ display: "none" }}

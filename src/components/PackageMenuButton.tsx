@@ -36,15 +36,14 @@ const PackageMenu = () => {
     <Menu>
       <MenuItem onClick={onNew}>{t("package.new")}</MenuItem>
       <AbstractFileLoadButton
-        disabled={loadStatus == "loading"}
         accept=".zip"
         onFileLoaded={onLoadPackage}
         onInteractionComplete={requestMenuClose}
       >
-        {({ disabled, onClick }) => (
+        {({ onClick }) => (
           <MenuItem
             autoDismissMenu={false}
-            disabled={disabled}
+            disabled={loadStatus == "loading"}
             onClick={onClick}
           >
             {t("package.load")}
