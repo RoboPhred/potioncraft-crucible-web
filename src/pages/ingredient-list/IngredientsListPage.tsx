@@ -10,16 +10,11 @@ import { useSelector } from "@/hooks/use-selector";
 import EnsurePackageLoaded from "@/components/EnsurePackageLoaded";
 import Page from "@/components/Page";
 import Flow from "@/components/Flow";
-import Button from "@/components/Button";
 
 import { packageIdObjectIdsSelector } from "@/services/package/selectors/package";
 
-import Modal from "@/components/Modal";
-import TextBox from "@/components/TextBox";
-
 const IngredientsListPage = () => {
   const dispatch = useDispatch();
-  const { t } = useTranslation();
   const ingredientIds = useSelector((state) =>
     packageIdObjectIdsSelector(state, "ingredients")
   );
@@ -28,9 +23,6 @@ const IngredientsListPage = () => {
     null
   );
 
-  const onRequestNewIngredient = React.useCallback(() => {
-    setNewIngredientId("");
-  }, []);
   const onNewIngredient = React.useCallback(() => {
     if (newIngredientId != null && newIngredientId.length > 0) {
       setNewIngredientId(null);
@@ -50,25 +42,6 @@ const IngredientsListPage = () => {
               </li>
             ))}
           </ul>
-          {/* <Button onClick={onRequestNewIngredient}>{t("ingredient.new")}</Button>
-        <Modal isOpen={newIngredientId != null}>
-          <p>{t("potion_base.new_id_prompt")}</p>
-          <div>
-            <TextBox
-              autoFocus
-              value={newIngredientId!}
-              onChange={(e) => setNewIngredientId(e.target.value)}
-            />
-          </div>
-          <div>
-            <Button
-              disabled={newIngredientId == null || newIngredientId == ""}
-              onClick={onNewIngredient}
-            >
-              {t("potion_base.new")}
-            </Button>
-          </div>
-        </Modal> */}
         </Flow>
       </Page>
     </>

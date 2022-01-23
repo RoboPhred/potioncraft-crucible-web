@@ -12,7 +12,7 @@ const PotionEffectsDropButton = () => {
   const { t } = useTranslation();
   return (
     <EntitiesDropButton entityPrototypes={effects}>
-      {t("potion_effects.noun_titlecase_plural")}
+      {t("potion_effect.noun_titlecase_plural")}
     </EntitiesDropButton>
   );
 };

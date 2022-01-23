@@ -45,8 +45,10 @@
     "import_template": "Import From Template",
     "import_file": "Import From File"
   },
-  "potion_effects": {
-    "noun_titlecase_plural": "Potion Effects"
+  "potion_bottle": {
+    "noun_titlecase_plural": "Potion Bottles",
+    "new": "New Bottle",
+    "new_id_prompt": "Choose the new potion bottle id. This must be unique among all potion bottles added by this package. Once an id is chosen, it cannot be changed."
   },
   "entities": {
     "message_click_drag_create": "Click and drag to create a new entity.",

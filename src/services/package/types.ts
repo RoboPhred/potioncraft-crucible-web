@@ -8,12 +8,14 @@ export interface CruciblePackage {
   ingredients: CruciblePackageIngredient[];
   potionBases: CruciblePackagePotionBase[];
   potionEffects: CruciblePackagePotionEffect[];
+  potionBottles: CruciblePackagePotionBottle[];
 }
 
 export type CruciblePackageSectionKey =
   | "ingredients"
   | "potionBases"
-  | "potionEffects";
+  | "potionEffects"
+  | "potionBottles";
 export type CruciblePackageSections = Pick<
   CruciblePackage,
   CruciblePackageSectionKey
@@ -70,4 +72,23 @@ export interface CruciblePackagePotionEffect extends CruciblePackageIdObject {
   name?: string;
   icon?: string;
   potionColor?: string;
+}
+
+export interface CruciblePackagePotionBottle extends CruciblePackageIdObject {
+  bottleIcon?: string;
+  bottleForeground?: string;
+  bottleMask?: string;
+  bottleCollision?: string;
+  labelOffset?: { x: number; y: number };
+  liquidMain?: string;
+  liquid2Of2?: string;
+  liquid1Of3?: string;
+  liquid3Of3?: string;
+  liquid1Of4?: string;
+  liquid3Of4?: string;
+  liquid4Of4?: string;
+  liquid1Of5?: string;
+  liquid2Of5?: string;
+  liquid4Of5?: string;
+  liquid5Of5?: string;
 }

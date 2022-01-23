@@ -34,6 +34,9 @@ const PackageContentTree = ({ className }: PackageContentTreeProps) => {
   const potionEffectIds = useSelector((state) =>
     packageIdObjectIdsSelector(state, "potionEffects")
   );
+  const potionBottleIds = useSelector((state) =>
+    packageIdObjectIdsSelector(state, "potionBottles")
+  );
   return (
     <Tree
       className={className}
@@ -80,6 +83,20 @@ const PackageContentTree = ({ className }: PackageContentTreeProps) => {
               key={id}
               label={id}
               to={`/potion-effects/${id}`}
+            />
+          ))}
+        </LinkTreeItem>
+        <LinkTreeItem
+          value="potion-bottles"
+          to="/potion-bottles"
+          label={t("potion_bottle.noun_titlecase_plural")}
+        >
+          {potionBottleIds.map((id) => (
+            <LinkTreeItem
+              value={`potion-bottles/${id}`}
+              key={id}
+              label={id}
+              to={`/potion-bottles/${id}`}
             />
           ))}
         </LinkTreeItem>
