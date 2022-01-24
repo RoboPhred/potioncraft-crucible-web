@@ -24,7 +24,7 @@ const LinkButton = React.forwardRef<HTMLAnchorElement, LinkButtonProps>(
         )}
         {...props}
       >
-        {props.children}
+        <span className={styles["button-content"]}>{props.children}</span>
       </Link>
     );
   }

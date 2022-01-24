@@ -39,15 +39,13 @@ const PotionBaseColor = ({ potionBaseId }: PotionBaseColorProps) => {
   }
 
   return (
-    <FieldBox
-      label={t("potion_base.liquid_color")}
-      className={styles["potionbase-liquidcolor"]}
-    >
+    <div className={styles["potionbase-liquidcolor"]}>
       <ColorButton
         color={potionBase.liquidColor ?? "#FFFFFF"}
         onChange={onSetColor}
       />
-    </FieldBox>
+      {t("potion_base.liquid_color")}
+    </div>
   );
 };
 

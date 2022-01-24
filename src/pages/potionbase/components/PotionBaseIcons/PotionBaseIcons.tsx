@@ -1,4 +1,5 @@
 import * as React from "react";
+import classNames from "classnames";
 
 import { useIdObjectResource } from "@/services/package/hooks/use-idobject-resource";
 
@@ -7,10 +8,11 @@ import ImageField from "@/components/ImageField";
 import styles from "./PotionBaseIcons.module.css";
 
 export interface PotionbaseIconsProps {
+  className?: string;
   potionBaseId: string;
 }
 
-const PotionBaseIcons = ({ potionBaseId }: PotionbaseIconsProps) => {
+const PotionBaseIcons = ({ className, potionBaseId }: PotionbaseIconsProps) => {
   const [ingredientListIcon, ingredientListIconName, onSetIngredientListIcon] =
     useIdObjectResource("potionBases", potionBaseId, "ingredientListIcon");
 
@@ -47,7 +49,7 @@ const PotionBaseIcons = ({ potionBaseId }: PotionbaseIconsProps) => {
     useIdObjectResource("potionBases", potionBaseId, "mapOriginImage");
 
   return (
-    <div className={styles["potionbaseicons"]}>
+    <div className={classNames(styles["potionbaseicons"], className)}>
       <ImageField
         className={styles["potionbaseicons-imagefield"]}
         imageResource={menuButtonImage}

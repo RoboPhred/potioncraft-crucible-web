@@ -26,7 +26,7 @@
     "recipe_icon": "Recipe Icon",
     "menu_icons": "Menu Icons",
     "new": "New Potion Base",
-    "unlock_on_start": "Unlocked on Start",
+    "unlocked_on_start": "Unlocked on Start",
     "liquid_color": "Liquid Color",
     "edit_map": "Edit Map"
   },

@@ -1,6 +1,7 @@
 import * as React from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
+import classNames from "classnames";
 
 import { useSelector } from "@/hooks/use-selector";
 
@@ -13,10 +14,12 @@ import CommitTextArea from "@/components/CommitTextArea";
 import styles from "./PotionBaseDescription.module.css";
 
 export interface PotionBaseDescriptionProps {
+  className?: string;
   potionBaseId: string;
 }
 
 const PotionBaseDescription = ({
+  className,
   potionBaseId,
 }: PotionBaseDescriptionProps) => {
   const { t } = useTranslation();
@@ -47,7 +50,7 @@ const PotionBaseDescription = ({
   }
 
   return (
-    <div className={styles["potionbasedescription"]}>
+    <div className={classNames(styles["potionbasedescription"], className)}>
       <CommitTextArea
         className={styles["potionbasedescription-input"]}
         placeholder={t("potion_base.description")}

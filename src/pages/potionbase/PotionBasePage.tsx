@@ -63,44 +63,43 @@ const PotionBasePage: React.FC<RouteComponentProps<PotionBaseRouteParams>> = ({
     <>
       <EnsurePackageLoaded />
       <Page>
-        <Flow>
-          <div className={styles["potionbase-editor-content"]}>
-            <div className={styles["potionbase-editor-panels"]}>
-              <div className={styles["potionbase-editor-left"]}>
-                <PotionBaseName potionBaseId={potionBaseId} />
-                <Divider />
-                <PotionBaseTooltipImage potionBaseId={potionBaseId} />
-                <Divider />
-                <PotionBaseColor potionBaseId={potionBaseId} />
-                <PotionBaseDescription potionBaseId={potionBaseId} />
-              </div>
-              <div className={styles["potionbase-editor-right"]}>
-                <FieldBox
-                  className={styles["potion-editor-settings"]}
-                  label={t("potion_base.settings")}
-                >
-                  <div>
-                    {t("potion_base.unlock_on_start")}:{" "}
-                    <input
-                      type="checkbox"
-                      checked={potionBase.unlockedOnStart ?? false}
-                      onChange={onSetUnlockedOnStart}
-                    />
-                  </div>
-                </FieldBox>
-                <div className={styles["potion-editor-icons"]}>
-                  <PotionBaseIcons potionBaseId={potionBaseId} />
-                </div>
-              </div>
-            </div>
-            <LinkButton
-              variant="primary"
-              to={`/potion-bases/${potionBaseId}/map-editor`}
-            >
-              {t("potion_base.edit_map")}
-            </LinkButton>
-          </div>
-        </Flow>
+        <div className={styles["potionbase-editor-content"]}>
+          <Flow className={styles["potionbase-editor-overview"]}>
+            <PotionBaseName potionBaseId={potionBaseId} />
+            <Divider />
+            <PotionBaseTooltipImage potionBaseId={potionBaseId} />
+            <Divider />
+            <PotionBaseDescription
+              className={styles["potioncraft-editor-description"]}
+              potionBaseId={potionBaseId}
+            />
+          </Flow>
+          <FieldBox
+            label={t("potion_base.settings")}
+            className={styles["potionbase-editor-settings"]}
+          >
+            <PotionBaseColor potionBaseId={potionBaseId} />
+            <label>
+              <input
+                type="checkbox"
+                checked={potionBase.unlockedOnStart}
+                onChange={onSetUnlockedOnStart}
+              />
+              {t("potion_base.unlocked_on_start")}
+            </label>
+          </FieldBox>
+          <PotionBaseIcons
+            className={styles["potionbase-editor-icons"]}
+            potionBaseId={potionBaseId}
+          />
+          <LinkButton
+            className={styles["potionbase-editor-map"]}
+            variant="primary"
+            to={`/potion-bases/${potionBaseId}/map-editor`}
+          >
+            {t("potion_base.edit_map")}
+          </LinkButton>
+        </div>
       </Page>
     </>
   );

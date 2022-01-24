@@ -29,7 +29,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         type="button"
         {...props}
       >
-        {props.children}
+        <span className={styles["button-content"]}>{props.children}</span>
       </button>
     );
   }
