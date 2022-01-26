@@ -43,8 +43,9 @@ const PotionBaseColor = ({ potionBaseId }: PotionBaseColorProps) => {
       <ColorButton
         color={potionBase.liquidColor ?? "#FFFFFF"}
         onChange={onSetColor}
-      />
-      {t("potion_base.liquid_color")}
+      >
+        {t("potion_base.liquid_color")}
+      </ColorButton>
     </div>
   );
 };

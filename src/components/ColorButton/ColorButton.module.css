@@ -1,3 +1,7 @@
 .colorbutton-svg {
   cursor: pointer;
 }
+
+.colorbutton-label {
+  margin-left: 8px;
+}

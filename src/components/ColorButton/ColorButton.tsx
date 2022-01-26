@@ -8,9 +8,12 @@ import styles from "./ColorButton.module.css";
 export interface ColorButtonProps {
   color: string;
   onChange(color: string): void;
+  children?: React.ReactNode;
 }
 
-const ColorButton = ({ color, onChange }: ColorButtonProps) => {
+const radius = 17;
+
+const ColorButton = ({ color, onChange, children }: ColorButtonProps) => {
   const svgRef = React.useRef<SVGSVGElement>(null);
   const [isOpen, setIsOpen] = React.useState(false);
   const [bufferedColor, setBufferedColor] = React.useState<string | null>(null);
@@ -36,16 +39,24 @@ const ColorButton = ({ color, onChange }: ColorButtonProps) => {
   );
 
   return (
-    <>
+    <label>
       <svg
-        width="50px"
-        height="50px"
+        width={`${radius * 2}px`}
+        height={`${radius * 2}px`}
         ref={svgRef}
         className={styles["colorbutton-svg"]}
         onClick={onClick}
       >
-        <circle cx={25} cy={25} r={25} fill={bufferedColor ?? color} />
+        <circle
+          cx={radius}
+          cy={radius}
+          r={radius}
+          fill={bufferedColor ?? color}
+        />
       </svg>
+      {children && (
+        <span className={styles["colorbutton-label"]}>{children}</span>
+      )}
       <Popper
         isOpen={isOpen}
         anchorEl={svgRef.current}
@@ -57,7 +68,7 @@ const ColorButton = ({ color, onChange }: ColorButtonProps) => {
           onChangeComplete={onSketchColorCommit}
         />
       </Popper>
-    </>
+    </label>
   );
 };
 

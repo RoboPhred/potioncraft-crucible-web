@@ -16,6 +16,7 @@ import Flow from "@/components/Flow";
 import FieldBox from "@/components/FieldBox";
 import LinkButton from "@/components/Button/LinkButton";
 import Divider from "@/components/Divider";
+import Checkbox from "@/components/Checkbox";
 
 import PotionBaseName from "./components/PotionBaseName/PotionBaseName";
 import PotionBaseTooltipImage from "./components/PotionBaseTooltipImage/PotionBaseTooltipImage";
@@ -79,14 +80,12 @@ const PotionBasePage: React.FC<RouteComponentProps<PotionBaseRouteParams>> = ({
             className={styles["potionbase-editor-settings"]}
           >
             <PotionBaseColor potionBaseId={potionBaseId} />
-            <label>
-              <input
-                type="checkbox"
-                checked={potionBase.unlockedOnStart}
-                onChange={onSetUnlockedOnStart}
-              />
+            <Checkbox
+              checked={potionBase.unlockedOnStart ?? false}
+              onChange={onSetUnlockedOnStart}
+            >
               {t("potion_base.unlocked_on_start")}
-            </label>
+            </Checkbox>
           </FieldBox>
           <PotionBaseIcons
             className={styles["potionbase-editor-icons"]}
