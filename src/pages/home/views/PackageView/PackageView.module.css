@@ -1,5 +1,6 @@
 .package-editor-content {
   padding: 2px;
+  box-sizing: border-box;
 }
 
 .package-editor-field {

@@ -31,7 +31,7 @@ const Page: React.FC<PageProps> = ({
             <Divider orientation="vertical" />
           </>
         )}
-        {children}
+        <div className={styles["page-children"]}>{children}</div>
       </div>
     </div>
   );

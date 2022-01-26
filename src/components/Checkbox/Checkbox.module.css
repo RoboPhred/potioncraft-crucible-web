@@ -4,6 +4,7 @@
 
 .checkbox-icon {
   color: var(--color-darker);
+  cursor: pointer;
 }
 
 .checkbox-label {

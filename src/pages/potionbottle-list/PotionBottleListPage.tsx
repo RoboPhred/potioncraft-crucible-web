@@ -3,6 +3,8 @@ import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
+import history from "@/history";
+
 import { packageIdObjectNew } from "@/actions/packages/package-idobject-new";
 
 import { useSelector } from "@/hooks/use-selector";
@@ -32,6 +34,7 @@ const IngredientsListPage = () => {
     if (newBottleId != null && newBottleId.length > 0) {
       setNewBottleId(null);
       dispatch(packageIdObjectNew("potionBottles", newBottleId));
+      history.push(`/potion-bottles/${newBottleId}`);
     }
   }, [newBottleId]);
 
@@ -43,7 +46,9 @@ const IngredientsListPage = () => {
           <ul>
             {bottleIds.map((potionBaseId) => (
               <li key={potionBaseId}>
-                <Link to={`/bottles/${potionBaseId}`}>{potionBaseId}</Link>
+                <Link to={`/potion-bottles/${potionBaseId}`}>
+                  {potionBaseId}
+                </Link>
               </li>
             ))}
           </ul>
