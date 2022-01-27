@@ -1,0 +1,53 @@
+.liquidpreview {
+  display: flex;
+  flex-direction: row;
+  border: 2px solid var(--color-darker);
+  border-radius: 12px;
+  padding: 5px;
+}
+
+.liquidpreview-art {
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  /* FIXME: Resize with content.  Currently can't due to using position: absolute for images*/
+  width: 350px;
+  height: 350px;
+}
+
+.liquidpreview-label {
+  position: absolute;
+  font-size: 1.2em;
+  font-weight: bold;
+  top: 10px;
+  left: 10px;
+}
+
+.liquidpreview-effect {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.liquidpreview-effect-1 {
+  filter: saturate(500%) hue-rotate(54deg);
+}
+.liquidpreview-effect-2 {
+  filter: saturate(500%) hue-rotate(108deg);
+}
+.liquidpreview-effect-3 {
+  filter: saturate(500%) hue-rotate(162deg);
+}
+.liquidpreview-effect-4 {
+  filter: saturate(500%) hue-rotate(216deg);
+}
+.liquidpreview-effect-5 {
+  /* filter: saturate(500%) hue-rotate(270deg); */
+}
+
+.liquidpreview-assets {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

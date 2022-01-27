@@ -10,6 +10,9 @@
 .potionbottle-section {
   display: flex;
   flex-direction: row;
+  gap: 5px;
+  flex-wrap: wrap;
+  margin-top: 5px;
 }
 
 .potionbottle-icon {
@@ -29,7 +32,6 @@
   border-radius: 12px;
 
   flex-direction: column;
-  margin: 5px;
 }
 
 .potionbottle-section-title {

@@ -1,6 +1,9 @@
 import * as React from "react";
 import { useDispatch } from "react-redux";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheck, faFileUpload } from "@fortawesome/free-solid-svg-icons";
 
+import { extname } from "@/paths";
 import { merge, StringKeysOf } from "@/object-utils";
 
 import { useSelector } from "@/hooks/use-selector";
@@ -22,7 +25,8 @@ export interface IdObjectResourceFieldProps<
   objectId: string;
   resourceKey: StringKeysOf<CruciblePackageSectionItem<TKey>>;
   accept: string;
-  resourceName?: string;
+  resourceName: string;
+  children?: React.ReactNode;
 }
 
 const IdObjectResourceField = ({
@@ -31,6 +35,7 @@ const IdObjectResourceField = ({
   resourceKey,
   accept,
   resourceName,
+  children,
 }: IdObjectResourceFieldProps) => {
   const dispatch = useDispatch();
   const obj = useSelector((state) =>
@@ -45,7 +50,7 @@ const IdObjectResourceField = ({
             sectionKey,
             objectId,
             resourceKey,
-            resourceName ?? file.name,
+            `${resourceName}.${extname(file.name)}`,
             new Uint8Array(buffer)
           )
         );
@@ -59,12 +64,16 @@ const IdObjectResourceField = ({
   }
 
   const hasResource = obj[resourceKey] != null;
+
   return (
     <div>
-      <span>{hasResource ? obj[resourceKey] : "<none>"}</span>
+      {hasResource && <FontAwesomeIcon fixedWidth icon={faCheck} />}
+      {children && <span>{children}</span>}
       <AbstractFileLoadButton accept={accept} onFileLoaded={onFileLoaded}>
         {(props) => (
-          <Button {...props}>{hasResource ? "Change" : "Upload"}</Button>
+          <Button {...props}>
+            <FontAwesomeIcon color="inherit" icon={faFileUpload} />
+          </Button>
         )}
       </AbstractFileLoadButton>
     </div>

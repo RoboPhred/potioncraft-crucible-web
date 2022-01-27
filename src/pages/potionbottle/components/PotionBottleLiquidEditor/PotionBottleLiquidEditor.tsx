@@ -3,14 +3,17 @@ import classNames from "classnames";
 
 import { extname } from "@/paths";
 
-import { useIdObjectResource } from "@/services/package/hooks/use-idobject-resource";
-
-import styles from "./PotionBottleLiquidPreview.module.css";
 import { useSelector } from "@/hooks/use-selector";
 import {
   packageIdObjectDataSelector,
   packageIdObjectResourceSelector,
 } from "@/services/package/selectors/package";
+
+import IdObjectResourceField from "@/components/IdObjectResourceField";
+
+const PotionBottleResourceField = IdObjectResourceField.ofType("potionBottles");
+
+import styles from "./PotionBottleLiquidEditor.module.css";
 
 export type PotionBottleLiquidKey =
   | "liquidMain"
@@ -26,11 +29,13 @@ export type PotionBottleLiquidKey =
   | "liquid5Of5";
 
 export interface PotionBottleLiquidPreviewProps {
+  label: string;
   potionBottleId: string;
 }
 
-export function makeLiquidPreview(artKeys: PotionBottleLiquidKey[]) {
-  const PotionBottleLiquidPreview = ({
+export function makeLiquidEditor(artKeys: PotionBottleLiquidKey[]) {
+  const PotionBottleLiquidEditor = ({
+    label,
     potionBottleId,
   }: PotionBottleLiquidPreviewProps) => {
     const foreground = useSelector((state) =>
@@ -85,23 +90,42 @@ export function makeLiquidPreview(artKeys: PotionBottleLiquidKey[]) {
       : null;
 
     return (
-      <div className={styles["liquidpreview-container"]}>
-        {resourceUrls.map((resourceUrl, i) => (
-          <img
-            className={classNames(
-              styles["liquidpreview-effect"],
-              (styles as any)["liquidpreview-effect-" + (i + 1)]
-            )}
-            key={i}
-            src={resourceUrl}
-          />
-        ))}
-        {foregroundUrl && (
-          <img className={styles["liquidpreview-effect"]} src={foregroundUrl} />
-        )}
+      <div className={styles["liquidpreview"]}>
+        <div className={styles["liquidpreview-art"]}>
+          {resourceUrls.map((resourceUrl, i) => (
+            <img
+              className={classNames(
+                styles["liquidpreview-effect"],
+                (styles as any)["liquidpreview-effect-" + (i + 1)]
+              )}
+              key={i}
+              src={resourceUrl}
+            />
+          ))}
+          {foregroundUrl && (
+            <img
+              className={styles["liquidpreview-effect"]}
+              src={foregroundUrl}
+            />
+          )}
+          <label className={styles["liquidpreview-label"]}>{label}</label>
+        </div>
+        <div className={styles["liquidpreview-assets"]}>
+          {artKeys.map((artKey, i) => (
+            <PotionBottleResourceField
+              key={i}
+              accept="image/png"
+              objectId={potionBottleId}
+              resourceKey={artKey}
+              resourceName={artKey}
+            >
+              {`Effect ${i + 1}`}
+            </PotionBottleResourceField>
+          ))}
+        </div>
       </div>
     );
   };
 
-  return PotionBottleLiquidPreview;
+  return PotionBottleLiquidEditor;
 }
