@@ -1225,15 +1225,8 @@ a:hover {
   height: 100%;
   padding: 10px;
   box-sizing: border-box;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 5px;
-}
-
-.potionbottle-title--Cp8g2 {
-  font-size: 1.5em;
-  font-weight: 600;
-  grid-column: 1 / span 2;
+  display: flex;
+  flex-direction: column;
 }
 
 .potionbottle-section--W_OL0 {
