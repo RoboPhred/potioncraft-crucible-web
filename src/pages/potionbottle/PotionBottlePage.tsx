@@ -64,68 +64,74 @@ const PotionBottlePage = ({
       <EnsurePackageLoaded />
       <Page>
         <div className={styles["potionbottle-content"]}>
-          <h1>{potionBottle.id}</h1>
-          <Divider />
-          <div className={styles["potionbottle-section"]}>
-            <div
-              className={classNames(
-                styles["potionbottle-section-item"],
-                styles["potionbottle-icon"]
-              )}
-            >
-              <div className={styles["potionbottle-section-title"]}>Icon</div>
-              <PotionBottleIcon
-                className={styles["potionbottle-section-art"]}
-                potionBottleId={potionBottleId}
-              />
-            </div>
-          </div>
-          <div className={styles["potionbottle-section"]}>
-            <div
-              className={classNames(
-                styles["potionbottle-section-item"],
-                styles["potionbottle-bottleart"]
-              )}
-            >
-              <div className={styles["potionbottle-section-title"]}>
-                Foreground
+          <div className={styles["potionbottle-title"]}>{potionBottle.id}</div>
+          <div>
+            <div className={styles["potionbottle-section"]}>
+              <div
+                className={classNames(
+                  styles["potionbottle-section-item"],
+                  styles["potionbottle-icon"]
+                )}
+              >
+                <div className={styles["potionbottle-section-title"]}>Icon</div>
+                <PotionBottleIcon
+                  className={styles["potionbottle-section-art"]}
+                  potionBottleId={potionBottleId}
+                />
               </div>
-              <PotionBottleForeground
-                className={styles["potionbottle-section-art"]}
-                potionBottleId={potionBottleId}
-              />
             </div>
-            <div
-              className={classNames(
-                styles["potionbottle-section-item"],
-                styles["potionbottle-bottleart"]
-              )}
-            >
-              <div className={styles["potionbottle-section-title"]}>Mask</div>
-              <PotionBottleMask
-                className={styles["potionbottle-section-art"]}
-                potionBottleId={potionBottleId}
-              />
+            <div className={styles["potionbottle-section"]}>
+              <div
+                className={classNames(
+                  styles["potionbottle-section-item"],
+                  styles["potionbottle-bottleart"]
+                )}
+              >
+                <div className={styles["potionbottle-section-title"]}>
+                  Foreground
+                </div>
+                <PotionBottleForeground
+                  className={styles["potionbottle-section-art"]}
+                  potionBottleId={potionBottleId}
+                />
+              </div>
+              <div
+                className={classNames(
+                  styles["potionbottle-section-item"],
+                  styles["potionbottle-bottleart"]
+                )}
+              >
+                <div className={styles["potionbottle-section-title"]}>Mask</div>
+                <PotionBottleMask
+                  className={styles["potionbottle-section-art"]}
+                  potionBottleId={potionBottleId}
+                />
+              </div>
             </div>
           </div>
-          <div className={styles["potionbottle-section"]}>
-            <LiquidEditor1 label="One Effect" potionBottleId={potionBottleId} />
-            <LiquidEditor2
-              label="Two Effects"
-              potionBottleId={potionBottleId}
-            />
-            <LiquidEditor3
-              label="Three Effects"
-              potionBottleId={potionBottleId}
-            />
-            <LiquidEditor4
-              label="Four Effects"
-              potionBottleId={potionBottleId}
-            />
-            <LiquidEditor5
-              label="Five Effects"
-              potionBottleId={potionBottleId}
-            />
+          <div>
+            <div className={styles["potionbottle-section"]}>
+              <LiquidEditor1
+                label="One Effect"
+                potionBottleId={potionBottleId}
+              />
+              <LiquidEditor2
+                label="Two Effects"
+                potionBottleId={potionBottleId}
+              />
+              <LiquidEditor3
+                label="Three Effects"
+                potionBottleId={potionBottleId}
+              />
+              <LiquidEditor4
+                label="Four Effects"
+                potionBottleId={potionBottleId}
+              />
+              <LiquidEditor5
+                label="Five Effects"
+                potionBottleId={potionBottleId}
+              />
+            </div>
           </div>
         </div>
       </Page>
