@@ -1220,6 +1220,17 @@ a:hover {
   flex-direction: column;
 }
 
+.potioneffect-listitem--vIuV8 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.potioneffect-listitem-color--XguhW,
+.potioneffect-listitem-icon--V7M3p {
+  margin: 0 4px;
+}
+
 .potionbottle-content--R3cLe {
   width: 100%;
   height: 100%;
@@ -1227,6 +1238,12 @@ a:hover {
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
+}
+
+.potionbottle-title--Cp8g2 {
+  font-size: 1.5em;
+  font-weight: 600;
+  grid-column: 1 / span 2;
 }
 
 .potionbottle-section--W_OL0 {
@@ -1269,6 +1286,12 @@ a:hover {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.potionbottle-liquids--pHdBE {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .liquidpreview--dpdwS {
