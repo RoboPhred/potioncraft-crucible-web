@@ -1,0 +1,10 @@
+.potioneffect-listitem {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.potioneffect-listitem-color,
+.potioneffect-listitem-icon {
+  margin: 0 4px;
+}

@@ -1,7 +1,6 @@
 import * as React from "react";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
 
 import history from "@/history";
 
@@ -18,6 +17,8 @@ import { packageIdObjectIdsSelector } from "@/services/package/selectors/package
 
 import Modal from "@/components/Modal";
 import TextBox from "@/components/TextBox";
+
+import PotionEffectListItem from "./components/PotionEffectListItem/PotionEffectListItem";
 
 const PotionEffectsPage = () => {
   const dispatch = useDispatch();
@@ -48,11 +49,9 @@ const PotionEffectsPage = () => {
       <Page>
         <Flow>
           <ul>
-            {potionEffectIds.map((potionBaseId) => (
-              <li key={potionBaseId}>
-                <Link to={`/potion-effects/${potionBaseId}`}>
-                  {potionBaseId}
-                </Link>
+            {potionEffectIds.map((potionEffectId) => (
+              <li key={potionEffectId}>
+                <PotionEffectListItem potionEffectId={potionEffectId} />
               </li>
             ))}
           </ul>
